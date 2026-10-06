@@ -69,14 +69,18 @@
               "name": "areaKeywords",
               "value": [
                 "roscrea",
-                "templemore",
-                "birr",
-                "moneygall",
-                "shinrone",
-                "nenagh",
-                "cloughjordan"
+                "athlone"
               ],
               "type": "array"
+            },
+            {
+              "id": "4",
+              "name": "cityPriority",
+              "value": {
+                "roscrea": 1,
+                "athlone": 2
+              },
+              "type": "object"
             }
           ]
         },
