@@ -66,19 +66,33 @@
             },
             {
               "id": "3",
+              "name": "minMonthlyEuro",
+              "value": 800,
+              "type": "number"
+            },
+            {
+              "id": "4",
+              "name": "maxMonthlyEuro",
+              "value": 1500,
+              "type": "number"
+            },
+            {
+              "id": "5",
               "name": "areaKeywords",
               "value": [
                 "roscrea",
-                "athlone"
+                "athlone",
+                "thurles"
               ],
               "type": "array"
             },
             {
-              "id": "4",
+              "id": "6",
               "name": "cityPriority",
               "value": {
                 "roscrea": 1,
-                "athlone": 2
+                "athlone": 2,
+                "thurles": 2
               },
               "type": "object"
             }
@@ -172,7 +186,7 @@
         300
       ],
       "parameters": {
-        "jsCode": "const staticData=$getWorkflowStaticData('global');\nstaticData.seen=staticData.seen||{};\nconst cfg=$('Config').first().json;\nconst candidate=$('Has Links?').item.json;\nconst htmlRaw=items[0].json;\nconst html=typeof htmlRaw==='string'?htmlRaw:(htmlRaw.data||htmlRaw.body||htmlRaw.html||'');\nconst t=String(html||'');\nif(!t||/no longer available|this ad has been removed|ad has expired/i.test(t)){staticData.seen[candidate.id]=Date.now();return [];}\nlet title=candidate.title, price=candidate.price, seller='', beds='', propertyType='', url=candidate.url;\nconst m=t.match(/<script[^>]*id=\"__NEXT_DATA__\"[^>]*>(.*?)<\\/script>/);\nif(m){\n  try{\n    const data=JSON.parse(m[1]);\n    const listing=(((data||{}).props||{}).pageProps||{}).listing;\n    if(listing){\n      if(listing.state && String(listing.state).toUpperCase()!=='PUBLISHED'){staticData.seen[candidate.id]=Date.now();return [];}\n      title=listing.title||title; price=listing.price||price; seller=(listing.seller&&listing.seller.name)||''; beds=listing.numBedrooms||''; propertyType=listing.propertyType||'';\n      if(listing.seoFriendlyPath) url=`https://www.daft.ie${listing.seoFriendlyPath}`;\n    }\n  }catch(e){}\n}\nconst keys=(cfg.areaKeywords||['roscrea']).map(s=>String(s).toLowerCase());\nconst blob=`${title} ${url}`.toLowerCase();\nif(!keys.some(k=>blob.includes(k))) return [];\nconst bedNum=(String(beds).match(/(\\d+)/)||[])[1];\nif(Number(cfg.minBeds||0)>0 && bedNum && Number(bedNum)<Number(cfg.minBeds)) return [];\nstaticData.seen[candidate.id]=Date.now();\nconst detectedAtMs=candidate.detectedAtMs||Date.now();\nconst detected=new Date(detectedAtMs).toLocaleTimeString('en-IE',{hour12:false,timeZone:'Europe/Dublin'});\nconst ageSec=Math.max(0,Math.round((Date.now()-detectedAtMs)/1000));\nconst text=[\n`🚨 NEW PROPERTY`,` `,`🏠 ${beds||'? Bed'} ${propertyType||'Property'}`,`📍 ${title}`,`💶 ${price||'See ad'}`,`🕐 detected: ${detected}`,`🟢 NEW — ${ageSec} seconds ago`,`📡 daft-email`,`✅ LIVE verified`,` `,`🔗 ${url}`,` `,`ACTION:`,`1) Open`,`2) Call if phone visible`,`3) Else Enquire NOW`\n].join('\\n');\nreturn [{json:{id:candidate.id,title,price,beds,propertyType,seller,url,source:'daft-email',telegramChatId:cfg.telegramChatId,text,status:'available',foundAt:new Date().toISOString()}}];"
+        "jsCode": "const staticData=$getWorkflowStaticData('global');\nstaticData.seen=staticData.seen||{};\nconst cfg=$('Config').first().json;\nconst candidate=$('Has Links?').item.json;\nconst htmlRaw=items[0].json;\nconst html=typeof htmlRaw==='string'?htmlRaw:(htmlRaw.data||htmlRaw.body||htmlRaw.html||'');\nconst t=String(html||'');\nif(!t||/no longer available|this ad has been removed|ad has expired/i.test(t)){staticData.seen[candidate.id]=Date.now();return [];}\nlet title=candidate.title, price=candidate.price, seller='', beds='', propertyType='', url=candidate.url;\nconst m=t.match(/<script[^>]*id=\"__NEXT_DATA__\"[^>]*>(.*?)<\\/script>/);\nif(m){\n  try{\n    const data=JSON.parse(m[1]);\n    const listing=(((data||{}).props||{}).pageProps||{}).listing;\n    if(listing){\n      if(listing.state && String(listing.state).toUpperCase()!=='PUBLISHED'){staticData.seen[candidate.id]=Date.now();return [];}\n      title=listing.title||title; price=listing.price||price; seller=(listing.seller&&listing.seller.name)||''; beds=listing.numBedrooms||''; propertyType=listing.propertyType||'';\n      if(listing.seoFriendlyPath) url=`https://www.daft.ie${listing.seoFriendlyPath}`;\n    }\n  }catch(e){}\n}\nconst keys=(cfg.areaKeywords||['roscrea']).map(s=>String(s).toLowerCase());\nconst blob=`${title} ${url}`.toLowerCase();\nif(!keys.some(k=>blob.includes(k))) return [];\nconst bedNum=(String(beds).match(/(\\d+)/)||[])[1];\nif(Number(cfg.minBeds||0)>0 && bedNum && Number(bedNum)<Number(cfg.minBeds)) return [];\nconst priceM=(String(price).replace(/,/g,'').match(/€\\s?(\\d+(?:\\.\\d+)?)/)||[])[1];\nlet monthly=priceM?Number(priceM):null; if(monthly && /week/i.test(String(price))) monthly=Math.round(monthly*52/12);\nif(Number(cfg.minMonthlyEuro||0)>0 && monthly && monthly<Number(cfg.minMonthlyEuro)) return [];\nif(Number(cfg.maxMonthlyEuro||0)>0 && monthly && monthly>Number(cfg.maxMonthlyEuro)) return [];\nstaticData.seen[candidate.id]=Date.now();\nconst detectedAtMs=candidate.detectedAtMs||Date.now();\nconst detected=new Date(detectedAtMs).toLocaleTimeString('en-IE',{hour12:false,timeZone:'Europe/Dublin'});\nconst ageSec=Math.max(0,Math.round((Date.now()-detectedAtMs)/1000));\nconst text=[\n`🚨 NEW PROPERTY`,` `,`🏠 ${beds||'? Bed'} ${propertyType||'Property'}`,`📍 ${title}`,`💶 ${price||'See ad'}`,`🕐 detected: ${detected}`,`🟢 NEW — ${ageSec} seconds ago`,`📡 daft-email`,`✅ LIVE verified`,` `,`🔗 ${url}`,` `,`ACTION:`,`1) Open`,`2) Call if phone visible`,`3) Else Enquire NOW`\n].join('\\n');\nreturn [{json:{id:candidate.id,title,price,beds,propertyType,seller,url,source:'daft-email',telegramChatId:cfg.telegramChatId,text,status:'available',foundAt:new Date().toISOString()}}];"
       }
     },
     {

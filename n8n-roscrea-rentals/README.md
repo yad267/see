@@ -58,11 +58,12 @@
 
 ### Приоритеты
 1. **🔥 Roscrea** — главный  
-2. **⭐ Athlone** — второй (больше жилья и секций)  
+2. **⭐ Athlone / Thurles** — второй приоритет  
 3. **🟡 Nearby** (Templemore/Birr/Nenagh) — опционально, в алерте пометка *check sports*
 
 ## Фильтры v2.1
-- Priority cities: **Roscrea → Athlone**
+- Priority cities: **Roscrea → Athlone / Thurles**
+- Price: **€800–€1500 / month**
 - Optional nearby: Templemore / Birr / Nenagh
 - Type: rent / to let
 - Beds: **>= 2**
