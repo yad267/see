@@ -52,15 +52,22 @@
 
 ---
 
-## Фильтры v2 (по умолчанию)
-- Location: **Roscrea + 20–30 km towns**
+## Семейное ограничение
+Нужна **спортивная секция для сына в том же городе**, где квартира.  
+Поэтому соседний город — не всегда подходит.
+
+### Приоритеты
+1. **🔥 Roscrea** — главный  
+2. **⭐ Athlone** — второй (больше жилья и секций)  
+3. **🟡 Nearby** (Templemore/Birr/Nenagh) — опционально, в алерте пометка *check sports*
+
+## Фильтры v2.1
+- Priority cities: **Roscrea → Athlone**
+- Optional nearby: Templemore / Birr / Nenagh
 - Type: rent / to let
 - Beds: **>= 2**
 - Price: без лимита (пока не задашь)
 - Only NEW + LIVE
-
-Nearby towns:
-`Roscrea, Templemore, Birr, Moneygall, Shinrone, Nenagh, Cloughjordan`
 
 ---
 
