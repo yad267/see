@@ -1,5 +1,5 @@
 {
-  "name": "Roscrea Realtime Housing Hunt",
+  "name": "Roscrea Housing Hunter v2",
   "nodes": [
     {
       "id": "note",
@@ -7,13 +7,13 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -520,
-        200
+        -560,
+        180
       ],
       "parameters": {
-        "content": "## Roscrea LIVE hunter\nEvery 2 min → Daft+MyHome → verify available → Telegram only NEW live ads.\nAlso run email workflow for instant Daft alerts.",
-        "height": 280,
-        "width": 400
+        "width": 420,
+        "height": 320,
+        "content": "## Roscrea Hunter v2\n- Poll every 2 min\n- Daft + nearby towns + MyHome\n- minBeds=2\n- verify LIVE\n- Telegram rich alert\n\nAlso activate email-instant workflow."
       }
     },
     {
@@ -47,7 +47,7 @@
       ],
       "parameters": {
         "mode": "raw",
-        "jsonOutput": "{\"telegramChatId\": \"YOUR_TELEGRAM_CHAT_ID\", \"maxMonthlyEuro\": 0, \"minBeds\": 0, \"sheetId\": \"\", \"sources\": [{\"source\": \"daft-roscrea\", \"url\": \"https://www.daft.ie/property-for-rent/roscrea-tipperary\"}, {\"source\": \"daft-roscrea-houses\", \"url\": \"https://www.daft.ie/property-for-rent/roscrea-tipperary/houses\"}, {\"source\": \"daft-roscrea-apts\", \"url\": \"https://www.daft.ie/property-for-rent/roscrea-tipperary/apartments\"}, {\"source\": \"daft-tipperary\", \"url\": \"https://www.daft.ie/property-for-rent/tipperary\"}, {\"source\": \"daft-sharing\", \"url\": \"https://www.daft.ie/sharing/roscrea-tipperary\"}, {\"source\": \"myhome-house\", \"url\": \"https://www.myhome.ie/rentals/tipperary/house-to-rent-in-roscrea\"}, {\"source\": \"myhome-apt\", \"url\": \"https://www.myhome.ie/rentals/tipperary/apartment-to-rent-in-roscrea\"}]}"
+        "jsonOutput": "{\"telegramChatId\": \"YOUR_TELEGRAM_CHAT_ID\", \"maxMonthlyEuro\": 0, \"minBeds\": 2, \"radiusKm\": 30, \"sheetId\": \"\", \"areaKeywords\": [\"roscrea\", \"templemore\", \"birr\", \"moneygall\", \"shinrone\", \"nenagh\", \"cloughjordan\"], \"sources\": [{\"source\": \"daft-roscrea\", \"url\": \"https://www.daft.ie/property-for-rent/roscrea-tipperary\"}, {\"source\": \"daft-roscrea-houses\", \"url\": \"https://www.daft.ie/property-for-rent/roscrea-tipperary/houses\"}, {\"source\": \"daft-roscrea-apts\", \"url\": \"https://www.daft.ie/property-for-rent/roscrea-tipperary/apartments\"}, {\"source\": \"daft-templemore\", \"url\": \"https://www.daft.ie/property-for-rent/templemore-tipperary\"}, {\"source\": \"daft-birr\", \"url\": \"https://www.daft.ie/property-for-rent/birr-offaly\"}, {\"source\": \"daft-moneygall\", \"url\": \"https://www.daft.ie/property-for-rent/moneygall-offaly\"}, {\"source\": \"daft-shinrone\", \"url\": \"https://www.daft.ie/property-for-rent/shinrone-offaly\"}, {\"source\": \"daft-nenagh\", \"url\": \"https://www.daft.ie/property-for-rent/nenagh-tipperary\"}, {\"source\": \"daft-tipperary\", \"url\": \"https://www.daft.ie/property-for-rent/tipperary\"}, {\"source\": \"daft-offaly\", \"url\": \"https://www.daft.ie/property-for-rent/offaly\"}, {\"source\": \"daft-sharing-roscrea\", \"url\": \"https://www.daft.ie/sharing/roscrea-tipperary\"}, {\"source\": \"myhome-house\", \"url\": \"https://www.myhome.ie/rentals/tipperary/house-to-rent-in-roscrea\"}, {\"source\": \"myhome-apt\", \"url\": \"https://www.myhome.ie/rentals/tipperary/apartment-to-rent-in-roscrea\"}]}"
       }
     },
     {
@@ -60,7 +60,7 @@
         420
       ],
       "parameters": {
-        "jsCode": "const cfg=items[0].json; const sources=cfg.sources||[]; return sources.map(s=>({json:{...cfg,...s}}));"
+        "jsCode": "const cfg=items[0].json; return (cfg.sources||[]).map(s=>({json:{...cfg,...s}}));"
       }
     },
     {
@@ -106,7 +106,7 @@
         420
       ],
       "parameters": {
-        "jsCode": "const cfg = $('Config').first().json;\nconst staticData = $getWorkflowStaticData('global');\nstaticData.seen = staticData.seen || {};\n\nfunction parsePriceToMonthly(priceText) {\n  const t = String(priceText || '');\n  const m = t.replace(/,/g, '').match(/€\\s?(\\d+(?:\\.\\d+)?)/);\n  if (!m) return null;\n  const n = Number(m[1]);\n  if (!Number.isFinite(n)) return null;\n  if (/week/i.test(t)) return Math.round(n * 52 / 12);\n  return Math.round(n);\n}\nfunction bedsNum(v) {\n  const m = String(v || '').match(/(\\d+)/);\n  return m ? Number(m[1]) : 0;\n}\nfunction htmlOf(item) {\n  const j = item.json;\n  if (typeof j === 'string') return j;\n  return j.data || j.body || j.html || '';\n}\nfunction extractDaft(html, sourceUrl, sourceName) {\n  const match = String(html).match(/<script[^>]*id=\"__NEXT_DATA__\"[^>]*>(.*?)<\\/script>/);\n  if (!match) return [];\n  let data; try { data = JSON.parse(match[1]); } catch(e) { return []; }\n  const list = (((data || {}).props || {}).pageProps || {}).listings || [];\n  const out = [];\n  for (const row of list) {\n    const L = row.listing || row;\n    if (!L || !L.id) continue;\n    const title = L.title || '';\n    const path = L.seoFriendlyPath || '';\n    const url = path ? `https://www.daft.ie${path}` : `https://www.daft.ie/for-rent/roscrea/${L.id}`;\n    const blob = `${title} ${path} ${sourceUrl}`.toLowerCase();\n    if (!blob.includes('roscrea')) continue;\n    const monthly = parsePriceToMonthly(L.price);\n    const beds = bedsNum(L.numBedrooms);\n    if (Number(cfg.maxMonthlyEuro) > 0 && monthly && monthly > Number(cfg.maxMonthlyEuro)) continue;\n    if (Number(cfg.minBeds) > 0 && beds > 0 && beds < Number(cfg.minBeds)) continue;\n    out.push({\n      id: `daft-${L.id}`,\n      source: sourceName || 'daft',\n      title,\n      price: L.price || '',\n      monthly,\n      beds: L.numBedrooms || '',\n      baths: L.numBathrooms || '',\n      propertyType: L.propertyType || '',\n      seller: (L.seller && L.seller.name) || '',\n      sellerType: (L.seller && L.seller.sellerType) || '',\n      url\n    });\n  }\n  return out;\n}\nfunction extractMyHome(html, sourceName) {\n  const text = String(html);\n  if (/No homes listed here yet/i.test(text)) return [];\n  const abs = [...text.matchAll(/https?:\\/\\/www\\.myhome\\.ie\\/[^\"'\\\\\\s<>]+/g)].map(m => m[0].replace(/&amp;/g,'&'));\n  const rel = [...text.matchAll(/href=\\\"(\\/rentals\\/[^\\\"]+)\\\"/g)].map(m => 'https://www.myhome.ie' + m[1].replace(/&amp;/g,'&'));\n  const all = [...new Set([...abs, ...rel])]\n    .filter(u => !u.includes('house-to-rent-in-roscrea') && !u.includes('apartment-to-rent-in-roscrea'))\n    .filter(u => /\\/\\d{4,}/.test(u) || /property|residential|rental/i.test(u));\n  const out = [];\n  for (const url of all.slice(0, 30)) {\n    out.push({\n      id: `myhome-${url}`,\n      source: sourceName || 'myhome',\n      title: 'MyHome Roscrea rental',\n      price: '',\n      monthly: null,\n      beds: '',\n      baths: '',\n      propertyType: '',\n      seller: '',\n      sellerType: '',\n      url\n    });\n  }\n  return out;\n}\n\nconst urlItems = $('Split Sources').all();\nconst found = [];\nconst batch = new Set();\nfor (let i = 0; i < items.length; i++) {\n  const meta = (urlItems[i] && urlItems[i].json) || {};\n  const html = htmlOf(items[i]);\n  const sourceUrl = meta.url || '';\n  const source = meta.source || 'unknown';\n  let list = [];\n  if (String(source).startsWith('daft')) list = extractDaft(html, sourceUrl, source);\n  else if (String(source).startsWith('myhome')) list = extractMyHome(html, source);\n  for (const L of list) {\n    if (batch.has(L.id) || staticData.seen[L.id]) continue;\n    batch.add(L.id);\n    found.push({ json: { ...cfg, ...L } });\n  }\n}\nreturn found;"
+        "jsCode": "const cfg = $('Config').first().json;\nconst staticData = $getWorkflowStaticData('global');\nstaticData.seen = staticData.seen || {};\n\nconst areaWords = (cfg.areaKeywords || [\n  'roscrea','templemore','birr','moneygall','shinrone','nenagh','cloughjordan'\n]).map(s => String(s).toLowerCase());\n\nfunction inArea(text) {\n  const t = String(text || '').toLowerCase();\n  return areaWords.some(w => t.includes(w));\n}\n\nfunction parsePriceToMonthly(priceText) {\n  const t = String(priceText || '');\n  const m = t.replace(/,/g, '').match(/€\\s?(\\d+(?:\\.\\d+)?)/);\n  if (!m) return null;\n  const n = Number(m[1]);\n  if (!Number.isFinite(n)) return null;\n  if (/week/i.test(t)) return Math.round(n * 52 / 12);\n  return Math.round(n);\n}\n\nfunction bedsNum(v) {\n  const m = String(v || '').match(/(\\d+)/);\n  return m ? Number(m[1]) : 0;\n}\n\nfunction htmlOf(item) {\n  const j = item.json;\n  if (typeof j === 'string') return j;\n  return j.data || j.body || j.html || '';\n}\n\nfunction extractDaft(html, sourceUrl, sourceName) {\n  const match = String(html).match(/<script[^>]*id=\"__NEXT_DATA__\"[^>]*>(.*?)<\\/script>/);\n  if (!match) return [];\n  let data; try { data = JSON.parse(match[1]); } catch (e) { return []; }\n  const list = (((data || {}).props || {}).pageProps || {}).listings || [];\n  const out = [];\n  for (const row of list) {\n    const L = row.listing || row;\n    if (!L || !L.id) continue;\n    const title = L.title || '';\n    const path = L.seoFriendlyPath || '';\n    const url = path ? `https://www.daft.ie${path}` : `https://www.daft.ie/for-rent/${L.id}`;\n    const blob = `${title} ${path} ${sourceUrl}`;\n    if (!inArea(blob)) continue;\n\n    const monthly = parsePriceToMonthly(L.price);\n    const beds = bedsNum(L.numBedrooms);\n    const minBeds = Number(cfg.minBeds || 0);\n    if (minBeds > 0 && beds > 0 && beds < minBeds) continue;\n    if (Number(cfg.maxMonthlyEuro) > 0 && monthly && monthly > Number(cfg.maxMonthlyEuro)) continue;\n\n    out.push({\n      id: `daft-${L.id}`,\n      source: sourceName || 'daft',\n      title,\n      price: L.price || '',\n      monthly,\n      beds: L.numBedrooms || '',\n      baths: L.numBathrooms || '',\n      propertyType: L.propertyType || '',\n      seller: (L.seller && L.seller.name) || '',\n      sellerType: (L.seller && L.seller.sellerType) || '',\n      url,\n      detectedAtMs: Date.now()\n    });\n  }\n  return out;\n}\n\nfunction extractMyHome(html, sourceName) {\n  const text = String(html);\n  if (/No homes listed here yet/i.test(text)) return [];\n  if (!inArea(text.slice(0, 5000)) && !/roscrea/i.test(sourceName)) return [];\n  const abs = [...text.matchAll(/https?:\\/\\/www\\.myhome\\.ie\\/[^\"'\\\\\\s<>]+/g)].map(m => m[0].replace(/&amp;/g,'&'));\n  const rel = [...text.matchAll(/href=\\\"(\\/rentals\\/[^\\\"]+)\\\"/g)].map(m => 'https://www.myhome.ie' + m[1].replace(/&amp;/g,'&'));\n  const all = [...new Set([...abs, ...rel])]\n    .filter(u => !/house-to-rent-in-roscrea|apartment-to-rent-in-roscrea/i.test(u))\n    .filter(u => /\\/\\d{4,}/.test(u) || /property|residential|rental/i.test(u));\n  return all.slice(0, 30).map(url => ({\n    id: `myhome-${url}`,\n    source: sourceName || 'myhome',\n    title: 'MyHome rental',\n    price: '',\n    monthly: null,\n    beds: '',\n    baths: '',\n    propertyType: '',\n    seller: '',\n    sellerType: '',\n    url,\n    detectedAtMs: Date.now()\n  }));\n}\n\nconst urlItems = $('Split Sources').all();\nconst found = [];\nconst batch = new Set();\nfor (let i = 0; i < items.length; i++) {\n  const meta = (urlItems[i] && urlItems[i].json) || {};\n  const html = htmlOf(items[i]);\n  const sourceUrl = meta.url || '';\n  const source = meta.source || 'unknown';\n  let list = [];\n  if (String(source).startsWith('daft')) list = extractDaft(html, sourceUrl, source);\n  else if (String(source).startsWith('myhome')) list = extractMyHome(html, source);\n  for (const L of list) {\n    if (batch.has(L.id) || staticData.seen[L.id]) continue;\n    batch.add(L.id);\n    found.push({ json: { ...cfg, ...L } });\n  }\n}\nreturn found;"
       }
     },
     {
@@ -148,7 +148,7 @@
       "typeVersion": 4.2,
       "position": [
         1440,
-        320
+        300
       ],
       "parameters": {
         "url": "={{ $json.url }}",
@@ -177,10 +177,10 @@
       "typeVersion": 2,
       "position": [
         1680,
-        320
+        300
       ],
       "parameters": {
-        "jsCode": "const staticData = $getWorkflowStaticData('global');\nstaticData.seen = staticData.seen || {};\nconst cfg = $('Config').first().json;\n\nconst candidate = $('Has Candidates?').item.json;\nconst htmlRaw = items[0].json;\nconst html = typeof htmlRaw === 'string' ? htmlRaw : (htmlRaw.data || htmlRaw.body || htmlRaw.html || htmlRaw.verifyHtml || '');\n\nfunction unavailable(html) {\n  const t = String(html || '');\n  if (!t || t.length < 200) return true;\n  if (/no longer available|this ad has been removed|ad has expired|property is no longer available|removed by the advertiser/i.test(t)) return true;\n  const m = t.match(/<script[^>]*id=\"__NEXT_DATA__\"[^>]*>(.*?)<\\/script>/);\n  if (m) {\n    try {\n      const data = JSON.parse(m[1]);\n      const listing = (((data || {}).props || {}).pageProps || {}).listing;\n      if (listing && listing.state && String(listing.state).toUpperCase() !== 'PUBLISHED') return true;\n      // enrich from detail page if possible\n      if (listing) {\n        candidate.title = listing.title || candidate.title;\n        candidate.price = listing.price || candidate.price;\n        candidate.seller = (listing.seller && listing.seller.name) || candidate.seller;\n        candidate.beds = listing.numBedrooms || candidate.beds;\n        candidate.propertyType = listing.propertyType || candidate.propertyType;\n        if (listing.seoFriendlyPath) candidate.url = `https://www.daft.ie${listing.seoFriendlyPath}`;\n      }\n    } catch (e) {}\n  }\n  if (/No homes listed here yet/i.test(t) && candidate.source.startsWith('myhome')) return true;\n  return false;\n}\n\nif (unavailable(html)) {\n  // mark as seen dead so we don't recheck forever every 2 min? better mark dead\n  staticData.seen[candidate.id] = Date.now();\n  return [];\n}\n\n// available + new\nstaticData.seen[candidate.id] = Date.now();\n\n// keep map small\nconst entries = Object.entries(staticData.seen).sort((a,b)=>b[1]-a[1]);\nif (entries.length > 800) staticData.seen = Object.fromEntries(entries.slice(0,800));\n\nfunction monthly(priceText) {\n  const t = String(priceText || '');\n  const m = t.replace(/,/g,'').match(/€\\s?(\\d+(?:\\.\\d+)?)/);\n  if (!m) return candidate.monthly || null;\n  const n = Number(m[1]);\n  if (/week/i.test(t)) return Math.round(n*52/12);\n  return Math.round(n);\n}\nconst mon = monthly(candidate.price);\n\nconst text = [\n  `🚨 ROSCREA LIVE RENTAL`,\n  ``,\n  `📍 ${candidate.title}`,\n  `💶 ${candidate.price || 'Price on ad'}${mon ? ` (~€${mon}/mo)` : ''} · ${candidate.beds || '? bed'} · ${candidate.propertyType || ''}`.trim(),\n  `👤 ${candidate.seller || 'Contact on ad'}`,\n  `🟢 Status: AVAILABLE NOW`,\n  `📡 Source: ${candidate.source}`,\n  ``,\n  `🔗 ${candidate.url}`,\n  ``,\n  `ACTION NOW:`,\n  `1) Open link`,\n  `2) Call if phone visible`,\n  `3) Else Enquire immediately`,\n  ``,\n  `Script:`,\n  `Hi, I'm interested in the Roscrea rental.`,\n  `Is it still available for a viewing this week?`\n].join('\\n');\n\nreturn [{\n  json: {\n    ...candidate,\n    monthly: mon,\n    telegramChatId: cfg.telegramChatId,\n    sheetId: cfg.sheetId,\n    status: 'available',\n    foundAt: new Date().toISOString(),\n    text\n  }\n}];"
+        "jsCode": "const staticData = $getWorkflowStaticData('global');\nstaticData.seen = staticData.seen || {};\nconst cfg = $('Config').first().json;\nconst candidate = $('Has Candidates?').item.json;\nconst htmlRaw = items[0].json;\nconst html = typeof htmlRaw === 'string' ? htmlRaw : (htmlRaw.data || htmlRaw.body || htmlRaw.html || '');\n\nfunction unavailable(html) {\n  const t = String(html || '');\n  if (!t || t.length < 200) return true;\n  if (/no longer available|this ad has been removed|ad has expired|property is no longer available|removed by the advertiser/i.test(t)) return true;\n  const m = t.match(/<script[^>]*id=\"__NEXT_DATA__\"[^>]*>(.*?)<\\/script>/);\n  if (m) {\n    try {\n      const data = JSON.parse(m[1]);\n      const listing = (((data || {}).props || {}).pageProps || {}).listing;\n      if (listing && listing.state && String(listing.state).toUpperCase() !== 'PUBLISHED') return true;\n      if (listing) {\n        candidate.title = listing.title || candidate.title;\n        candidate.price = listing.price || candidate.price;\n        candidate.seller = (listing.seller && listing.seller.name) || candidate.seller;\n        candidate.beds = listing.numBedrooms || candidate.beds;\n        candidate.propertyType = listing.propertyType || candidate.propertyType;\n        if (listing.seoFriendlyPath) candidate.url = `https://www.daft.ie${listing.seoFriendlyPath}`;\n      }\n    } catch (e) {}\n  }\n  return false;\n}\n\nif (unavailable(html)) {\n  staticData.seen[candidate.id] = Date.now();\n  return [];\n}\n\nstaticData.seen[candidate.id] = Date.now();\nconst entries = Object.entries(staticData.seen).sort((a,b)=>b[1]-a[1]);\nif (entries.length > 1000) staticData.seen = Object.fromEntries(entries.slice(0,1000));\n\nfunction monthly(priceText) {\n  const t = String(priceText || '');\n  const m = t.replace(/,/g,'').match(/€\\s?(\\d+(?:\\.\\d+)?)/);\n  if (!m) return candidate.monthly || null;\n  const n = Number(m[1]);\n  if (/week/i.test(t)) return Math.round(n * 52 / 12);\n  return Math.round(n);\n}\n\nconst mon = monthly(candidate.price);\nconst detectedAtMs = candidate.detectedAtMs || Date.now();\nconst ageSec = Math.max(0, Math.round((Date.now() - detectedAtMs) / 1000));\nconst detected = new Date(detectedAtMs).toLocaleTimeString('en-IE', { hour12: false, timeZone: 'Europe/Dublin' });\nconst ageLabel = ageSec < 60 ? `${ageSec} seconds ago` : `${Math.round(ageSec/60)} min ago`;\n\nconst text = [\n  `🚨 NEW PROPERTY`,\n  ``,\n  `🏠 ${candidate.beds || '? Bed'} ${candidate.propertyType || 'Property'}`,\n  `📍 ${candidate.title}`,\n  `💶 ${candidate.price || 'See ad'}${mon ? ` (~€${mon}/mo)` : ''}`,\n  `🕐 detected: ${detected}`,\n  `🟢 NEW — ${ageLabel}`,\n  `📡 ${candidate.source}`,\n  `✅ LIVE verified`,\n  ``,\n  `🔗 ${candidate.url}`,\n  ``,\n  `ACTION:`,\n  `1) Open`,\n  `2) Call if phone visible`,\n  `3) Else Enquire NOW`,\n  ``,\n  `Script:`,\n  `Hi, I'm interested in this rental.`,\n  `Is it still available for a viewing this week?`\n].join('\\n');\n\nreturn [{\n  json: {\n    ...candidate,\n    monthly: mon,\n    telegramChatId: cfg.telegramChatId,\n    sheetId: cfg.sheetId,\n    status: 'available',\n    foundAt: new Date().toISOString(),\n    text\n  }\n}];"
       }
     },
     {
@@ -190,7 +190,7 @@
       "typeVersion": 2.2,
       "position": [
         1920,
-        320
+        300
       ],
       "parameters": {
         "conditions": {
@@ -222,9 +222,9 @@
       "typeVersion": 1.2,
       "position": [
         2160,
-        220
+        200
       ],
-      "webhookId": "roscrea-live",
+      "webhookId": "roscrea-v2",
       "credentials": {
         "telegramApi": {
           "id": "REPLACE_TELEGRAM_CREDENTIAL_ID",
@@ -246,10 +246,10 @@
       "typeVersion": 2,
       "position": [
         2160,
-        420
+        400
       ],
       "parameters": {
-        "jsCode": "const sheetId=String($json.sheetId||'').trim();\nif(!sheetId) return [];\nreturn items;"
+        "jsCode": "if(!String($json.sheetId||'').trim()) return []; return items;"
       }
     },
     {
@@ -259,7 +259,7 @@
       "typeVersion": 4.5,
       "position": [
         2400,
-        420
+        400
       ],
       "credentials": {
         "googleSheetsOAuth2Api": {
@@ -422,7 +422,7 @@
       "name": "roscrea"
     },
     {
-      "name": "rentals"
+      "name": "v2"
     }
   ]
 }
