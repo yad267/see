@@ -1,0 +1,324 @@
+{
+  "name": "Roscrea Rental Alerts",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Roscrea Rentals\n\n1. Fill Config\n2. Connect Telegram\n3. Optional Google Sheet\n4. Activate\n\nAlso enable Daft Saved Search email alerts for Roscrea.",
+        "height": 300,
+        "width": 380
+      },
+      "id": "note",
+      "name": "Setup",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 5
+            }
+          ]
+        }
+      },
+      "id": "schedule",
+      "name": "Every 5 min",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"telegramChatId\": \"YOUR_TELEGRAM_CHAT_ID\",\n  \"maxMonthlyEuro\": 0,\n  \"minBeds\": 0,\n  \"includeCountyTipperaryRoscrea\": true,\n  \"sheetId\": \"\",\n  \"searchUrls\": [\n    \"https://www.daft.ie/property-for-rent/roscrea-tipperary\",\n    \"https://www.daft.ie/property-for-rent/tipperary\"\n  ]\n}"
+      },
+      "id": "config",
+      "name": "Config",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const cfg = items[0].json;\nconst urls = Array.isArray(cfg.searchUrls) ? cfg.searchUrls : [];\nreturn urls.map((url) => ({\n  json: {\n    ...cfg,\n    url\n  }\n}));"
+      },
+      "id": "split-urls",
+      "name": "Split Search URLs",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "options": {
+          "timeout": 20000,
+          "response": {
+            "response": {
+              "fullResponse": false,
+              "responseFormat": "text"
+            }
+          }
+        },
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (compatible; RoscreaRentBot/1.0)"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "en-IE,en;q=0.9"
+            }
+          ]
+        }
+      },
+      "id": "fetch-daft",
+      "name": "Fetch Daft HTML",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        720,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const cfg = $('Config').first().json;\nconst staticData = $getWorkflowStaticData('global');\nstaticData.seen = staticData.seen || {};\n\nfunction parsePriceToMonthly(priceText) {\n  const t = String(priceText || '');\n  const m = t.replace(/,/g, '').match(/€\\s?(\\d+(?:\\.\\d+)?)/);\n  if (!m) return null;\n  const n = Number(m[1]);\n  if (!Number.isFinite(n)) return null;\n  if (/week/i.test(t)) return Math.round(n * 52 / 12);\n  return Math.round(n);\n}\n\nfunction bedsNum(v) {\n  const m = String(v || '').match(/(\\d+)/);\n  return m ? Number(m[1]) : 0;\n}\n\nfunction extractListings(html, sourceUrl) {\n  const match = String(html).match(/<script[^>]*id=\"__NEXT_DATA__\"[^>]*>(.*?)<\\/script>/);\n  if (!match) return [];\n  let data;\n  try { data = JSON.parse(match[1]); } catch (e) { return []; }\n  const list = (((data || {}).props || {}).pageProps || {}).listings || [];\n  const out = [];\n  for (const row of list) {\n    const L = row.listing || row;\n    if (!L || !L.id) continue;\n    const title = L.title || '';\n    const path = L.seoFriendlyPath || '';\n    const url = path\n      ? `https://www.daft.ie${path}`\n      : `https://www.daft.ie/for-rent/${String(title).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}/${L.id}`;\n\n    if (/property-for-rent\\/tipperary(?:[\\/?]|$)/i.test(sourceUrl)) {\n      if (!/roscrea/i.test(title) && !/roscrea/i.test(path)) continue;\n    }\n\n    const monthly = parsePriceToMonthly(L.price);\n    const beds = bedsNum(L.numBedrooms);\n    if (Number(cfg.maxMonthlyEuro) > 0 && monthly && monthly > Number(cfg.maxMonthlyEuro)) continue;\n    if (Number(cfg.minBeds) > 0 && beds < Number(cfg.minBeds)) continue;\n\n    out.push({\n      id: String(L.id),\n      title,\n      price: L.price || '',\n      monthly,\n      beds: L.numBedrooms || '',\n      baths: L.numBathrooms || '',\n      propertyType: L.propertyType || '',\n      seller: (L.seller && L.seller.name) || '',\n      sellerType: (L.seller && L.seller.sellerType) || '',\n      url,\n      sourceUrl\n    });\n  }\n  return out;\n}\n\nconst all = [];\nconst seenBatch = new Set();\nconst urlItems = $('Split Search URLs').all();\nfor (let i = 0; i < items.length; i++) {\n  const htmlRaw = items[i].json;\n  const html = typeof htmlRaw === 'string'\n    ? htmlRaw\n    : (htmlRaw.data || htmlRaw.body || htmlRaw.html || '');\n  const sourceUrl = (urlItems[i] && urlItems[i].json.url) || '';\n  for (const L of extractListings(html, sourceUrl)) {\n    if (seenBatch.has(L.id)) continue;\n    seenBatch.add(L.id);\n    all.push(L);\n  }\n}\n\nconst fresh = [];\nconst now = Date.now();\nfor (const L of all) {\n  if (staticData.seen[L.id]) continue;\n  staticData.seen[L.id] = now;\n\n  const text = [\n    `🚨 ROSCREA RENTAL — ACT NOW`,\n    ``,\n    `📍 ${L.title}`,\n    `💶 ${L.price}${L.monthly ? ` (~€${L.monthly}/mo)` : ''} · ${L.beds || '?'} · ${L.propertyType || ''}`.trim(),\n    `👤 ${L.seller || 'Seller'}${L.sellerType ? ` (${L.sellerType})` : ''}`,\n    ``,\n    `🔗 ${L.url}`,\n    ``,\n    `Action:`,\n    `1) Open link now`,\n    `2) Call if phone is visible`,\n    `3) Else send Daft enquiry immediately`,\n    ``,\n    `Script:`,\n    `Hi, I'm interested in the Roscrea rental on Daft.`,\n    `Is it still available for viewing this week?`\n  ].join('\\n');\n\n  fresh.push({\n    json: {\n      ...L,\n      telegramChatId: cfg.telegramChatId,\n      sheetId: cfg.sheetId,\n      text,\n      status: 'new',\n      foundAt: new Date(now).toISOString()\n    }\n  });\n}\n\nconst entries = Object.entries(staticData.seen).sort((a,b) => b[1]-a[1]);\nif (entries.length > 500) {\n  staticData.seen = Object.fromEntries(entries.slice(0, 500));\n}\n\nreturn fresh;"
+      },
+      "id": "parse-new",
+      "name": "Parse New Roscrea Ads",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        980,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "has-new",
+              "leftValue": "={{ $json.text }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if-new",
+      "name": "Has New Ads?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1220,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.telegramChatId }}",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "tg",
+      "name": "Telegram Alert",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1480,
+        320
+      ],
+      "webhookId": "roscrea-tg",
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TELEGRAM_CREDENTIAL_ID",
+          "name": "Telegram Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const cfg = $('Config').first().json;\nconst sheetId = String(cfg.sheetId || '').trim();\nif (!sheetId) return [];\nreturn items.map(i => ({ json: { ...i.json, sheetId } }));"
+      },
+      "id": "maybe-sheet",
+      "name": "Need Sheet?",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1480,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $json.sheetId }}"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Roscrea"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "timestamp": "={{ $json.foundAt }}",
+            "id": "={{ $json.id }}",
+            "title": "={{ $json.title }}",
+            "price": "={{ $json.price }}",
+            "url": "={{ $json.url }}",
+            "status": "={{ $json.status }}"
+          }
+        },
+        "options": {}
+      },
+      "id": "sheet-append",
+      "name": "Append Google Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1720,
+        560
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "REPLACE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Every 5 min": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config": {
+      "main": [
+        [
+          {
+            "node": "Split Search URLs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Search URLs": {
+      "main": [
+        [
+          {
+            "node": "Fetch Daft HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Daft HTML": {
+      "main": [
+        [
+          {
+            "node": "Parse New Roscrea Ads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse New Roscrea Ads": {
+      "main": [
+        [
+          {
+            "node": "Has New Ads?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has New Ads?": {
+      "main": [
+        [
+          {
+            "node": "Telegram Alert",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Need Sheet?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Need Sheet?": {
+      "main": [
+        [
+          {
+            "node": "Append Google Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "name": "rentals"
+    },
+    {
+      "name": "roscrea"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2026-10-06T09:00:00.000Z",
+  "versionId": "1"
+}
