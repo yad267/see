@@ -1,0 +1,304 @@
+{
+  "name": "Roscrea Daft Email Instant",
+  "nodes": [
+    {
+      "id": "note",
+      "name": "Setup",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        200
+      ],
+      "parameters": {
+        "content": "## Instant path\nDaft Saved Search email → verify listing still live → Telegram.\nUse together with realtime hunt.",
+        "height": 260,
+        "width": 380
+      }
+    },
+    {
+      "id": "imap",
+      "name": "Daft Email Trigger",
+      "type": "n8n-nodes-base.emailReadImap",
+      "typeVersion": 2,
+      "position": [
+        0,
+        400
+      ],
+      "credentials": {
+        "imap": {
+          "id": "REPLACE_IMAP_CREDENTIAL_ID",
+          "name": "Gmail IMAP"
+        }
+      },
+      "parameters": {
+        "mailbox": "INBOX",
+        "postProcessAction": "read",
+        "options": {
+          "forceReconnect": 10
+        }
+      }
+    },
+    {
+      "id": "config",
+      "name": "Config",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        260,
+        400
+      ],
+      "parameters": {
+        "mode": "manual",
+        "duplicateItem": false,
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1",
+              "name": "telegramChatId",
+              "value": "YOUR_TELEGRAM_CHAT_ID",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      }
+    },
+    {
+      "id": "parse",
+      "name": "Parse Daft Emails",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        520,
+        400
+      ],
+      "parameters": {
+        "jsCode": "const cfg=$('Config').first().json;\nconst staticData=$getWorkflowStaticData('global');\nstaticData.seen=staticData.seen||{};\nconst mail=items[0].json;\nconst subject=String(mail.subject||'');\nconst body=String(mail.textHtml||mail.html||mail.textPlain||mail.text||'');\nconst blob=`${subject}\\n${body}`;\nif(!/roscrea/i.test(blob)) return [];\nconst urls=[...blob.matchAll(/https?:\\/\\/(?:www\\.)?daft\\.ie\\/[^\\s\"'<>]+/gi)].map(m=>m[0].replace(/[),.;]+$/,''));\nconst uniq=[...new Set(urls)].filter(u=>/for-rent|sharing|property-for-rent/i.test(u));\nconst out=[];\nfor (const url of uniq){const idMatch=url.match(/(\\d{6,})/);const id=`daft-mail-${idMatch?idMatch[1]:url}`; if(staticData.seen[id]) continue; out.push({json:{...cfg,id,source:'daft-email',title:subject||'Daft alert',price:'',beds:'',propertyType:'',seller:'',url}});} return out;"
+      }
+    },
+    {
+      "id": "ifmail",
+      "name": "Has Links?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        760,
+        400
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "h",
+              "leftValue": "={{ $json.url }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "verify",
+      "name": "Verify Email Listing",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1000,
+        300
+      ],
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "options": {
+          "timeout": 20000,
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          }
+        },
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "confirm",
+      "name": "Confirm Email Listing",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1240,
+        300
+      ],
+      "parameters": {
+        "jsCode": "const staticData = $getWorkflowStaticData('global');\nstaticData.seen = staticData.seen || {};\nconst cfg = $('Config').first().json;\nconst candidate = $('Parse Daft Emails').item.json;\nconst htmlRaw = items[0].json;\nconst html = typeof htmlRaw === 'string' ? htmlRaw : (htmlRaw.data || htmlRaw.body || htmlRaw.html || '');\nconst t = String(html || '');\nif (!t || /no longer available|this ad has been removed|ad has expired/i.test(t)) {\n  staticData.seen[candidate.id] = Date.now();\n  return [];\n}\nlet title = candidate.title;\nlet price = candidate.price;\nlet seller = '';\nlet beds = '';\nlet propertyType = '';\nlet url = candidate.url;\nconst m = t.match(/<script[^>]*id=\"__NEXT_DATA__\"[^>]*>(.*?)<\\/script>/);\nif (m) {\n  try {\n    const data = JSON.parse(m[1]);\n    const listing = (((data || {}).props || {}).pageProps || {}).listing;\n    if (listing) {\n      if (listing.state && String(listing.state).toUpperCase() !== 'PUBLISHED') {\n        staticData.seen[candidate.id] = Date.now();\n        return [];\n      }\n      title = listing.title || title;\n      price = listing.price || price;\n      seller = (listing.seller && listing.seller.name) || '';\n      beds = listing.numBedrooms || '';\n      propertyType = listing.propertyType || '';\n      if (listing.seoFriendlyPath) url = `https://www.daft.ie${listing.seoFriendlyPath}`;\n    }\n  } catch(e) {}\n}\nif (!/roscrea/i.test(`${title} ${url} ${t.slice(0,2000)}`)) {\n  return [];\n}\nstaticData.seen[candidate.id] = Date.now();\nconst text = [\n  `🚨 ROSCREA LIVE RENTAL`,\n  ``,\n  `📍 ${title}`,\n  `💶 ${price || 'See ad'} · ${beds || '?'} · ${propertyType || ''}`.trim(),\n  `👤 ${seller || 'Contact on ad'}`,\n  `🟢 Status: AVAILABLE NOW`,\n  `📡 Source: daft-email`,\n  ``,\n  `🔗 ${url}`,\n  ``,\n  `ACTION NOW:`,\n  `1) Open link`,\n  `2) Call if phone visible`,\n  `3) Else Enquire immediately`\n].join('\\n');\nreturn [{json:{id:candidate.id,title,price,beds,propertyType,seller,url,source:'daft-email',telegramChatId:cfg.telegramChatId,text,status:'available',foundAt:new Date().toISOString()}}];"
+      }
+    },
+    {
+      "id": "iflive",
+      "name": "Available?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1480,
+        300
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "a",
+              "leftValue": "={{ $json.text }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "tg",
+      "name": "Telegram Instant",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1720,
+        220
+      ],
+      "webhookId": "roscrea-email",
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TELEGRAM_CREDENTIAL_ID",
+          "name": "Telegram Bot"
+        }
+      },
+      "parameters": {
+        "chatId": "={{ $json.telegramChatId }}",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Daft Email Trigger": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config": {
+      "main": [
+        [
+          {
+            "node": "Parse Daft Emails",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Daft Emails": {
+      "main": [
+        [
+          {
+            "node": "Has Links?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Links?": {
+      "main": [
+        [
+          {
+            "node": "Verify Email Listing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verify Email Listing": {
+      "main": [
+        [
+          {
+            "node": "Confirm Email Listing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Confirm Email Listing": {
+      "main": [
+        [
+          {
+            "node": "Available?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Available?": {
+      "main": [
+        [
+          {
+            "node": "Telegram Instant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "staticData": null,
+  "tags": [
+    {
+      "name": "roscrea"
+    },
+    {
+      "name": "email"
+    }
+  ]
+}
