@@ -101,3 +101,20 @@ ACTION:
 1. max budget (€/month) или `без лимита`  
 2. радиус: `10 / 20 / 30` км  
 3. Telegram chat id  
+
+
+## Telegram группа (ваш сетап)
+Группа: `RENTALS-URGENT`  
+Бот: `@RentKolyaBot`  
+Ассистент: `@gptsmm`
+
+### Как взять group chat id
+1. Напиши в группе любое сообщение (например `test`)
+2. Открой в браузере:
+`https://api.telegram.org/bot<TOKEN_RentKolyaBot>/getUpdates`
+3. Найди `"chat":{"id":-100...`
+4. Этот `-100...` вставь в Config:
+- `telegramSharedChatId`
+- `telegramChatId`
+
+Важно: бот должен быть участником группы. Если id не появляется — сделай бота админом на минуту и снова напиши `test`.
