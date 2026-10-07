@@ -1,0 +1,430 @@
+{
+  "name": "Roscrea Housing Hunter v2",
+  "nodes": [
+    {
+      "id": "note",
+      "name": "Setup",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        180
+      ],
+      "parameters": {
+        "width": 420,
+        "height": 320,
+        "content": "## Roscrea Hunter\nSend alerts to Telegram group RENTALS-URGENT\nPut group chat id into Config.telegramSharedChatId (or telegramChatId)\nBot must be in the group: @RentKolyaBot"
+      }
+    },
+    {
+      "id": "schedule",
+      "name": "Every 2 min",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        420
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "config",
+      "name": "Config",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        420
+      ],
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\"telegramChatId\": \"YOUR_GROUP_CHAT_ID\", \"maxMonthlyEuro\": 1500, \"minBeds\": 2, \"sheetId\": \"\", \"familyConstraint\": \"Need sports section for son in same town as rental\", \"priorityCities\": [\"Roscrea\", \"Athlone\", \"Thurles\"], \"optionalNearbyCities\": [\"Templemore\", \"Birr\", \"Nenagh\"], \"areaKeywords\": [\"roscrea\", \"athlone\", \"thurles\", \"templemore\", \"birr\", \"nenagh\"], \"cityPriority\": {\"roscrea\": 1, \"athlone\": 2, \"thurles\": 2, \"templemore\": 3, \"birr\": 3, \"nenagh\": 3}, \"includeOptionalNearby\": true, \"sources\": [{\"source\": \"daft-roscrea\", \"url\": \"https://www.daft.ie/property-for-rent/roscrea-tipperary\", \"priority\": 1, \"city\": \"Roscrea\"}, {\"source\": \"daft-roscrea-houses\", \"url\": \"https://www.daft.ie/property-for-rent/roscrea-tipperary/houses\", \"priority\": 1, \"city\": \"Roscrea\"}, {\"source\": \"daft-roscrea-apts\", \"url\": \"https://www.daft.ie/property-for-rent/roscrea-tipperary/apartments\", \"priority\": 1, \"city\": \"Roscrea\"}, {\"source\": \"daft-sharing-roscrea\", \"url\": \"https://www.daft.ie/sharing/roscrea-tipperary\", \"priority\": 1, \"city\": \"Roscrea\"}, {\"source\": \"myhome-roscrea-house\", \"url\": \"https://www.myhome.ie/rentals/tipperary/house-to-rent-in-roscrea\", \"priority\": 1, \"city\": \"Roscrea\"}, {\"source\": \"myhome-roscrea-apt\", \"url\": \"https://www.myhome.ie/rentals/tipperary/apartment-to-rent-in-roscrea\", \"priority\": 1, \"city\": \"Roscrea\"}, {\"source\": \"daft-athlone\", \"url\": \"https://www.daft.ie/property-for-rent/athlone-westmeath\", \"priority\": 2, \"city\": \"Athlone\"}, {\"source\": \"daft-athlone-houses\", \"url\": \"https://www.daft.ie/property-for-rent/athlone-westmeath/houses\", \"priority\": 2, \"city\": \"Athlone\"}, {\"source\": \"daft-athlone-apts\", \"url\": \"https://www.daft.ie/property-for-rent/athlone-westmeath/apartments\", \"priority\": 2, \"city\": \"Athlone\"}, {\"source\": \"daft-thurles\", \"url\": \"https://www.daft.ie/property-for-rent/thurles-tipperary\", \"priority\": 2, \"city\": \"Thurles\"}, {\"source\": \"daft-thurles-houses\", \"url\": \"https://www.daft.ie/property-for-rent/thurles-tipperary/houses\", \"priority\": 2, \"city\": \"Thurles\"}, {\"source\": \"daft-thurles-apts\", \"url\": \"https://www.daft.ie/property-for-rent/thurles-tipperary/apartments\", \"priority\": 2, \"city\": \"Thurles\"}, {\"source\": \"daft-templemore\", \"url\": \"https://www.daft.ie/property-for-rent/templemore-tipperary\", \"priority\": 3, \"city\": \"Templemore\"}, {\"source\": \"daft-birr\", \"url\": \"https://www.daft.ie/property-for-rent/birr-offaly\", \"priority\": 3, \"city\": \"Birr\"}, {\"source\": \"daft-nenagh\", \"url\": \"https://www.daft.ie/property-for-rent/nenagh-tipperary\", \"priority\": 3, \"city\": \"Nenagh\"}], \"minMonthlyEuro\": 800, \"telegramSharedChatId\": \"YOUR_GROUP_CHAT_ID\"}"
+      }
+    },
+    {
+      "id": "split",
+      "name": "Split Sources",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        420
+      ],
+      "parameters": {
+        "jsCode": "const cfg=items[0].json; return (cfg.sources||[]).map(s=>({json:{...cfg,...s}}));"
+      }
+    },
+    {
+      "id": "fetch",
+      "name": "Fetch Source HTML",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        720,
+        420
+      ],
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "options": {
+          "timeout": 20000,
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          }
+        },
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/129.0.0.0 Safari/537.36"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "en-IE,en;q=0.9"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "parse",
+      "name": "Parse Candidates",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        420
+      ],
+      "parameters": {
+        "jsCode": "const cfg = $('Config').first().json;\nconst staticData = $getWorkflowStaticData('global');\nstaticData.seen = staticData.seen || {};\n\nconst cityPriority = cfg.cityPriority || {roscrea:1, athlone:2, templemore:3, birr:3, nenagh:3};\nconst areaWords = (cfg.areaKeywords || Object.keys(cityPriority)).map(s => String(s).toLowerCase());\nconst includeNearby = cfg.includeOptionalNearby !== false;\n\nfunction detectCity(text) {\n  const t = String(text || '').toLowerCase();\n  // priority order check for roscrea first\n  const ordered = Object.entries(cityPriority).sort((a,b)=>a[1]-b[1]).map(([k])=>k);\n  for (const city of ordered) {\n    if (t.includes(city)) return city;\n  }\n  return '';\n}\n\nfunction inArea(text) {\n  const t = String(text || '').toLowerCase();\n  return areaWords.some(w => t.includes(w));\n}\n\nfunction parsePriceToMonthly(priceText) {\n  const t = String(priceText || '');\n  const m = t.replace(/,/g, '').match(/€\\s?(\\d+(?:\\.\\d+)?)/);\n  if (!m) return null;\n  const n = Number(m[1]);\n  if (!Number.isFinite(n)) return null;\n  if (/week/i.test(t)) return Math.round(n * 52 / 12);\n  return Math.round(n);\n}\n\nfunction bedsNum(v) {\n  const m = String(v || '').match(/(\\d+)/);\n  return m ? Number(m[1]) : 0;\n}\n\nfunction htmlOf(item) {\n  const j = item.json;\n  if (typeof j === 'string') return j;\n  return j.data || j.body || j.html || '';\n}\n\nfunction extractDaft(html, sourceUrl, sourceName, sourcePriority, sourceCity) {\n  const match = String(html).match(/<script[^>]*id=\"__NEXT_DATA__\"[^>]*>(.*?)<\\/script>/);\n  if (!match) return [];\n  let data; try { data = JSON.parse(match[1]); } catch (e) { return []; }\n  const list = (((data || {}).props || {}).pageProps || {}).listings || [];\n  const out = [];\n  for (const row of list) {\n    const L = row.listing || row;\n    if (!L || !L.id) continue;\n    const title = L.title || '';\n    const path = L.seoFriendlyPath || '';\n    const url = path ? `https://www.daft.ie${path}` : `https://www.daft.ie/for-rent/${L.id}`;\n    const blob = `${title} ${path} ${sourceUrl} ${sourceCity||''}`;\n    if (!inArea(blob)) continue;\n    const city = detectCity(blob) || String(sourceCity||'').toLowerCase();\n    const priority = cityPriority[city] || Number(sourcePriority) || 9;\n    if (!includeNearby && priority >= 3) continue;\n\n    const monthly = parsePriceToMonthly(L.price);\n    const beds = bedsNum(L.numBedrooms);\n    const minBeds = Number(cfg.minBeds || 0);\n    if (minBeds > 0 && beds > 0 && beds < minBeds) continue;\n    if (Number(cfg.maxMonthlyEuro) > 0 && monthly && monthly > Number(cfg.maxMonthlyEuro)) continue;\n    if (Number(cfg.minMonthlyEuro) > 0 && monthly && monthly < Number(cfg.minMonthlyEuro)) continue;\n\n    out.push({\n      id: `daft-${L.id}`,\n      source: sourceName || 'daft',\n      city,\n      priority,\n      title,\n      price: L.price || '',\n      monthly,\n      beds: L.numBedrooms || '',\n      baths: L.numBathrooms || '',\n      propertyType: L.propertyType || '',\n      seller: (L.seller && L.seller.name) || '',\n      sellerType: (L.seller && L.seller.sellerType) || '',\n      url,\n      detectedAtMs: Date.now()\n    });\n  }\n  return out;\n}\n\nfunction extractMyHome(html, sourceName, sourcePriority, sourceCity) {\n  const text = String(html);\n  if (/No homes listed here yet/i.test(text)) return [];\n  const city = detectCity(`${text.slice(0,3000)} ${sourceCity||''}`) || String(sourceCity||'roscrea').toLowerCase();\n  const priority = cityPriority[city] || Number(sourcePriority) || 1;\n  if (!includeNearby && priority >= 3) return [];\n  const abs = [...text.matchAll(/https?:\\/\\/www\\.myhome\\.ie\\/[^\"'\\\\\\s<>]+/g)].map(m => m[0].replace(/&amp;/g,'&'));\n  const rel = [...text.matchAll(/href=\\\"(\\/rentals\\/[^\\\"]+)\\\"/g)].map(m => 'https://www.myhome.ie' + m[1].replace(/&amp;/g,'&'));\n  const all = [...new Set([...abs, ...rel])]\n    .filter(u => !/house-to-rent-in-roscrea|apartment-to-rent-in-roscrea/i.test(u))\n    .filter(u => /\\/\\d{4,}/.test(u) || /property|residential|rental/i.test(u));\n  return all.slice(0, 30).map(url => ({\n    id: `myhome-${url}`,\n    source: sourceName || 'myhome',\n    city,\n    priority,\n    title: `MyHome rental (${city})`,\n    price: '',\n    monthly: null,\n    beds: '',\n    baths: '',\n    propertyType: '',\n    seller: '',\n    sellerType: '',\n    url,\n    detectedAtMs: Date.now()\n  }));\n}\n\nconst urlItems = $('Split Sources').all();\nconst found = [];\nconst batch = new Set();\nfor (let i = 0; i < items.length; i++) {\n  const meta = (urlItems[i] && urlItems[i].json) || {};\n  const html = htmlOf(items[i]);\n  const sourceUrl = meta.url || '';\n  const source = meta.source || 'unknown';\n  const sourcePriority = meta.priority;\n  const sourceCity = meta.city || '';\n  let list = [];\n  if (String(source).startsWith('daft')) list = extractDaft(html, sourceUrl, source, sourcePriority, sourceCity);\n  else if (String(source).startsWith('myhome')) list = extractMyHome(html, source, sourcePriority, sourceCity);\n  for (const L of list) {\n    if (batch.has(L.id) || staticData.seen[L.id]) continue;\n    batch.add(L.id);\n    found.push({ json: { ...cfg, ...L } });\n  }\n}\n// Roscrea first in telegram order\nfound.sort((a,b)=> (a.json.priority||9)-(b.json.priority||9));\nreturn found;"
+      }
+    },
+    {
+      "id": "ifcand",
+      "name": "Has Candidates?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1200,
+        420
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "c1",
+              "leftValue": "={{ $json.url }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "verifyfetch",
+      "name": "Verify Listing Live",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1440,
+        300
+      ],
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "options": {
+          "timeout": 20000,
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          }
+        },
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/129.0.0.0 Safari/537.36"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "confirm",
+      "name": "Confirm Available",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1680,
+        300
+      ],
+      "parameters": {
+        "jsCode": "const staticData = $getWorkflowStaticData('global');\nstaticData.seen = staticData.seen || {};\nconst cfg = $('Config').first().json;\nconst candidate = $('Has Candidates?').item.json;\nconst htmlRaw = items[0].json;\nconst html = typeof htmlRaw === 'string' ? htmlRaw : (htmlRaw.data || htmlRaw.body || htmlRaw.html || '');\n\nfunction unavailable(html) {\n  const t = String(html || '');\n  if (!t || t.length < 200) return true;\n  if (/no longer available|this ad has been removed|ad has expired|property is no longer available|removed by the advertiser/i.test(t)) return true;\n  const m = t.match(/<script[^>]*id=\"__NEXT_DATA__\"[^>]*>(.*?)<\\/script>/);\n  if (m) {\n    try {\n      const data = JSON.parse(m[1]);\n      const listing = (((data || {}).props || {}).pageProps || {}).listing;\n      if (listing && listing.state && String(listing.state).toUpperCase() !== 'PUBLISHED') return true;\n      if (listing) {\n        candidate.title = listing.title || candidate.title;\n        candidate.price = listing.price || candidate.price;\n        candidate.seller = (listing.seller && listing.seller.name) || candidate.seller;\n        candidate.beds = listing.numBedrooms || candidate.beds;\n        candidate.propertyType = listing.propertyType || candidate.propertyType;\n        if (listing.seoFriendlyPath) candidate.url = `https://www.daft.ie${listing.seoFriendlyPath}`;\n        const blob = `${candidate.title} ${candidate.url}`;\n        const keys = Object.keys(cfg.cityPriority || {roscrea:1,athlone:2});\n        for (const city of keys.sort((a,b)=>(cfg.cityPriority[a]-cfg.cityPriority[b]))) {\n          if (blob.toLowerCase().includes(city)) { candidate.city = city; candidate.priority = cfg.cityPriority[city]; break; }\n        }\n      }\n    } catch (e) {}\n  }\n  return false;\n}\n\nif (unavailable(html)) {\n  staticData.seen[candidate.id] = Date.now();\n  return [];\n}\n\nstaticData.seen[candidate.id] = Date.now();\nconst entries = Object.entries(staticData.seen).sort((a,b)=>b[1]-a[1]);\nif (entries.length > 1000) staticData.seen = Object.fromEntries(entries.slice(0,1000));\n\nfunction monthly(priceText) {\n  const t = String(priceText || '');\n  const m = t.replace(/,/g,'').match(/€\\s?(\\d+(?:\\.\\d+)?)/);\n  if (!m) return candidate.monthly || null;\n  const n = Number(m[1]);\n  if (/week/i.test(t)) return Math.round(n * 52 / 12);\n  return Math.round(n);\n}\n\nconst mon = monthly(candidate.price);\nconst detectedAtMs = candidate.detectedAtMs || Date.now();\nconst ageSec = Math.max(0, Math.round((Date.now() - detectedAtMs) / 1000));\nconst detected = new Date(detectedAtMs).toLocaleTimeString('en-IE', { hour12: false, timeZone: 'Europe/Dublin' });\nconst ageLabel = ageSec < 60 ? `${ageSec} seconds ago` : `${Math.round(ageSec/60)} min ago`;\nconst city = (candidate.city || 'unknown');\nconst priority = Number(candidate.priority || 9);\nconst badge = priority === 1 ? '🔥 PRIORITY: ROSCREA' : priority === 2 ? `⭐ ${String(city).toUpperCase()}` : '🟡 NEARBY — check sports for son';\nconst sportsNote = priority <= 2\n  ? 'Family fit: same-town sports section possible'\n  : '⚠ Nearby town: confirm sports section before chasing hard';\n\nconst text = [\n  `🚨 NEW PROPERTY`,\n  badge,\n  ``,\n  `🏠 ${candidate.beds || '? Bed'} ${candidate.propertyType || 'Property'}`,\n  `📍 ${candidate.title}`,\n  `🏷 City: ${city}`,\n  `💶 ${candidate.price || 'See ad'}${mon ? ` (~€${mon}/mo)` : ''}`,\n  `🕐 detected: ${detected}`,\n  `🟢 NEW — ${ageLabel}`,\n  `📡 ${candidate.source}`,\n  `✅ LIVE verified`,\n  sportsNote,\n  ``,\n  `🔗 ${candidate.url}`,\n  ``,\n  `ACTION:`,\n  `1) Open`,\n  `2) Call if phone visible`,\n  `3) Else Enquire NOW`,\n  ``,\n  `Script:`,\n  `Hi, I'm interested in this rental.`,\n  `Is it still available for a viewing this week?`\n].join('\\n');\n\nreturn [{\n  json: {\n    ...candidate,\n    city,\n    priority,\n    monthly: mon,\n    telegramChatId: cfg.telegramSharedChatId || cfg.telegramChatId,\n    telegramSharedChatId: cfg.telegramSharedChatId || cfg.telegramChatId,\n    sheetId: cfg.sheetId,\n    status: 'available',\n    foundAt: new Date().toISOString(),\n    text\n  }\n}];"
+      }
+    },
+    {
+      "id": "iflive",
+      "name": "Still Available?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1920,
+        300
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "a1",
+              "leftValue": "={{ $json.text }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "tg",
+      "name": "Telegram LIVE",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2160,
+        200
+      ],
+      "webhookId": "roscrea-v2",
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TELEGRAM_CREDENTIAL_ID",
+          "name": "Telegram Bot"
+        }
+      },
+      "parameters": {
+        "chatId": "={{ $json.telegramSharedChatId || $json.telegramChatId }}",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      }
+    },
+    {
+      "id": "needsheet",
+      "name": "Need Sheet?",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2160,
+        400
+      ],
+      "parameters": {
+        "jsCode": "if(!String($json.sheetId||'').trim()) return []; return items;"
+      }
+    },
+    {
+      "id": "sheet",
+      "name": "Append Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2400,
+        400
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "REPLACE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets"
+        }
+      },
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $json.sheetId }}"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Roscrea"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "timestamp": "={{ $json.foundAt }}",
+            "id": "={{ $json.id }}",
+            "title": "={{ $json.title }}",
+            "price": "={{ $json.price }}",
+            "url": "={{ $json.url }}",
+            "source": "={{ $json.source }}",
+            "status": "={{ $json.status }}",
+            "city": "={{ $json.city }}",
+            "priority": "={{ $json.priority }}"
+          }
+        },
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "Every 2 min": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config": {
+      "main": [
+        [
+          {
+            "node": "Split Sources",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Sources": {
+      "main": [
+        [
+          {
+            "node": "Fetch Source HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Source HTML": {
+      "main": [
+        [
+          {
+            "node": "Parse Candidates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Candidates": {
+      "main": [
+        [
+          {
+            "node": "Has Candidates?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Candidates?": {
+      "main": [
+        [
+          {
+            "node": "Verify Listing Live",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verify Listing Live": {
+      "main": [
+        [
+          {
+            "node": "Confirm Available",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Confirm Available": {
+      "main": [
+        [
+          {
+            "node": "Still Available?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Still Available?": {
+      "main": [
+        [
+          {
+            "node": "Telegram LIVE",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Need Sheet?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Need Sheet?": {
+      "main": [
+        [
+          {
+            "node": "Append Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "staticData": null,
+  "tags": [
+    {
+      "name": "roscrea"
+    },
+    {
+      "name": "v2"
+    }
+  ]
+}
