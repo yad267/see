@@ -1,0 +1,212 @@
+{
+  "name": "YouTube Thumbnail Factory",
+  "nodes": [
+    {
+      "id": "note",
+      "name": "Setup",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -420,
+        200
+      ],
+      "parameters": {
+        "width": 420,
+        "height": 300,
+        "content": "## Thumbnail Factory MVP\nTelegram → AI 3 concepts → Telegram\n\n1) Fill Config.telegramChatId\n2) Connect Telegram + OpenAI credentials\n3) Message bot: Превью: <topic>"
+      }
+    },
+    {
+      "id": "tg-trigger",
+      "name": "Telegram Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        420
+      ],
+      "webhookId": "thumb-factory",
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TELEGRAM_CREDENTIAL_ID",
+          "name": "Telegram Bot"
+        }
+      },
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      }
+    },
+    {
+      "id": "config",
+      "name": "Config",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        420
+      ],
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\"telegramChatId\": \"YOUR_TELEGRAM_CHAT_ID\", \"model\": \"gpt-4o-mini\"}"
+      }
+    },
+    {
+      "id": "extract",
+      "name": "Extract Topic",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        420
+      ],
+      "parameters": {
+        "jsCode": "const cfg=$('Config').first().json;\nconst msg=items[0].json;\nconst text=String(msg.message?.text || msg.text || '').trim();\nif(!text) return [];\nlet topic=text;\nconst m=text.match(/^(?:превью|preview|thumb)\\s*[:\\-]\\s*(.+)$/i);\nif(m) topic=m[1].trim();\nif(topic.length<3) return [];\nreturn [{json:{...cfg, topic, chatIdFromMsg: msg.message?.chat?.id || msg.chat?.id || cfg.telegramChatId}}];"
+      }
+    },
+    {
+      "id": "openai",
+      "name": "Generate Concepts",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        720,
+        420
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "REPLACE_OPENAI_CREDENTIAL_ID",
+          "name": "OpenAI"
+        }
+      },
+      "parameters": {
+        "resource": "chat",
+        "model": "gpt-4o-mini",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "Ты — арт-директор YouTube-превью уровня дорогих бизнес-каналов (ориентиры: Оскар Хартманн, Алексей Ситников).\n\nЗадача: по теме ролика сделать 3 разных кликабельных концепции превью.\n\nЖёсткие правила:\n- текст на обложке: 3–6 слов, крупно, на русском\n- один главный визуальный фокус\n- сильный контраст, читаемость на мобильном\n- без водяных знаков, без мелкого текста, без коллажа из 10 элементов\n- стиль: яркий, дорогой, экспертный, high CTR\n- каждый вариант должен отличаться углом: эмоция / конфликт / результат\n\nДля каждого из 3 вариантов верни строго JSON-массив объектов с полями:\nid, cover_text, sub_text, scene, subject, emotion, colors, image_prompt_en, why_clicks\n\nimage_prompt_en: detailed English prompt for image model, 16:9 youtube thumbnail, cinematic lighting, ultra sharp, high contrast, no text in image, no watermark.\n\nТолько валидный JSON, без markdown."
+            },
+            {
+              "role": "user",
+              "content": "=Тема ролика: {{ $json.topic }}"
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.8
+        }
+      }
+    },
+    {
+      "id": "format",
+      "name": "Format Telegram",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        420
+      ],
+      "parameters": {
+        "jsCode": "const cfg = $('Config').first().json;\nconst topic = $('Extract Topic').first().json.topic;\nconst chatId = $('Extract Topic').first().json.chatIdFromMsg || cfg.telegramChatId;\nconst rawItem = items[0].json;\nlet content = rawItem.message?.content || rawItem.text || rawItem.output || rawItem.response || '';\nif (Array.isArray(rawItem.choices) && rawItem.choices[0]?.message?.content) content = rawItem.choices[0].message.content;\nif (typeof content !== 'string') content = JSON.stringify(content);\ncontent = content.replace(/^```json\\s*/i, '').replace(/^```\\s*/i, '').replace(/\\s*```$/,'').trim();\n\nlet variants = [];\ntry {\n  const parsed = JSON.parse(content);\n  variants = Array.isArray(parsed) ? parsed : (parsed.variants || [parsed]);\n} catch (e) {\n  const m = content.match(/\\[[\\s\\S]*\\]/);\n  if (!m) throw new Error('AI returned non-JSON: ' + content.slice(0, 400));\n  variants = JSON.parse(m[0]);\n}\n\nconst lines = [];\nlines.push(`🎬 THUMBNAIL FACTORY`);\nlines.push(`Тема: ${topic}`);\nlines.push('');\nfor (const v of variants.slice(0, 3)) {\n  lines.push(`—— Вариант ${v.id || ''} ——`);\n  lines.push(`🖼 Текст: ${v.cover_text || ''}`);\n  if (v.sub_text) lines.push(`↳ ${v.sub_text}`);\n  lines.push(`🎭 Эмоция: ${v.emotion || ''}`);\n  lines.push(`🎨 Цвета: ${v.colors || ''}`);\n  lines.push(`👁 Сцена: ${v.scene || ''}`);\n  lines.push(`👤 Объект: ${v.subject || ''}`);\n  lines.push(`💡 Почему клик: ${v.why_clicks || ''}`);\n  lines.push(`🧠 Prompt:`);\n  lines.push(v.image_prompt_en || '');\n  lines.push('');\n}\nlines.push(`Дальше: prompt → Flux/MJ/SD → текст сверху в Canva 1280×720.`);\n\nreturn [{ json: { telegramChatId: chatId, topic, variants, text: lines.join('\\n') } }];"
+      }
+    },
+    {
+      "id": "send",
+      "name": "Send Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1200,
+        420
+      ],
+      "webhookId": "thumb-send",
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TELEGRAM_CREDENTIAL_ID",
+          "name": "Telegram Bot"
+        }
+      },
+      "parameters": {
+        "chatId": "={{ $json.telegramChatId }}",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config": {
+      "main": [
+        [
+          {
+            "node": "Extract Topic",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Topic": {
+      "main": [
+        [
+          {
+            "node": "Generate Concepts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Concepts": {
+      "main": [
+        [
+          {
+            "node": "Format Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Telegram": {
+      "main": [
+        [
+          {
+            "node": "Send Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "staticData": null,
+  "tags": [
+    {
+      "name": "youtube"
+    },
+    {
+      "name": "thumbnails"
+    }
+  ]
+}
