@@ -1,0 +1,433 @@
+{
+  "name": "Обложка v2 — модуль завода (лицо + хук)",
+  "nodes": [
+    {
+      "id": "note",
+      "name": "Как вставить в завод",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        120
+      ],
+      "parameters": {
+        "width": 520,
+        "height": 380,
+        "content": "## Замена ноды «Обложка»\n\n1) Import этот workflow\n2) В основном заводе вместо старой генерации обложки:\n   Execute Workflow → этот файл\n3) Передай поля:\n   - title\n   - hook (или script / первые 2–3 абзаца)\n   - chatId\n   - referencePhotoUrl (ссылка на твоё фото)\n4) На выходе: binary data + cover_text → Send Photo в твой TG"
+      }
+    },
+    {
+      "id": "trig",
+      "name": "When called by another workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        360
+      ],
+      "parameters": {
+        "inputSource": "passthrough"
+      }
+    },
+    {
+      "id": "norm",
+      "name": "Normalize Input",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        240,
+        360
+      ],
+      "parameters": {
+        "jsCode": "const j = items[0].json;\nconst title = String(j.title || j.videoTitle || j.tema || '').trim();\nconst hook = String(j.hook || j.script || j.scenario || j.text || title).trim();\nconst chatId = j.chatId || j.telegramChatId || j.chat_id;\nif (!hook || hook.length < 5) throw new Error('Нужен hook/title из завода (поле hook|script|title)');\nif (!chatId) throw new Error('Нужен chatId для Telegram');\n\nconst referencePhotoUrl = j.referencePhotoUrl || j.faceUrl || '';\nconst referenceFileId = j.referenceFileId || '';\nif (!referencePhotoUrl && !referenceFileId) {\n  throw new Error('Нужен referencePhotoUrl (прямая ссылка на твоё фото) или referenceFileId');\n}\n\nreturn [{ json: {\n  ...j,\n  title,\n  hook: hook.slice(0, 1200),\n  chatId: String(chatId),\n  referencePhotoUrl,\n  referenceFileId,\n  openAiImageModel: j.openAiImageModel || 'gpt-image-1',\n  telegramBotToken: j.telegramBotToken || ''\n}}];"
+      }
+    },
+    {
+      "id": "analyze",
+      "name": "Analyze Hook",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        480,
+        360
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "REPLACE_OPENAI_CREDENTIAL_ID",
+          "name": "OpenAI"
+        }
+      },
+      "parameters": {
+        "resource": "chat",
+        "model": "gpt-4o-mini",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "Ты арт-директор YouTube-превью (стиль Hartmann/Sitnikov).\nВход: хук/тема длинного ролика из контент-завода.\nЗадача: эмоция лица автора + короткий текст обложки + промпт для edit лица.\n\nВерни ТОЛЬКО JSON:\n{\n  \"cover_text\": \"3-6 слов на русском, punchy\",\n  \"emotion_ru\": \"кратко\",\n  \"emotion_en\": \"shocked|worried|confident|angry|hopeful|intrigued\",\n  \"edit_prompt_en\": \"Edit this portrait for a YouTube thumbnail 16:9: change facial expression to [emotion], cinematic high-contrast lighting, sharp face, keep identity, professional color grade, no text, no watermark, background slightly dramatic and clean\",\n  \"why\": \"1 строка почему кликнут\"\n}\n\nЖёстко: один фокус — лицо. Без коллажа. Текст короткий, читается на телефоне."
+            },
+            {
+              "role": "user",
+              "content": "=TITLE: {{ $json.title }}\\nHOOK/SCRIPT:\\n{{ $json.hook }}"
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.65
+        }
+      }
+    },
+    {
+      "id": "parse",
+      "name": "Parse Plan",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        720,
+        360
+      ],
+      "parameters": {
+        "jsCode": "const base = $('Normalize Input').item.json;\nconst raw = items[0].json;\nlet content = raw.message?.content || raw.text || raw.output || '';\nif (Array.isArray(raw.choices) && raw.choices[0]?.message?.content) content = raw.choices[0].message.content;\ncontent = String(content).replace(/^```json\\s*/i,'').replace(/```$/,'').trim();\nlet plan;\ntry { plan = JSON.parse(content); } catch(e) {\n  const m = content.match(/\\{[\\s\\S]*\\}/);\n  if (!m) throw new Error('Bad JSON from AI: ' + content.slice(0,300));\n  plan = JSON.parse(m[0]);\n}\nreturn [{ json: { ...base, plan } }];"
+      }
+    },
+    {
+      "id": "choose",
+      "name": "Choose Photo Source",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        360
+      ],
+      "parameters": {
+        "jsCode": "const ctx = items[0].json;\n// Prefer direct URL (factory config). Else Telegram file_id.\nif (ctx.referencePhotoUrl) {\n  return [{ json: { ...ctx, photoMode: 'url', photoUrl: ctx.referencePhotoUrl } }];\n}\nreturn [{ json: { ...ctx, photoMode: 'tg' } }];"
+      }
+    },
+    {
+      "id": "sw",
+      "name": "Photo Mode",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        1200,
+        360
+      ],
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.photoMode }}",
+                    "rightValue": "url",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.photoMode }}",
+                    "rightValue": "tg",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "dlurl",
+      "name": "Download Face URL",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1480,
+        240
+      ],
+      "parameters": {
+        "url": "={{ $json.photoUrl }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "gettg",
+      "name": "Telegram getFile",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1480,
+        480
+      ],
+      "parameters": {
+        "url": "=https://api.telegram.org/bot{{ $json.telegramBotToken }}/getFile?file_id={{ $json.referenceFileId }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "dltg",
+      "name": "Download Face TG",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1720,
+        480
+      ],
+      "parameters": {
+        "url": "=https://api.telegram.org/file/bot{{ $('Choose Photo Source').item.json.telegramBotToken }}/{{ $json.result.file_path }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "edit",
+      "name": "OpenAI Image Edit Face",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1960,
+        360
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/images/edits",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "={{ $('Parse Plan').item.json.openAiImageModel }}"
+            },
+            {
+              "name": "prompt",
+              "value": "={{ $('Parse Plan').item.json.plan.edit_prompt_en }}"
+            },
+            {
+              "name": "size",
+              "value": "1536x1024"
+            },
+            {
+              "parameterType": "formBinaryData",
+              "name": "image",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "pack",
+      "name": "Pack Output",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2200,
+        360
+      ],
+      "parameters": {
+        "jsCode": "const ctx = $('Parse Plan').item.json;\nconst resp = items[0].json;\nconst b64 = resp.data?.[0]?.b64_json;\nconst url = resp.data?.[0]?.url;\nif (!b64 && !url) throw new Error('OpenAI image edit вернул пусто. Проверь модель/доступ.');\n\nconst caption = [\n  '🎬 ОБЛОЖКА (завод v2)',\n  '',\n  '📌 ' + (ctx.title || ctx.hook).slice(0, 120),\n  '🖼 Текст: ' + ctx.plan.cover_text,\n  '🎭 Эмоция: ' + ctx.plan.emotion_ru,\n  '💡 ' + ctx.plan.why,\n  '',\n  'Вставь текст на картинку в Canva (или включи auto-text позже).'\n].join('\\n');\n\nconst out = {\n  chatId: ctx.chatId,\n  caption,\n  cover_text: ctx.plan.cover_text,\n  emotion: ctx.plan.emotion_ru,\n  title: ctx.title,\n  hook: ctx.hook,\n  imageUrl: url || null,\n  b64: b64 || null\n};\n\nif (b64) {\n  return [{\n    json: out,\n    binary: {\n      data: {\n        data: Buffer.from(b64, 'base64'),\n        mimeType: 'image/png',\n        fileName: 'oblozhka.png'\n      }\n    }\n  }];\n}\nreturn [{ json: out }];"
+      }
+    },
+    {
+      "id": "send",
+      "name": "Send to Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2440,
+        360
+      ],
+      "webhookId": "oblozhka-v2-send",
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TELEGRAM_CREDENTIAL_ID",
+          "name": "Telegram Bot"
+        }
+      },
+      "parameters": {
+        "operation": "sendPhoto",
+        "chatId": "={{ $json.chatId }}",
+        "binaryData": true,
+        "binaryPropertyName": "data",
+        "additionalFields": {
+          "caption": "={{ $json.caption }}"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "When called by another workflow": {
+      "main": [
+        [
+          {
+            "node": "Normalize Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize Input": {
+      "main": [
+        [
+          {
+            "node": "Analyze Hook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyze Hook": {
+      "main": [
+        [
+          {
+            "node": "Parse Plan",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Plan": {
+      "main": [
+        [
+          {
+            "node": "Choose Photo Source",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Choose Photo Source": {
+      "main": [
+        [
+          {
+            "node": "Photo Mode",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Photo Mode": {
+      "main": [
+        [
+          {
+            "node": "Download Face URL",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Telegram getFile",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Face URL": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Image Edit Face",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram getFile": {
+      "main": [
+        [
+          {
+            "node": "Download Face TG",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Face TG": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Image Edit Face",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Image Edit Face": {
+      "main": [
+        [
+          {
+            "node": "Pack Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pack Output": {
+      "main": [
+        [
+          {
+            "node": "Send to Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "staticData": null,
+  "tags": [
+    {
+      "name": "factory"
+    },
+    {
+      "name": "oblozhka-v2"
+    }
+  ]
+}
