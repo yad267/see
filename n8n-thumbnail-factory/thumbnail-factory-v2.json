@@ -1,0 +1,499 @@
+{
+  "name": "YouTube Thumbnail Factory v2 (Face + Hook)",
+  "nodes": [
+    {
+      "id": "note",
+      "name": "Setup",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -520,
+        180
+      ],
+      "parameters": {
+        "width": 480,
+        "height": 340,
+        "content": "## Thumbnail v2\nPhoto once + `превью: hook`"
+      }
+    },
+    {
+      "id": "tg",
+      "name": "Telegram Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        400
+      ],
+      "webhookId": "thumb-v2",
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TELEGRAM_CREDENTIAL_ID",
+          "name": "Telegram Bot"
+        }
+      },
+      "parameters": {
+        "updates": [
+          "message"
+        ]
+      }
+    },
+    {
+      "id": "cfg",
+      "name": "Config",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        400
+      ],
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\"telegramChatId\": \"YOUR_TELEGRAM_CHAT_ID\", \"telegramBotToken\": \"YOUR_TELEGRAM_BOT_TOKEN\", \"openAiImageModel\": \"gpt-image-1\"}"
+      }
+    },
+    {
+      "id": "route",
+      "name": "Route Message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        400
+      ],
+      "parameters": {
+        "jsCode": "const cfg = $('Config').first().json;\nconst msg = items[0].json.message || items[0].json;\nconst text = String(msg.text || msg.caption || '').trim();\nconst photos = msg.photo;\nconst staticData = $getWorkflowStaticData('global');\n\nif (photos && photos.length) {\n  const best = photos[photos.length - 1];\n  staticData.referenceFileId = best.file_id;\n  return [{ json: { ...cfg, mode: 'saved_photo', chatId: msg.chat.id, fileId: best.file_id, reply: '✅ Фото сохранено. Теперь: превью: <хук>' } }];\n}\n\nconst m = text.match(/^(?:превью|preview|thumb)\\s*[:\\-]\\s*(.+)$/i);\nif (m) {\n  const hook = m[1].trim();\n  if (!staticData.referenceFileId) {\n    return [{ json: { ...cfg, mode: 'error', chatId: msg.chat.id, reply: '❌ Сначала отправь портретное фото.' } }];\n  }\n  return [{ json: { ...cfg, mode: 'make', chatId: msg.chat.id, hook, referenceFileId: staticData.referenceFileId } }];\n}\n\nif (/^фото$/i.test(text)) {\n  return [{ json: { ...cfg, mode: 'need_photo', chatId: msg.chat.id, reply: 'Пришли портретное фото (лицо крупно).' } }];\n}\n\nreturn [{ json: { ...cfg, mode: 'help', chatId: msg.chat.id, reply: '1) фото (референс)\\n2) превью: <хук>' } }];"
+      }
+    },
+    {
+      "id": "switch",
+      "name": "Mode",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        700,
+        400
+      ],
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.mode }}",
+                    "rightValue": "make",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.mode }}",
+                    "rightValue": "saved_photo",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.mode }}",
+                    "rightValue": "error",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.mode }}",
+                    "rightValue": "need_photo",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "conditions": {
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.mode }}",
+                    "rightValue": "help",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "reply",
+      "name": "Reply Text",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        980,
+        620
+      ],
+      "webhookId": "thumb-reply",
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TELEGRAM_CREDENTIAL_ID",
+          "name": "Telegram Bot"
+        }
+      },
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "={{ $json.reply }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      }
+    },
+    {
+      "id": "analyze",
+      "name": "Analyze Hook",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        980,
+        280
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "REPLACE_OPENAI_CREDENTIAL_ID",
+          "name": "OpenAI"
+        }
+      },
+      "parameters": {
+        "resource": "chat",
+        "model": "gpt-4o-mini",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "Ты арт-директор YouTube-превью (стиль Hartmann/Sitnikov).\nПо хуку ролика определи эмоцию лица автора и текст на обложку.\n\nВерни ТОЛЬКО JSON:\n{\n  \"cover_text\": \"3-6 слов на русском\",\n  \"emotion_ru\": \"кратко\",\n  \"emotion_en\": \"shocked/worried/confident/angry/hopeful\",\n  \"edit_prompt_en\": \"Edit this portrait for a YouTube thumbnail: change facial expression to ..., cinematic lighting, high contrast, sharp face, professional color grading, keep identity, no text in image, 16:9 composition\",\n  \"why\": \"почему кликнут\"\n}"
+            },
+            {
+              "role": "user",
+              "content": "=Хук: {{ $json.hook }}"
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.7
+        }
+      }
+    },
+    {
+      "id": "parse",
+      "name": "Parse Plan",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1220,
+        280
+      ],
+      "parameters": {
+        "jsCode": "const base = $('Mode').item.json;\nconst raw = items[0].json;\nlet content = raw.message?.content || raw.text || raw.output || '';\nif (Array.isArray(raw.choices) && raw.choices[0]?.message?.content) content = raw.choices[0].message.content;\ncontent = String(content).replace(/^```json\\s*/i,'').replace(/```$/,'').trim();\nlet plan;\ntry { plan = JSON.parse(content); } catch(e) {\n  const m = content.match(/\\{[\\s\\S]*\\}/);\n  if (!m) throw new Error('Bad JSON from AI');\n  plan = JSON.parse(m[0]);\n}\nreturn [{ json: { ...base, plan } }];"
+      }
+    },
+    {
+      "id": "dl",
+      "name": "Download Reference Photo",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1460,
+        280
+      ],
+      "parameters": {
+        "url": "=https://api.telegram.org/bot{{ $json.telegramBotToken }}/getFile?file_id={{ $json.referenceFileId }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "dlbin",
+      "name": "Download Photo Binary",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1700,
+        280
+      ],
+      "parameters": {
+        "url": "=https://api.telegram.org/file/bot{{ $('Parse Plan').item.json.telegramBotToken }}/{{ $json.result.file_path }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "edit",
+      "name": "OpenAI Image Edit",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1940,
+        280
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/images/edits",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "={{ $('Parse Plan').item.json.openAiImageModel }}"
+            },
+            {
+              "name": "prompt",
+              "value": "={{ $('Parse Plan').item.json.plan.edit_prompt_en }}"
+            },
+            {
+              "name": "size",
+              "value": "1536x1024"
+            },
+            {
+              "parameterType": "formBinaryData",
+              "name": "image",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "pack",
+      "name": "Pack Result",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2180,
+        280
+      ],
+      "parameters": {
+        "jsCode": "const ctx = $('Parse Plan').item.json;\nconst resp = items[0].json;\nconst b64 = resp.data?.[0]?.b64_json;\nif (!b64) throw new Error('No image returned. Check OpenAI image model/access.');\nconst caption = `🎬 PREVIEW READY\\n\\n🖼 Текст: ${ctx.plan.cover_text}\\n🎭 Эмоция: ${ctx.plan.emotion_ru}\\n💡 ${ctx.plan.why}`;\nreturn [{ json: { chatId: ctx.chatId, caption, b64 }, binary: { data: { data: Buffer.from(b64, 'base64'), mimeType: 'image/png', fileName: 'thumbnail.png' } } }];"
+      }
+    },
+    {
+      "id": "sendimg",
+      "name": "Send Photo",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2420,
+        280
+      ],
+      "webhookId": "thumb-sendimg",
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TELEGRAM_CREDENTIAL_ID",
+          "name": "Telegram Bot"
+        }
+      },
+      "parameters": {
+        "operation": "sendPhoto",
+        "chatId": "={{ $json.chatId }}",
+        "binaryData": true,
+        "binaryPropertyName": "data",
+        "additionalFields": {
+          "caption": "={{ $json.caption }}"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config": {
+      "main": [
+        [
+          {
+            "node": "Route Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route Message": {
+      "main": [
+        [
+          {
+            "node": "Mode",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mode": {
+      "main": [
+        [
+          {
+            "node": "Analyze Hook",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Reply Text",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Reply Text",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Reply Text",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Reply Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyze Hook": {
+      "main": [
+        [
+          {
+            "node": "Parse Plan",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Plan": {
+      "main": [
+        [
+          {
+            "node": "Download Reference Photo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Reference Photo": {
+      "main": [
+        [
+          {
+            "node": "Download Photo Binary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Photo Binary": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Image Edit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Image Edit": {
+      "main": [
+        [
+          {
+            "node": "Pack Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pack Result": {
+      "main": [
+        [
+          {
+            "node": "Send Photo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "staticData": null,
+  "tags": [
+    {
+      "name": "youtube"
+    },
+    {
+      "name": "thumbnails-v2"
+    }
+  ]
+}
