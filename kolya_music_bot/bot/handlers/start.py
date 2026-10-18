@@ -19,12 +19,14 @@ async def cmd_start(message: Message) -> None:
     logger.info("/start from user=%s chat=%s", message.from_user.id if message.from_user else None, message.chat.id)
     text = (
         "Kolya Music Bot — личный архив в закрытой форум-группе.\n\n"
-        "• Кинь audio/document в группу → разложу по топику-жанру\n"
-        "• Не уверен → Inbox + кнопки\n"
-        "• /find — отдельный поисковик (жанр / название / год)\n"
-        "• После поиска: авто в папку или выбрать руками\n"
+        "<b>Один раз настроить:</b>\n"
+        "1) Создай private-группу, включи Topics\n"
+        "2) Добавь бота админом (с правом Manage Topics)\n"
+        "3) В группе напиши /setup — бот сам создаст папки-жанры\n\n"
+        "• Кинь audio/document → разложу по топику\n"
+        "• /find — поиск (жанр / название / год)\n"
         "• Reply: «переложить в hiphop»\n\n"
-        "Группа только по invite-link. Чужие каналы — только твой whitelist."
+        "Группа только по invite-link."
     )
     await message.answer(text)
 

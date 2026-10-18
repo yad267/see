@@ -79,3 +79,14 @@ def test_dedup_and_move_plan():
     )
     assert plan.topic_id == 42
     assert plan.genre.key == "hiphop"
+
+
+def test_topic_store_roundtrip(tmp_path):
+    from bot.topic_store import load_topics, save_topics
+
+    path = tmp_path / "topics.json"
+    save_topics(-10042, {"hiphop": 7, "inbox": 1}, path=path)
+    group_id, topics = load_topics(path)
+    assert group_id == -10042
+    assert topics["hiphop"] == 7
+    assert topics["inbox"] == 1

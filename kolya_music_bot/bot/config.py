@@ -1,22 +1,25 @@
-"""Runtime config from environment."""
+"""Runtime config from environment + optional data/topics.json."""
 
 from __future__ import annotations
 
 import os
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 from dotenv import load_dotenv
 
 from bot.genres import GENRE_BY_KEY
+from bot.topic_store import load_topics
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(slots=True)
 class Settings:
+    """Mutable: /setup can fill music_group_id and topic_ids at runtime."""
+
     bot_token: str
-    music_group_id: int
-    topic_ids: dict[str, int]
-    classify_threshold: float
-    source_channel_ids: frozenset[int]
+    music_group_id: int = 0
+    topic_ids: dict[str, int] = field(default_factory=dict)
+    classify_threshold: float = 0.55
+    source_channel_ids: frozenset[int] = field(default_factory=frozenset)
 
 
 def _optional_int(name: str, default: int | None = None) -> int | None:
@@ -51,6 +54,13 @@ def load_settings(*, require_token: bool = True) -> Settings:
         value = _optional_int(env_name)
         if value is not None:
             topic_ids[key] = value
+
+    # File from /setup wins for missing keys / empty group
+    stored_group, stored_topics = load_topics()
+    if not music_group_id and stored_group:
+        music_group_id = stored_group
+    for key, tid in stored_topics.items():
+        topic_ids.setdefault(key, tid)
 
     threshold = float(os.getenv("CLASSIFY_THRESHOLD", "0.55"))
 
