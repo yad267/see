@@ -13,7 +13,10 @@
       "name": "Telegram Trigger",
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1.2,
-      "position": [0, 400],
+      "position": [
+        0,
+        400
+      ],
       "webhookId": "kolya-music-trigger",
       "credentials": {
         "telegramApi": {
@@ -30,7 +33,10 @@
       "name": "Route + static",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [260, 400]
+      "position": [
+        260,
+        400
+      ]
     },
     {
       "parameters": {
@@ -207,7 +213,10 @@
       "name": "Switch kind",
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
-      "position": [500, 400]
+      "position": [
+        500,
+        400
+      ]
     },
     {
       "parameters": {
@@ -217,7 +226,10 @@
       "name": "Setup plan topics",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [760, 0]
+      "position": [
+        760,
+        0
+      ]
     },
     {
       "parameters": {
@@ -234,7 +246,10 @@
       "name": "TG createForumTopic",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [1000, 0],
+      "position": [
+        1000,
+        0
+      ],
       "credentials": {
         "telegramApi": {
           "id": "REPLACE_TELEGRAM_CRED",
@@ -247,13 +262,16 @@
     },
     {
       "parameters": {
-        "jsCode": "const staticData = $getWorkflowStaticData('global');\nif (!staticData.topicIds) staticData.topicIds = {};\n\nconst planned = $('Setup plan topics').all();\nconst httpItems = items;\n\nif (!planned.length) {\n  const lines = ['✅ Setup (n8n)', `group: ${staticData.musicGroupId}`, '', 'Топики уже есть:'];\n  for (const [k, v] of Object.entries(staticData.topicIds)) lines.push(`• ${k} → ${v}`);\n  lines.push('', 'Кидай трек (Hip-Hop).');\n  return [{ json: { chatId: staticData.musicGroupId, text: lines.join('\\n'), topicIds: staticData.topicIds } }];\n}\n\nconst errors = [];\nfor (let i = 0; i < planned.length; i++) {\n  const key = planned[i].json.key;\n  const body = httpItems[i]?.json || {};\n  const threadId = body.message_thread_id || body.result?.message_thread_id;\n  if (threadId) staticData.topicIds[key] = threadId;\n  else errors.push(`${key}: ${body.description || body.message || JSON.stringify(body).slice(0,120)}`);\n}\n\nconst lines = ['✅ Setup (n8n)', `group: ${staticData.musicGroupId}`, '', 'Топики:'];\nfor (const [k, v] of Object.entries(staticData.topicIds)) lines.push(`• ${k} → ${v}`);\nif (errors.length) {\n  lines.push('', 'Ошибки (нужно Manage Topics у бота):');\n  for (const e of errors) lines.push(`• ${e}`);\n} else {\n  lines.push('', 'Кидай трек для теста (Hip-Hop).');\n}\n\nreturn [{ json: { chatId: staticData.musicGroupId, text: lines.join('\\n'), topicIds: staticData.topicIds } }];"
+        "jsCode": "const staticData = $getWorkflowStaticData('global');\nif (!staticData.topicIds) staticData.topicIds = {};\n\nconst planned = $('Setup plan topics').all();\nconst httpItems = items;\n\nif (planned.length === 1 && planned[0].json.skipCreate) {\n  const lines = ['✅ Setup (n8n)', `group: ${staticData.musicGroupId}`, '', 'Топики уже есть:'];\n  for (const [k, v] of Object.entries(staticData.topicIds)) lines.push(`• ${k} → ${v}`);\n  lines.push('', 'Кидай трек (Hip-Hop).');\n  return [{ json: { chatId: staticData.musicGroupId, text: lines.join('\\n'), topicIds: staticData.topicIds } }];\n}\n\nconst errors = [];\nfor (let i = 0; i < planned.length; i++) {\n  const key = planned[i].json.key;\n  if (!key) continue;\n  const body = httpItems[i]?.json || {};\n  const threadId = body.message_thread_id || body.result?.message_thread_id;\n  if (threadId) staticData.topicIds[key] = threadId;\n  else errors.push(`${key}: ${body.description || body.message || JSON.stringify(body).slice(0,120)}`);\n}\n\nconst lines = ['✅ Setup (n8n)', `group: ${staticData.musicGroupId}`, '', 'Топики:'];\nfor (const [k, v] of Object.entries(staticData.topicIds)) lines.push(`• ${k} → ${v}`);\nif (errors.length) {\n  lines.push('', 'Ошибки (нужно Manage Topics у бота):');\n  for (const e of errors) lines.push(`• ${e}`);\n} else {\n  lines.push('', 'Кидай трек для теста (Hip-Hop).');\n}\n\nreturn [{ json: { chatId: staticData.musicGroupId, text: lines.join('\\n'), topicIds: staticData.topicIds } }];"
       },
       "id": "code-setup-save",
       "name": "Setup save + reply text",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [1240, 0]
+      "position": [
+        1240,
+        0
+      ]
     },
     {
       "parameters": {
@@ -267,7 +285,10 @@
       "name": "Reply setup",
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [1480, 0],
+      "position": [
+        1480,
+        0
+      ],
       "credentials": {
         "telegramApi": {
           "id": "REPLACE_TELEGRAM_CRED",
@@ -285,7 +306,10 @@
       "name": "Classify media",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [760, 280]
+      "position": [
+        760,
+        280
+      ]
     },
     {
       "parameters": {
@@ -313,7 +337,10 @@
       "name": "IF duplicate",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
-      "position": [1000, 280]
+      "position": [
+        1000,
+        280
+      ]
     },
     {
       "parameters": {
@@ -327,7 +354,10 @@
       "name": "Reply duplicate",
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [1240, 160],
+      "position": [
+        1240,
+        160
+      ],
       "credentials": {
         "telegramApi": {
           "id": "REPLACE_TELEGRAM_CRED",
@@ -349,7 +379,10 @@
       "name": "Send to topic (audio)",
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [1240, 320],
+      "position": [
+        1240,
+        320
+      ],
       "credentials": {
         "telegramApi": {
           "id": "REPLACE_TELEGRAM_CRED",
@@ -372,7 +405,10 @@
       "name": "Send to topic (document)",
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [1240, 480],
+      "position": [
+        1240,
+        480
+      ],
       "credentials": {
         "telegramApi": {
           "id": "REPLACE_TELEGRAM_CRED",
@@ -407,7 +443,10 @@
       "name": "IF audio else doc",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
-      "position": [1000, 420]
+      "position": [
+        1000,
+        420
+      ]
     },
     {
       "parameters": {
@@ -480,7 +519,10 @@
       "name": "Ask folder buttons",
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [1480, 400],
+      "position": [
+        1480,
+        400
+      ],
       "credentials": {
         "telegramApi": {
           "id": "REPLACE_TELEGRAM_CRED",
@@ -496,7 +538,10 @@
       "name": "Search index",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [760, 560]
+      "position": [
+        760,
+        560
+      ]
     },
     {
       "parameters": {
@@ -563,7 +608,10 @@
       "name": "Reply find + buttons",
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [1000, 560],
+      "position": [
+        1000,
+        560
+      ],
       "credentials": {
         "telegramApi": {
           "id": "REPLACE_TELEGRAM_CRED",
@@ -579,7 +627,10 @@
       "name": "Parse callback move",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [760, 760]
+      "position": [
+        760,
+        760
+      ]
     },
     {
       "parameters": {
@@ -593,7 +644,10 @@
       "name": "Answer callback",
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [1000, 700],
+      "position": [
+        1000,
+        700
+      ],
       "credentials": {
         "telegramApi": {
           "id": "REPLACE_TELEGRAM_CRED",
@@ -635,7 +689,10 @@
       "name": "IF can place",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
-      "position": [1000, 860]
+      "position": [
+        1000,
+        860
+      ]
     },
     {
       "parameters": {
@@ -651,7 +708,10 @@
       "name": "Callback place audio",
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [1240, 800],
+      "position": [
+        1240,
+        800
+      ],
       "credentials": {
         "telegramApi": {
           "id": "REPLACE_TELEGRAM_CRED",
@@ -668,7 +728,10 @@
       "name": "Parse override",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [760, 1000]
+      "position": [
+        760,
+        1000
+      ]
     },
     {
       "parameters": {
@@ -682,7 +745,10 @@
       "name": "Reply override",
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [1240, 1000],
+      "position": [
+        1240,
+        1000
+      ],
       "credentials": {
         "telegramApi": {
           "id": "REPLACE_TELEGRAM_CRED",
@@ -704,7 +770,10 @@
       "name": "Override place audio",
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [1000, 1000],
+      "position": [
+        1000,
+        1000
+      ],
       "credentials": {
         "telegramApi": {
           "id": "REPLACE_TELEGRAM_CRED",
@@ -725,7 +794,10 @@
       "name": "Reply start",
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [760, 1160],
+      "position": [
+        760,
+        1160
+      ],
       "credentials": {
         "telegramApi": {
           "id": "REPLACE_TELEGRAM_CRED",
@@ -745,7 +817,10 @@
       "name": "Reply genres",
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [760, 1320],
+      "position": [
+        760,
+        1320
+      ],
       "credentials": {
         "telegramApi": {
           "id": "REPLACE_TELEGRAM_CRED",
@@ -763,7 +838,41 @@
       "name": "NOTE",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
-      "position": [-320, 280]
+      "position": [
+        -320,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.skipCreate }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "if-skip-create",
+      "name": "IF skip create",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        880,
+        0
+      ]
     }
   ],
   "connections": {
@@ -846,7 +955,7 @@
       "main": [
         [
           {
-            "node": "TG createForumTopic",
+            "node": "IF skip create",
             "type": "main",
             "index": 0
           }
@@ -992,6 +1101,24 @@
           },
           {
             "node": "Reply override",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF skip create": {
+      "main": [
+        [
+          {
+            "node": "Setup save + reply text",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "TG createForumTopic",
             "type": "main",
             "index": 0
           }
