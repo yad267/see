@@ -1,0 +1,1019 @@
+{
+  "name": "KolyaMusic — Music Bot",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message",
+          "callback_query"
+        ],
+        "additionalFields": {}
+      },
+      "id": "trig-kolya-music",
+      "name": "Telegram Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [0, 400],
+      "webhookId": "kolya-music-trigger",
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TELEGRAM_CRED",
+          "name": "KolyaMusic Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const staticData = $getWorkflowStaticData('global');\nif (!staticData.topicIds) staticData.topicIds = {};\nif (!staticData.dedup) staticData.dedup = {};\nif (!staticData.index) staticData.index = [];\n\nconst root = items[0].json;\nconst msg = root.message || root.callback_query?.message || null;\nconst cb = root.callback_query || null;\nconst text = (msg?.text || '').trim();\nconst chatId = msg?.chat?.id || cb?.message?.chat?.id || null;\nconst fromId = root.message?.from?.id || cb?.from?.id || null;\n\nlet kind = 'other';\nif (cb) kind = 'callback';\nelse if (text === '/setup' || text.startsWith('/setup@')) kind = 'setup';\nelse if (text === '/start' || text.startsWith('/start@')) kind = 'start';\nelse if (text === '/genres' || text.startsWith('/genres@')) kind = 'genres';\nelse if (text.startsWith('/find')) kind = 'find';\nelse if (msg?.audio || (msg?.document && ((msg.document.mime_type || '').startsWith('audio/') || /\\.(mp3|m4a|flac|wav|ogg|aac)$/i.test(msg.document.file_name || '')))) kind = 'media';\nelse if (msg?.reply_to_message && /^(переложить|положить|move)\\s+(в|to)\\s+/i.test(text)) kind = 'override';\n\nreturn [{\n  json: {\n    kind,\n    chatId,\n    fromId,\n    text,\n    message: msg,\n    callback: cb,\n    topicIds: staticData.topicIds,\n    musicGroupId: staticData.musicGroupId || null,\n  }\n}];"
+      },
+      "id": "code-route",
+      "name": "Route + static",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [260, 400]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.kind }}",
+                    "rightValue": "setup",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "setup"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.kind }}",
+                    "rightValue": "media",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "media"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.kind }}",
+                    "rightValue": "find",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "find"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.kind }}",
+                    "rightValue": "callback",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "callback"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.kind }}",
+                    "rightValue": "override",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "override"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.kind }}",
+                    "rightValue": "start",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "start"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.kind }}",
+                    "rightValue": "genres",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "genres"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "id": "switch-kind",
+      "name": "Switch kind",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [500, 400]
+    },
+    {
+      "parameters": {
+        "jsCode": "const staticData = $getWorkflowStaticData('global');\nconst chatId = items[0].json.chatId;\nconst genres = [\n  { key: 'inbox', title: '📥 Inbox' },\n  { key: 'hiphop', title: '🎤 Hip-Hop' },\n  { key: 'house', title: '🏠 House' },\n  { key: 'techno', title: '⚙️ Techno' },\n  { key: 'disco', title: '🕺 Disco / Funk' },\n  { key: 'other', title: '🎵 Other' },\n];\n\nstaticData.musicGroupId = chatId;\nif (!staticData.topicIds) staticData.topicIds = {};\n\nconst toCreate = genres.filter(g => !staticData.topicIds[g.key]);\nif (!toCreate.length) {\n  return [{ json: { chatId, key: null, name: null, skipCreate: true } }];\n}\nreturn toCreate.map(g => ({ json: { chatId, key: g.key, name: g.title, skipCreate: false } }));"
+      },
+      "id": "code-setup-plan",
+      "name": "Setup plan topics",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [760, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.telegram.org/bot{{$credentials.telegramApi.accessToken}}/createForumTopic",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "telegramApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"chat_id\": {{ $json.chatId }},\n  \"name\": {{ JSON.stringify($json.name) }}\n}",
+        "options": {}
+      },
+      "id": "http-create-topic",
+      "name": "TG createForumTopic",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1000, 0],
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TELEGRAM_CRED",
+          "name": "KolyaMusic Bot"
+        }
+      },
+      "continueOnFail": true,
+      "notesInFlow": true,
+      "notes": "Если URL с accessToken не сработает: открой ноду и вставь URL вида https://api.telegram.org/bot<TOKEN>/createForumTopic (токен только в n8n, не в чат)."
+    },
+    {
+      "parameters": {
+        "jsCode": "const staticData = $getWorkflowStaticData('global');\nif (!staticData.topicIds) staticData.topicIds = {};\n\nconst planned = $('Setup plan topics').all();\nconst httpItems = items;\n\nif (!planned.length) {\n  const lines = ['✅ Setup (n8n)', `group: ${staticData.musicGroupId}`, '', 'Топики уже есть:'];\n  for (const [k, v] of Object.entries(staticData.topicIds)) lines.push(`• ${k} → ${v}`);\n  lines.push('', 'Кидай трек (Hip-Hop).');\n  return [{ json: { chatId: staticData.musicGroupId, text: lines.join('\\n'), topicIds: staticData.topicIds } }];\n}\n\nconst errors = [];\nfor (let i = 0; i < planned.length; i++) {\n  const key = planned[i].json.key;\n  const body = httpItems[i]?.json || {};\n  const threadId = body.message_thread_id || body.result?.message_thread_id;\n  if (threadId) staticData.topicIds[key] = threadId;\n  else errors.push(`${key}: ${body.description || body.message || JSON.stringify(body).slice(0,120)}`);\n}\n\nconst lines = ['✅ Setup (n8n)', `group: ${staticData.musicGroupId}`, '', 'Топики:'];\nfor (const [k, v] of Object.entries(staticData.topicIds)) lines.push(`• ${k} → ${v}`);\nif (errors.length) {\n  lines.push('', 'Ошибки (нужно Manage Topics у бота):');\n  for (const e of errors) lines.push(`• ${e}`);\n} else {\n  lines.push('', 'Кидай трек для теста (Hip-Hop).');\n}\n\nreturn [{ json: { chatId: staticData.musicGroupId, text: lines.join('\\n'), topicIds: staticData.topicIds } }];"
+      },
+      "id": "code-setup-save",
+      "name": "Setup save + reply text",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1240, 0]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "tg-setup-reply",
+      "name": "Reply setup",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1480, 0],
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TELEGRAM_CRED",
+          "name": "KolyaMusic Bot"
+        }
+      },
+      "notesInFlow": true,
+      "notes": "Если createForumTopic падает: в HTTP-ноде вместо $credentials вставь токен временно ИЛИ используй Telegram cred через Header Auth. Право бота: Manage Topics."
+    },
+    {
+      "parameters": {
+        "jsCode": "const staticData = $getWorkflowStaticData('global');\nconst msg = items[0].json.message;\nconst chatId = items[0].json.chatId;\nconst audio = msg.audio;\nconst doc = msg.document;\n\nconst fileId = audio?.file_id || doc?.file_id;\nconst fileUnique = audio?.file_unique_id || doc?.file_unique_id;\nconst fileName = audio?.file_name || doc?.file_name || '';\nconst title = audio?.title || '';\nconst performer = audio?.performer || '';\nconst isAudio = Boolean(audio);\n\nif (staticData.dedup?.[fileUnique]) {\n  return [{ json: { action: 'duplicate', chatId, text: `Уже есть: ${staticData.dedup[fileUnique]}` } }];\n}\n\nconst blob = `${title} ${performer} ${fileName}`.toLowerCase();\nconst rules = [\n  [/hip[- ]?hop|\\brap\\b|trap|хип-?хоп|рэп/, 'hiphop', 0.9],\n  [/deep house|tech house|\\bhouse\\b|хаус/, 'house', 0.85],\n  [/techno|текно|техно/, 'techno', 0.85],\n  [/nu-?disco|\\bdisco\\b|\\bfunk\\b|диско|фанк/, 'disco', 0.85],\n];\n\nlet genre = 'inbox';\nlet confidence = 0.2;\nlet reason = 'no keywords';\nfor (const [re, key, conf] of rules) {\n  if (re.test(blob)) { genre = key; confidence = conf; reason = String(re); break; }\n}\n\nconst yearMatch = blob.match(/(?:19|20)\\d{2}/g);\nconst year = yearMatch ? Number(yearMatch[yearMatch.length - 1]) : null;\nlet trackTitle = title;\nif (!trackTitle && fileName) {\n  trackTitle = fileName.replace(/\\.[^.]+$/, '');\n  const parts = trackTitle.split(/\\s[-—–]\\s/);\n  if (parts.length > 1) trackTitle = parts.slice(1).join(' - ');\n}\nif (!trackTitle) trackTitle = 'unknown';\n\nconst topicIds = staticData.topicIds || {};\nconst threadId = topicIds[genre] || topicIds.inbox || null;\nconst needsAsk = genre === 'inbox' || confidence < 0.55;\n\nconst entry = {\n  id: fileUnique || String(Date.now()),\n  title: trackTitle,\n  artist: performer || '',\n  year,\n  genre: needsAsk ? null : genre,\n  fileId,\n  isAudio,\n  fileUnique,\n};\nstaticData.index = (staticData.index || []).filter(x => x.id !== entry.id);\nstaticData.index.unshift(entry);\nif (staticData.index.length > 500) staticData.index.length = 500;\n\nif (!needsAsk && threadId) {\n  staticData.dedup[fileUnique] = genre;\n}\n\nconst buttons = [\n  [ { text: '🎤 Hip-Hop', callback_data: `move:hiphop:${fileUnique}` }, { text: '🏠 House', callback_data: `move:house:${fileUnique}` } ],\n  [ { text: '⚙️ Techno', callback_data: `move:techno:${fileUnique}` }, { text: '🕺 Disco', callback_data: `move:disco:${fileUnique}` } ],\n  [ { text: '🎵 Other', callback_data: `move:other:${fileUnique}` }, { text: '📥 Inbox', callback_data: `move:inbox:${fileUnique}` } ],\n];\n\nreturn [{\n  json: {\n    action: needsAsk ? 'ask' : 'place',\n    chatId,\n    fileId,\n    isAudio,\n    fileUnique,\n    genre,\n    confidence,\n    reason,\n    threadId: needsAsk ? (topicIds.inbox || null) : threadId,\n    trackTitle,\n    performer,\n    year,\n    caption: `${genre} · ${performer ? performer + ' — ' : ''}${trackTitle}${year ? ' ('+year+')' : ''} · ${confidence}`,\n    askText: needsAsk\n      ? `Не уверен (${reason}). Куда положить?\\n${performer ? performer + ' — ' : ''}${trackTitle}${year ? ' ('+year+')' : ''}`\n      : `→ ${genre} (${confidence})\\nМожно переложить кнопкой:`,\n    replyMarkup: { inline_keyboard: buttons },\n    topicIds,\n  }\n}];"
+      },
+      "id": "code-classify",
+      "name": "Classify media",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [760, 280]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.action }}",
+              "rightValue": "duplicate",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "if-dup",
+      "name": "IF duplicate",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [1000, 280]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "tg-dup",
+      "name": "Reply duplicate",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1240, 160],
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TELEGRAM_CRED",
+          "name": "KolyaMusic Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendAudio",
+        "chatId": "={{ $json.chatId }}",
+        "file": "={{ $json.fileId }}",
+        "additionalFields": {
+          "caption": "={{ $json.caption }}",
+          "messageThreadId": "={{ $json.threadId }}"
+        }
+      },
+      "id": "tg-send-audio",
+      "name": "Send to topic (audio)",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1240, 320],
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TELEGRAM_CRED",
+          "name": "KolyaMusic Bot"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "sendDocument",
+        "chatId": "={{ $json.chatId }}",
+        "file": "={{ $json.fileId }}",
+        "additionalFields": {
+          "caption": "={{ $json.caption }}",
+          "messageThreadId": "={{ $json.threadId }}"
+        }
+      },
+      "id": "tg-send-doc",
+      "name": "Send to topic (document)",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1240, 480],
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TELEGRAM_CRED",
+          "name": "KolyaMusic Bot"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.isAudio }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "if-audio",
+      "name": "IF audio else doc",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [1000, 420]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Classify media').item.json.chatId }}",
+        "text": "={{ $('Classify media').item.json.askText }}",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "🎤 Hip-Hop",
+                    "additionalFields": {
+                      "callback_data": "=move:hiphop:{{ $('Classify media').item.json.fileUnique }}"
+                    }
+                  },
+                  {
+                    "text": "🏠 House",
+                    "additionalFields": {
+                      "callback_data": "=move:house:{{ $('Classify media').item.json.fileUnique }}"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "⚙️ Techno",
+                    "additionalFields": {
+                      "callback_data": "=move:techno:{{ $('Classify media').item.json.fileUnique }}"
+                    }
+                  },
+                  {
+                    "text": "🕺 Disco",
+                    "additionalFields": {
+                      "callback_data": "=move:disco:{{ $('Classify media').item.json.fileUnique }}"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "🎵 Other",
+                    "additionalFields": {
+                      "callback_data": "=move:other:{{ $('Classify media').item.json.fileUnique }}"
+                    }
+                  },
+                  {
+                    "text": "📥 Inbox",
+                    "additionalFields": {
+                      "callback_data": "=move:inbox:{{ $('Classify media').item.json.fileUnique }}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "tg-ask-folder",
+      "name": "Ask folder buttons",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1480, 400],
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TELEGRAM_CRED",
+          "name": "KolyaMusic Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const staticData = $getWorkflowStaticData('global');\nconst raw = (items[0].json.text || '').replace(/^\\/find(@\\w+)?\\s*/i, '').trim();\nif (!raw) {\n  return [{ json: { chatId: items[0].json.chatId, text: 'Поиск:\\n/find hiphop\\n/find lose yourself\\n/find 2010\\n/find eminem 2002-2005\\n\\nПотом кнопкой — в папку.' } }];\n}\n\nconst tokens = raw.split(/\\s+/);\nlet genre = null;\nlet year = null;\nlet yearFrom = null;\nlet yearTo = null;\nconst textParts = [];\nconst genreMap = {\n  hiphop: 'hiphop', 'hip-hop': 'hiphop', rap: 'hiphop', 'хипхоп': 'hiphop', 'хип-хоп': 'hiphop',\n  house: 'house', хаус: 'house',\n  techno: 'techno', техно: 'techno', текно: 'techno',\n  disco: 'disco', funk: 'disco', диско: 'disco',\n  other: 'other',\n};\nfor (const t of tokens) {\n  const low = t.toLowerCase();\n  const range = low.match(/^(19|20)\\d{2}[-–—](19|20)\\d{2}$/);\n  if (range) {\n    const a = Number(low.slice(0,4)); const b = Number(low.slice(-4));\n    yearFrom = Math.min(a,b); yearTo = Math.max(a,b); continue;\n  }\n  if (/^(19|20)\\d{2}$/.test(low)) { year = Number(low); continue; }\n  if (genreMap[low] && !genre) { genre = genreMap[low]; continue; }\n  textParts.push(t);\n}\nconst needle = textParts.join(' ').toLowerCase();\nconst hits = (staticData.index || []).filter(e => {\n  if (genre && e.genre !== genre) return false;\n  if (year != null && e.year !== year) return false;\n  if (yearFrom != null && (e.year == null || e.year < yearFrom || e.year > yearTo)) return false;\n  if (needle) {\n    const hay = `${e.title} ${e.artist}`.toLowerCase();\n    if (!hay.includes(needle)) return false;\n  }\n  return true;\n}).slice(0, 8);\n\nif (!hits.length) {\n  return [{ json: { chatId: items[0].json.chatId, text: 'Пусто в индексе. Сначала кинь треки в группу (или /setup).' } }];\n}\n\nconst lines = hits.map((h,i) => `${i+1}. ${h.artist ? h.artist+' — ' : ''}${h.title}${h.year ? ' ('+h.year+')' : ''}${h.genre ? ' ['+h.genre+']' : ''}`);\nconst top = hits[0];\nstaticData.pending = staticData.pending || {};\nstaticData.pending[top.id] = top;\n\nreturn [{\n  json: {\n    chatId: items[0].json.chatId,\n    text: `Нашёл ${hits.length}:\\n\\n${lines.join('\\n')}\\n\\nТоп: ${top.title}\\nВыбери папку:`,\n    fileUnique: top.id,\n    fileId: top.fileId,\n    isAudio: top.isAudio,\n  }\n}];"
+      },
+      "id": "code-find",
+      "name": "Search index",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [760, 560]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "={{ $json.text }}",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "🎤 Hip-Hop",
+                    "additionalFields": {
+                      "callback_data": "=move:hiphop:{{ $json.fileUnique }}"
+                    }
+                  },
+                  {
+                    "text": "🏠 House",
+                    "additionalFields": {
+                      "callback_data": "=move:house:{{ $json.fileUnique }}"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "⚙️ Techno",
+                    "additionalFields": {
+                      "callback_data": "=move:techno:{{ $json.fileUnique }}"
+                    }
+                  },
+                  {
+                    "text": "🕺 Disco",
+                    "additionalFields": {
+                      "callback_data": "=move:disco:{{ $json.fileUnique }}"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "📥 Inbox",
+                    "additionalFields": {
+                      "callback_data": "=move:inbox:{{ $json.fileUnique }}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "tg-find-reply",
+      "name": "Reply find + buttons",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1000, 560],
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TELEGRAM_CRED",
+          "name": "KolyaMusic Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const staticData = $getWorkflowStaticData('global');\nconst cb = items[0].json.callback;\nconst data = cb?.data || '';\nconst chatId = cb?.message?.chat?.id;\nconst parts = data.split(':');\n// move:genre:fileUnique\nconst genre = parts[1];\nconst fileUnique = parts.slice(2).join(':');\nconst topicIds = staticData.topicIds || {};\nconst threadId = topicIds[genre] || topicIds.inbox || null;\n\nlet fileId = null;\nlet isAudio = true;\nlet title = fileUnique;\nconst fromIndex = (staticData.index || []).find(x => x.id === fileUnique || x.fileUnique === fileUnique);\nconst fromPending = staticData.pending?.[fileUnique];\nconst hit = fromIndex || fromPending;\nif (hit) {\n  fileId = hit.fileId;\n  isAudio = hit.isAudio !== false;\n  title = hit.title || title;\n  hit.genre = genre;\n}\nif (fileUnique && genre) {\n  staticData.dedup = staticData.dedup || {};\n  staticData.dedup[fileUnique] = genre;\n}\n\nreturn [{\n  json: {\n    chatId,\n    callbackQueryId: cb.id,\n    genre,\n    threadId,\n    fileId,\n    isAudio,\n    caption: `${genre} · ${title} · manual`,\n    ackText: fileId && threadId ? `Переложено → ${genre}` : `Ок: ${genre}` + (!threadId ? ' (сначала /setup)' : !fileId ? ' (нет file_id)' : ''),\n  }\n}];"
+      },
+      "id": "code-callback",
+      "name": "Parse callback move",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [760, 760]
+    },
+    {
+      "parameters": {
+        "operation": "answerCallbackQuery",
+        "queryId": "={{ $json.callbackQueryId }}",
+        "additionalFields": {
+          "text": "={{ $json.ackText }}"
+        }
+      },
+      "id": "tg-ack-cb",
+      "name": "Answer callback",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1000, 700],
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TELEGRAM_CRED",
+          "name": "KolyaMusic Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.fileId }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              }
+            },
+            {
+              "leftValue": "={{ $json.threadId }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "if-cb-send",
+      "name": "IF can place",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [1000, 860]
+    },
+    {
+      "parameters": {
+        "operation": "sendAudio",
+        "chatId": "={{ $json.chatId }}",
+        "file": "={{ $json.fileId }}",
+        "additionalFields": {
+          "caption": "={{ $json.caption }}",
+          "messageThreadId": "={{ $json.threadId }}"
+        }
+      },
+      "id": "tg-cb-audio",
+      "name": "Callback place audio",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1240, 800],
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TELEGRAM_CRED",
+          "name": "KolyaMusic Bot"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const staticData = $getWorkflowStaticData('global');\nconst text = items[0].json.text || '';\nconst msg = items[0].json.message;\nconst m = text.match(/^(?:переложить|положить|move)\\s+(?:в|to)\\s+(.+)$/i);\nconst raw = (m?.[1] || '').trim().toLowerCase();\nconst map = { inbox:'inbox', hiphop:'hiphop','hip-hop':'hiphop', rap:'hiphop', house:'house', techno:'techno', disco:'disco', funk:'disco', other:'other', 'хип-хоп':'hiphop', хаус:'house', техно:'techno', диско:'disco', инбокс:'inbox' };\nconst genre = map[raw] || map[raw.replace(/\\s+/g, '')] || null;\nconst replied = msg.reply_to_message;\nconst audio = replied?.audio;\nconst doc = replied?.document;\nconst fileId = audio?.file_id || doc?.file_id;\nconst fileUnique = audio?.file_unique_id || doc?.file_unique_id;\nconst isAudio = Boolean(audio);\nconst threadId = genre ? (staticData.topicIds || {})[genre] : null;\n\nif (!genre) return [{ json: { chatId: items[0].json.chatId, text: 'Не знаю папку. /genres' } }];\nif (!fileId) return [{ json: { chatId: items[0].json.chatId, text: 'Reply должен быть на audio/document' } }];\n\nstaticData.dedup = staticData.dedup || {};\nif (fileUnique) staticData.dedup[fileUnique] = genre;\n\nreturn [{\n  json: {\n    chatId: items[0].json.chatId,\n    fileId,\n    isAudio,\n    threadId,\n    genre,\n    caption: `${genre} · override`,\n    text: threadId ? `Переложено → ${genre}` : `Жанр ${genre}, но нет topic id — сначала /setup`,\n  }\n}];"
+      },
+      "id": "code-override",
+      "name": "Parse override",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [760, 1000]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "tg-override-reply",
+      "name": "Reply override",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1240, 1000],
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TELEGRAM_CRED",
+          "name": "KolyaMusic Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendAudio",
+        "chatId": "={{ $json.chatId }}",
+        "file": "={{ $json.fileId }}",
+        "additionalFields": {
+          "caption": "={{ $json.caption }}",
+          "messageThreadId": "={{ $json.threadId }}"
+        }
+      },
+      "id": "tg-override-audio",
+      "name": "Override place audio",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1000, 1000],
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TELEGRAM_CRED",
+          "name": "KolyaMusic Bot"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "KolyaMusic на n8n — личный архив в закрытой группе.\n\n1) Бот админ + Управление темами\n2) /setup — создать папки-жанры\n3) Кидай audio → в топик\n4) /find hiphop | название | год\n5) Reply: переложить в hiphop",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "tg-start",
+      "name": "Reply start",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [760, 1160],
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TELEGRAM_CRED",
+          "name": "KolyaMusic Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "Папки: Inbox, Hip-Hop, House, Techno, Disco/Funk, Other\nКлючи: inbox, hiphop, house, techno, disco, other",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "tg-genres",
+      "name": "Reply genres",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [760, 1320],
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TELEGRAM_CRED",
+          "name": "KolyaMusic Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## KolyaMusic — только n8n\n\n1. Credentials → Telegram → токен KolyaMusic\n2. Во всех Telegram/HTTP нодах выбрать этот credential\n3. Active ON\n4. В группе /setup\n\nГруппа: private + Topics. Бот: Manage Topics.\nНе трогать завод шортов.",
+        "height": 340,
+        "width": 320
+      },
+      "id": "note-main",
+      "name": "NOTE",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [-320, 280]
+    }
+  ],
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Route + static",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route + static": {
+      "main": [
+        [
+          {
+            "node": "Switch kind",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch kind": {
+      "main": [
+        [
+          {
+            "node": "Setup plan topics",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Classify media",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Search index",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Parse callback move",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Parse override",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Reply start",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Reply genres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Setup plan topics": {
+      "main": [
+        [
+          {
+            "node": "TG createForumTopic",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TG createForumTopic": {
+      "main": [
+        [
+          {
+            "node": "Setup save + reply text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Setup save + reply text": {
+      "main": [
+        [
+          {
+            "node": "Reply setup",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Classify media": {
+      "main": [
+        [
+          {
+            "node": "IF duplicate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF duplicate": {
+      "main": [
+        [
+          {
+            "node": "Reply duplicate",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "IF audio else doc",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF audio else doc": {
+      "main": [
+        [
+          {
+            "node": "Send to topic (audio)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send to topic (document)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send to topic (audio)": {
+      "main": [
+        [
+          {
+            "node": "Ask folder buttons",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send to topic (document)": {
+      "main": [
+        [
+          {
+            "node": "Ask folder buttons",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search index": {
+      "main": [
+        [
+          {
+            "node": "Reply find + buttons",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse callback move": {
+      "main": [
+        [
+          {
+            "node": "Answer callback",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "IF can place",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF can place": {
+      "main": [
+        [
+          {
+            "node": "Callback place audio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse override": {
+      "main": [
+        [
+          {
+            "node": "Override place audio",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Reply override",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": {
+    "global": {
+      "topicIds": {},
+      "dedup": {},
+      "index": [],
+      "pending": {}
+    }
+  },
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "pinData": {},
+  "versionId": "kolya-music-n8n-v1"
+}
