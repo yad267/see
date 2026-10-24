@@ -58,6 +58,18 @@ python sort_by_genre.py --src ... --dst ~/Music/MusicSorted --models-dir ./model
 
 ## Жанровые папки (whitelist)
 
-House, Deep, Melodic, Techno, Hip-Hop, Disco, Trance, DnB, Ambient, Trap, Bass, Other, Unknown  
+House, Deep, Melodic, Techno, Hip-Hop, Disco, Trance, DnB, Ambient, Trap, Bass, Other, Unknown, `_To_Review`
 
 Сырые Discogs-стили схлопываются в `genre_map.py` (правишь там).
+
+## Fallback (редкие ремиксы не в базах)
+
+```bash
+python fallback_sort.py \
+  --src "/Users/Sputnik/Music/МУЗЫКА ПРОБА" \
+  --dst "/Users/Sputnik/Music/МУЗЫКА ГОТОВО 2" \
+  --models-dir ./models
+```
+
+Порядок: **artist override → MusicBrainz → Essentia → regex/keywords → `_To_Review`**.  
+Пишет `report.txt` + `_fallback_report.csv`. По умолчанию COPY.
