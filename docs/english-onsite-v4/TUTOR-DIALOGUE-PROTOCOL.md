@@ -37,23 +37,32 @@ idle
   "protocol_version": 1,
   "phase": "task_run",
   "learner": {
-    "cefr": "B1",
+    "cefr": "A2",
     "l1": "ru",
-    "goal_tags": ["it-standup"],
-    "focus_forms": ["present_perfect"],
+    "ilr_lite": "1",
+    "goal_tags": ["irish-site", "gate"],
+    "focus_forms": ["have_got"],
     "miss_bank_due": [
-      { "item": "I've already fixed it", "hint_context": "daily standup" }
+      {
+        "item": "I've got my Safe Pass",
+        "hint_context": "gate-safe-pass",
+        "priority": "0.82",
+        "frequency": "5"
+      }
     ]
   },
   "session": {
-    "can_do": "Report what I finished and what's blocked in a standup",
+    "can_do": "Sign in at the gate and say I have my Safe Pass",
     "minutes_left": 6,
     "repair_level": 0,
-    "focus_form": "present_perfect",
+    "focus_form": "have_got",
     "last_tutor_move": "ask",
-    "task_brief": "You are the team lead in a morning standup."
+    "task_brief": "You are the gate security officer on an Irish site.",
+    "scenario_id": "gate-safe-pass",
+    "tutor_role": "gate_security",
+    "say_it_hint": "I've got my Safe Pass."
   },
-  "learner_utterance": "I already fix the bug yesterday"
+  "learner_utterance": "I have Safe Pass card"
 }
 ```
 
@@ -73,8 +82,9 @@ Respond with **JSON only** (no markdown fences):
   "log_miss": true,
   "miss_item": "I've already fixed it",
   "ui": {
-    "coach_chip": "Present perfect + already",
-    "show_ru_gloss": false
+    "coach_chip": "I've got + Safe Pass",
+    "show_ru_gloss": false,
+    "say_it_highlight": "I've got my Safe Pass."
   },
   "session_patch": {
     "can_do_progress": 0.4

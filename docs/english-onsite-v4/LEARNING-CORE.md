@@ -8,7 +8,9 @@
 
 ## 1. One-sentence mission
 
-Every session is a **task with meaning**, where the learner **speaks**, the tutor **negotiates meaning**, and form is repaired with **graduated feedback** — then the same language returns later via **spaced retrieval**.
+Every session is a **site task with meaning**, where the learner **speaks**, the tutor **negotiates meaning**, and form is repaired with **graduated feedback** — then the same language returns later via **predictive spaced retrieval**.
+
+Immersion stack (DLI / Linguist Next–lite, no VR yet): `IMMERSION-STACK.md` + `DropIn/EnglishOnSiteTutor/scenarios/irish_site_v1.json`.
 
 ---
 
@@ -26,6 +28,8 @@ Every session is a **task with meaning**, where the learner **speaks**, the tuto
 | P8 | **Spaced return** | Capture misses → schedule retrieval in later sessions / bank. | Teach once and forget. |
 | P9 | **Variable context** | Reuse target items in **new** situations (not same sentence). | Only flashcard A↔B in one fixed sentence. |
 | P10 | **Goal + self-check** | Open with can-do; close with 20s learner self-eval. | Endless open chat with no exit. |
+| P11 | **Scenario immersion** | Tutor stays in site role (gate / foreman / supervisor). | Generic “English teacher” chat. |
+| P12 | **Predictive review** | Warm-up picks by decay × site frequency × fails. | Random flashcards only. |
 
 ---
 

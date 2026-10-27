@@ -46,6 +46,16 @@ Curated evidence base for the tutor–learner dialogue core. Prefer meta-analyse
 
 Use CEFR Companion Volume can-do statements (Council of Europe) for session goals and exit checks — not grammar lists alone.
 
+## F. Military / intel public practice (immersion stack)
+
+| Source | Year | What we take |
+|--------|------|----------------|
+| DLIFLC “Linguist Next” / UCAT digital redesign | 2023–24 | Authentic materials, scenario games, self-regulated learners. |
+| AFRL Predictive Analytics for Learning + Jedburgh (Fights On) | 2024 | Decay + frequency personalized review; genAI tutoring next. |
+| RAND — cognitive model for personalized linguist training | 2024 | Adaptive scheduling pitfalls → keep lite, measurable can-dos. |
+| CIA Intelligence Language Institute (public) | 2022 | Interactive CALL + VR pilots; culture + mission phrases. |
+| FSI intensity notes (time-on-task, small groups, drills) | classic | Speaking density + focused drills (our SAY IT). |
+
 ## How these sources map into English On Site
 
-See `LEARNING-CORE.md` (principles) and `TUTOR-DIALOGUE-PROTOCOL.md` (state machine + Gemini prompt contract).
+See `LEARNING-CORE.md`, `IMMERSION-STACK.md`, `TUTOR-DIALOGUE-PROTOCOL.md`.

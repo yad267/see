@@ -1,36 +1,37 @@
-# English Onsite v4 — Sprint: Tutor Learning Core
+# English Onsite v4 — Sprint: Tutor Immersion Core
 
-**Status:** Research kernel + drop-in protocol shipped in this repo. **Wire + Simulator on Mac «Kolya»** inside `EnglishOnSite` (Gemini already in Settings).
+**Status:** Drop-in ready. Wire on Mac «Kolya» into `EnglishOnSite` Репетитор.
 
 ## Goal
 
-Make **Репетитор** follow a science-based tutor↔student dialogue core (not free chat): task → graduated repair → reproduction → spaced miss bank.
+Репетитор = Irish-site immersion coach (gate / foreman / PPE), not free chat:
+scenario → oral loop → graduated repair → predictive miss bank.
 
-## Docs
+## Files
 
-| File | Role |
+| Path | Role |
 |------|------|
-| `LEARNING-CORE.md` | Product law / pedagogy |
-| `TUTOR-DIALOGUE-PROTOCOL.md` | State machine + JSON contract |
-| `RESEARCH-SOURCES.md` | Evidence bibliography (2020–2026 + foundations) |
+| `LEARNING-CORE.md` | Pedagogy law |
+| `IMMERSION-STACK.md` | DLI/AFRL → product map |
+| `TUTOR-DIALOGUE-PROTOCOL.md` | JSON state machine |
+| `RESEARCH-SOURCES.md` | Evidence |
+| `DropIn/EnglishOnSiteTutor/TutorSystemPrompt.md` | Gemini system |
+| `DropIn/EnglishOnSiteTutor/TutorSessionEngine.swift` | Session + pack loader |
+| `DropIn/EnglishOnSiteTutor/PredictiveReviewEngine.swift` | Decay × frequency × fails |
+| `DropIn/EnglishOnSiteTutor/scenarios/irish_site_v1.json` | Safe Pass, put, cabin, PPE |
+| `DropIn/EnglishOnSiteTutor/learning_core.json` | Machine config v2 |
 
-## Drop-in files
+## Kolya acceptance
 
-| File | Action |
-|------|--------|
-| `DropIn/EnglishOnSiteTutor/TutorSystemPrompt.md` | Gemini system instruction |
-| `DropIn/EnglishOnSiteTutor/TutorSessionEngine.swift` | Session engine + miss_bank spacing |
-| `DropIn/EnglishOnSiteTutor/learning_core.json` | Machine config / sample can-dos |
-| `DropIn/EnglishOnSiteTutor/fixtures/standup_repair_turn.json` | Eval fixture |
+1. Репетитор → scenario **Ворота и Safe Pass**.  
+2. Broken line → repair ladder → re-say.  
+3. Fail reproduction → AVSpeech “Let’s try again”.  
+4. Next day warm-up pulls high-frequency miss first.  
+5. Scenario **put phrasals** uses SAY IT: *Put up the cable tray and put back your tools.*
 
-## Acceptance (Kolya)
+## Assumptions locked (no owner questions)
 
-1. Open Репетитор → start B1 standup can-do.  
-2. Say a broken present-perfect line → tutor climbs repair ladder, asks re-say.  
-3. Soft fail reproduction → “Let’s try again” (AVSpeech) + level +1.  
-4. Success → back to task; miss logged for +1 day.  
-5. Close → self-eval “Today I can…”.
-
-## Out of scope this sprint
-
-Full offline lesson bank generator, peer mode, App Store release.
+- Audience: RU, Irish sites  
+- No VR this sprint  
+- Gemini + ElevenLabs Keychain already in Settings  
+- ILR-lite labels only (not official testing)

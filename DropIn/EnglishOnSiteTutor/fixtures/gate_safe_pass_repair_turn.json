@@ -1,0 +1,36 @@
+{
+  "input": {
+    "protocol_version": 1,
+    "phase": "task_run",
+    "learner": {
+      "cefr": "A2",
+      "l1": "ru",
+      "ilr_lite": "1",
+      "goal_tags": ["irish-site", "gate"],
+      "focus_forms": ["have_got"],
+      "miss_bank_due": []
+    },
+    "session": {
+      "can_do": "Sign in at the gate and say I have my Safe Pass",
+      "minutes_left": 7,
+      "repair_level": 0,
+      "focus_form": "have_got",
+      "last_tutor_move": "ask",
+      "task_brief": "You are the gate security officer on an Irish site.",
+      "scenario_id": "gate-safe-pass",
+      "tutor_role": "gate_security",
+      "say_it_hint": "I've got my Safe Pass."
+    },
+    "learner_utterance": "I have Safe Pass card"
+  },
+  "expected_response_shape": {
+    "phase": "repair",
+    "repair_level_min": 2,
+    "repair_level_max": 4,
+    "speak_locale": "en",
+    "expect_learner": "reproduction",
+    "log_miss": true,
+    "end_session": false,
+    "must_include_any": ["Safe Pass", "I've got", "I have got", "got"]
+  }
+}

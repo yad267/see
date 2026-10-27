@@ -3,6 +3,7 @@ import Foundation
 /// Drop-in session engine for English On Site Репетитор.
 /// Wire to Gemini (JSON in / JSON out) + ElevenLabs/AVSpeech on Kolya.
 /// Pedagogy: docs/english-onsite-v4/LEARNING-CORE.md + TUTOR-DIALOGUE-PROTOCOL.md
+/// Immersion lite: docs/english-onsite-v4/IMMERSION-STACK.md
 
 enum TutorPhase: String, Codable {
     case idle, open, warm_retrieval, task_run, repair, focus_flash, close, persist
@@ -19,6 +20,33 @@ struct MissItem: Codable, Identifiable, Equatable {
     var due: Date
     var ease: Double
     var intervalDays: Int
+    /// Site frequency tag 1…5 (from scenario lexis).
+    var frequency: Int
+    var failCount: Int
+    var successCount: Int
+    var lastReviewedAt: Date?
+
+    init(
+        item: String,
+        context: String? = nil,
+        due: Date,
+        ease: Double = 2.3,
+        intervalDays: Int = 1,
+        frequency: Int = 3,
+        failCount: Int = 0,
+        successCount: Int = 0,
+        lastReviewedAt: Date? = nil
+    ) {
+        self.item = item
+        self.context = context
+        self.due = due
+        self.ease = ease
+        self.intervalDays = intervalDays
+        self.frequency = frequency
+        self.failCount = failCount
+        self.successCount = successCount
+        self.lastReviewedAt = lastReviewedAt
+    }
 }
 
 struct LearnerModel: Codable {
@@ -30,6 +58,7 @@ struct LearnerModel: Codable {
     var lastCanDo: String?
     var lastWin: String?
     var lastNext: String?
+    var ilrLite: String
 }
 
 struct TutorSessionConfig: Codable {
@@ -37,6 +66,57 @@ struct TutorSessionConfig: Codable {
     var taskBrief: String
     var focusForm: String?
     var minutes: Int
+    var scenarioId: String?
+    var tutorRole: String?
+    var sayItTargets: [String]
+    var lexisFrequency: [String: Int]
+
+    init(
+        canDo: String,
+        taskBrief: String,
+        focusForm: String? = nil,
+        minutes: Int = 10,
+        scenarioId: String? = nil,
+        tutorRole: String? = nil,
+        sayItTargets: [String] = [],
+        lexisFrequency: [String: Int] = [:]
+    ) {
+        self.canDo = canDo
+        self.taskBrief = taskBrief
+        self.focusForm = focusForm
+        self.minutes = minutes
+        self.scenarioId = scenarioId
+        self.tutorRole = tutorRole
+        self.sayItTargets = sayItTargets
+        self.lexisFrequency = lexisFrequency
+    }
+
+    static func fromIrishScenario(_ scenario: [String: Any]) -> TutorSessionConfig? {
+        guard
+            let canDo = scenario["can_do"] as? String,
+            let brief = scenario["task_brief"] as? String
+        else { return nil }
+
+        var freq: [String: Int] = [:]
+        if let lexis = scenario["lexis"] as? [[String: Any]] {
+            for row in lexis {
+                if let en = row["en"] as? String {
+                    freq[en.lowercased()] = (row["frequency"] as? Int) ?? 3
+                }
+            }
+        }
+
+        return TutorSessionConfig(
+            canDo: canDo,
+            taskBrief: brief,
+            focusForm: scenario["focus_form"] as? String,
+            minutes: 10,
+            scenarioId: scenario["id"] as? String,
+            tutorRole: scenario["tutor_role"] as? String,
+            sayItTargets: scenario["say_it"] as? [String] ?? [],
+            lexisFrequency: freq
+        )
+    }
 }
 
 struct TutorTurnRequest: Codable {
@@ -49,6 +129,7 @@ struct TutorTurnRequest: Codable {
     struct LearnerSnapshot: Codable {
         var cefr: String
         var l1: String
+        var ilrLite: String
         var goalTags: [String]
         var focusForms: [String]
         var missBankDue: [[String: String]]
@@ -61,6 +142,9 @@ struct TutorTurnRequest: Codable {
         var focusForm: String?
         var lastTutorMove: String
         var taskBrief: String
+        var scenarioId: String?
+        var tutorRole: String?
+        var sayItHint: String?
     }
 }
 
@@ -81,6 +165,7 @@ struct TutorTurnResponse: Codable {
     struct UIHints: Codable {
         var coachChip: String?
         var showRuGloss: Bool?
+        var sayItHighlight: String?
     }
 
     struct SessionPatch: Codable {
@@ -120,9 +205,7 @@ final class TutorSessionEngine {
     private let config: TutorSessionConfig
     private var startedAt = Date()
     private var lastTutorMove = "open"
-
-    /// SM-2-ish defaults: 1 → 3 → 7 → 21 days.
-    private let defaultIntervals = [1, 3, 7, 21]
+    private var sayItIndex = 0
 
     init(learner: LearnerModel, config: TutorSessionConfig) {
         self.learner = learner
@@ -137,24 +220,36 @@ final class TutorSessionEngine {
         phase = .open
         repairLevel = 0
         canDoProgress = 0
+        sayItIndex = 0
         startedAt = Date()
         return makeRequest(utterance: "")
     }
 
     func makeRequest(utterance: String) -> TutorTurnRequest {
-        let due = learner.missBank
-            .filter { $0.due <= Date() }
-            .prefix(2)
-            .map { ["item": $0.item, "hint_context": $0.context ?? config.canDo] }
+        let warm = PredictiveReviewEngine.nextWarmItems(from: learner.missBank)
+            .map {
+                [
+                    "item": $0.item,
+                    "hint_context": $0.context ?? config.canDo,
+                    "priority": String(format: "%.2f", $0.priority),
+                    "frequency": String($0.frequency)
+                ]
+            }
+
+        let sayHint: String? = {
+            guard !config.sayItTargets.isEmpty else { return nil }
+            return config.sayItTargets[sayItIndex % config.sayItTargets.count]
+        }()
 
         return TutorTurnRequest(
             phase: phase == .idle ? .open : phase,
             learner: .init(
                 cefr: learner.cefr,
                 l1: learner.l1,
+                ilrLite: learner.ilrLite,
                 goalTags: learner.goalTags,
                 focusForms: learner.focusForms,
-                missBankDue: Array(due)
+                missBankDue: warm
             ),
             session: .init(
                 canDo: config.canDo,
@@ -162,7 +257,10 @@ final class TutorSessionEngine {
                 repairLevel: repairLevel,
                 focusForm: config.focusForm,
                 lastTutorMove: lastTutorMove,
-                taskBrief: config.taskBrief
+                taskBrief: config.taskBrief,
+                scenarioId: config.scenarioId,
+                tutorRole: config.tutorRole,
+                sayItHint: sayHint
             ),
             learnerUtterance: utterance
         )
@@ -178,7 +276,17 @@ final class TutorSessionEngine {
         lastTutorMove = response.expectLearner.rawValue
 
         if response.logMiss, let item = response.missItem, !item.isEmpty {
-            scheduleMiss(item, context: config.taskBrief)
+            let freq = frequencyFor(phrase: item)
+            PredictiveReviewEngine.upsertFail(
+                bank: &learner.missBank,
+                phrase: item,
+                context: config.scenarioId ?? config.taskBrief,
+                frequency: freq
+            )
+        }
+
+        if response.phase == .focus_flash || response.ui?.sayItHighlight != nil {
+            sayItIndex += 1
         }
 
         if response.endSession {
@@ -188,37 +296,35 @@ final class TutorSessionEngine {
         return response
     }
 
-    /// After local soft-fail on reproduction, bump ladder without calling the model yet (optional).
     func bumpRepairAfterFailedReproduction() {
         repairLevel = min(5, repairLevel + 1)
         phase = .repair
     }
 
-    private func scheduleMiss(_ item: String, context: String) {
-        if let idx = learner.missBank.firstIndex(where: { $0.item == item }) {
-            var m = learner.missBank[idx]
-            let step = min(m.intervalDays, defaultIntervals.count - 1)
-            let next = defaultIntervals[min(step + 1, defaultIntervals.count - 1)]
-            m.intervalDays = next
-            m.due = Calendar.current.date(byAdding: .day, value: next, to: Date()) ?? Date()
-            m.ease = min(3.0, m.ease + 0.1)
-            learner.missBank[idx] = m
-        } else {
-            learner.missBank.append(
-                MissItem(
-                    item: item,
-                    context: context,
-                    due: Calendar.current.date(byAdding: .day, value: defaultIntervals[0], to: Date()) ?? Date(),
-                    ease: 2.3,
-                    intervalDays: defaultIntervals[0]
-                )
-            )
+    func markReproductionSuccess(_ phrase: String) {
+        markSuccessIfKnown(phrase)
+        repairLevel = 0
+        if phase == .repair { phase = .task_run }
+    }
+
+    private func markSuccessIfKnown(_ phrase: String) {
+        if let idx = learner.missBank.firstIndex(where: {
+            $0.item.compare(phrase, options: [.caseInsensitive, .diacriticInsensitive]) == .orderedSame
+        }) {
+            PredictiveReviewEngine.scheduleSuccess(&learner.missBank[idx])
         }
+    }
+
+    private func frequencyFor(phrase: String) -> Int {
+        let lower = phrase.lowercased()
+        for (key, value) in config.lexisFrequency where lower.contains(key) {
+            return value
+        }
+        return 3
     }
 }
 
 enum TutorJSON {
-    /// Response uses explicit `CodingKeys` (snake_case). Do not also convertFromSnakeCase.
     static let responseDecoder = JSONDecoder()
 
     static let requestEncoder: JSONEncoder = {
@@ -234,5 +340,18 @@ enum TutorJSON {
 
     static func encodeRequest(_ request: TutorTurnRequest) throws -> Data {
         try requestEncoder.encode(request)
+    }
+}
+
+enum IrishSitePackLoader {
+    static func loadScenarios(from data: Data) throws -> [[String: Any]] {
+        let root = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+        return root?["scenarios"] as? [[String: Any]] ?? []
+    }
+
+    static func config(scenarioId: String, data: Data) throws -> TutorSessionConfig? {
+        try loadScenarios(from: data)
+            .first { ($0["id"] as? String) == scenarioId }
+            .flatMap(TutorSessionConfig.fromIrishScenario)
     }
 }

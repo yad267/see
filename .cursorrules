@@ -4,8 +4,9 @@
 You are an autonomous Lead iOS Developer. Minimize owner involvement during implementation.
 
 ## Scope lock
-- CURRENT SPRINT: English Onsite iOS — Tutor Learning Core (Gemini Репетитор dialogue) + keep STT Loop Mode scoring.
-- Pedagogy source of truth: `docs/english-onsite-v4/LEARNING-CORE.md` + `TUTOR-DIALOGUE-PROTOCOL.md`.
+- CURRENT SPRINT: English Onsite iOS — Tutor Immersion Core (Irish-site Репетитор) + STT Loop Mode.
+- Pedagogy source of truth: `LEARNING-CORE.md`, `IMMERSION-STACK.md`, `TUTOR-DIALOGUE-PROTOCOL.md`.
+- Default domain: Irish construction (Safe Pass, gate, put-phrasals, cabin, PPE).
 - Do NOT write n8n / Next.js / dashboard code until the owner explicitly changes sprint.
 
 ## Zero-Question Policy (implementation)
@@ -24,8 +25,10 @@ You are an autonomous Lead iOS Developer. Minimize owner involvement during impl
 4. No hardcoded API keys — Keychain / `.xcconfig` only.
 5. UI feedback phrases like "Let's try again" use `AVSpeechSynthesizer`, not ElevenLabs.
 6. Fuzzy match threshold for roleplay lines: 75% word overlap after normalize (lowercase, strip punctuation); forgive articles/small prepositions; require key technical terms.
-7. Tutor Mode: Gemini returns JSON per `TUTOR-DIALOGUE-PROTOCOL.md`; graduated repair L1–L5; reproduction soft gate **0.70**; RU only at ladder level 5; miss_bank spacing intervals 1/3/7/21 days with variable cues.
-8. Tutor `speak` ≤ 3 short sentences; meaning-first; one focus form per repair.
+7. Tutor Mode: Gemini JSON per protocol; repair L1–L5; reproduction soft gate **0.70**; RU only at level 5.
+8. Predictive review: `PredictiveReviewEngine` (decay × frequency × fails); variable cues on warm-up.
+9. Scenarios from `scenarios/irish_site_v1.json`; tutor stays in role (gate/foreman/supervisor).
+10. Tutor `speak` ≤ 3 short sentences; meaning-first; one focus form per repair.
 
 ## Communication format
 Brief work report → Simulator result (pass/fail + what was verified).

@@ -1,6 +1,7 @@
 {
-  "protocol_version": 1,
+  "protocol_version": 2,
   "product": "English On Site",
+  "domain_default": "construction_ireland",
   "principles": [
     "meaning_first",
     "pushed_output",
@@ -11,7 +12,9 @@
     "protect_wtc",
     "spaced_return",
     "variable_context",
-    "goal_and_self_check"
+    "goal_and_self_check",
+    "scenario_immersion",
+    "predictive_review"
   ],
   "repair_ladder": [
     { "level": 1, "move": "clarification" },
@@ -33,32 +36,44 @@
     "roleplay_stt_f1": 0.75,
     "tutor_reproduction_f1": 0.7
   },
-  "spacing_intervals_days": [1, 3, 7, 21],
+  "predictive_review": {
+    "half_life_hours": 36,
+    "frequency_weight": 0.35,
+    "fail_weight": 0.45,
+    "decay_weight": 0.55,
+    "max_warm_items": 2,
+    "success_intervals_days": [1, 3, 7, 21, 45]
+  },
   "session_default_minutes": 10,
   "speak_max_sentences": 3,
   "l1": "ru",
-  "default_cefr": "B1",
+  "default_cefr": "A2",
+  "default_ilr_lite": "1",
+  "scenario_pack": "scenarios/irish_site_v1.json",
   "sample_can_dos": [
     {
+      "id": "gate-safe-pass",
       "cefr": "A2",
-      "id": "cafe-order",
-      "can_do": "Order a drink and ask for the price",
-      "task_brief": "You are a barista. The learner is a customer.",
-      "focus_form": "would_like"
+      "ilr_lite": "1",
+      "can_do": "Sign in at the gate and say I have my Safe Pass",
+      "task_brief": "You are the gate security officer on an Irish site.",
+      "focus_form": "have_got"
     },
     {
+      "id": "foreman-put-phrasals",
+      "cefr": "A2",
+      "ilr_lite": "1+",
+      "can_do": "Follow and repeat put-up / put-back orders on site",
+      "task_brief": "You are the foreman. Give short put-phrasal orders.",
+      "focus_form": "phrasal_put"
+    },
+    {
+      "id": "cabin-briefing",
       "cefr": "B1",
-      "id": "it-standup",
-      "can_do": "Report what I finished and what is blocked in a standup",
-      "task_brief": "You are the team lead in a morning standup.",
+      "ilr_lite": "1+",
+      "can_do": "Tell the foreman what I finished and what is blocked",
+      "task_brief": "You are the foreman in the site cabin.",
       "focus_form": "present_perfect"
-    },
-    {
-      "cefr": "B2",
-      "id": "incident-update",
-      "can_do": "Give a short incident update and propose a next step",
-      "task_brief": "You are an on-call manager on a bridge call.",
-      "focus_form": "modals_of_advice"
     }
   ]
 }
