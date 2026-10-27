@@ -1,0 +1,324 @@
+{
+  "name": "EURUSD Spike + News Alerts",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## EURUSD Spike + News Alerts\n\n1. Fill **Config**\n2. Connect Telegram credentials\n3. Optional: Twelve Data API key for spike detection\n4. Activate\n\nTrend note: alerts are for bounce/correction after a sharp move — not blind entries.",
+        "height": 340,
+        "width": 420
+      },
+      "id": "note-setup",
+      "name": "Setup",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [-420, 200]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 5
+            }
+          ]
+        }
+      },
+      "id": "schedule",
+      "name": "Every 5 min",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [0, 400]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"telegramChatId\": \"YOUR_TELEGRAM_CHAT_ID\",\n  \"spikePips\": 35,\n  \"spikeMinutes\": 5,\n  \"preNewsMinutes\": 30,\n  \"postNewsMinutes\": 20,\n  \"twelveDataApiKey\": \"\",\n  \"pair\": \"EUR/USD\"\n}",
+        "includeOtherFields": false
+      },
+      "id": "config",
+      "name": "Config",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [240, 400]
+    },
+    {
+      "parameters": {
+        "url": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
+        "options": {
+          "timeout": 15000
+        }
+      },
+      "id": "ff-calendar",
+      "name": "Fetch FF Calendar",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [500, 280]
+    },
+    {
+      "parameters": {
+        "jsCode": "const cfg = $('Config').first().json;\nconst staticData = $getWorkflowStaticData('global');\nstaticData.sentNews = staticData.sentNews || {};\n\nconst raw = items[0].json;\nconst list = Array.isArray(raw) ? raw : (Array.isArray(raw.data) ? raw.data : []);\nconst now = Date.now();\nconst preMs = (Number(cfg.preNewsMinutes) || 30) * 60 * 1000;\nconst postMs = (Number(cfg.postNewsMinutes) || 20) * 60 * 1000;\nconst countries = new Set(['USD', 'EUR']);\n\nconst out = [];\nfor (const ev of list) {\n  const impact = String(ev.impact || '').toLowerCase();\n  if (impact !== 'high') continue;\n  const country = String(ev.country || '').toUpperCase();\n  if (!countries.has(country)) continue;\n\n  const ts = Date.parse(ev.date);\n  if (!Number.isFinite(ts)) continue;\n  const diff = ts - now;\n  if (diff > preMs || diff < -postMs) continue;\n\n  const key = `${ev.date}|${country}|${ev.title}`;\n  const bucket = diff >= 0 ? 'pre' : 'post';\n  const sentKey = `${key}|${bucket}`;\n  if (staticData.sentNews[sentKey]) continue;\n  staticData.sentNews[sentKey] = now;\n\n  const mins = Math.round(Math.abs(diff) / 60000);\n  const when = diff >= 0 ? `in ${mins} min` : `${mins} min ago`;\n  const bias = country === 'USD'\n    ? 'Watch USD impulse → possible EURUSD reverse/bounce after spike'\n    : 'Watch EUR impulse → possible EURUSD reverse/bounce after spike';\n\n  out.push({\n    json: {\n      type: 'news',\n      title: ev.title,\n      country,\n      impact: ev.impact,\n      forecast: ev.forecast || '—',\n      previous: ev.previous || '—',\n      when,\n      bias,\n      telegramChatId: cfg.telegramChatId,\n      text: [\n        `🚨 EURUSD NEWS (${bucket.toUpperCase()})`,\n        ``,\n        `${country}: ${ev.title}`,\n        `When: ${when}`,\n        `Forecast: ${ev.forecast || '—'} | Previous: ${ev.previous || '—'}`,\n        ``,\n        `Idea: wait for sharp move, then look for bounce/correction`,\n        `Bias hint: ${bias}`,\n        ``,\n        `⚠️ Not a blind entry`\n      ].join('\\n')\n    }\n  });\n}\n\n// cleanup old keys (7 days)\nconst week = 7 * 24 * 60 * 60 * 1000;\nfor (const [k, v] of Object.entries(staticData.sentNews)) {\n  if (now - v > week) delete staticData.sentNews[k];\n}\n\nreturn out;"
+      },
+      "id": "filter-news",
+      "name": "Filter High Impact USD/EUR",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [760, 280]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "has-news",
+              "leftValue": "={{ $json.text }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if-news",
+      "name": "Has News Alert?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [1000, 280]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.telegramChatId }}",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "tg-news",
+      "name": "Telegram News",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1240, 200],
+      "webhookId": "tg-news",
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TELEGRAM_CREDENTIAL_ID",
+          "name": "Telegram Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const cfg = $('Config').first().json;\nconst key = String(cfg.twelveDataApiKey || '').trim();\nif (!key) {\n  return [];\n}\nreturn [{\n  json: {\n    ...cfg,\n    twelveDataApiKey: key,\n    outputsize: Math.max(3, Number(cfg.spikeMinutes) + 2)\n  }\n}];"
+      },
+      "id": "need-price",
+      "name": "Need Price Check?",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [500, 560]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.twelvedata.com/time_series?symbol={{ $json.pair }}&interval=1min&outputsize={{ $json.outputsize }}&apikey={{ $json.twelveDataApiKey }}",
+        "options": {
+          "timeout": 15000
+        }
+      },
+      "id": "fetch-price",
+      "name": "Fetch EURUSD 1m",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [760, 560]
+    },
+    {
+      "parameters": {
+        "jsCode": "const cfg = $('Config').first().json;\nconst staticData = $getWorkflowStaticData('global');\nconst payload = items[0].json;\n\nif (payload.status === 'error' || !payload.values || !payload.values.length) {\n  return [];\n}\n\nconst values = payload.values\n  .map(v => ({ t: v.datetime, c: Number(v.close) }))\n  .filter(v => Number.isFinite(v.c))\n  .reverse(); // oldest -> newest\n\nif (values.length < 2) return [];\n\nconst newest = values[values.length - 1];\nconst mins = Math.max(1, Number(cfg.spikeMinutes) || 5);\nconst lookbackIdx = Math.max(0, values.length - 1 - mins);\nconst older = values[lookbackIdx];\n\nconst move = newest.c - older.c;\nconst pips = Math.round(Math.abs(move) * 10000); // EURUSD pip\nconst threshold = Number(cfg.spikePips) || 35;\n\nif (pips < threshold) {\n  return [];\n}\n\nconst direction = move < 0 ? 'DOWN' : 'UP';\nconst bounceIdea = move < 0 ? 'Look for LONG bounce / correction up' : 'Look for SHORT pullback / correction down';\nconst key = `${older.t}->${newest.t}|${direction}|${pips}`;\nstaticData.sentSpikes = staticData.sentSpikes || {};\nif (staticData.sentSpikes[key]) return [];\nstaticData.sentSpikes[key] = Date.now();\n\n// keep map small\nconst keys = Object.keys(staticData.sentSpikes);\nif (keys.length > 100) {\n  for (const k of keys.slice(0, keys.length - 50)) delete staticData.sentSpikes[k];\n}\n\nconst text = [\n  `💥 EURUSD SPIKE`,\n  ``,\n  `Move: ${direction} ${pips} pips in ~${mins} min`,\n  `From: ${older.c.toFixed(5)}`,\n  `To:   ${newest.c.toFixed(5)}`,\n  ``,\n  `Idea: ${bounceIdea}`,\n  `Context: current broader pressure has been DOWN on EUR`,\n  ``,\n  `⚠️ Wait for your entry model. Not FOMO.`\n].join('\\n');\n\nreturn [{\n  json: {\n    type: 'spike',\n    pips,\n    direction,\n    telegramChatId: cfg.telegramChatId,\n    text\n  }\n}];"
+      },
+      "id": "detect-spike",
+      "name": "Detect Spike",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1000, 560]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "has-spike",
+              "leftValue": "={{ $json.text }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if-spike",
+      "name": "Has Spike Alert?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [1240, 560]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.telegramChatId }}",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "tg-spike",
+      "name": "Telegram Spike",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1480, 480],
+      "webhookId": "tg-spike",
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TELEGRAM_CREDENTIAL_ID",
+          "name": "Telegram Bot"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Every 5 min": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config": {
+      "main": [
+        [
+          {
+            "node": "Fetch FF Calendar",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Need Price Check?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch FF Calendar": {
+      "main": [
+        [
+          {
+            "node": "Filter High Impact USD/EUR",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter High Impact USD/EUR": {
+      "main": [
+        [
+          {
+            "node": "Has News Alert?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has News Alert?": {
+      "main": [
+        [
+          {
+            "node": "Telegram News",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Need Price Check?": {
+      "main": [
+        [
+          {
+            "node": "Fetch EURUSD 1m",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch EURUSD 1m": {
+      "main": [
+        [
+          {
+            "node": "Detect Spike",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Detect Spike": {
+      "main": [
+        [
+          {
+            "node": "Has Spike Alert?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Spike Alert?": {
+      "main": [
+        [
+          {
+            "node": "Telegram Spike",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "name": "forex"
+    },
+    {
+      "name": "eurusd"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2026-10-05T09:30:00.000Z",
+  "versionId": "1"
+}
