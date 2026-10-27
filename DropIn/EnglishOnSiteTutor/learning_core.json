@@ -1,0 +1,64 @@
+{
+  "protocol_version": 1,
+  "product": "English On Site",
+  "principles": [
+    "meaning_first",
+    "pushed_output",
+    "i_plus_1",
+    "graduated_cf",
+    "one_focus_form",
+    "immediate_in_task_cf",
+    "protect_wtc",
+    "spaced_return",
+    "variable_context",
+    "goal_and_self_check"
+  ],
+  "repair_ladder": [
+    { "level": 1, "move": "clarification" },
+    { "level": 2, "move": "recast" },
+    { "level": 3, "move": "metalinguistic_nudge" },
+    { "level": 4, "move": "model_plus_reproduction" },
+    { "level": 5, "move": "l1_gloss_plus_model" }
+  ],
+  "phases": [
+    "open",
+    "warm_retrieval",
+    "task_run",
+    "repair",
+    "focus_flash",
+    "close",
+    "persist"
+  ],
+  "thresholds": {
+    "roleplay_stt_f1": 0.75,
+    "tutor_reproduction_f1": 0.7
+  },
+  "spacing_intervals_days": [1, 3, 7, 21],
+  "session_default_minutes": 10,
+  "speak_max_sentences": 3,
+  "l1": "ru",
+  "default_cefr": "B1",
+  "sample_can_dos": [
+    {
+      "cefr": "A2",
+      "id": "cafe-order",
+      "can_do": "Order a drink and ask for the price",
+      "task_brief": "You are a barista. The learner is a customer.",
+      "focus_form": "would_like"
+    },
+    {
+      "cefr": "B1",
+      "id": "it-standup",
+      "can_do": "Report what I finished and what is blocked in a standup",
+      "task_brief": "You are the team lead in a morning standup.",
+      "focus_form": "present_perfect"
+    },
+    {
+      "cefr": "B2",
+      "id": "incident-update",
+      "can_do": "Give a short incident update and propose a next step",
+      "task_brief": "You are an on-call manager on a bridge call.",
+      "focus_form": "modals_of_advice"
+    }
+  ]
+}
