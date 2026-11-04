@@ -1,0 +1,249 @@
+//@version=5
+strategy("Session Confluence Bot", overlay=true, max_lines_count=300, max_labels_count=300,
+     initial_capital=10000, currency=currency.EUR, default_qty_type=strategy.fixed, default_qty_value=1000,
+     commission_type=strategy.commission.cash_per_order, commission_value=0, pyramiding=0,
+     process_orders_on_close=true, calc_on_every_tick=false)
+
+// =============================================================================
+// Бот = та же confluence-логика, но со входами/стопом/тейком в Strategy Tester
+// На TradingView: Add to chart → вкладка «Тестер стратегий» — смотри сделки на демо-симуляции
+// =============================================================================
+
+grpS = "Session"
+sessionTime = input.session("0000-0800", "Session Time", group=grpS)
+sessionTz   = input.string("UTC", "Timezone", options=["UTC", "Exchange", "Europe/Dublin", "Europe/London", "America/New_York"], group=grpS)
+minRange    = input.float(0.0, "Min range (0=off)", minval=0, group=grpS)
+
+grpC = "Confluence"
+minScore    = input.int(2, "Min score for SETUP", minval=2, maxval=4, group=grpC)
+confirmBars = input.int(3, "Confirm within N bars", minval=0, maxval=10, group=grpC)
+fakeBars    = input.int(8, "FAKE window", minval=1, maxval=40, group=grpC)
+retestBars  = input.int(30, "RETEST window", minval=3, maxval=80, group=grpC)
+edgeATR     = input.float(0.4, "Near edge (×ATR)", minval=0.1, maxval=2.0, step=0.05, group=grpC)
+pinWickMul  = input.float(2.0, "PIN wick ≥ body ×", minval=1.2, maxval=5, step=0.1, group=grpC)
+tradeBreak  = input.bool(true, "Trade BREAK setups", group=grpC)
+tradeFake   = input.bool(true, "Trade FAKE setups", group=grpC)
+tradeRetest = input.bool(true, "Trade RETEST setups", group=grpC)
+onePerRange = input.bool(true, "Max 1 trade per session range", group=grpC)
+
+grpR = "Risk"
+slMode   = input.string("ATR", "Stop mode", options=["ATR", "Beyond range"], group=grpR)
+slATR    = input.float(1.0, "SL = ATR ×", minval=0.3, maxval=5, step=0.1, group=grpR)
+tpRR     = input.float(1.5, "TP = risk × R", minval=0.5, maxval=5, step=0.1, group=grpR)
+timeStop = input.int(20, "Time stop (bars, 0=off)", minval=0, maxval=200, group=grpR)
+showMarks = input.bool(true, "Show SETUP labels", group=grpR)
+
+tz  = sessionTz == "Exchange" ? syminfo.timezone : sessionTz
+atr = ta.atr(14)
+
+body    = math.abs(close - open)
+upperW  = high - math.max(open, close)
+lowerW  = math.min(open, close) - low
+bullPin = body > 0 and lowerW >= body * pinWickMul and upperW <= body * 0.8
+bearPin = body > 0 and upperW >= body * pinWickMul and lowerW <= body * 0.8
+bullEng = close > open and close[1] < open[1] and close >= open[1] and open <= close[1]
+bearEng = close < open and close[1] > open[1] and close <= open[1] and open >= close[1]
+avgBody3 = (body + body[1] + body[2]) / 3
+bullFlag = close > open and avgBody3 < atr * 0.25 and close[3] > open[3] and high > high[1] and high > high[2]
+bearFlag = close < open and avgBody3 < atr * 0.25 and close[3] < open[3] and low < low[1] and low < low[2]
+strongUp = close > open and body >= atr * 0.5 and close >= high - body * 0.15
+strongDn = close < open and body >= atr * 0.5 and close <= low + body * 0.15
+
+inSession    = not na(time(timeframe.period, sessionTime, tz))
+sessionStart = inSession and not inSession[1]
+sessionEnd   = not inSession and inSession[1]
+bgcolor(inSession ? color.new(color.blue, 93) : na)
+
+var float curHigh = na
+var float curLow  = na
+if sessionStart
+    curHigh := high
+    curLow  := low
+else if inSession
+    curHigh := math.max(curHigh, high)
+    curLow  := math.min(curLow, low)
+
+var float lvlHigh = na
+var float lvlLow  = na
+var bool  upBroken = false
+var bool  dnBroken = false
+var int   upBreakBar = na
+var int   dnBreakBar = na
+var bool  upFaked = false
+var bool  dnFaked = false
+var bool  upRetest = false
+var bool  dnRetest = false
+var bool  tradedThisRange = false
+var int   lastStructBar = na
+var int   lastStructDir = 0
+var string lastStructType = ""
+var line  hLine = na
+var line  lLine = na
+var int   entryBar = na
+
+f_candleScore(dir) =>
+    sc = 0
+    typ = ""
+    if dir > 0
+        if bullPin
+            sc += 1
+            typ := "PIN"
+        if bullEng
+            sc += 1
+            typ := typ == "" ? "ENGULF" : typ + "+ENG"
+        if bullFlag
+            sc += 1
+            typ := typ == "" ? "FLAG" : typ + "+FLAG"
+        if strongUp
+            sc += 1
+            typ := typ == "" ? "IMP" : typ + "+IMP"
+    else
+        if bearPin
+            sc += 1
+            typ := "PIN"
+        if bearEng
+            sc += 1
+            typ := typ == "" ? "ENGULF" : typ + "+ENG"
+        if bearFlag
+            sc += 1
+            typ := typ == "" ? "FLAG" : typ + "+FLAG"
+        if strongDn
+            sc += 1
+            typ := typ == "" ? "IMP" : typ + "+IMP"
+    [sc, typ]
+
+if sessionEnd and not na(curHigh) and not na(curLow)
+    rng = curHigh - curLow
+    if minRange <= 0 or rng >= minRange
+        if not na(hLine)
+            line.set_extend(hLine, extend.none)
+            line.set_x2(hLine, bar_index)
+        if not na(lLine)
+            line.set_extend(lLine, extend.none)
+            line.set_x2(lLine, bar_index)
+        lvlHigh := curHigh
+        lvlLow := curLow
+        upBroken := false
+        dnBroken := false
+        upBreakBar := na
+        dnBreakBar := na
+        upFaked := false
+        dnFaked := false
+        upRetest := false
+        dnRetest := false
+        tradedThisRange := false
+        lastStructBar := na
+        lastStructDir := 0
+        lastStructType := ""
+        hLine := line.new(bar_index - 1, lvlHigh, bar_index, lvlHigh, color=color.green, width=2, extend=extend.right)
+        lLine := line.new(bar_index - 1, lvlLow, bar_index, lvlLow, color=color.red, width=2, extend=extend.right)
+
+post = not inSession and not na(lvlHigh) and not na(lvlLow)
+nearHigh = post and math.abs(close - lvlHigh) <= atr * edgeATR
+nearLow  = post and math.abs(close - lvlLow) <= atr * edgeATR
+
+if post
+    if not upBroken and close > lvlHigh
+        upBroken := true
+        upBreakBar := bar_index
+        lastStructBar := bar_index
+        lastStructDir := 1
+        lastStructType := "BREAK"
+        if not na(hLine)
+            line.set_x2(hLine, bar_index)
+            line.set_extend(hLine, extend.none)
+
+    if not dnBroken and close < lvlLow
+        dnBroken := true
+        dnBreakBar := bar_index
+        lastStructBar := bar_index
+        lastStructDir := -1
+        lastStructType := "BREAK"
+        if not na(lLine)
+            line.set_x2(lLine, bar_index)
+            line.set_extend(lLine, extend.none)
+
+    if upBroken and not upFaked and not na(upBreakBar) and bar_index > upBreakBar and bar_index <= upBreakBar + fakeBars and close < lvlHigh
+        upFaked := true
+        lastStructBar := bar_index
+        lastStructDir := -1
+        lastStructType := "FAKE"
+
+    if dnBroken and not dnFaked and not na(dnBreakBar) and bar_index > dnBreakBar and bar_index <= dnBreakBar + fakeBars and close > lvlLow
+        dnFaked := true
+        lastStructBar := bar_index
+        lastStructDir := 1
+        lastStructType := "FAKE"
+
+    if upBroken and not upFaked and not upRetest and not na(upBreakBar) and bar_index > upBreakBar and bar_index <= upBreakBar + retestBars
+        if low <= lvlHigh and close > lvlHigh and (bullPin or bullEng or close > open)
+            upRetest := true
+            lastStructBar := bar_index
+            lastStructDir := 1
+            lastStructType := "RETEST"
+
+    if dnBroken and not dnFaked and not dnRetest and not na(dnBreakBar) and bar_index > dnBreakBar and bar_index <= dnBreakBar + retestBars
+        if high >= lvlLow and close < lvlLow and (bearPin or bearEng or close < open)
+            dnRetest := true
+            lastStructBar := bar_index
+            lastStructDir := -1
+            lastStructType := "RETEST"
+
+    structFresh = not na(lastStructBar) and bar_index >= lastStructBar and bar_index <= lastStructBar + confirmBars
+    canTradeType = lastStructType == "BREAK" ? tradeBreak : lastStructType == "FAKE" ? tradeFake : lastStructType == "RETEST" ? tradeRetest : false
+    flat = strategy.position_size == 0
+    allow = flat and structFresh and lastStructDir != 0 and canTradeType and (not onePerRange or not tradedThisRange)
+
+    if allow
+        structPts = lastStructType == "FAKE" or lastStructType == "RETEST" ? 2 : 1
+        [cSc, cTyp] = f_candleScore(lastStructDir)
+        nearOk = lastStructDir > 0 ? (nearLow or close > lvlHigh) : (nearHigh or close < lvlLow)
+        if cSc > 0 and structPts + cSc >= minScore and nearOk
+            // стопы
+            float sl = na
+            float tp = na
+            if lastStructDir > 0
+                sl := slMode == "ATR" ? close - atr * slATR : math.min(lvlLow, close) - atr * 0.1
+                risk = close - sl
+                tp := close + risk * tpRR
+                if risk > 0
+                    strategy.entry("Long", strategy.long, comment=lastStructType + (cTyp == "" ? "" : "+" + cTyp))
+                    strategy.exit("L-Exit", from_entry="Long", stop=sl, limit=tp)
+                    tradedThisRange := true
+                    entryBar := bar_index
+                    if showMarks
+                        label.new(bar_index, low, "↑ BOT " + lastStructType + (cTyp == "" ? "" : " + " + cTyp), style=label.style_label_up, color=color.new(color.yellow, 5), textcolor=color.black, size=size.small)
+            else
+                sl := slMode == "ATR" ? close + atr * slATR : math.max(lvlHigh, close) + atr * 0.1
+                risk = sl - close
+                tp := close - risk * tpRR
+                if risk > 0
+                    strategy.entry("Short", strategy.short, comment=lastStructType + (cTyp == "" ? "" : "+" + cTyp))
+                    strategy.exit("S-Exit", from_entry="Short", stop=sl, limit=tp)
+                    tradedThisRange := true
+                    entryBar := bar_index
+                    if showMarks
+                        label.new(bar_index, high, "↓ BOT " + lastStructType + (cTyp == "" ? "" : " + " + cTyp), style=label.style_label_down, color=color.new(color.yellow, 5), textcolor=color.black, size=size.small)
+
+// time stop
+if timeStop > 0 and strategy.position_size != 0 and not na(entryBar) and bar_index >= entryBar + timeStop
+    strategy.close_all(comment="time stop")
+    entryBar := na
+
+if strategy.position_size == 0
+    entryBar := na
+
+// мини-статы
+var table t = table.new(position.top_right, 2, 5, bgcolor=color.new(color.black, 70), border_width=1)
+if barstate.islast
+    table.cell(t, 0, 0, "Confluence Bot", text_color=color.white, text_size=size.small)
+    table.cell(t, 1, 0, "M15 / Asia range", text_color=color.gray, text_size=size.small)
+    table.cell(t, 0, 1, "Trades", text_color=color.gray, text_size=size.small)
+    table.cell(t, 1, 1, str.tostring(strategy.closedtrades), text_color=color.white, text_size=size.small)
+    table.cell(t, 0, 2, "Net P/L", text_color=color.gray, text_size=size.small)
+    table.cell(t, 1, 2, str.tostring(strategy.netprofit, "#.##"), text_color=strategy.netprofit >= 0 ? color.lime : color.red, text_size=size.small)
+    table.cell(t, 0, 3, "Winrate", text_color=color.gray, text_size=size.small)
+    wr = strategy.closedtrades == 0 ? 0.0 : 100.0 * strategy.wintrades / strategy.closedtrades
+    table.cell(t, 1, 3, str.tostring(wr, "#.#") + "%", text_color=color.white, text_size=size.small)
+    table.cell(t, 0, 4, "Risk", text_color=color.gray, text_size=size.small)
+    table.cell(t, 1, 4, "SL " + slMode + " / TP " + str.tostring(tpRR) + "R", text_color=color.white, text_size=size.small)
