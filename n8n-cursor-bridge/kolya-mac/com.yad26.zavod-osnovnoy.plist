@@ -8,10 +8,10 @@
     <key>ProgramArguments</key>
     <array>
       <string>/bin/bash</string>
-      <string>REPLACE_HOME/Developer/see/n8n-cursor-bridge/kolya-mac/zavod-worker.sh</string>
+      <string>REPLACE_WORKER_DIR/n8n-cursor-bridge/kolya-mac/zavod-worker.sh</string>
     </array>
     <key>WorkingDirectory</key>
-    <string>REPLACE_HOME/Developer/see</string>
+    <string>REPLACE_WORKER_DIR</string>
     <key>RunAtLoad</key>
     <true/>
     <key>KeepAlive</key>
@@ -27,7 +27,7 @@
       <key>CURSOR_MACHINE_NAME_ZAVOD</key>
       <string>zavod-osnovnoy</string>
       <key>ZAVOD_WORKER_DIR</key>
-      <string>REPLACE_HOME/Developer/see</string>
+      <string>REPLACE_WORKER_DIR</string>
       <key>PATH</key>
       <string>REPLACE_HOME/.local/bin:/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin</string>
     </dict>

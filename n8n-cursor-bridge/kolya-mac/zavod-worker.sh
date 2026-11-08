@@ -4,7 +4,19 @@
 set -u
 
 NAME="${CURSOR_MACHINE_NAME_ZAVOD:-zavod-osnovnoy}"
-DIR="${ZAVOD_WORKER_DIR:-$HOME/Developer/see}"
+
+if [[ -z "${ZAVOD_WORKER_DIR:-}" ]]; then
+  if [[ -d "$HOME/see/.git" ]]; then
+    DIR="$HOME/see"
+  elif [[ -d "$HOME/Developer/see/.git" ]]; then
+    DIR="$HOME/Developer/see"
+  else
+    DIR="$HOME/Developer/see"
+  fi
+else
+  DIR="$ZAVOD_WORKER_DIR"
+fi
+
 LOG_DIR="${ZAVOD_LOG_DIR:-$HOME/Library/Logs/zavod-osnovnoy}"
 mkdir -p "$LOG_DIR"
 LOG="$LOG_DIR/worker.log"
@@ -18,7 +30,6 @@ if [[ ! -d "$DIR" ]]; then
   exit 1
 fi
 
-# Prefer `agent` CLI (Cursor), fall back to documented aliases if present.
 run_worker() {
   if command -v agent >/dev/null 2>&1; then
     agent worker start --name "$NAME" --worker-dir "$DIR"
