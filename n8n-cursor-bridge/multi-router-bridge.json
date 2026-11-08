@@ -1,0 +1,758 @@
+{
+  "name": "Multi-router — Telegram/Cloud → Cursor targets",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "node-tg-trigger",
+      "name": "Telegram Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        220,
+        300
+      ],
+      "webhookId": "telegram-cursor-bridge-webhook",
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TG_CRED_ID",
+          "name": "Languages-on-site"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// ── Whitelist + route detect ─────────────────────────────────────\nconst allowedChatId = $env['TELEGRAM_ALLOWED_CHAT_ID'];\nconst msg = $input.first().json.message;\nif (!msg) throw new Error('No message in update');\n\nconst chatId = String(msg.chat.id);\nif (chatId !== String(allowedChatId)) {\n  return [{ json: { skip: true, reason: 'not_allowed', chatId } }];\n}\n\nlet promptText = '';\nlet hasPhoto = false;\nlet hasVoice = false;\nlet fileId = null;\nlet mimeType = 'image/jpeg';\n\nif (msg.text) {\n  promptText = msg.text;\n} else if (msg.photo) {\n  hasPhoto = true;\n  const photos = msg.photo;\n  fileId = photos[photos.length - 1].file_id;\n  promptText = msg.caption || '(прикреплено фото)';\n} else if (msg.voice) {\n  hasVoice = true;\n  fileId = msg.voice.file_id;\n  mimeType = msg.voice.mime_type || 'audio/ogg';\n  promptText = '';\n} else {\n  promptText = msg.caption || '[неизвестный тип сообщения]';\n}\n\n// Route by leading name (first line or \"name:\")\nconst ROUTES = [\n  { id: 'zavod-osnovnoy', re: /^(завод\\s*основной|завод|zavod(?:\\s*osnovnoy)?|main\\s*factory|factory)\\s*[:\\-–]?\\s*/i },\n  { id: 'finuchet-kolya', re: /^(финуч[её]т(?:\\s*коля)?|finuchet(?:\\s*kolya)?)\\s*[:\\-–]?\\s*/i },\n  { id: 'languages-on-site', re: /^(languages(?:\\s*on\\s*site)?|languages\\-on\\-site|eos|english(?:\\s*on\\s*site)?|englishonsite)\\s*[:\\-–]?\\s*/i },\n];\n\nlet routeId = ($env['DEFAULT_ROUTE'] || 'languages-on-site').toLowerCase();\nlet cleaned = promptText || '';\nconst firstLine = cleaned.split(/\\n/)[0] || '';\nfor (const r of ROUTES) {\n  const m = firstLine.match(r.re) || cleaned.match(r.re);\n  if (m) {\n    routeId = r.id;\n    cleaned = cleaned.replace(r.re, '').trim() || cleaned;\n    break;\n  }\n}\n\nreturn [{\n  json: {\n    skip: false,\n    source: 'telegram',\n    chatId,\n    messageId: msg.message_id,\n    promptText: cleaned,\n    rawPromptText: promptText,\n    routeId,\n    hasPhoto,\n    hasVoice,\n    fileId,\n    mimeType,\n    replyMode: 'telegram'\n  }\n}];\n"
+      },
+      "id": "node-parse",
+      "name": "Parse & Whitelist",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true
+          },
+          "conditions": [
+            {
+              "id": "cond-skip",
+              "leftValue": "={{ $json.skip }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ]
+        }
+      },
+      "id": "node-skip-check",
+      "name": "Skip?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        660,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true
+          },
+          "conditions": [
+            {
+              "id": "cond-voice",
+              "leftValue": "={{ $json.hasVoice }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ]
+        }
+      },
+      "id": "node-voice-check",
+      "name": "Voice?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        880,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true
+          },
+          "conditions": [
+            {
+              "id": "cond-photo",
+              "leftValue": "={{ $json.hasPhoto }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ]
+        }
+      },
+      "id": "node-photo-check",
+      "name": "Photo?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1100,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.telegram.org/bot{{ $env['TELEGRAM_BOT_TOKEN'] }}/getFile",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "file_id",
+              "value": "={{ $json.fileId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "node-get-file-photo",
+      "name": "getFile (photo)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1320,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.telegram.org/file/bot{{ $env['TELEGRAM_BOT_TOKEN'] }}/{{ $json.result.file_path }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "id": "node-download-photo",
+      "name": "Download photo",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1540,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Convert downloaded file binary to base64\nconst items = $input.all();\nconst item = items[0];\nconst binaryKey = Object.keys(item.binary || {})[0] || 'data';\nconst binaryData = item.binary[binaryKey];\nconst base64 = binaryData.data; // n8n stores base64 in .data\nconst mimeType = binaryData.mimeType || 'image/jpeg';\n\n// Pull through the upstream context (chatId, promptText, etc.)\nconst upstream = item.json;\n\nreturn [{\n  json: {\n    ...upstream,\n    imageBase64: base64,\n    imageMimeType: mimeType\n  }\n}];"
+      },
+      "id": "node-to-base64",
+      "name": "Photo → base64",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1760,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// MVP: STT not implemented — reply immediately and stop\nconst item = $input.first().json;\nreturn [{\n  json: {\n    ...item,\n    voiceDeclined: true,\n    declineMessage: '🎙 Голосовые сообщения пока не поддерживаются в этой версии. Напиши текстом или пришли скрин.'\n  }\n}];"
+      },
+      "id": "node-voice-decline",
+      "name": "Voice: MVP decline",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1100,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "={{ $json.declineMessage }}",
+        "additionalFields": {}
+      },
+      "id": "node-tg-voice-reply",
+      "name": "TG: voice not supported",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1320,
+        480
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TG_CRED_ID",
+          "name": "Languages-on-site"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// ── Route table → Create Agent payload ───────────────────────────\nconst item = $input.first().json;\nconst routeId = (item.routeId || $env['DEFAULT_ROUTE'] || 'languages-on-site').toLowerCase();\n\nconst TABLE = {\n  'languages-on-site': {\n    machine: $env['CURSOR_MACHINE_NAME_EOS'] || $env['CURSOR_MACHINE_NAME'] || 'Languages-on-site',\n    repo: $env['CURSOR_REPO_URL_EOS'] || $env['CURSOR_REPO_URL'] || 'https://github.com/yad267/Languages-on-site.git',\n    agentPrefix: 'TG Languages on site',\n    context: 'Ты — агент Languages on site / EnglishOnSite. Правки только в проекте Languages-on-site / EnglishOnSite. Не трогай завод Спутник и финучёт. Формат: 1) Что сделано 2) Что осталось 3) Blockers.'\n  },\n  'zavod-osnovnoy': {\n    machine: $env['CURSOR_MACHINE_NAME_ZAVOD'] || 'zavod-osnovnoy',\n    repo: $env['CURSOR_REPO_URL_ZAVOD'] || 'https://github.com/yad267/see.git',\n    agentPrefix: 'TG завод основной',\n    context: 'Ты — завод основной на Маке Коли (постоянный worker zavod-osnovnoy). Доступны n8n, Google Sheets, контент-пайплайн. Выполни запрос (текст/скрин). Не ломай Languages on site и финучёт. Формат: 1) Что сделано 2) Что осталось 3) Blockers.'\n  },\n  'finuchet-kolya': {\n    machine: $env['CURSOR_MACHINE_NAME_FINUCHET'] || 'finuchet-kolya',\n    repo: $env['CURSOR_REPO_URL_FINUCHET'] || 'https://github.com/yad267/see.git',\n    agentPrefix: 'TG финучёт Коля',\n    context: 'Ты — финучёт Коля на this Mac. Данные: ~/Developer/finuchet-kolya/data/reminders.json. Добавляй/отмечай выполнено/список незакрытых. Не трогай Languages on site и завод. Формат: 1) Что сделано 2) Незакрытые 3) Blockers.'\n  }\n};\n\nconst route = TABLE[routeId] || TABLE['languages-on-site'];\nconst userText = item.promptText || '(нет текста)';\nconst fullPrompt = `${route.context}\\n\\n---\\nИсточник: ${item.source || 'telegram'}\\nМаршрут: ${routeId}\\nЗапрос:\\n${userText}`;\n\nconst payload = {\n  chatId: item.chatId,\n  replyMode: item.replyMode || 'telegram',\n  callbackUrl: item.callbackUrl || null,\n  routeId,\n  machineName: route.machine,\n  repoUrl: route.repo,\n  agentName: `${route.agentPrefix}`,\n  promptText: fullPrompt,\n  images: []\n};\n\nif (item.imageBase64) {\n  payload.images = [{ data: item.imageBase64, mimeType: item.imageMimeType || 'image/jpeg' }];\n}\n\nreturn [{ json: payload }];\n"
+      },
+      "id": "node-build-payload",
+      "name": "Build Agent payload",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1980,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.cursor.com/v1/agents",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"prompt\": {\n    \"text\": {{ JSON.stringify($json.promptText) }},\n    \"images\": {{ JSON.stringify($json.images) }}\n  },\n  \"name\": {{ JSON.stringify($json.agentName) }},\n  \"env\": {\n    \"type\": \"machine\",\n    \"name\": {{ JSON.stringify($json.machineName) }}\n  },\n  \"repos\": [{\n    \"url\": {{ JSON.stringify($json.repoUrl) }}\n  }],\n  \"mode\": \"agent\"\n}",
+        "options": {}
+      },
+      "id": "node-create-agent",
+      "name": "Create Agent",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2200,
+        240
+      ],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "REPLACE_CURSOR_BASIC_CRED_ID",
+          "name": "Languages-on-site"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const resp = $input.first().json;\nconst agentId = resp.id;\nconst runId = resp.latestRunId || (resp.runs && resp.runs[0] && resp.runs[0].id);\nif (!agentId) throw new Error('No agentId in Create Agent response: ' + JSON.stringify(resp));\nconst built = $('Build Agent payload').first().json;\nreturn [{ json: {\n  agentId, runId,\n  chatId: built.chatId,\n  replyMode: built.replyMode || 'telegram',\n  callbackUrl: built.callbackUrl || null,\n  routeId: built.routeId,\n  pollCount: 0,\n  maxPolls: 40\n}}];"
+      },
+      "id": "node-extract-ids",
+      "name": "Extract IDs",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2420,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "=✅ Принял → `{{ $json.routeId }}` (agent `{{ $json.agentId }}`). Жди результат…",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "node-tg-ack",
+      "name": "TG: Acknowledged",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2640,
+        240
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TG_CRED_ID",
+          "name": "Languages-on-site"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "unit": "seconds",
+        "value": 25
+      },
+      "id": "node-wait",
+      "name": "Wait 25s",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2860,
+        240
+      ],
+      "webhookId": "poll-wait-webhook"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.cursor.com/v1/agents/{{ $json.agentId }}/runs/{{ $json.runId }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "options": {}
+      },
+      "id": "node-poll-status",
+      "name": "Poll Status",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3080,
+        240
+      ],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "REPLACE_CURSOR_BASIC_CRED_ID",
+          "name": "Languages-on-site"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const pollResp = $input.first().json;\nconst loopState = $('Wait 25s').first().json;\nconst status = pollResp.status || pollResp.state || 'UNKNOWN';\nconst terminalStatuses = ['FINISHED', 'ERROR', 'CANCELLED', 'EXPIRED', 'FAILED'];\nconst newPollCount = (loopState.pollCount || 0) + 1;\nconst maxPolls = loopState.maxPolls || 40;\nconst timedOut = newPollCount >= maxPolls;\nreturn [{ json: {\n  agentId: loopState.agentId,\n  runId: loopState.runId,\n  chatId: loopState.chatId,\n  replyMode: loopState.replyMode,\n  callbackUrl: loopState.callbackUrl,\n  routeId: loopState.routeId,\n  pollCount: newPollCount,\n  maxPolls,\n  status,\n  result: pollResp.result || pollResp.output || null,\n  isTerminal: terminalStatuses.includes(String(status).toUpperCase()) || timedOut,\n  timedOut,\n  rawResponse: pollResp\n}}];"
+      },
+      "id": "node-check-status",
+      "name": "Check Status",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3300,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false
+          },
+          "conditions": [
+            {
+              "id": "cond-terminal",
+              "leftValue": "={{ $json.isTerminal }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ]
+        }
+      },
+      "id": "node-terminal-check",
+      "name": "Terminal?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        3520,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop back: carry state to Wait node\nconst item = $input.first().json;\nreturn [{ json: item }];"
+      },
+      "id": "node-loop-back",
+      "name": "Loop back",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3740,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const item = $input.first().json;\nconst MAX_LEN = 3500;\nlet text = '';\nif (item.timedOut) {\n  text = `⏰ Timeout (${item.routeId}): статус ${item.status}\\nagentId=${item.agentId}`;\n} else if (['ERROR', 'CANCELLED', 'EXPIRED', 'FAILED'].includes(String(item.status || '').toUpperCase())) {\n  text = `❌ *${item.routeId}* статус *${item.status}*\\n`;\n  if (item.result) text += String(item.result).slice(0, MAX_LEN - text.length);\n} else {\n  const result = item.result ? String(item.result) : '(нет текста в result)';\n  text = `✅ *${item.routeId}* готово\\n\\n${result}`.slice(0, MAX_LEN);\n}\nreturn [{ json: { chatId: item.chatId, text, replyMode: item.replyMode, callbackUrl: item.callbackUrl, routeId: item.routeId } }];"
+      },
+      "id": "node-format-result",
+      "name": "Format Result",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3740,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "node-tg-result",
+      "name": "TG: Send Result",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        3960,
+        240
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TG_CRED_ID",
+          "name": "Languages-on-site"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "cloud-chat-router",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "node-cloud-webhook",
+      "name": "Cloud Chat Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        220,
+        560
+      ],
+      "webhookId": "cloud-chat-router"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Ingress from any cloud Cursor chat / device\nconst body = $input.first().json.body || $input.first().json;\nconst secret = $env['CLOUD_ROUTER_SECRET'];\nif (secret) {\n  const got = body.secret || $input.first().json.headers?.['x-router-secret'];\n  if (String(got || '') !== String(secret)) {\n    return [{ json: { skip: true, reason: 'bad_secret', chatId: String(body.reply_chat_id || body.chatId || '') } }];\n  }\n}\n\nconst allowed = String($env['TELEGRAM_ALLOWED_CHAT_ID'] || '');\nconst chatId = String(body.reply_chat_id || body.chatId || allowed);\nif (allowed && chatId && chatId !== allowed && body.force_chat_id !== true) {\n  // still allow if explicit reply_chat_id equals allowed; otherwise require match\n}\n\nlet routeId = String(body.target || body.route || body.routeId || '').toLowerCase().trim();\nconst aliasMap = {\n  'завод основной': 'zavod-osnovnoy', 'завод': 'zavod-osnovnoy', 'zavod': 'zavod-osnovnoy', 'factory': 'zavod-osnovnoy',\n  'финучёт коля': 'finuchet-kolya', 'финучет коля': 'finuchet-kolya', 'финучёт': 'finuchet-kolya', 'финучет': 'finuchet-kolya', 'finuchet': 'finuchet-kolya',\n  'languages on site': 'languages-on-site', 'languages-on-site': 'languages-on-site', 'eos': 'languages-on-site'\n};\nif (aliasMap[routeId]) routeId = aliasMap[routeId];\nif (!['languages-on-site','zavod-osnovnoy','finuchet-kolya'].includes(routeId)) {\n  routeId = ($env['DEFAULT_ROUTE'] || 'languages-on-site');\n}\n\nconst promptText = body.text || body.prompt || body.message || '';\nconst images = [];\nif (body.image_base64) {\n  images.push({ data: body.image_base64, mimeType: body.image_mime || 'image/jpeg' });\n}\nif (Array.isArray(body.images)) {\n  for (const im of body.images) {\n    if (im && im.data) images.push({ data: im.data, mimeType: im.mimeType || im.mime || 'image/jpeg' });\n  }\n}\n\nconst out = {\n  skip: false,\n  source: 'cloud',\n  chatId: chatId || allowed,\n  messageId: null,\n  promptText,\n  rawPromptText: promptText,\n  routeId,\n  hasPhoto: false, // image already in imageBase64 — skip Telegram getFile branch\n  hasVoice: false,\n  fileId: null,\n  mimeType: 'image/jpeg',\n  replyMode: body.reply_mode || 'telegram',\n  callbackUrl: body.callback_url || null\n};\nif (images[0]) {\n  out.imageBase64 = images[0].data;\n  out.imageMimeType = images[0].mimeType;\n}\nreturn [{ json: out }];\n"
+      },
+      "id": "node-normalize-cloud",
+      "name": "Normalize Cloud Payload",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ ok: true, accepted: !$json.skip, routeId: $json.routeId, chatId: $json.chatId }) }}",
+        "options": {}
+      },
+      "id": "node-respond-cloud",
+      "name": "Respond Cloud Accepted",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        660,
+        560
+      ]
+    }
+  ],
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Parse & Whitelist",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse & Whitelist": {
+      "main": [
+        [
+          {
+            "node": "Skip?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Skip?": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Voice?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Voice?": {
+      "main": [
+        [
+          {
+            "node": "Voice: MVP decline",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Photo?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Voice: MVP decline": {
+      "main": [
+        [
+          {
+            "node": "TG: voice not supported",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Photo?": {
+      "main": [
+        [
+          {
+            "node": "getFile (photo)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Build Agent payload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getFile (photo)": {
+      "main": [
+        [
+          {
+            "node": "Download photo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download photo": {
+      "main": [
+        [
+          {
+            "node": "Photo → base64",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Photo → base64": {
+      "main": [
+        [
+          {
+            "node": "Build Agent payload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Agent payload": {
+      "main": [
+        [
+          {
+            "node": "Create Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Agent": {
+      "main": [
+        [
+          {
+            "node": "Extract IDs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract IDs": {
+      "main": [
+        [
+          {
+            "node": "TG: Acknowledged",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TG: Acknowledged": {
+      "main": [
+        [
+          {
+            "node": "Wait 25s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 25s": {
+      "main": [
+        [
+          {
+            "node": "Poll Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Poll Status": {
+      "main": [
+        [
+          {
+            "node": "Check Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Status": {
+      "main": [
+        [
+          {
+            "node": "Terminal?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Terminal?": {
+      "main": [
+        [
+          {
+            "node": "Format Result",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop back",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop back": {
+      "main": [
+        [
+          {
+            "node": "Wait 25s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Result": {
+      "main": [
+        [
+          {
+            "node": "TG: Send Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cloud Chat Webhook": {
+      "main": [
+        [
+          {
+            "node": "Normalize Cloud Payload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize Cloud Payload": {
+      "main": [
+        [
+          {
+            "node": "Respond Cloud Accepted",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Skip?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": ""
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": false,
+    "instanceId": ""
+  },
+  "pinData": {},
+  "versionId": "",
+  "triggerCount": 0,
+  "tags": [
+    {
+      "createdAt": "",
+      "updatedAt": "",
+      "id": "multi-router",
+      "name": "multi-router"
+    },
+    {
+      "createdAt": "",
+      "updatedAt": "",
+      "id": "zavod-osnovnoy",
+      "name": "zavod-osnovnoy"
+    }
+  ]
+}

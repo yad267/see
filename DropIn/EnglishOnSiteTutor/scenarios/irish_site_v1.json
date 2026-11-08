@@ -1,0 +1,121 @@
+{
+  "pack_id": "irish_site_v1",
+  "title": "Irish construction sites",
+  "l1": "ru",
+  "domain": "construction_ireland",
+  "notes": "Aligned with English On Site lessons: Safe Pass, gates, put-phrasals, cabin/foreman talk.",
+  "ilr_lite_levels": {
+    "0+": "Memorised site phrases with heavy support",
+    "1": "Simple survival talk at gate / cabin",
+    "1+": "Short task talk with a foreman; repair own errors with prompts",
+    "2": "Handle unexpected follow-ups on site without switching to RU"
+  },
+  "scenarios": [
+    {
+      "id": "gate-safe-pass",
+      "title_ru": "Ворота и Safe Pass",
+      "ilr_target": "1",
+      "cefr": "A2",
+      "can_do": "Sign in at the gate and say I have my Safe Pass",
+      "task_brief": "You are the gate security officer on an Irish site. Check Safe Pass and tell the learner where to go for site induction.",
+      "tutor_role": "gate_security",
+      "learner_role": "new_worker",
+      "focus_form": "have_got",
+      "lexis": [
+        { "en": "Safe Pass", "ru": "карта безопасности", "frequency": 5 },
+        { "en": "site induction", "ru": "вводный инструктаж на объекте", "frequency": 5 },
+        { "en": "sign in", "ru": "отметиться на входе", "frequency": 5 },
+        { "en": "gate", "ru": "ворота / КПП", "frequency": 4 },
+        { "en": "cabin", "ru": "вагончик / бытовка", "frequency": 4 }
+      ],
+      "say_it": [
+        "I've got my Safe Pass.",
+        "Where do I sign in?",
+        "Site induction is at the cabin by the gate."
+      ],
+      "success_check": [
+        "Mentions Safe Pass",
+        "Asks or confirms sign in / induction place"
+      ]
+    },
+    {
+      "id": "foreman-put-phrasals",
+      "title_ru": "Phrasals — put на стройке",
+      "ilr_target": "1+",
+      "cefr": "A2",
+      "can_do": "Follow and repeat put-up / put-back / put-off / put-together orders on site",
+      "task_brief": "You are the foreman (бригадир) on an Irish site. Give short put-phrasal orders about cable tray and tools. Keep the learner speaking.",
+      "tutor_role": "foreman",
+      "learner_role": "labourer",
+      "focus_form": "phrasal_put",
+      "lexis": [
+        { "en": "put up", "ru": "устанавливать, монтировать, вешать", "frequency": 5 },
+        { "en": "put back", "ru": "положить на место, вернуть", "frequency": 5 },
+        { "en": "put off", "ru": "отложить / перенести", "frequency": 4 },
+        { "en": "put together", "ru": "собрать из частей", "frequency": 4 },
+        { "en": "cable tray", "ru": "кабельный лоток", "frequency": 4 }
+      ],
+      "say_it": [
+        "Put up the cable tray and put back your tools.",
+        "Don't put it off — put it together today.",
+        "Put the tools back in the cabin."
+      ],
+      "success_check": [
+        "Uses at least two put-phrasals correctly in speech",
+        "Confirms the order back to the foreman"
+      ]
+    },
+    {
+      "id": "cabin-briefing",
+      "title_ru": "Брифинг в вагончике",
+      "ilr_target": "1+",
+      "cefr": "B1",
+      "can_do": "Tell the foreman what I finished and what is blocked",
+      "task_brief": "You are the foreman in the site cabin. Run a 2-minute morning check: finished work, blockers, next task.",
+      "tutor_role": "foreman",
+      "learner_role": "worker",
+      "focus_form": "present_perfect",
+      "lexis": [
+        { "en": "I've finished", "ru": "я закончил", "frequency": 5 },
+        { "en": "blocked", "ru": "заблокировано / не могу продолжить", "frequency": 4 },
+        { "en": "materials", "ru": "материалы", "frequency": 3 },
+        { "en": "PPE", "ru": "СИЗ", "frequency": 4 }
+      ],
+      "say_it": [
+        "I've finished the cable tray on level two.",
+        "I'm blocked — no materials.",
+        "I need a harness before I start."
+      ],
+      "success_check": [
+        "Reports finished work with present perfect or clear past",
+        "Names one blocker"
+      ]
+    },
+    {
+      "id": "ppe-stop-work",
+      "title_ru": "PPE и stop work",
+      "ilr_target": "1",
+      "cefr": "A2",
+      "can_do": "Refuse unsafe work and ask for PPE",
+      "task_brief": "You are a site supervisor pushing to start. The learner must ask for PPE and say they will not start without it.",
+      "tutor_role": "supervisor",
+      "learner_role": "worker",
+      "focus_form": "modals_need_must",
+      "lexis": [
+        { "en": "PPE", "ru": "СИЗ", "frequency": 5 },
+        { "en": "helmet", "ru": "каска", "frequency": 4 },
+        { "en": "hi-vis", "ru": "сигнальный жилет", "frequency": 4 },
+        { "en": "stop work", "ru": "остановить работу", "frequency": 3 }
+      ],
+      "say_it": [
+        "I need a helmet and hi-vis.",
+        "I can't start without PPE.",
+        "We should stop work until it's safe."
+      ],
+      "success_check": [
+        "Requests PPE clearly",
+        "Refuses to start unsafely"
+      ]
+    }
+  ]
+}

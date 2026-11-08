@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- LaunchAgent: always-on «завод основной» on Коля Mac. Install via install-zavod-worker.sh -->
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.yad26.zavod-osnovnoy</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>/bin/bash</string>
+      <string>REPLACE_WORKER_DIR/n8n-cursor-bridge/kolya-mac/zavod-worker.sh</string>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>REPLACE_WORKER_DIR</string>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+    <key>ThrottleInterval</key>
+    <integer>5</integer>
+    <key>StandardOutPath</key>
+    <string>REPLACE_HOME/Library/Logs/zavod-osnovnoy/launchd.out.log</string>
+    <key>StandardErrorPath</key>
+    <string>REPLACE_HOME/Library/Logs/zavod-osnovnoy/launchd.err.log</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+      <key>CURSOR_MACHINE_NAME_ZAVOD</key>
+      <string>zavod-osnovnoy</string>
+      <key>ZAVOD_WORKER_DIR</key>
+      <string>REPLACE_WORKER_DIR</string>
+      <key>PATH</key>
+      <string>REPLACE_HOME/.local/bin:/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin</string>
+    </dict>
+  </dict>
+</plist>
