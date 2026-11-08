@@ -124,3 +124,22 @@ Cloud chat с Cursor API key:
 | `kolya-mac/*` | always-on worker завод |
 | `this-mac/finuchet/*` | локальный финучёт |
 | `prompts/CLOUD-CHAT-INVOKE.md` | примеры вызова |
+
+
+## Credentials already in N8N (reuse — do not recreate)
+
+Cloud agent **cannot read** credential values from https://n8n.yad26ai.uk (API returns 401 without `N8N_API_KEY`). Values historically live in N8N Credentials / Variables and on Kolya `.env` (`N8N_BASE_URL`, `N8N_API_KEY`, Telegram token), not in this git repo.
+
+On import of `multi-router-bridge.json` / `finuchet-unfinished-report.json`, bind existing N8N credentials by **name**:
+
+| N8N credential name | Used as |
+|---------------------|---------|
+| `Languages-on-site` (Telegram API) | all Telegram nodes |
+| `Languages-on-site` (HTTP Basic Auth, Cursor API key / empty password) | Create Agent + Poll |
+
+Also reuse (or set once) N8N **Environment Variables** if already present from the Languages bridge:
+`TELEGRAM_ALLOWED_CHAT_ID`, `TELEGRAM_BOT_TOKEN`, `CURSOR_MACHINE_NAME` / `_EOS`, `CURSOR_REPO_URL` / `_EOS`.
+
+Still need new vars if missing: `CURSOR_MACHINE_NAME_ZAVOD`, `CURSOR_REPO_URL_ZAVOD`, `CURSOR_MACHINE_NAME_FINUCHET`, `CURSOR_REPO_URL_FINUCHET`, `CLOUD_ROUTER_SECRET`, `KOLYA_ASSISTANT_CHAT_ID`, `FINUCHET_REMINDERS_URL`, `DEFAULT_ROUTE`.
+
+To let a cloud agent import/wire automatically next time: put `N8N_API_KEY` in the Cursor environment secrets (never in chat).

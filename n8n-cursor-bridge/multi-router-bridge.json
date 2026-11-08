@@ -20,7 +20,7 @@
       "credentials": {
         "telegramApi": {
           "id": "REPLACE_TG_CRED_ID",
-          "name": "Telegram Bot (Languages on site)"
+          "name": "Languages-on-site"
         }
       }
     },
@@ -207,7 +207,7 @@
       "credentials": {
         "telegramApi": {
           "id": "REPLACE_TG_CRED_ID",
-          "name": "Telegram Bot (Languages on site)"
+          "name": "Languages-on-site"
         }
       }
     },
@@ -254,7 +254,7 @@
       "credentials": {
         "httpBasicAuth": {
           "id": "REPLACE_CURSOR_BASIC_CRED_ID",
-          "name": "Cursor API Key (Basic)"
+          "name": "Languages-on-site"
         }
       }
     },
@@ -290,7 +290,7 @@
       "credentials": {
         "telegramApi": {
           "id": "REPLACE_TG_CRED_ID",
-          "name": "Telegram Bot (Languages on site)"
+          "name": "Languages-on-site"
         }
       }
     },
@@ -327,7 +327,7 @@
       "credentials": {
         "httpBasicAuth": {
           "id": "REPLACE_CURSOR_BASIC_CRED_ID",
-          "name": "Cursor API Key (Basic)"
+          "name": "Languages-on-site"
         }
       }
     },
@@ -417,7 +417,7 @@
       "credentials": {
         "telegramApi": {
           "id": "REPLACE_TG_CRED_ID",
-          "name": "Telegram Bot (Languages on site)"
+          "name": "Languages-on-site"
         }
       }
     },

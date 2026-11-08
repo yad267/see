@@ -3,19 +3,24 @@
   "nodes": [
     {
       "parameters": {
-        "updates": ["message"],
+        "updates": [
+          "message"
+        ],
         "additionalFields": {}
       },
       "id": "node-tg-trigger",
       "name": "Telegram Trigger",
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1.1,
-      "position": [220, 300],
+      "position": [
+        220,
+        300
+      ],
       "webhookId": "telegram-cursor-bridge-webhook",
       "credentials": {
         "telegramApi": {
           "id": "REPLACE_TG_CRED_ID",
-          "name": "Telegram Bot (Languages on site)"
+          "name": "Languages-on-site"
         }
       }
     },
@@ -27,18 +32,26 @@
       "name": "Parse & Whitelist",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [440, 300]
+      "position": [
+        440,
+        300
+      ]
     },
     {
       "parameters": {
         "conditions": {
-          "options": { "caseSensitive": true },
+          "options": {
+            "caseSensitive": true
+          },
           "conditions": [
             {
               "id": "cond-skip",
               "leftValue": "={{ $json.skip }}",
               "rightValue": true,
-              "operator": { "type": "boolean", "operation": "equals" }
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
             }
           ]
         }
@@ -47,18 +60,26 @@
       "name": "Skip?",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
-      "position": [660, 300]
+      "position": [
+        660,
+        300
+      ]
     },
     {
       "parameters": {
         "conditions": {
-          "options": { "caseSensitive": true },
+          "options": {
+            "caseSensitive": true
+          },
           "conditions": [
             {
               "id": "cond-voice",
               "leftValue": "={{ $json.hasVoice }}",
               "rightValue": true,
-              "operator": { "type": "boolean", "operation": "equals" }
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
             }
           ]
         }
@@ -67,18 +88,26 @@
       "name": "Voice?",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
-      "position": [880, 300]
+      "position": [
+        880,
+        300
+      ]
     },
     {
       "parameters": {
         "conditions": {
-          "options": { "caseSensitive": true },
+          "options": {
+            "caseSensitive": true
+          },
           "conditions": [
             {
               "id": "cond-photo",
               "leftValue": "={{ $json.hasPhoto }}",
               "rightValue": true,
-              "operator": { "type": "boolean", "operation": "equals" }
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
             }
           ]
         }
@@ -87,7 +116,10 @@
       "name": "Photo?",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
-      "position": [1100, 300]
+      "position": [
+        1100,
+        300
+      ]
     },
     {
       "parameters": {
@@ -95,7 +127,10 @@
         "sendQuery": true,
         "queryParameters": {
           "parameters": [
-            { "name": "file_id", "value": "={{ $json.fileId }}" }
+            {
+              "name": "file_id",
+              "value": "={{ $json.fileId }}"
+            }
           ]
         },
         "options": {}
@@ -104,20 +139,30 @@
       "name": "getFile (photo)",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [1320, 180]
+      "position": [
+        1320,
+        180
+      ]
     },
     {
       "parameters": {
         "url": "=https://api.telegram.org/file/bot{{ $env['TELEGRAM_BOT_TOKEN'] }}/{{ $json.result.file_path }}",
         "options": {
-          "response": { "response": { "responseFormat": "file" } }
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
         }
       },
       "id": "node-download-photo",
       "name": "Download photo",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [1540, 180]
+      "position": [
+        1540,
+        180
+      ]
     },
     {
       "parameters": {
@@ -127,7 +172,10 @@
       "name": "Photo → base64",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [1760, 180]
+      "position": [
+        1760,
+        180
+      ]
     },
     {
       "parameters": {
@@ -137,7 +185,10 @@
       "name": "Voice: MVP decline",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [1100, 480]
+      "position": [
+        1100,
+        480
+      ]
     },
     {
       "parameters": {
@@ -149,11 +200,14 @@
       "name": "TG: voice not supported",
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [1320, 480],
+      "position": [
+        1320,
+        480
+      ],
       "credentials": {
         "telegramApi": {
           "id": "REPLACE_TG_CRED_ID",
-          "name": "Telegram Bot (Languages on site)"
+          "name": "Languages-on-site"
         }
       }
     },
@@ -165,7 +219,10 @@
       "name": "Build Agent payload",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [1980, 240]
+      "position": [
+        1980,
+        240
+      ]
     },
     {
       "parameters": {
@@ -175,7 +232,10 @@
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
-            { "name": "Content-Type", "value": "application/json" }
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
           ]
         },
         "sendBody": true,
@@ -187,11 +247,14 @@
       "name": "Create Agent",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [2200, 240],
+      "position": [
+        2200,
+        240
+      ],
       "credentials": {
         "httpBasicAuth": {
           "id": "REPLACE_CURSOR_BASIC_CRED_ID",
-          "name": "Cursor API Key (Basic)"
+          "name": "Languages-on-site"
         }
       }
     },
@@ -203,7 +266,10 @@
       "name": "Extract IDs",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [2420, 240]
+      "position": [
+        2420,
+        240
+      ]
     },
     {
       "parameters": {
@@ -217,11 +283,14 @@
       "name": "TG: Acknowledged",
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [2640, 240],
+      "position": [
+        2640,
+        240
+      ],
       "credentials": {
         "telegramApi": {
           "id": "REPLACE_TG_CRED_ID",
-          "name": "Telegram Bot (Languages on site)"
+          "name": "Languages-on-site"
         }
       }
     },
@@ -234,7 +303,10 @@
       "name": "Wait 25s",
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
-      "position": [2860, 240],
+      "position": [
+        2860,
+        240
+      ],
       "webhookId": "poll-wait-webhook"
     },
     {
@@ -248,11 +320,14 @@
       "name": "Poll Status",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [3080, 240],
+      "position": [
+        3080,
+        240
+      ],
       "credentials": {
         "httpBasicAuth": {
           "id": "REPLACE_CURSOR_BASIC_CRED_ID",
-          "name": "Cursor API Key (Basic)"
+          "name": "Languages-on-site"
         }
       }
     },
@@ -264,18 +339,26 @@
       "name": "Check Status",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [3300, 240]
+      "position": [
+        3300,
+        240
+      ]
     },
     {
       "parameters": {
         "conditions": {
-          "options": { "caseSensitive": false },
+          "options": {
+            "caseSensitive": false
+          },
           "conditions": [
             {
               "id": "cond-terminal",
               "leftValue": "={{ $json.isTerminal }}",
               "rightValue": true,
-              "operator": { "type": "boolean", "operation": "equals" }
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
             }
           ]
         }
@@ -284,7 +367,10 @@
       "name": "Terminal?",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
-      "position": [3520, 240]
+      "position": [
+        3520,
+        240
+      ]
     },
     {
       "parameters": {
@@ -294,7 +380,10 @@
       "name": "Loop back",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [3740, 420]
+      "position": [
+        3740,
+        420
+      ]
     },
     {
       "parameters": {
@@ -304,7 +393,10 @@
       "name": "Format Result",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [3740, 240]
+      "position": [
+        3740,
+        240
+      ]
     },
     {
       "parameters": {
@@ -318,11 +410,14 @@
       "name": "TG: Send Result",
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [3960, 240],
+      "position": [
+        3960,
+        240
+      ],
       "credentials": {
         "telegramApi": {
           "id": "REPLACE_TG_CRED_ID",
-          "name": "Telegram Bot (Languages on site)"
+          "name": "Languages-on-site"
         }
       }
     }
@@ -330,101 +425,233 @@
   "connections": {
     "Telegram Trigger": {
       "main": [
-        [{ "node": "Parse & Whitelist", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "Parse & Whitelist",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Parse & Whitelist": {
       "main": [
-        [{ "node": "Skip?", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "Skip?",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Skip?": {
       "main": [
         [],
-        [{ "node": "Voice?", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "Voice?",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Voice?": {
       "main": [
-        [{ "node": "Voice: MVP decline", "type": "main", "index": 0 }],
-        [{ "node": "Photo?", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "Voice: MVP decline",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Photo?",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Voice: MVP decline": {
       "main": [
-        [{ "node": "TG: voice not supported", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "TG: voice not supported",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Photo?": {
       "main": [
-        [{ "node": "getFile (photo)", "type": "main", "index": 0 }],
-        [{ "node": "Build Agent payload", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "getFile (photo)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Build Agent payload",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "getFile (photo)": {
       "main": [
-        [{ "node": "Download photo", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "Download photo",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Download photo": {
       "main": [
-        [{ "node": "Photo → base64", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "Photo → base64",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Photo → base64": {
       "main": [
-        [{ "node": "Build Agent payload", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "Build Agent payload",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Build Agent payload": {
       "main": [
-        [{ "node": "Create Agent", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "Create Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Create Agent": {
       "main": [
-        [{ "node": "Extract IDs", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "Extract IDs",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Extract IDs": {
       "main": [
-        [{ "node": "TG: Acknowledged", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "TG: Acknowledged",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "TG: Acknowledged": {
       "main": [
-        [{ "node": "Wait 25s", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "Wait 25s",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Wait 25s": {
       "main": [
-        [{ "node": "Poll Status", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "Poll Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Poll Status": {
       "main": [
-        [{ "node": "Check Status", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "Check Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Check Status": {
       "main": [
-        [{ "node": "Terminal?", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "Terminal?",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Terminal?": {
       "main": [
-        [{ "node": "Format Result", "type": "main", "index": 0 }],
-        [{ "node": "Loop back", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "Format Result",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop back",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Loop back": {
       "main": [
-        [{ "node": "Wait 25s", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "Wait 25s",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Format Result": {
       "main": [
-        [{ "node": "TG: Send Result", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "TG: Send Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     }
   },
@@ -443,6 +670,11 @@
   "versionId": "",
   "triggerCount": 0,
   "tags": [
-    { "createdAt": "", "updatedAt": "", "id": "languages-on-site", "name": "Languages-on-site" }
+    {
+      "createdAt": "",
+      "updatedAt": "",
+      "id": "languages-on-site",
+      "name": "Languages-on-site"
+    }
   ]
 }
