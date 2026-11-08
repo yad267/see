@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "финучёт Коля reminders",
+  "type": "object",
+  "required": ["version", "reminders"],
+  "properties": {
+    "version": { "type": "integer", "const": 1 },
+    "updatedAt": { "type": "string" },
+    "reminders": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "text", "createdAt", "done"],
+        "properties": {
+          "id": { "type": "string" },
+          "text": { "type": "string" },
+          "createdAt": { "type": "string" },
+          "dueAt": { "type": ["string", "null"] },
+          "done": { "type": "boolean" },
+          "doneAt": { "type": ["string", "null"] },
+          "source": { "type": "string" },
+          "tags": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}
