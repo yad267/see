@@ -1,0 +1,115 @@
+diff --git a/EnglishOnSite.xcodeproj/project.pbxproj b/EnglishOnSite.xcodeproj/project.pbxproj
+index b2005ae..e124d59 100644
+--- a/EnglishOnSite.xcodeproj/project.pbxproj
++++ b/EnglishOnSite.xcodeproj/project.pbxproj
+@@ -7,6 +7,13 @@
+ 	objects = {
+ 
+ /* Begin PBXBuildFile section */
++
++		PT1TOOLSJSONBUILD001 /* phrasal_tools.json in Resources */ = {isa = PBXBuildFile; fileRef = PT1TOOLSJSONFILE001 /* phrasal_tools.json */; };
++		PT2TOOLSSTOREBUILD02 /* PhrasalToolsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = PT2TOOLSSTOREFILE02 /* PhrasalToolsStore.swift */; };
++		PT3TRAINERSTOREBLD03 /* PhrasalTrainerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = PT3TRAINERSTOREFILE03 /* PhrasalTrainerStore.swift */; };
++		PT4TOOLSVIEWBUILD004 /* PhrasalToolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = PT4TOOLSVIEWFILE004 /* PhrasalToolsView.swift */; };
++		PT5TRAINERVIEWBLD005 /* PhrasalTrainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = PT5TRAINERVIEWFILE005 /* PhrasalTrainerView.swift */; };
++		PT6SPEAKROWBUILD0006 /* PhrasalSpeakPracticeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = PT6SPEAKROWFILE0006 /* PhrasalSpeakPracticeRow.swift */; };
+ 		B14PHRASALHUBBUILD001 /* PhrasalHubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14PHRASALHUBFILE001 /* PhrasalHubView.swift */; };
+ 		B17ADDPHRASEBUILD001 /* AddMyPhraseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17ADDPHRASEFILE001 /* AddMyPhraseView.swift */; };
+ 		B17LANGDETECTBUILD01 /* LanguageDetect.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17LANGDETECTFILE01 /* LanguageDetect.swift */; };
+@@ -133,6 +140,13 @@
+ /* End PBXCopyFilesBuildPhase section */
+ 
+ /* Begin PBXFileReference section */
++
++		PT1TOOLSJSONFILE001 /* phrasal_tools.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = phrasal_tools.json; sourceTree = "<group>"; };
++		PT2TOOLSSTOREFILE02 /* PhrasalToolsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhrasalToolsStore.swift; sourceTree = "<group>"; };
++		PT3TRAINERSTOREFILE03 /* PhrasalTrainerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhrasalTrainerStore.swift; sourceTree = "<group>"; };
++		PT4TOOLSVIEWFILE004 /* PhrasalToolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhrasalToolsView.swift; sourceTree = "<group>"; };
++		PT5TRAINERVIEWFILE005 /* PhrasalTrainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhrasalTrainerView.swift; sourceTree = "<group>"; };
++		PT6SPEAKROWFILE0006 /* PhrasalSpeakPracticeRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhrasalSpeakPracticeRow.swift; sourceTree = "<group>"; };
+ 		D1LESSONSCONFIGFILE1 /* LessonsConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsConfig.swift; sourceTree = "<group>"; };
+ 		C8PRINTFILE0000008 /* TutorPrintSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorPrintSheetView.swift; sourceTree = "<group>"; };
+ 		C7VBANKFILE0000007 /* TutorVerbBankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorVerbBankView.swift; sourceTree = "<group>"; };
+@@ -271,6 +285,7 @@
+ 				L5PHRASJSONFILE0005 /* learning_phrasals_site_v1.json */,
+ 				L4WORDSJSONFILE0004 /* learning_words_v1.json */,
+ 				F301A2B3C4D5E6F708090B01 /* lessons_pack.json */,
++				PT1TOOLSJSONFILE001 /* phrasal_tools.json */,
+ 				B3OPPJSONFILE000003 /* opposites_bank_v1.json */,
+ 				B2PHRASJSONFILE0002 /* phrasals_bank_v1.json */,
+ 				B1VERBJSONFILE00001 /* verbs_bank_v1.json */,
+@@ -332,6 +347,9 @@
+ 				C5WRITEFILE0000005 /* TutorWriteDrillView.swift */,
+ 				C4SPEAKFILE0000004 /* TutorSpeakDrillView.swift */,
+ 								B14PHRASALHUBFILE001 /* PhrasalHubView.swift */,
++				PT4TOOLSVIEWFILE004 /* PhrasalToolsView.swift */,
++				PT5TRAINERVIEWFILE005 /* PhrasalTrainerView.swift */,
++				PT6SPEAKROWFILE0006 /* PhrasalSpeakPracticeRow.swift */,
+ 				B17ADDPHRASEFILE001 /* AddMyPhraseView.swift */,
+ G4SEARCHFILE000004 /* TutorPhrasalSearchView.swift */,
+ 				C3EXHUBFILE0000003 /* TutorExercisesHubView.swift */,
+@@ -413,6 +431,8 @@ C1BANKSTOREFILE001 /* TutorBankStore.swift */,
+ 				5D21590B68D2410C976EEBA1 /* LessonPlayer.swift */,
+ 				B66042CDB5E44E3B9EA8029A /* LibraryStore.swift */,
+ 				L2BANKSWIFTFILE0002 /* LearningBankStore.swift */,
++				PT2TOOLSSTOREFILE02 /* PhrasalToolsStore.swift */,
++				PT3TRAINERSTOREFILE03 /* PhrasalTrainerStore.swift */,
+ 				L1AUDIOSWIFTFILE0001 /* LibraryAudioStore.swift */,
+ 				FEAC115E41E945E098E09B0B /* PhoneLessonRelay.swift */,
+ 				537ED273B494412BAD23CBFC /* PhoneWatchBridge.swift */,
+@@ -578,6 +598,7 @@ C1BANKSTOREFILE001 /* TutorBankStore.swift */,
+ 				8F9F8F64D7634D5FBECCAE39 /* SitePhraseBank.json in Resources */,
+ 				L6SENTJSONBUILD0006 /* learning_sentences_v1.json in Resources */,
+ 				L5PHRASJSONBUILD0005 /* learning_phrasals_site_v1.json in Resources */,
++				PT1TOOLSJSONBUILD001 /* phrasal_tools.json in Resources */,
+ 				L4WORDSJSONBUILD0004 /* learning_words_v1.json in Resources */,
+ 			);
+ 			runOnlyForDeploymentPostprocessing = 0;
+@@ -646,6 +667,11 @@ C1BANKSTOREFILE001 /* TutorBankStore.swift */,
+ 				C4SPEAKBUILD0000004 /* TutorSpeakDrillView.swift in Sources */,
+ 				G4SEARCHBUILD000004 /* TutorPhrasalSearchView.swift in Sources */,
+ 				B14PHRASALHUBBUILD001 /* PhrasalHubView.swift in Sources */,
++				PT4TOOLSVIEWBUILD004 /* PhrasalToolsView.swift in Sources */,
++				PT5TRAINERVIEWBLD005 /* PhrasalTrainerView.swift in Sources */,
++				PT6SPEAKROWBUILD0006 /* PhrasalSpeakPracticeRow.swift in Sources */,
++				PT2TOOLSSTOREBUILD02 /* PhrasalToolsStore.swift in Sources */,
++				PT3TRAINERSTOREBLD03 /* PhrasalTrainerStore.swift in Sources */,
+ 				B17ADDPHRASEBUILD001 /* AddMyPhraseView.swift in Sources */,
+ 				B17LANGDETECTBUILD01 /* LanguageDetect.swift in Sources */,
+ 				B17CANONBUILD000001 /* MyPhraseCanonService.swift in Sources */,
+@@ -710,7 +736,7 @@ C1BANKSTOREFILE001 /* TutorBankStore.swift */,
+ 				DEVELOPMENT_TEAM = T62YGZ9Y59;
+ 				GENERATE_INFOPLIST_FILE = NO;
+ 				INFOPLIST_FILE = EnglishOnSiteWatch/Info.plist;
+-				INFOPLIST_KEY_CFBundleDisplayName = "Languages on site";
++				INFOPLIST_KEY_CFBundleDisplayName = "Language on Site";
+ 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.sputnik.englishonsite;
+ 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
+ 				LD_RUNPATH_SEARCH_PATHS = (
+@@ -761,7 +787,7 @@ C1BANKSTOREFILE001 /* TutorBankStore.swift */,
+ 				ENABLE_PREVIEWS = YES;
+ 				GENERATE_INFOPLIST_FILE = NO;
+ 				INFOPLIST_FILE = EnglishOnSite/Info.plist;
+-				INFOPLIST_KEY_CFBundleDisplayName = "Languages on site";
++				INFOPLIST_KEY_CFBundleDisplayName = "Language on Site";
+ 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+ 				LD_RUNPATH_SEARCH_PATHS = (
+ 					"$(inherited)",
+@@ -789,7 +815,7 @@ C1BANKSTOREFILE001 /* TutorBankStore.swift */,
+ 				ENABLE_PREVIEWS = YES;
+ 				GENERATE_INFOPLIST_FILE = NO;
+ 				INFOPLIST_FILE = EnglishOnSite/Info.plist;
+-				INFOPLIST_KEY_CFBundleDisplayName = "Languages on site";
++				INFOPLIST_KEY_CFBundleDisplayName = "Language on Site";
+ 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+ 				LD_RUNPATH_SEARCH_PATHS = (
+ 					"$(inherited)",
+@@ -816,7 +842,7 @@ C1BANKSTOREFILE001 /* TutorBankStore.swift */,
+ 				DEVELOPMENT_TEAM = T62YGZ9Y59;
+ 				GENERATE_INFOPLIST_FILE = NO;
+ 				INFOPLIST_FILE = EnglishOnSiteWatch/Info.plist;
+-				INFOPLIST_KEY_CFBundleDisplayName = "Languages on site";
++				INFOPLIST_KEY_CFBundleDisplayName = "Language on Site";
+ 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.sputnik.englishonsite;
+ 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
+ 				LD_RUNPATH_SEARCH_PATHS = (
