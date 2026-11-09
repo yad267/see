@@ -16,37 +16,11 @@ sleep 1
 rm -f "$HOME/.local/share/cursor-agent/worker.lock" || true
 rm -f /tmp/cursor-agent-worker*.lock 2>/dev/null || true
 
-echo "== 2) Install launchd KeepAlive for Languages-on-site =="
-mkdir -p "$HOME/Library/LaunchAgents"
-# Rewrite WorkingDirectory to this user's home Developer path in a temp plist
-python3 - <<PY
-from pathlib import Path
-import os
-src = Path("$PLIST_SRC")
-dst = Path("$PLIST_DST")
-text = src.read_text()
-home = os.path.expanduser("~")
-# Ensure WorkingDirectory is user home (plist template uses /Users/Shared)
-text = text.replace("/Users/Shared", home)
-dst.write_text(text)
-print("wrote", dst)
-PY
-
-launchctl bootout "gui/$(id -u)/$LABEL" 2>/dev/null || true
-launchctl unload "$PLIST_DST" 2>/dev/null || true
-launchctl bootstrap "gui/$(id -u)" "$PLIST_DST" 2>/dev/null || launchctl load -w "$PLIST_DST"
-launchctl enable "gui/$(id -u)/$LABEL" 2>/dev/null || true
-launchctl kickstart -k "gui/$(id -u)/$LABEL" 2>/dev/null || true
-
+echo "== 2) Install launchd KeepAlive + watchdog for Languages-on-site =="
+bash "$SCRIPT_DIR/macos/install-languages-on-site-worker.sh" "$ROOT"
 export PATH="$HOME/.local/bin:/usr/local/bin:/opt/homebrew/bin:$PATH"
-# Also start once in background if launchd did not attach yet
-if ! pgrep -fl "agent worker" >/dev/null 2>&1; then
-  nohup agent worker start --name "Languages-on-site" --worker-dir "$ROOT" \
-    >/tmp/languages-on-site-worker.manual.log 2>&1 &
-  echo "manual worker pid $!"
-  sleep 2
-fi
-pgrep -fl "agent worker" || pgrep -fl "cursor-agent" || echo "WARN: worker process not visible yet"
+sleep 2
+pgrep -fl "agent worker|languages-on-site-worker|cursor-agent" || echo "WARN: worker process not visible yet — check ~/Library/Logs/languages-on-site/worker.log"
 
 echo "== 3) Apply los-full-apply pack =="
 if [[ ! -d "$ROOT/EnglishOnSite" ]]; then
