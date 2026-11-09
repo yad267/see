@@ -43,3 +43,24 @@ curl -sS -X POST "https://n8n.yad26ai.uk/webhook/cloud-chat-router" \
 
 Из Cursor-чата: попроси агента `POST` на этот webhook (секрет только из env/Secrets, не в чат).
 Ответ выполнения приходит в Telegram (тот же whitelist chat), как у существующего моста.
+
+## Отчёт обратно в хаб (не только Telegram)
+
+После выполнения n8n кладёт текст в inbox:
+
+`GET https://n8n.yad26ai.uk/webhook/hub-result-inbox?limit=5`
+
+Опционально в POST на router:
+
+```json
+{
+  "target": "languages on site",
+  "text": "…",
+  "reply_mode": "telegram",
+  "reply_chat_id": "217250285",
+  "hub_agent_id": "bc-01a13043-da03-7847-8fdd-d34ebb850d96",
+  "callback_url": "https://example.com/optional-hook"
+}
+```
+
+См. `HUB-RESULT-INBOX.md`.
