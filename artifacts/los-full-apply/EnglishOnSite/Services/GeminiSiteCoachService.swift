@@ -1378,6 +1378,143 @@ struct TutorWhyAnswer: Equatable {
     let siteLineRU: String
 }
 
+struct SpeakCorrection: Equatable, Identifiable {
+    var id: String { "\(youSaid)|\(betterEN)|\(tipRu)" }
+    let youSaid: String
+    let betterEN: String
+    let betterRU: String
+    /// Short RU tip (≤120 chars). Empty = hide tip line.
+    let tipRu: String
+    /// Alt Ireland site names (stud / threading rod…).
+    let synonyms: [String]
+    /// perfect = same as target; soft = close; rewrite = different phrasing.
+    let kind: Kind
+
+    enum Kind: String, Equatable {
+        case perfect, soft, rewrite
+    }
+
+    /// Instant card without Gemini (target known).
+    static func local(youSaid: String, betterEN: String, betterRU: String) -> SpeakCorrection {
+        let heard = youSaid.trimmingCharacters(in: .whitespacesAndNewlines)
+        let target = betterEN.trimmingCharacters(in: .whitespacesAndNewlines)
+        let kind: Kind
+        if PhraseSimilarity.passesTalk(recognized: heard, expected: target) {
+            kind = .perfect
+        } else if PhraseSimilarity.talkScore(recognized: heard, expected: target) >= 0.45 {
+            kind = .soft
+        } else {
+            kind = .rewrite
+        }
+        return SpeakCorrection(
+            youSaid: heard,
+            betterEN: target,
+            betterRU: betterRU.trimmingCharacters(in: .whitespacesAndNewlines),
+            tipRu: kind == .perfect ? "Так и говорят на объекте" : "На объекте лучше так",
+            synonyms: [],
+            kind: kind
+        )
+    }
+}
+
+extension GeminiSiteCoachService {
+    /// Enrich a local correction with site tip + synonyms (Ireland electrician).
+    func enrichSpeakCorrection(
+        youSaid: String,
+        betterEN: String,
+        betterRU: String,
+        contentMode: TutorContentMode = .site
+    ) async -> SpeakCorrection {
+        let local = SpeakCorrection.local(youSaid: youSaid, betterEN: betterEN, betterRU: betterRU)
+        guard settingsGeminiReady else { return local }
+        // Skip Gemini when STT garbage or already perfect.
+        if local.kind == .perfect { return local }
+        if PhraseSimilarity.looksLikeSTTFail(recognized: local.youSaid, expected: local.betterEN) {
+            return SpeakCorrection(
+                youSaid: local.youSaid,
+                betterEN: local.betterEN,
+                betterRU: local.betterRU,
+                tipRu: "Микрофон сбился — скажи эталон ещё раз",
+                synonyms: [],
+                kind: .rewrite
+            )
+        }
+
+        let domain = contentMode == .general
+            ? "everyday UK English (home/food/travel) — NO site jargon"
+            : "Ireland building site UK English (electrician / PPE / Safe Pass / cable containment)"
+
+        let system = """
+        You fix one spoken EN attempt for an A1–A2 learner (\(domain)).
+        Output ONLY JSON (no markdown):
+        {
+          "better_en": "exact phrase to say (usually keep target)",
+          "better_ru": "full RU for better_en",
+          "tip_ru": "≤90 chars: why this wording on site / everyday",
+          "synonyms": ["alt name 1", "alt name 2"]
+        }
+        Rules:
+        - better_en should match target unless learner said a valid natural variant — then keep their good variant.
+        - synonyms: Ireland trade/everyday aliases for key nouns (e.g. stud / threading rod). Max 4. Empty OK.
+        - Never shame. tip_ru in Russian. No lecture.
+        """
+        let user = """
+        target_en: \(local.betterEN)
+        target_ru: \(local.betterRU)
+        learner_said: \(local.youSaid)
+        """
+        do {
+            let raw = try await generateJSON(
+                userText: user,
+                system: system,
+                timeout: min(GeminiConfig.timeout, 12),
+                maxTokens: 320,
+                temperature: 0.2,
+                skipRateLimit: true
+            )
+            guard let data = raw.data(using: .utf8),
+                  let obj = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+                return local
+            }
+            func s(_ k: String) -> String {
+                ((obj[k] as? String) ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+            }
+            let better = s("better_en").isEmpty ? local.betterEN : s("better_en")
+            let ru = s("better_ru").isEmpty ? local.betterRU : s("better_ru")
+            let tip = s("tip_ru")
+            var syn: [String] = []
+            if let arr = obj["synonyms"] as? [String] {
+                syn = arr.map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+                    .filter { !$0.isEmpty }
+                    .prefix(4)
+                    .map { String($0) }
+            }
+            let kind: SpeakCorrection.Kind
+            if PhraseSimilarity.passesTalk(recognized: local.youSaid, expected: better) {
+                kind = .perfect
+            } else if PhraseSimilarity.talkScore(recognized: local.youSaid, expected: better) >= 0.45 {
+                kind = .soft
+            } else {
+                kind = .rewrite
+            }
+            return SpeakCorrection(
+                youSaid: local.youSaid,
+                betterEN: better,
+                betterRU: ru,
+                tipRu: tip.isEmpty ? local.tipRu : tip,
+                synonyms: syn,
+                kind: kind
+            )
+        } catch {
+            return local
+        }
+    }
+
+    private var settingsGeminiReady: Bool {
+        !Self.sanitizedAPIKey().isEmpty
+    }
+}
+
 struct SiteTutorPhrasal: Identifiable, Equatable, Hashable {
     var id: String { "\(en)|\(ru)|\(exampleEn)|\(sayIt)" }
     let en: String
