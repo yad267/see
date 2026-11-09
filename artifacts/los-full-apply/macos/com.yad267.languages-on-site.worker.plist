@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.yad267.languages-on-site.worker</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/bin/zsh</string>
+		<string>-lc</string>
+		<string>export PATH="$HOME/.local/bin:/usr/local/bin:/opt/homebrew/bin:$PATH"; exec agent worker start --name "Languages-on-site" --worker-dir "$HOME/Developer/Languages-on-site"</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>KeepAlive</key>
+	<true/>
+	<key>ThrottleInterval</key>
+	<integer>10</integer>
+	<key>WorkingDirectory</key>
+	<string>/Users/Shared</string>
+	<key>StandardOutPath</key>
+	<string>/tmp/languages-on-site-worker.out.log</string>
+	<key>StandardErrorPath</key>
+	<string>/tmp/languages-on-site-worker.err.log</string>
+	<key>ProcessType</key>
+	<string>Interactive</string>
+</dict>
+</plist>
