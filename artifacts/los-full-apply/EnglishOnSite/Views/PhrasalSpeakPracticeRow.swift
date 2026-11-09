@@ -8,10 +8,11 @@ struct PhrasalSpeakPracticeControls: View {
     let ru: String
 
     @State private var speaker: SpeechSpeaker?
-    @State private var capture = TimedSpeechCapture()
+    @State private var capture: TimedSpeechCapture?
     @State private var phase: Phase = .idle
     @State private var heard = ""
     @State private var matchNote = ""
+    @State private var partialLive = ""
     @State private var workTask: Task<Void, Never>?
 
     private enum Phase { case idle, speaking, listening, passed, failed }
@@ -30,7 +31,7 @@ struct PhrasalSpeakPracticeControls: View {
                 .disabled(phase == .speaking || phase == .listening || en.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
 
                 if phase == .listening {
-                    Button("Стоп") { capture.finish() }
+                    Button("Стоп") { capture?.finish() }
                         .buttonStyle(.bordered)
                     Button("Отмена", role: .cancel) { cancel() }
                         .buttonStyle(.bordered)
@@ -42,7 +43,7 @@ struct PhrasalSpeakPracticeControls: View {
                     .font(.caption.weight(.semibold))
                     .foregroundStyle(.secondary)
             } else if phase == .listening {
-                Text(capture.partialText.isEmpty ? "Повтори вслух…" : capture.partialText)
+                Text(partialLive.isEmpty ? "Повтори вслух…" : partialLive)
                     .font(.caption.weight(.semibold))
                     .foregroundStyle(.primary)
             } else if phase == .passed {
@@ -62,6 +63,7 @@ struct PhrasalSpeakPracticeControls: View {
         }
         .onAppear {
             if speaker == nil { speaker = SpeechSpeaker(settings: settings) }
+            if capture == nil { capture = TimedSpeechCapture() }
         }
         .onDisappear {
             cancel()
@@ -71,10 +73,12 @@ struct PhrasalSpeakPracticeControls: View {
 
     private func startPractice() {
         workTask?.cancel()
-        capture.cancel()
+        if capture == nil { capture = TimedSpeechCapture() }
+        capture?.cancel()
         speaker?.stop()
         heard = ""
         matchNote = ""
+        partialLive = ""
         phase = .speaking
         if speaker == nil { speaker = SpeechSpeaker(settings: settings) }
         speaker?.updateSettings(settings)
@@ -85,15 +89,24 @@ struct PhrasalSpeakPracticeControls: View {
             phase = .listening
             try? await Task.sleep(nanoseconds: 250_000_000)
             try? AudioSessionManager.configureForRecording()
+            guard let capture else { return }
             var hints = PhraseSimilarity.sttVariants(for: en)
             hints.append(contentsOf: en.split(separator: " ").map(String.init))
             let target = en
+            let poll = Task { @MainActor in
+                while !Task.isCancelled {
+                    partialLive = capture.partialText
+                    try? await Task.sleep(nanoseconds: 150_000_000)
+                }
+            }
             let text = await capture.captureUntilStopped(
                 localeId: settings.rememberLocale.rawValue,
                 maxSeconds: 45,
                 contextualStrings: hints,
                 autoFinishWhen: { PhraseSimilarity.passes(recognized: $0, expected: target) }
             )
+            poll.cancel()
+            partialLive = text
             guard !Task.isCancelled else { return }
             evaluate(text, expected: target)
         }
@@ -114,16 +127,21 @@ struct PhrasalSpeakPracticeControls: View {
 
     private func speakENAwait(_ text: String) async {
         await withCheckedContinuation { (cont: CheckedContinuation<Void, Never>) in
-            var resumed = false
-            let finish = {
-                guard !resumed else { return }
-                resumed = true
-                cont.resume()
+            final class Gate: @unchecked Sendable {
+                var done = false
+                func fire(_ body: () -> Void) {
+                    guard !done else { return }
+                    done = true
+                    body()
+                }
             }
-            speaker?.speakEN(text) { finish() }
+            let gate = Gate()
+            speaker?.speakEN(text) {
+                gate.fire { cont.resume() }
+            }
             Task { @MainActor in
                 try? await Task.sleep(nanoseconds: 8_000_000_000)
-                finish()
+                gate.fire { cont.resume() }
             }
         }
     }
@@ -131,11 +149,12 @@ struct PhrasalSpeakPracticeControls: View {
     private func cancel() {
         workTask?.cancel()
         workTask = nil
-        capture.cancel()
+        capture?.cancel()
         speaker?.stop()
         phase = .idle
         matchNote = ""
         heard = ""
+        partialLive = ""
     }
 
     private func wordTokens(_ text: String) -> [String] {

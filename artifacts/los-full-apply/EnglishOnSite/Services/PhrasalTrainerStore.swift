@@ -37,7 +37,6 @@ struct PhrasalTrainerPhrase: Codable, Identifiable, Hashable {
 }
 
 /// Documents/phrasal_trainer.json — user deck for TTS→STT practice.
-@MainActor
 enum PhrasalTrainerStore {
     private static let fileName = "phrasal_trainer.json"
 

@@ -82,14 +82,10 @@ struct PhrasalTrainerView: View {
         .onAppear { reload() }
         .sheet(isPresented: $showAddOwn) { addOwnSheet }
         .navigationDestination(isPresented: $practiceAll) {
-            if items.indices.contains(practiceIndex) {
-                PhrasalTrainerDrillView(
-                    phrases: items,
-                    startIndex: practiceIndex
-                )
-            } else {
-                Text("Нет фраз")
-            }
+            PhrasalTrainerDrillView(
+                phrases: items,
+                startIndex: practiceIndex
+            )
         }
     }
 
