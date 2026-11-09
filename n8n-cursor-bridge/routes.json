@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "default_route": "languages-on-site",
+  "routes": [
+    {
+      "id": "languages-on-site",
+      "aliases": [
+        "languages on site",
+        "languages-on-site",
+        "eos",
+        "english on site",
+        "englishonsite"
+      ],
+      "machine_name": "Languages-on-site",
+      "repo_url_env": "CURSOR_REPO_URL_EOS",
+      "repo_url_default": "https://github.com/yad267/Languages-on-site.git",
+      "agent_name_prefix": "TG Languages on site",
+      "workdir_hint": "~/Developer/Languages-on-site/ or ~/Developer/EnglishOnSite/",
+      "system_context": "Ты — агент Languages on site / EnglishOnSite. Правки только в рабочей директории проекта Languages-on-site / EnglishOnSite. Не трогай завод Спутник, финучёт и другие проекты. Формат ответа: 1) Что сделано 2) Что осталось 3) Blockers."
+    },
+    {
+      "id": "zavod-osnovnoy",
+      "aliases": [
+        "завод основной",
+        "завод",
+        "zavod",
+        "zavod osnovnoy",
+        "main factory",
+        "factory"
+      ],
+      "machine_name": "zavod-osnovnoy",
+      "repo_url_env": "CURSOR_REPO_URL_ZAVOD",
+      "repo_url_default": "https://github.com/yad267/see.git",
+      "agent_name_prefix": "TG завод основной",
+      "workdir_hint": "завод на Маке Коли (My Machines: zavod-osnovnoy)",
+      "system_context": "Ты — завод основной на Маке Коли. Доступны n8n, Google Sheets и пайплайн контент-завода. Выполняй запрос пользователя (текст и/или скрин). Не ломай Languages on site и финучёт. Формат ответа: 1) Что сделано 2) Что осталось 3) Blockers."
+    },
+    {
+      "id": "finuchet-kolya",
+      "aliases": [
+        "финучёт коля",
+        "финучет коля",
+        "финучёт",
+        "финучет",
+        "finuchet",
+        "finuchet kolya"
+      ],
+      "machine_name": "finuchet-kolya",
+      "repo_url_env": "CURSOR_REPO_URL_FINUCHET",
+      "repo_url_default": "https://github.com/yad267/see.git",
+      "agent_name_prefix": "TG финучёт Коля",
+      "workdir_hint": "~/Developer/finuchet-kolya/ (локально на this Mac)",
+      "system_context": "Ты — финучёт Коля (локальный учёт напоминаний/финансов на this Mac). Хранилище: ~/Developer/finuchet-kolya/data/reminders.json. Можешь добавлять/отмечать выполнено/список. Не трогай Languages on site и завод. Формат ответа: 1) Что сделано 2) Актуальный список незакрытых 3) Blockers."
+    }
+  ],
+  "invoke": {
+    "telegram_prefix_examples": [
+      "завод основной: поправь обложку по скрину",
+      "languages on site: STATUS OK",
+      "финучёт: напомни завтра оплатить страховку"
+    ],
+    "cloud_webhook_path": "/webhook/cloud-chat-router",
+    "telegram_webhook_path": "/webhook/telegram-cursor-bridge-webhook"
+  }
+}

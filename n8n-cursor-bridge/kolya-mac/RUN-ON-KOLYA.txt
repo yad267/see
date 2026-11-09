@@ -1,0 +1,12 @@
+Скопируй в New Agent на cursor.com/agents, где в меню «где бежит агент» выбран MacBook Air- Kolya (репо see), НЕ cloud VM:
+
+---
+На Маке Коли установи always-on worker zavod-osnovnoy. Не останавливай Languages-on-site и kolya_music_bot.
+
+1) cd в checkout see (~/see или ~/Developer/see).
+2) Убедись что есть n8n-cursor-bridge/kolya-mac/install-zavod-worker.sh (ветка cursor/telegram-n8n-cursor-bridge-6ccf или main). Если нет — подтяни папку с origin.
+3) bash n8n-cursor-bridge/kolya-mac/install-zavod-worker.sh
+4) Покажи: launchctl print gui/$(id -u)/com.yad26.zavod-osnovnoy | head -40
+5) tail -40 ~/Library/Logs/zavod-osnovnoy/worker.log
+Отчёт: успех/ошибка, путь worker dir, имя worker.
+---

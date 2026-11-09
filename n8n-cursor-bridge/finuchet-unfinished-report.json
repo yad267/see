@@ -1,0 +1,168 @@
+{
+  "name": "финучёт — незакрытые напоминания → Коля ассистент",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 6
+            }
+          ]
+        }
+      },
+      "id": "node-sched",
+      "name": "Every 6h",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $env['FINUCHET_REMINDERS_URL'] }}",
+        "options": {}
+      },
+      "id": "node-fetch",
+      "name": "Fetch reminders JSON",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        440,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.first().json;\nconst list = Array.isArray(data.reminders) ? data.reminders : (Array.isArray(data) ? data : []);\nconst open = list.filter(r => r && r.done === false);\nconst chatId = $env['KOLYA_ASSISTANT_CHAT_ID'] || $env['TELEGRAM_ALLOWED_CHAT_ID'];\nif (!open.length) {\n  return [{ json: { skip: true, chatId, text: '' } }];\n}\nconst lines = open.slice(0, 40).map((r, i) => {\n  const due = r.dueAt ? ` (до ${r.dueAt})` : '';\n  return `${i + 1}. ${r.text || r.id}${due}`;\n});\nconst text = `📋 *финучёт Коля — незакрытые напоминания* (${open.length})\\n\\n` + lines.join('\\n');\nreturn [{ json: { skip: false, chatId, text: text.slice(0, 3500), count: open.length } }];"
+      },
+      "id": "node-format",
+      "name": "Format unfinished",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        660,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true
+          },
+          "conditions": [
+            {
+              "id": "c1",
+              "leftValue": "={{ $json.skip }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ]
+        }
+      },
+      "id": "node-if",
+      "name": "Skip empty?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        880,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "node-tg",
+      "name": "TG → Коля ассистент",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1100,
+        200
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TG_CRED_ID",
+          "name": "Languages-on-site"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Every 6h": {
+      "main": [
+        [
+          {
+            "node": "Fetch reminders JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch reminders JSON": {
+      "main": [
+        [
+          {
+            "node": "Format unfinished",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format unfinished": {
+      "main": [
+        [
+          {
+            "node": "Skip empty?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Skip empty?": {
+      "main": [
+        [],
+        [
+          {
+            "node": "TG → Коля ассистент",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "pinData": {},
+  "versionId": "",
+  "triggerCount": 0,
+  "tags": [
+    {
+      "id": "finuchet",
+      "name": "finuchet-kolya",
+      "createdAt": "",
+      "updatedAt": ""
+    }
+  ]
+}
