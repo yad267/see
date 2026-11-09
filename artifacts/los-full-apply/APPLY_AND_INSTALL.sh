@@ -7,7 +7,7 @@ echo "Applying to $ROOT"
 rsync -a "$SCRIPT_DIR/EnglishOnSite/" "$ROOT/EnglishOnSite/"
 cp -f "$SCRIPT_DIR/EnglishOnSite.xcodeproj/project.pbxproj" "$ROOT/EnglishOnSite.xcodeproj/project.pbxproj"
 cd "$ROOT"
-echo "voiceES:"; rg -n 'voiceES' EnglishOnSite/Services/ElevenLabsConfig.swift | head -3
+echo "voiceES:"; grep -n 'voiceES' EnglishOnSite/Services/ElevenLabsConfig.swift | head -3 || true
 echo "Clean build..."
 xcodebuild -project EnglishOnSite.xcodeproj -scheme EnglishOnSite \
   -destination "id=$UDID" \

@@ -56,7 +56,7 @@ fi
 rsync -a "$SCRIPT_DIR/EnglishOnSite/" "$ROOT/EnglishOnSite/"
 cp -f "$SCRIPT_DIR/EnglishOnSite.xcodeproj/project.pbxproj" "$ROOT/EnglishOnSite.xcodeproj/project.pbxproj"
 echo "voiceES proof:"
-rg -n 'voiceES|WXhpeBU9aWHzJYNLQaSr' "$ROOT/EnglishOnSite/Services/ElevenLabsConfig.swift" | head -5
+grep -nE 'voiceES|WXhpeBU9aWHzJYNLQaSr' "$ROOT/EnglishOnSite/Services/ElevenLabsConfig.swift" | head -5 || true
 
 echo "== 4) Clean + xcodebuild + install UDID=$UDID =="
 cd "$ROOT"
@@ -72,7 +72,7 @@ APP=$(find /tmp/EOSDerived/Build/Products -name 'EnglishOnSite.app' -type d 2>/d
 echo "BUILD_RC=$BUILD_RC APP=$APP"
 if [[ -z "${APP:-}" || "$BUILD_RC" -ne 0 ]]; then
   echo "INSTALL: FAIL (build)"
-  rg -n "error:|BUILD FAILED|failed with" /tmp/eos-build.log | tail -40 || true
+  grep -nE 'error:|BUILD FAILED|failed with' /tmp/eos-build.log | tail -40 || true
   exit 1
 fi
 set +e
@@ -88,5 +88,5 @@ else
 fi
 
 echo "== 5) Autostart check =="
-launchctl print "gui/$(id -u)/$LABEL" 2>/dev/null | head -20 || launchctl list | rg -i "languages-on-site|cursor-agent" || true
+launchctl print "gui/$(id -u)/$LABEL" 2>/dev/null | head -20 || launchctl list | grep -iE 'languages-on-site|cursor-agent' || true
 echo "DONE worker+autostart+install"
