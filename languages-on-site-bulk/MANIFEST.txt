@@ -1,0 +1,17 @@
+Language Insight / Languages-on-site bulk handoff
+Source: github.com/yad267/see branch cursor/learning-bank-bulk-6ccf → languages-on-site-bulk/
+Synced via Cursor AgentStores from /opt/cursor/artifacts/languages-on-site-bulk/
+
+On Kolya Mac, after AgentStores sync, apply into the Xcode checkout:
+
+  bash apply-to-los.sh
+
+Default DST: ~/Developer/Languages-on-site  (or ~/Developer/EnglishOnSite if that is the clone)
+
+Contents:
+  Resources/learning_words_v1.json          → EnglishOnSite/Resources/ (3000 words)
+  Resources/learning_phrasals_site_v1.json  → EnglishOnSite/Resources/ (143 phrasals)
+  Services/LearningBankStore.swift
+  Services/GeminiSiteCoachService.swift
+  Views/LearningBankView.swift
+  Views/LibraryView.swift
