@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		L6ONSITEMENUBUILD01 /* OnSiteMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = L6ONSITEMENUFILE01 /* OnSiteMenuView.swift */; };
+		L6ONSITECEFRBUILD01 /* OnSiteCEFRStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = L6ONSITECEFRFILE01 /* OnSiteCEFRStore.swift */; };
+		L6ONSITEJSONBUILD01 /* onsite_cefr_pack_v1.json in Resources */ = {isa = PBXBuildFile; fileRef = L6ONSITEJSONFILE01 /* onsite_cefr_pack_v1.json */; };
 		TLANGBUILD00000001 /* TranslatorLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = TLANGFILE00000001 /* TranslatorLanguage.swift */; };
 
 		PT1TOOLSJSONBUILD001 /* phrasal_tools.json in Resources */ = {isa = PBXBuildFile; fileRef = PT1TOOLSJSONFILE001 /* phrasal_tools.json */; };
@@ -286,6 +289,7 @@
 				L6SENTJSONFILE00006 /* learning_sentences_v1.json */,
 				L5PHRASJSONFILE0005 /* learning_phrasals_site_v1.json */,
 				L4WORDSJSONFILE0004 /* learning_words_v1.json */,
+				L6ONSITEJSONFILE01 /* onsite_cefr_pack_v1.json */,
 				F301A2B3C4D5E6F708090B01 /* lessons_pack.json */,
 				PT1TOOLSJSONFILE001 /* phrasal_tools.json */,
 				B3OPPJSONFILE000003 /* opposites_bank_v1.json */,
@@ -339,6 +343,7 @@
 				46DC29239AB646BC87EEA74C /* PlayerView.swift */,
 				F107A2B3C4D5E6F708090A1B /* RoleplayHubView.swift */,
 				L3BANKVIEWFILE00003 /* LearningBankView.swift */,
+				L6ONSITEMENUFILE01 /* OnSiteMenuView.swift */,
 				F108A2B3C4D5E6F708090A1B /* RoleplayLoopView.swift */,
 				76070AC21D8E4FD4AF6B35C1 /* ReviewSessionView.swift */,
 				35DBFC032E43472C937520D1 /* SettingsView.swift */,
@@ -434,6 +439,7 @@ C1BANKSTOREFILE001 /* TutorBankStore.swift */,
 				5D21590B68D2410C976EEBA1 /* LessonPlayer.swift */,
 				B66042CDB5E44E3B9EA8029A /* LibraryStore.swift */,
 				L2BANKSWIFTFILE0002 /* LearningBankStore.swift */,
+				L6ONSITECEFRFILE01 /* OnSiteCEFRStore.swift */,
 				PT2TOOLSSTOREFILE02 /* PhrasalToolsStore.swift */,
 				PT3TRAINERSTOREFILE03 /* PhrasalTrainerStore.swift */,
 				L1AUDIOSWIFTFILE0001 /* LibraryAudioStore.swift */,
@@ -603,6 +609,7 @@ C1BANKSTOREFILE001 /* TutorBankStore.swift */,
 				L5PHRASJSONBUILD0005 /* learning_phrasals_site_v1.json in Resources */,
 				PT1TOOLSJSONBUILD001 /* phrasal_tools.json in Resources */,
 				L4WORDSJSONBUILD0004 /* learning_words_v1.json in Resources */,
+				L6ONSITEJSONBUILD01 /* onsite_cefr_pack_v1.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -642,6 +649,8 @@ C1BANKSTOREFILE001 /* TutorBankStore.swift */,
 				EFD010FDDEAE4815810CFC39 /* Lesson.swift in Sources */,
 				4B64CD7E9B454BDEB8E0AD69 /* LibraryItem.swift in Sources */,
 				L3BANKVIEWBUILD0003 /* LearningBankView.swift in Sources */,
+				L6ONSITEMENUBUILD01 /* OnSiteMenuView.swift in Sources */,
+				L6ONSITECEFRBUILD01 /* OnSiteCEFRStore.swift in Sources */,
 				L2BANKSWIFTBUILD0002 /* LearningBankStore.swift in Sources */,
 				L1AUDIOSWIFTBUILD001 /* LibraryAudioStore.swift in Sources */,
 				416CE18C4756467EB03C25AC /* SitePhrase.swift in Sources */,
