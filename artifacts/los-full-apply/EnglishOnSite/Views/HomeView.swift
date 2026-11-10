@@ -23,31 +23,28 @@ struct HomeView: View {
 
     var body: some View {
         List {
+            // Top choice: Regular Language | On site
             Section {
                 Picker("Режим", selection: Bindable(settings).learningMode) {
                     ForEach(AppLearningMode.allCases) { m in
-                        Text(m.title).tag(m)
+                        Text(m.pickerLabel).tag(m)
                     }
                 }
                 .pickerStyle(.segmented)
+                .accessibilityLabel("Выбор режима: Regular Language или On site")
 
                 Text(mode.blurbRU)
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
-                    .listRowBackground(Color.clear)
-
-                if mode == .onSite {
-                    Text(LessonStore.shared.lastStatusRU)
-                        .font(.caption2)
-                        .foregroundStyle(.tertiary)
-                        .listRowBackground(Color.clear)
-                }
+            } header: {
+                Text("Выбери режим")
             }
 
+            // Mode content appears immediately under the picker
             if mode == .onSite {
-                onSiteActions
+                onSiteModeContent
             } else {
-                regularActions
+                regularModeContent
             }
 
             if let next = visibleLessons.first(where: { !LessonProgressStore.isCompleted($0.id) }) {
@@ -56,87 +53,104 @@ struct HomeView: View {
                 }
             }
 
-            Section(mode == .onSite ? "Path · On site" : "Диалоги · Regular") {
-                ForEach(visibleLessons) { lesson in
-                    lessonLink(lesson)
-                        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                            if lesson.isUserLesson {
-                                Button(role: .destructive) {
-                                    try? repository.deleteUser(id: lesson.id)
-                                } label: {
-                                    Label("Удалить", systemImage: "trash")
+            Section(mode == .onSite ? "Path · On site" : "Мои диалоги · Regular") {
+                if visibleLessons.isEmpty {
+                    Text(mode == .onSite
+                         ? "Пока нет уроков Path / своих site-уроков."
+                         : "Пока нет собранных диалогов — открой Диалоги → уровень → тема.")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                } else {
+                    ForEach(visibleLessons) { lesson in
+                        lessonLink(lesson)
+                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                if lesson.isUserLesson {
+                                    Button(role: .destructive) {
+                                        try? repository.deleteUser(id: lesson.id)
+                                    } label: {
+                                        Label("Удалить", systemImage: "trash")
+                                    }
                                 }
                             }
-                        }
+                    }
+                }
+            }
+
+            Section {
+                NavigationLink {
+                    TranslateView()
+                } label: {
+                    Label("Перевод", systemImage: "character.book.closed")
                 }
             }
         }
         .listStyle(.insetGrouped)
-        .navigationTitle(mode == .onSite ? "Language on Site" : "Regular Language")
+        .navigationTitle(mode.title)
         .navigationBarTitleDisplayMode(.large)
         .onAppear { repository.reload() }
+        .onChange(of: settings.learningMode) { _, newMode in
+            if newMode == .regular {
+                TutorBankStore.setMode(.general)
+            } else {
+                TutorBankStore.setMode(.site)
+            }
+        }
     }
 
+    /// On site (Language on Site): CEFR levels A1–C2 right on Уроки.
     @ViewBuilder
-    private var onSiteActions: some View {
+    private var onSiteModeContent: some View {
         Section {
             Button {
                 showCreateLesson = true
             } label: {
                 Label("Новый урок · объект", systemImage: "plus.circle.fill")
-                    .font(.title3.weight(.semibold))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.vertical, 10)
+                    .font(.headline)
             }
-            .buttonStyle(.borderedProminent)
-            .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-            .listRowBackground(Color.clear)
         }
 
-        Section {
-            NavigationLink {
-                OnSiteMenuView()
-            } label: {
-                Label("On site", systemImage: "helmet.safety")
-                    .font(.headline)
-                    .padding(.vertical, 8)
-            }
-
-            NavigationLink {
-                TranslateView()
-            } label: {
-                Label("Перевод", systemImage: "character.book.closed")
-                    .font(.headline)
-                    .padding(.vertical, 8)
+        Section("On site · уровень CEFR") {
+            ForEach(CEFRLevel.allCases) { level in
+                let c = OnSiteCEFRStore.counts(level: level)
+                NavigationLink {
+                    OnSiteLevelDetailView(level: level)
+                } label: {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(level.titleRU)
+                            .font(.headline)
+                        Text(level.blurbRU)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                        Text("\(c.phrasal) phrasal · \(c.phrase) фраз · \(c.sentence) предл.")
+                            .font(.caption2.weight(.semibold))
+                            .foregroundStyle(.tertiary)
+                    }
+                    .padding(.vertical, 2)
+                }
             }
         }
     }
 
+    /// Regular Language: three sections on Уроки (each opens CEFR A1–C2).
     @ViewBuilder
-    private var regularActions: some View {
-        Section {
-            NavigationLink {
-                RegularLanguageMenuView()
-            } label: {
-                Label("Regular Language", systemImage: "text.book.closed.fill")
-                    .font(.title3.weight(.semibold))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.vertical, 10)
-            }
-            .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-
-            Text("Фразовые · Лёгкие фразы · Диалоги — каждый раздел с уровнями A1–C2.")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-        }
-
-        Section {
-            NavigationLink {
-                TranslateView()
-            } label: {
-                Label("Перевод", systemImage: "character.book.closed")
-                    .font(.headline)
-                    .padding(.vertical, 8)
+    private var regularModeContent: some View {
+        Section("Regular Language · разделы") {
+            ForEach(RegularContentKind.allCases) { kind in
+                NavigationLink {
+                    RegularKindLevelsView(kind: kind)
+                } label: {
+                    Label {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(kind.titleRU).font(.headline)
+                            Text(kind.blurbRU)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                    } icon: {
+                        Image(systemName: kind.systemImage)
+                    }
+                    .padding(.vertical, 2)
+                }
             }
         }
     }
@@ -183,17 +197,6 @@ struct HomeView: View {
                     .foregroundStyle(.secondary)
                     .lineLimit(2)
                     .multilineTextAlignment(.leading)
-
-                HStack(spacing: 8) {
-                    ForEach(lesson.tags.filter { $0 != "induction" && $0 != "general" }, id: \.self) { tag in
-                        Text(tag)
-                            .font(.caption.weight(.medium))
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 5)
-                            .background(Color.accentColor.opacity(0.15))
-                            .clipShape(Capsule())
-                    }
-                }
             }
             .padding(.vertical, 8)
         }
