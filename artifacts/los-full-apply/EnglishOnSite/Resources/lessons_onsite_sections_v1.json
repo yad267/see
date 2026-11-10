@@ -8,6 +8,7 @@
       "title_en": "Construction",
       "track": "onsite",
       "lesson_ids": [
+        "onsite-construction-cmds-01",
         "onsite-construction-01",
         "onsite-construction-02",
         "onsite-construction-03",
@@ -21,7 +22,7 @@
         "onsite-construction-11",
         "onsite-construction-12"
       ],
-      "lesson_count": 12
+      "lesson_count": 13
     },
     {
       "id": "websites_cctv",
@@ -4308,6 +4309,99 @@
       "created_by": "pack_section",
       "topic_raw": "tools",
       "order": 12
+    },
+    {
+      "id": "onsite-construction-cmds-01",
+      "title_ru": "Команды: возьми / принеси / отрежь / дай",
+      "title_en": "Site commands: get / bring / cut / give me",
+      "tags": [
+        "onsite",
+        "construction",
+        "dialogue",
+        "site_commands"
+      ],
+      "scene_ru": "Бригадир даёт короткие команды на объекте.",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "Go get the drill.",
+          "ru": "Пойди возьми дрель.",
+          "role": "foreman",
+          "tip_ru": "пойди возьми",
+          "practice": false
+        },
+        {
+          "en": "OK, I will go get it.",
+          "ru": "Ок, пойду возьму.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Take it and bring it here.",
+          "ru": "Возьми и принеси сюда.",
+          "role": "foreman",
+          "tip_ru": "возьми и принеси",
+          "practice": false
+        },
+        {
+          "en": "I will bring it here.",
+          "ru": "Принесу сюда.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Go cut that trunking.",
+          "ru": "Пойди отрежь тот короб.",
+          "role": "foreman",
+          "tip_ru": "пойди отрежь",
+          "practice": false
+        },
+        {
+          "en": "Give me that over there.",
+          "ru": "Дай мне вон то.",
+          "role": "foreman",
+          "tip_ru": "дай мне вон то",
+          "practice": false
+        },
+        {
+          "en": "Here you are.",
+          "ru": "Держи.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Give me something to mark with.",
+          "ru": "Дай мне чем разметить.",
+          "role": "foreman",
+          "tip_ru": "дай мне что-то",
+          "practice": false
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Go get it.",
+          "ru": "Пойди возьми."
+        },
+        {
+          "en": "Give me that over there.",
+          "ru": "Дай мне вон то."
+        },
+        {
+          "en": "Take it and bring it.",
+          "ru": "Возьми и принеси."
+        },
+        {
+          "en": "Go cut it.",
+          "ru": "Пойди отрежь."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "construction",
+      "order": 0
     }
   ]
 }

@@ -1873,6 +1873,102 @@
       "ru": "Уточни зоны ответственности до пусконаладки.",
       "example_en": "",
       "example_ru": ""
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "Go get it.",
+      "ru": "Пойди возьми.",
+      "example_en": "Go get the drill.",
+      "example_ru": "Пойди возьми дрель."
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "Go and get it.",
+      "ru": "Пойди и возьми.",
+      "example_en": "Go and get the level.",
+      "example_ru": "Пойди и возьми уровень."
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "Take it and bring it.",
+      "ru": "Возьми и принеси.",
+      "example_en": "Take the tray and bring it here.",
+      "example_ru": "Возьми лоток и принеси сюда."
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "Bring it here.",
+      "ru": "Принеси сюда.",
+      "example_en": "Bring it here, please.",
+      "example_ru": "Принеси сюда, пожалуйста."
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "Go cut it.",
+      "ru": "Пойди отрежь.",
+      "example_en": "Go cut the trunking.",
+      "example_ru": "Пойди отрежь короб."
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A2",
+      "en": "Go and cut that.",
+      "ru": "Пойди и отрежь то.",
+      "example_en": "Go and cut that piece.",
+      "example_ru": "Пойди и отрежь тот кусок."
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "Give me something.",
+      "ru": "Дай мне что-то.",
+      "example_en": "Give me something to mark with.",
+      "example_ru": "Дай мне чем разметить."
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "Give me that.",
+      "ru": "Дай то. / Дай мне то.",
+      "example_en": "Give me that clamp.",
+      "example_ru": "Дай мне тот clamp."
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "Give me that one.",
+      "ru": "Дай мне вон то.",
+      "example_en": "Give me that one over there.",
+      "example_ru": "Дай мне вон то, вон там."
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A2",
+      "en": "Give me that over there.",
+      "ru": "Дай мне вон то (там).",
+      "example_en": "Give me that over there on the pallet.",
+      "example_ru": "Дай мне вон то на палете."
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A2",
+      "en": "Pass me that.",
+      "ru": "Передай мне то.",
+      "example_en": "Pass me that spanner.",
+      "example_ru": "Передай мне тот ключ."
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A2",
+      "en": "Hand me that.",
+      "ru": "Дай / протяни мне то.",
+      "example_en": "Hand me that nut.",
+      "example_ru": "Дай мне ту гайку."
     }
   ]
 }
