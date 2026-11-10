@@ -1,6 +1,6 @@
 import Foundation
 
-enum RegularContentKind: String, CaseIterable, Identifiable, Hashable {
+enum RegularContentKind: String, CaseIterable, Identifiable, Hashable, Codable {
     case phrasal
     case phrase
     case dialogue

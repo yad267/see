@@ -1,6 +1,6 @@
 import Foundation
 
-enum OnSiteContentKind: String, CaseIterable, Identifiable, Hashable {
+enum OnSiteContentKind: String, CaseIterable, Identifiable, Hashable, Codable {
     case phrasal
     case phrase
     case sentence
