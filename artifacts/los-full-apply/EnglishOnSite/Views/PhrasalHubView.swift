@@ -1,13 +1,32 @@
 import SwiftUI
 
-/// B14: root tab «Фразовые» — Duolingo-style search/pairs first; tools & trainer secondary.
+/// Root tab «Фразовые» — Duolingo match game first (EN left · RU right).
 struct PhrasalHubView: View {
     @State private var contentMode: TutorContentMode = .site
+    @State private var gameKind: GameKind = .phrasal
+
+    private enum GameKind: String, CaseIterable, Identifiable {
+        case phrasal
+        case words
+        var id: String { rawValue }
+        var title: String {
+            switch self {
+            case .phrasal: return "Фразовые"
+            case .words: return "Слова"
+            }
+        }
+        var pairsMode: TutorPairsMode {
+            switch self {
+            case .phrasal: return .phrasal
+            case .words: return .words
+            }
+        }
+    }
 
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
-                Picker("Режим", selection: $contentMode) {
+                Picker("Банк", selection: $contentMode) {
                     ForEach(TutorContentMode.allCases) { mode in
                         Text(mode.titleRU).tag(mode)
                     }
@@ -19,8 +38,24 @@ struct PhrasalHubView: View {
                     TutorBankStore.setMode(mode)
                 }
 
-                // Secondary: keep tools/trainer reachable without replacing Duolingo pairs UX.
+                Picker("Игра", selection: $gameKind) {
+                    ForEach(GameKind.allCases) { kind in
+                        Text(kind.title).tag(kind)
+                    }
+                }
+                .pickerStyle(.segmented)
+                .padding(.horizontal, 16)
+                .padding(.top, 8)
+
                 HStack(spacing: 10) {
+                    NavigationLink {
+                        TutorPhrasalSearchView()
+                    } label: {
+                        Label("Поиск", systemImage: "magnifyingglass")
+                            .font(.caption.weight(.semibold))
+                    }
+                    .buttonStyle(.bordered)
+
                     NavigationLink {
                         PhrasalToolsView()
                     } label: {
@@ -43,8 +78,9 @@ struct PhrasalHubView: View {
                 .padding(.top, 8)
                 .padding(.bottom, 4)
 
-                // Primary: tap words / Погнал · Пары (Duolingo-style)
-                TutorPhrasalSearchView()
+                // Primary: Duolingo-style match (not a vertical list of five).
+                TutorPairsView(mode: gameKind.pairsMode)
+                    .id("\(contentMode.rawValue)-\(gameKind.rawValue)")
             }
             .navigationTitle("Фразовые")
             .navigationBarTitleDisplayMode(.inline)

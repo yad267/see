@@ -1,0 +1,32 @@
+Срочно: вернуть вкладку «Фразовые» в формате Duolingo и добить банки.
+
+Проект: ~/Developer/Languages-on-site · bundle com.sputnik.englishonsite · iPhone UDID 00008130-00166C4C0221001C
+НЕ трогать: bundle ID, PRODUCT_NAME, scheme, remotes, API keys.
+
+## Что должно быть на экране
+1) Вкладка «Фразовые» = ИГРА как в Duolingo, НЕ список из пяти фразовых подряд.
+   - Слева английское слово/фразовый глагол
+   - Справа варианты ответа на русском
+   - Пользователь тапает и выбирает правильную пару
+2) Та же механика и для обычных английских слов (сегмент Фразовые | Слова).
+3) Больше фразовых с get / got / take / turn (ten) / over — чтобы они реально попадали в раунды.
+4) Банк ~300 слов с RU должен быть виден в сборке.
+
+## Где лежат 300 слов (нашли в хабе)
+- Файл: EnglishOnSite/Resources/learning_words_v1.json (сейчас 300 записей, все с RU)
+- Полный bulk 3000 (из них 300 с RU): artifacts languages-on-site-bulk / learning_words_v1.full3000.json
+- В приложении открыть: вкладка «Мои фразы» → «Учить: слова / фразовые / предложения» → сегмент «Слова»
+  Счётчик должен показывать Изучено X / 300 (или /3000 если поставишь full файл).
+
+## Команда на Маке (вставить целиком)
+SHA=REPLACE_SHA
+curl -fsSL "https://raw.githubusercontent.com/yad267/see/${SHA}/artifacts/los-full-apply.tgz" -o /tmp/los-full-apply.tgz
+rm -rf /tmp/los-full-apply && mkdir -p /tmp/los-full-apply && tar -xzf /tmp/los-full-apply.tgz -C /tmp/los-full-apply
+bash /tmp/los-full-apply/los-full-apply/APPLY_DUOLINGO_PHRASALS.sh
+
+После BUILD SUCCEEDED + install:
+- Открой «Фразовые» — должна быть игра парами (EN слева, RU справа), не колонка списка.
+- Переключи «Слова» — та же игра на обычных словах.
+- «Мои фразы» → «Учить» → «Слова» — видны ~300 слов.
+
+В конце: короткий отчёт (сделано / файлы / ошибки) одним копируемым блоком с кнопкой Copy — чтобы я вставил его в хаб-чат Languages on site.
