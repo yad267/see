@@ -1,0 +1,4313 @@
+{
+  "version": 1,
+  "track": "onsite",
+  "sections": [
+    {
+      "id": "construction",
+      "title_ru": "Стройка",
+      "title_en": "Construction",
+      "track": "onsite",
+      "lesson_ids": [
+        "onsite-construction-01",
+        "onsite-construction-02",
+        "onsite-construction-03",
+        "onsite-construction-04",
+        "onsite-construction-05",
+        "onsite-construction-06",
+        "onsite-construction-07",
+        "onsite-construction-08",
+        "onsite-construction-09",
+        "onsite-construction-10",
+        "onsite-construction-11",
+        "onsite-construction-12"
+      ],
+      "lesson_count": 12
+    },
+    {
+      "id": "websites_cctv",
+      "title_ru": "Сайты / CCTV",
+      "title_en": "Websites & CCTV",
+      "track": "onsite",
+      "lesson_ids": [
+        "onsite-websites_cctv-01",
+        "onsite-websites_cctv-02",
+        "onsite-websites_cctv-03",
+        "onsite-websites_cctv-04",
+        "onsite-websites_cctv-05",
+        "onsite-websites_cctv-06",
+        "onsite-websites_cctv-07",
+        "onsite-websites_cctv-08",
+        "onsite-websites_cctv-09",
+        "onsite-websites_cctv-10",
+        "onsite-websites_cctv-11",
+        "onsite-websites_cctv-12"
+      ],
+      "lesson_count": 12
+    },
+    {
+      "id": "induction",
+      "title_ru": "Induction",
+      "title_en": "Site induction",
+      "track": "onsite",
+      "lesson_ids": [
+        "onsite-induction-01",
+        "onsite-induction-02",
+        "onsite-induction-03",
+        "onsite-induction-04",
+        "onsite-induction-05",
+        "onsite-induction-06",
+        "onsite-induction-07",
+        "onsite-induction-08",
+        "onsite-induction-09",
+        "onsite-induction-10",
+        "onsite-induction-11",
+        "onsite-induction-12"
+      ],
+      "lesson_count": 12
+    },
+    {
+      "id": "electrical",
+      "title_ru": "Электрика",
+      "title_en": "Electrical",
+      "track": "onsite",
+      "lesson_ids": [
+        "onsite-electrical-01",
+        "onsite-electrical-02",
+        "onsite-electrical-03",
+        "onsite-electrical-04",
+        "onsite-electrical-05",
+        "onsite-electrical-06",
+        "onsite-electrical-07",
+        "onsite-electrical-08",
+        "onsite-electrical-09",
+        "onsite-electrical-10",
+        "onsite-electrical-11",
+        "onsite-electrical-12"
+      ],
+      "lesson_count": 12
+    },
+    {
+      "id": "tools",
+      "title_ru": "Инструменты",
+      "title_en": "Tools",
+      "track": "onsite",
+      "lesson_ids": [
+        "onsite-tools-01",
+        "onsite-tools-02",
+        "onsite-tools-03",
+        "onsite-tools-04",
+        "onsite-tools-05",
+        "onsite-tools-06",
+        "onsite-tools-07",
+        "onsite-tools-08",
+        "onsite-tools-09",
+        "onsite-tools-10",
+        "onsite-tools-11",
+        "onsite-tools-12"
+      ],
+      "lesson_count": 12
+    }
+  ],
+  "lessons": [
+    {
+      "id": "onsite-construction-01",
+      "title_ru": "Стройка · урок 1",
+      "title_en": "Construction · lesson 1",
+      "tags": [
+        "onsite",
+        "construction",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Стройка · 1/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for construction.",
+          "ru": "Это нужно на объекте: Стройка.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "construction",
+      "order": 1
+    },
+    {
+      "id": "onsite-construction-02",
+      "title_ru": "Стройка · урок 2",
+      "title_en": "Construction · lesson 2",
+      "tags": [
+        "onsite",
+        "construction",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Стройка · 2/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for construction.",
+          "ru": "Это нужно на объекте: Стройка.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "construction",
+      "order": 2
+    },
+    {
+      "id": "onsite-construction-03",
+      "title_ru": "Стройка · урок 3",
+      "title_en": "Construction · lesson 3",
+      "tags": [
+        "onsite",
+        "construction",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Стройка · 3/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for construction.",
+          "ru": "Это нужно на объекте: Стройка.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "construction",
+      "order": 3
+    },
+    {
+      "id": "onsite-construction-04",
+      "title_ru": "Стройка · урок 4",
+      "title_en": "Construction · lesson 4",
+      "tags": [
+        "onsite",
+        "construction",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Стройка · 4/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for construction.",
+          "ru": "Это нужно на объекте: Стройка.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "construction",
+      "order": 4
+    },
+    {
+      "id": "onsite-construction-05",
+      "title_ru": "Стройка · урок 5",
+      "title_en": "Construction · lesson 5",
+      "tags": [
+        "onsite",
+        "construction",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Стройка · 5/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for construction.",
+          "ru": "Это нужно на объекте: Стройка.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "construction",
+      "order": 5
+    },
+    {
+      "id": "onsite-construction-06",
+      "title_ru": "Стройка · урок 6",
+      "title_en": "Construction · lesson 6",
+      "tags": [
+        "onsite",
+        "construction",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Стройка · 6/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for construction.",
+          "ru": "Это нужно на объекте: Стройка.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "construction",
+      "order": 6
+    },
+    {
+      "id": "onsite-construction-07",
+      "title_ru": "Стройка · урок 7",
+      "title_en": "Construction · lesson 7",
+      "tags": [
+        "onsite",
+        "construction",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Стройка · 7/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for construction.",
+          "ru": "Это нужно на объекте: Стройка.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "construction",
+      "order": 7
+    },
+    {
+      "id": "onsite-construction-08",
+      "title_ru": "Стройка · урок 8",
+      "title_en": "Construction · lesson 8",
+      "tags": [
+        "onsite",
+        "construction",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Стройка · 8/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for construction.",
+          "ru": "Это нужно на объекте: Стройка.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "construction",
+      "order": 8
+    },
+    {
+      "id": "onsite-construction-09",
+      "title_ru": "Стройка · урок 9",
+      "title_en": "Construction · lesson 9",
+      "tags": [
+        "onsite",
+        "construction",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Стройка · 9/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for construction.",
+          "ru": "Это нужно на объекте: Стройка.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "construction",
+      "order": 9
+    },
+    {
+      "id": "onsite-construction-10",
+      "title_ru": "Стройка · урок 10",
+      "title_en": "Construction · lesson 10",
+      "tags": [
+        "onsite",
+        "construction",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Стройка · 10/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for construction.",
+          "ru": "Это нужно на объекте: Стройка.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "construction",
+      "order": 10
+    },
+    {
+      "id": "onsite-construction-11",
+      "title_ru": "Стройка · урок 11",
+      "title_en": "Construction · lesson 11",
+      "tags": [
+        "onsite",
+        "construction",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Стройка · 11/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for construction.",
+          "ru": "Это нужно на объекте: Стройка.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "construction",
+      "order": 11
+    },
+    {
+      "id": "onsite-construction-12",
+      "title_ru": "Стройка · урок 12",
+      "title_en": "Construction · lesson 12",
+      "tags": [
+        "onsite",
+        "construction",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Стройка · 12/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for construction.",
+          "ru": "Это нужно на объекте: Стройка.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "construction",
+      "order": 12
+    },
+    {
+      "id": "onsite-websites_cctv-01",
+      "title_ru": "Сайты / CCTV · урок 1",
+      "title_en": "Websites & CCTV · lesson 1",
+      "tags": [
+        "onsite",
+        "websites_cctv",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Сайты / CCTV · 1/12",
+      "your_role": "electrician",
+      "partner_role": "client",
+      "lines": [
+        {
+          "en": "We need this on site for websites & cctv.",
+          "ru": "Это нужно на объекте: Сайты / CCTV.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "websites_cctv",
+      "order": 1
+    },
+    {
+      "id": "onsite-websites_cctv-02",
+      "title_ru": "Сайты / CCTV · урок 2",
+      "title_en": "Websites & CCTV · lesson 2",
+      "tags": [
+        "onsite",
+        "websites_cctv",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Сайты / CCTV · 2/12",
+      "your_role": "electrician",
+      "partner_role": "client",
+      "lines": [
+        {
+          "en": "We need this on site for websites & cctv.",
+          "ru": "Это нужно на объекте: Сайты / CCTV.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "websites_cctv",
+      "order": 2
+    },
+    {
+      "id": "onsite-websites_cctv-03",
+      "title_ru": "Сайты / CCTV · урок 3",
+      "title_en": "Websites & CCTV · lesson 3",
+      "tags": [
+        "onsite",
+        "websites_cctv",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Сайты / CCTV · 3/12",
+      "your_role": "electrician",
+      "partner_role": "client",
+      "lines": [
+        {
+          "en": "We need this on site for websites & cctv.",
+          "ru": "Это нужно на объекте: Сайты / CCTV.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "websites_cctv",
+      "order": 3
+    },
+    {
+      "id": "onsite-websites_cctv-04",
+      "title_ru": "Сайты / CCTV · урок 4",
+      "title_en": "Websites & CCTV · lesson 4",
+      "tags": [
+        "onsite",
+        "websites_cctv",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Сайты / CCTV · 4/12",
+      "your_role": "electrician",
+      "partner_role": "client",
+      "lines": [
+        {
+          "en": "We need this on site for websites & cctv.",
+          "ru": "Это нужно на объекте: Сайты / CCTV.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "websites_cctv",
+      "order": 4
+    },
+    {
+      "id": "onsite-websites_cctv-05",
+      "title_ru": "Сайты / CCTV · урок 5",
+      "title_en": "Websites & CCTV · lesson 5",
+      "tags": [
+        "onsite",
+        "websites_cctv",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Сайты / CCTV · 5/12",
+      "your_role": "electrician",
+      "partner_role": "client",
+      "lines": [
+        {
+          "en": "We need this on site for websites & cctv.",
+          "ru": "Это нужно на объекте: Сайты / CCTV.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "websites_cctv",
+      "order": 5
+    },
+    {
+      "id": "onsite-websites_cctv-06",
+      "title_ru": "Сайты / CCTV · урок 6",
+      "title_en": "Websites & CCTV · lesson 6",
+      "tags": [
+        "onsite",
+        "websites_cctv",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Сайты / CCTV · 6/12",
+      "your_role": "electrician",
+      "partner_role": "client",
+      "lines": [
+        {
+          "en": "We need this on site for websites & cctv.",
+          "ru": "Это нужно на объекте: Сайты / CCTV.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "websites_cctv",
+      "order": 6
+    },
+    {
+      "id": "onsite-websites_cctv-07",
+      "title_ru": "Сайты / CCTV · урок 7",
+      "title_en": "Websites & CCTV · lesson 7",
+      "tags": [
+        "onsite",
+        "websites_cctv",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Сайты / CCTV · 7/12",
+      "your_role": "electrician",
+      "partner_role": "client",
+      "lines": [
+        {
+          "en": "We need this on site for websites & cctv.",
+          "ru": "Это нужно на объекте: Сайты / CCTV.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "websites_cctv",
+      "order": 7
+    },
+    {
+      "id": "onsite-websites_cctv-08",
+      "title_ru": "Сайты / CCTV · урок 8",
+      "title_en": "Websites & CCTV · lesson 8",
+      "tags": [
+        "onsite",
+        "websites_cctv",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Сайты / CCTV · 8/12",
+      "your_role": "electrician",
+      "partner_role": "client",
+      "lines": [
+        {
+          "en": "We need this on site for websites & cctv.",
+          "ru": "Это нужно на объекте: Сайты / CCTV.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "websites_cctv",
+      "order": 8
+    },
+    {
+      "id": "onsite-websites_cctv-09",
+      "title_ru": "Сайты / CCTV · урок 9",
+      "title_en": "Websites & CCTV · lesson 9",
+      "tags": [
+        "onsite",
+        "websites_cctv",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Сайты / CCTV · 9/12",
+      "your_role": "electrician",
+      "partner_role": "client",
+      "lines": [
+        {
+          "en": "We need this on site for websites & cctv.",
+          "ru": "Это нужно на объекте: Сайты / CCTV.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "websites_cctv",
+      "order": 9
+    },
+    {
+      "id": "onsite-websites_cctv-10",
+      "title_ru": "Сайты / CCTV · урок 10",
+      "title_en": "Websites & CCTV · lesson 10",
+      "tags": [
+        "onsite",
+        "websites_cctv",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Сайты / CCTV · 10/12",
+      "your_role": "electrician",
+      "partner_role": "client",
+      "lines": [
+        {
+          "en": "We need this on site for websites & cctv.",
+          "ru": "Это нужно на объекте: Сайты / CCTV.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "websites_cctv",
+      "order": 10
+    },
+    {
+      "id": "onsite-websites_cctv-11",
+      "title_ru": "Сайты / CCTV · урок 11",
+      "title_en": "Websites & CCTV · lesson 11",
+      "tags": [
+        "onsite",
+        "websites_cctv",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Сайты / CCTV · 11/12",
+      "your_role": "electrician",
+      "partner_role": "client",
+      "lines": [
+        {
+          "en": "We need this on site for websites & cctv.",
+          "ru": "Это нужно на объекте: Сайты / CCTV.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "websites_cctv",
+      "order": 11
+    },
+    {
+      "id": "onsite-websites_cctv-12",
+      "title_ru": "Сайты / CCTV · урок 12",
+      "title_en": "Websites & CCTV · lesson 12",
+      "tags": [
+        "onsite",
+        "websites_cctv",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Сайты / CCTV · 12/12",
+      "your_role": "electrician",
+      "partner_role": "client",
+      "lines": [
+        {
+          "en": "We need this on site for websites & cctv.",
+          "ru": "Это нужно на объекте: Сайты / CCTV.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "client",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "websites_cctv",
+      "order": 12
+    },
+    {
+      "id": "onsite-induction-01",
+      "title_ru": "Induction · урок 1",
+      "title_en": "Site induction · lesson 1",
+      "tags": [
+        "onsite",
+        "induction",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Induction · 1/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for site induction.",
+          "ru": "Это нужно на объекте: Induction.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "induction",
+      "order": 1
+    },
+    {
+      "id": "onsite-induction-02",
+      "title_ru": "Induction · урок 2",
+      "title_en": "Site induction · lesson 2",
+      "tags": [
+        "onsite",
+        "induction",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Induction · 2/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for site induction.",
+          "ru": "Это нужно на объекте: Induction.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "induction",
+      "order": 2
+    },
+    {
+      "id": "onsite-induction-03",
+      "title_ru": "Induction · урок 3",
+      "title_en": "Site induction · lesson 3",
+      "tags": [
+        "onsite",
+        "induction",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Induction · 3/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for site induction.",
+          "ru": "Это нужно на объекте: Induction.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "induction",
+      "order": 3
+    },
+    {
+      "id": "onsite-induction-04",
+      "title_ru": "Induction · урок 4",
+      "title_en": "Site induction · lesson 4",
+      "tags": [
+        "onsite",
+        "induction",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Induction · 4/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for site induction.",
+          "ru": "Это нужно на объекте: Induction.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "induction",
+      "order": 4
+    },
+    {
+      "id": "onsite-induction-05",
+      "title_ru": "Induction · урок 5",
+      "title_en": "Site induction · lesson 5",
+      "tags": [
+        "onsite",
+        "induction",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Induction · 5/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for site induction.",
+          "ru": "Это нужно на объекте: Induction.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "induction",
+      "order": 5
+    },
+    {
+      "id": "onsite-induction-06",
+      "title_ru": "Induction · урок 6",
+      "title_en": "Site induction · lesson 6",
+      "tags": [
+        "onsite",
+        "induction",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Induction · 6/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for site induction.",
+          "ru": "Это нужно на объекте: Induction.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "induction",
+      "order": 6
+    },
+    {
+      "id": "onsite-induction-07",
+      "title_ru": "Induction · урок 7",
+      "title_en": "Site induction · lesson 7",
+      "tags": [
+        "onsite",
+        "induction",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Induction · 7/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for site induction.",
+          "ru": "Это нужно на объекте: Induction.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "induction",
+      "order": 7
+    },
+    {
+      "id": "onsite-induction-08",
+      "title_ru": "Induction · урок 8",
+      "title_en": "Site induction · lesson 8",
+      "tags": [
+        "onsite",
+        "induction",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Induction · 8/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for site induction.",
+          "ru": "Это нужно на объекте: Induction.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "induction",
+      "order": 8
+    },
+    {
+      "id": "onsite-induction-09",
+      "title_ru": "Induction · урок 9",
+      "title_en": "Site induction · lesson 9",
+      "tags": [
+        "onsite",
+        "induction",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Induction · 9/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for site induction.",
+          "ru": "Это нужно на объекте: Induction.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "induction",
+      "order": 9
+    },
+    {
+      "id": "onsite-induction-10",
+      "title_ru": "Induction · урок 10",
+      "title_en": "Site induction · lesson 10",
+      "tags": [
+        "onsite",
+        "induction",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Induction · 10/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for site induction.",
+          "ru": "Это нужно на объекте: Induction.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "induction",
+      "order": 10
+    },
+    {
+      "id": "onsite-induction-11",
+      "title_ru": "Induction · урок 11",
+      "title_en": "Site induction · lesson 11",
+      "tags": [
+        "onsite",
+        "induction",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Induction · 11/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for site induction.",
+          "ru": "Это нужно на объекте: Induction.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "induction",
+      "order": 11
+    },
+    {
+      "id": "onsite-induction-12",
+      "title_ru": "Induction · урок 12",
+      "title_en": "Site induction · lesson 12",
+      "tags": [
+        "onsite",
+        "induction",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Induction · 12/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for site induction.",
+          "ru": "Это нужно на объекте: Induction.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "induction",
+      "order": 12
+    },
+    {
+      "id": "onsite-electrical-01",
+      "title_ru": "Электрика · урок 1",
+      "title_en": "Electrical · lesson 1",
+      "tags": [
+        "onsite",
+        "electrical",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Электрика · 1/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for electrical.",
+          "ru": "Это нужно на объекте: Электрика.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "electrical",
+      "order": 1
+    },
+    {
+      "id": "onsite-electrical-02",
+      "title_ru": "Электрика · урок 2",
+      "title_en": "Electrical · lesson 2",
+      "tags": [
+        "onsite",
+        "electrical",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Электрика · 2/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for electrical.",
+          "ru": "Это нужно на объекте: Электрика.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "electrical",
+      "order": 2
+    },
+    {
+      "id": "onsite-electrical-03",
+      "title_ru": "Электрика · урок 3",
+      "title_en": "Electrical · lesson 3",
+      "tags": [
+        "onsite",
+        "electrical",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Электрика · 3/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for electrical.",
+          "ru": "Это нужно на объекте: Электрика.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "electrical",
+      "order": 3
+    },
+    {
+      "id": "onsite-electrical-04",
+      "title_ru": "Электрика · урок 4",
+      "title_en": "Electrical · lesson 4",
+      "tags": [
+        "onsite",
+        "electrical",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Электрика · 4/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for electrical.",
+          "ru": "Это нужно на объекте: Электрика.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "electrical",
+      "order": 4
+    },
+    {
+      "id": "onsite-electrical-05",
+      "title_ru": "Электрика · урок 5",
+      "title_en": "Electrical · lesson 5",
+      "tags": [
+        "onsite",
+        "electrical",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Электрика · 5/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for electrical.",
+          "ru": "Это нужно на объекте: Электрика.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "electrical",
+      "order": 5
+    },
+    {
+      "id": "onsite-electrical-06",
+      "title_ru": "Электрика · урок 6",
+      "title_en": "Electrical · lesson 6",
+      "tags": [
+        "onsite",
+        "electrical",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Электрика · 6/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for electrical.",
+          "ru": "Это нужно на объекте: Электрика.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "electrical",
+      "order": 6
+    },
+    {
+      "id": "onsite-electrical-07",
+      "title_ru": "Электрика · урок 7",
+      "title_en": "Electrical · lesson 7",
+      "tags": [
+        "onsite",
+        "electrical",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Электрика · 7/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for electrical.",
+          "ru": "Это нужно на объекте: Электрика.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "electrical",
+      "order": 7
+    },
+    {
+      "id": "onsite-electrical-08",
+      "title_ru": "Электрика · урок 8",
+      "title_en": "Electrical · lesson 8",
+      "tags": [
+        "onsite",
+        "electrical",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Электрика · 8/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for electrical.",
+          "ru": "Это нужно на объекте: Электрика.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "electrical",
+      "order": 8
+    },
+    {
+      "id": "onsite-electrical-09",
+      "title_ru": "Электрика · урок 9",
+      "title_en": "Electrical · lesson 9",
+      "tags": [
+        "onsite",
+        "electrical",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Электрика · 9/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for electrical.",
+          "ru": "Это нужно на объекте: Электрика.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "electrical",
+      "order": 9
+    },
+    {
+      "id": "onsite-electrical-10",
+      "title_ru": "Электрика · урок 10",
+      "title_en": "Electrical · lesson 10",
+      "tags": [
+        "onsite",
+        "electrical",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Электрика · 10/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for electrical.",
+          "ru": "Это нужно на объекте: Электрика.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "electrical",
+      "order": 10
+    },
+    {
+      "id": "onsite-electrical-11",
+      "title_ru": "Электрика · урок 11",
+      "title_en": "Electrical · lesson 11",
+      "tags": [
+        "onsite",
+        "electrical",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Электрика · 11/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for electrical.",
+          "ru": "Это нужно на объекте: Электрика.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "electrical",
+      "order": 11
+    },
+    {
+      "id": "onsite-electrical-12",
+      "title_ru": "Электрика · урок 12",
+      "title_en": "Electrical · lesson 12",
+      "tags": [
+        "onsite",
+        "electrical",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Электрика · 12/12",
+      "your_role": "electrician",
+      "partner_role": "foreman",
+      "lines": [
+        {
+          "en": "We need this on site for electrical.",
+          "ru": "Это нужно на объекте: Электрика.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "foreman",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "electrical",
+      "order": 12
+    },
+    {
+      "id": "onsite-tools-01",
+      "title_ru": "Инструменты · урок 1",
+      "title_en": "Tools · lesson 1",
+      "tags": [
+        "onsite",
+        "tools",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Инструменты · 1/12",
+      "your_role": "electrician",
+      "partner_role": "colleague",
+      "lines": [
+        {
+          "en": "We need this on site for tools.",
+          "ru": "Это нужно на объекте: Инструменты.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "tools",
+      "order": 1
+    },
+    {
+      "id": "onsite-tools-02",
+      "title_ru": "Инструменты · урок 2",
+      "title_en": "Tools · lesson 2",
+      "tags": [
+        "onsite",
+        "tools",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Инструменты · 2/12",
+      "your_role": "electrician",
+      "partner_role": "colleague",
+      "lines": [
+        {
+          "en": "We need this on site for tools.",
+          "ru": "Это нужно на объекте: Инструменты.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "tools",
+      "order": 2
+    },
+    {
+      "id": "onsite-tools-03",
+      "title_ru": "Инструменты · урок 3",
+      "title_en": "Tools · lesson 3",
+      "tags": [
+        "onsite",
+        "tools",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Инструменты · 3/12",
+      "your_role": "electrician",
+      "partner_role": "colleague",
+      "lines": [
+        {
+          "en": "We need this on site for tools.",
+          "ru": "Это нужно на объекте: Инструменты.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "tools",
+      "order": 3
+    },
+    {
+      "id": "onsite-tools-04",
+      "title_ru": "Инструменты · урок 4",
+      "title_en": "Tools · lesson 4",
+      "tags": [
+        "onsite",
+        "tools",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Инструменты · 4/12",
+      "your_role": "electrician",
+      "partner_role": "colleague",
+      "lines": [
+        {
+          "en": "We need this on site for tools.",
+          "ru": "Это нужно на объекте: Инструменты.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "tools",
+      "order": 4
+    },
+    {
+      "id": "onsite-tools-05",
+      "title_ru": "Инструменты · урок 5",
+      "title_en": "Tools · lesson 5",
+      "tags": [
+        "onsite",
+        "tools",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Инструменты · 5/12",
+      "your_role": "electrician",
+      "partner_role": "colleague",
+      "lines": [
+        {
+          "en": "We need this on site for tools.",
+          "ru": "Это нужно на объекте: Инструменты.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "tools",
+      "order": 5
+    },
+    {
+      "id": "onsite-tools-06",
+      "title_ru": "Инструменты · урок 6",
+      "title_en": "Tools · lesson 6",
+      "tags": [
+        "onsite",
+        "tools",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Инструменты · 6/12",
+      "your_role": "electrician",
+      "partner_role": "colleague",
+      "lines": [
+        {
+          "en": "We need this on site for tools.",
+          "ru": "Это нужно на объекте: Инструменты.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "tools",
+      "order": 6
+    },
+    {
+      "id": "onsite-tools-07",
+      "title_ru": "Инструменты · урок 7",
+      "title_en": "Tools · lesson 7",
+      "tags": [
+        "onsite",
+        "tools",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Инструменты · 7/12",
+      "your_role": "electrician",
+      "partner_role": "colleague",
+      "lines": [
+        {
+          "en": "We need this on site for tools.",
+          "ru": "Это нужно на объекте: Инструменты.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "tools",
+      "order": 7
+    },
+    {
+      "id": "onsite-tools-08",
+      "title_ru": "Инструменты · урок 8",
+      "title_en": "Tools · lesson 8",
+      "tags": [
+        "onsite",
+        "tools",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Инструменты · 8/12",
+      "your_role": "electrician",
+      "partner_role": "colleague",
+      "lines": [
+        {
+          "en": "We need this on site for tools.",
+          "ru": "Это нужно на объекте: Инструменты.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "tools",
+      "order": 8
+    },
+    {
+      "id": "onsite-tools-09",
+      "title_ru": "Инструменты · урок 9",
+      "title_en": "Tools · lesson 9",
+      "tags": [
+        "onsite",
+        "tools",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Инструменты · 9/12",
+      "your_role": "electrician",
+      "partner_role": "colleague",
+      "lines": [
+        {
+          "en": "We need this on site for tools.",
+          "ru": "Это нужно на объекте: Инструменты.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "tools",
+      "order": 9
+    },
+    {
+      "id": "onsite-tools-10",
+      "title_ru": "Инструменты · урок 10",
+      "title_en": "Tools · lesson 10",
+      "tags": [
+        "onsite",
+        "tools",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Инструменты · 10/12",
+      "your_role": "electrician",
+      "partner_role": "colleague",
+      "lines": [
+        {
+          "en": "We need this on site for tools.",
+          "ru": "Это нужно на объекте: Инструменты.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "tools",
+      "order": 10
+    },
+    {
+      "id": "onsite-tools-11",
+      "title_ru": "Инструменты · урок 11",
+      "title_en": "Tools · lesson 11",
+      "tags": [
+        "onsite",
+        "tools",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Инструменты · 11/12",
+      "your_role": "electrician",
+      "partner_role": "colleague",
+      "lines": [
+        {
+          "en": "We need this on site for tools.",
+          "ru": "Это нужно на объекте: Инструменты.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "tools",
+      "order": 11
+    },
+    {
+      "id": "onsite-tools-12",
+      "title_ru": "Инструменты · урок 12",
+      "title_en": "Tools · lesson 12",
+      "tags": [
+        "onsite",
+        "tools",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Инструменты · 12/12",
+      "your_role": "electrician",
+      "partner_role": "colleague",
+      "lines": [
+        {
+          "en": "We need this on site for tools.",
+          "ru": "Это нужно на объекте: Инструменты.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "electrician",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "tools",
+      "order": 12
+    }
+  ]
+}

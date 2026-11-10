@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		L9SECSTOREBUILD01 /* SectionLessonStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = L9SECSTOREFILE01 /* SectionLessonStore.swift */; };
+		L9ONJSONBUILD01 /* lessons_onsite_sections_v1.json in Resources */ = {isa = PBXBuildFile; fileRef = L9ONJSONFILE01 /* lessons_onsite_sections_v1.json */; };
+		L9REGJSONBUILD01 /* lessons_regular_sections_v1.json in Resources */ = {isa = PBXBuildFile; fileRef = L9REGJSONFILE01 /* lessons_regular_sections_v1.json */; };
 		L8REGMENUBUILD01 /* RegularLanguageMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = L8REGMENUFILE01 /* RegularLanguageMenuView.swift */; };
 		L8REGSTOREBUILD01 /* RegularCEFRStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = L8REGSTOREFILE01 /* RegularCEFRStore.swift */; };
 		L8REGJSONBUILD01 /* regular_cefr_pack_v1.json in Resources */ = {isa = PBXBuildFile; fileRef = L8REGJSONFILE01 /* regular_cefr_pack_v1.json */; };
@@ -149,6 +152,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		L9SECSTOREFILE01 /* SectionLessonStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionLessonStore.swift; sourceTree = "<group>"; };
+		L9ONJSONFILE01 /* lessons_onsite_sections_v1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lessons_onsite_sections_v1.json; sourceTree = "<group>"; };
+		L9REGJSONFILE01 /* lessons_regular_sections_v1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lessons_regular_sections_v1.json; sourceTree = "<group>"; };
 		L8REGMENUFILE01 /* RegularLanguageMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularLanguageMenuView.swift; sourceTree = "<group>"; };
 		L8REGSTOREFILE01 /* RegularCEFRStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularCEFRStore.swift; sourceTree = "<group>"; };
 		L8REGJSONFILE01 /* regular_cefr_pack_v1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = regular_cefr_pack_v1.json; sourceTree = "<group>"; };
@@ -301,6 +307,8 @@
 				L4WORDSJSONFILE0004 /* learning_words_v1.json */,
 				L6ONSITEJSONFILE01 /* onsite_cefr_pack_v1.json */,
 				L8REGJSONFILE01 /* regular_cefr_pack_v1.json */,
+				L9ONJSONFILE01 /* lessons_onsite_sections_v1.json */,
+				L9REGJSONFILE01 /* lessons_regular_sections_v1.json */,
 				F301A2B3C4D5E6F708090B01 /* lessons_pack.json */,
 				PT1TOOLSJSONFILE001 /* phrasal_tools.json */,
 				B3OPPJSONFILE000003 /* opposites_bank_v1.json */,
@@ -455,6 +463,7 @@ C1BANKSTOREFILE001 /* TutorBankStore.swift */,
 				L2BANKSWIFTFILE0002 /* LearningBankStore.swift */,
 				L6ONSITECEFRFILE01 /* OnSiteCEFRStore.swift */,
 				L8REGSTOREFILE01 /* RegularCEFRStore.swift */,
+				L9SECSTOREFILE01 /* SectionLessonStore.swift */,
 				PT2TOOLSSTOREFILE02 /* PhrasalToolsStore.swift */,
 				PT3TRAINERSTOREFILE03 /* PhrasalTrainerStore.swift */,
 				L1AUDIOSWIFTFILE0001 /* LibraryAudioStore.swift */,
@@ -626,6 +635,8 @@ C1BANKSTOREFILE001 /* TutorBankStore.swift */,
 				L4WORDSJSONBUILD0004 /* learning_words_v1.json in Resources */,
 				L6ONSITEJSONBUILD01 /* onsite_cefr_pack_v1.json in Resources */,
 				L8REGJSONBUILD01 /* regular_cefr_pack_v1.json in Resources */,
+				L9ONJSONBUILD01 /* lessons_onsite_sections_v1.json in Resources */,
+				L9REGJSONBUILD01 /* lessons_regular_sections_v1.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -671,6 +682,7 @@ C1BANKSTOREFILE001 /* TutorBankStore.swift */,
 				L7APPLMODEBUILD01 /* AppLearningMode.swift in Sources */,
 				L6ONSITECEFRBUILD01 /* OnSiteCEFRStore.swift in Sources */,
 				L8REGSTOREBUILD01 /* RegularCEFRStore.swift in Sources */,
+				L9SECSTOREBUILD01 /* SectionLessonStore.swift in Sources */,
 				L2BANKSWIFTBUILD0002 /* LearningBankStore.swift in Sources */,
 				L1AUDIOSWIFTBUILD001 /* LibraryAudioStore.swift in Sources */,
 				416CE18C4756467EB03C25AC /* SitePhrase.swift in Sources */,

@@ -1,0 +1,5174 @@
+{
+  "version": 1,
+  "track": "regular",
+  "sections": [
+    {
+      "id": "shopping",
+      "title_ru": "Магазин",
+      "title_en": "Shopping",
+      "track": "regular",
+      "lesson_ids": [
+        "regular-shopping-01",
+        "regular-shopping-02",
+        "regular-shopping-03",
+        "regular-shopping-04",
+        "regular-shopping-05",
+        "regular-shopping-06",
+        "regular-shopping-07",
+        "regular-shopping-08",
+        "regular-shopping-09",
+        "regular-shopping-10",
+        "regular-shopping-11",
+        "regular-shopping-12"
+      ],
+      "lesson_count": 12
+    },
+    {
+      "id": "travel",
+      "title_ru": "Поездки",
+      "title_en": "Travel",
+      "track": "regular",
+      "lesson_ids": [
+        "regular-travel-01",
+        "regular-travel-02",
+        "regular-travel-03",
+        "regular-travel-04",
+        "regular-travel-05",
+        "regular-travel-06",
+        "regular-travel-07",
+        "regular-travel-08",
+        "regular-travel-09",
+        "regular-travel-10",
+        "regular-travel-11",
+        "regular-travel-12"
+      ],
+      "lesson_count": 12
+    },
+    {
+      "id": "home",
+      "title_ru": "Дом",
+      "title_en": "Home life",
+      "track": "regular",
+      "lesson_ids": [
+        "regular-home-01",
+        "regular-home-02",
+        "regular-home-03",
+        "regular-home-04",
+        "regular-home-05",
+        "regular-home-06",
+        "regular-home-07",
+        "regular-home-08",
+        "regular-home-09",
+        "regular-home-10",
+        "regular-home-11",
+        "regular-home-12"
+      ],
+      "lesson_count": 12
+    },
+    {
+      "id": "dating",
+      "title_ru": "Знакомства",
+      "title_en": "Dating",
+      "track": "regular",
+      "lesson_ids": [
+        "regular-dating-01",
+        "regular-dating-02",
+        "regular-dating-03",
+        "regular-dating-04",
+        "regular-dating-05",
+        "regular-dating-06",
+        "regular-dating-07",
+        "regular-dating-08",
+        "regular-dating-09",
+        "regular-dating-10",
+        "regular-dating-11",
+        "regular-dating-12"
+      ],
+      "lesson_count": 12
+    },
+    {
+      "id": "food",
+      "title_ru": "Еда",
+      "title_en": "Food",
+      "track": "regular",
+      "lesson_ids": [
+        "regular-food-01",
+        "regular-food-02",
+        "regular-food-03",
+        "regular-food-04",
+        "regular-food-05",
+        "regular-food-06",
+        "regular-food-07",
+        "regular-food-08",
+        "regular-food-09",
+        "regular-food-10",
+        "regular-food-11",
+        "regular-food-12"
+      ],
+      "lesson_count": 12
+    },
+    {
+      "id": "work_office",
+      "title_ru": "Офис",
+      "title_en": "Work office",
+      "track": "regular",
+      "lesson_ids": [
+        "regular-work_office-01",
+        "regular-work_office-02",
+        "regular-work_office-03",
+        "regular-work_office-04",
+        "regular-work_office-05",
+        "regular-work_office-06",
+        "regular-work_office-07",
+        "regular-work_office-08",
+        "regular-work_office-09",
+        "regular-work_office-10",
+        "regular-work_office-11",
+        "regular-work_office-12"
+      ],
+      "lesson_count": 12
+    }
+  ],
+  "lessons": [
+    {
+      "id": "regular-shopping-01",
+      "title_ru": "Магазин · урок 1",
+      "title_en": "Shopping · lesson 1",
+      "tags": [
+        "regular",
+        "shopping",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Магазин · 1/12",
+      "your_role": "learner",
+      "partner_role": "shop_assistant",
+      "lines": [
+        {
+          "en": "Can we practice shopping English?",
+          "ru": "Давай потренируем английский: Магазин.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "shopping",
+      "order": 1
+    },
+    {
+      "id": "regular-shopping-02",
+      "title_ru": "Магазин · урок 2",
+      "title_en": "Shopping · lesson 2",
+      "tags": [
+        "regular",
+        "shopping",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Магазин · 2/12",
+      "your_role": "learner",
+      "partner_role": "shop_assistant",
+      "lines": [
+        {
+          "en": "Can we practice shopping English?",
+          "ru": "Давай потренируем английский: Магазин.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "shopping",
+      "order": 2
+    },
+    {
+      "id": "regular-shopping-03",
+      "title_ru": "Магазин · урок 3",
+      "title_en": "Shopping · lesson 3",
+      "tags": [
+        "regular",
+        "shopping",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Магазин · 3/12",
+      "your_role": "learner",
+      "partner_role": "shop_assistant",
+      "lines": [
+        {
+          "en": "Can we practice shopping English?",
+          "ru": "Давай потренируем английский: Магазин.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "shopping",
+      "order": 3
+    },
+    {
+      "id": "regular-shopping-04",
+      "title_ru": "Магазин · урок 4",
+      "title_en": "Shopping · lesson 4",
+      "tags": [
+        "regular",
+        "shopping",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Магазин · 4/12",
+      "your_role": "learner",
+      "partner_role": "shop_assistant",
+      "lines": [
+        {
+          "en": "Can we practice shopping English?",
+          "ru": "Давай потренируем английский: Магазин.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "shopping",
+      "order": 4
+    },
+    {
+      "id": "regular-shopping-05",
+      "title_ru": "Магазин · урок 5",
+      "title_en": "Shopping · lesson 5",
+      "tags": [
+        "regular",
+        "shopping",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Магазин · 5/12",
+      "your_role": "learner",
+      "partner_role": "shop_assistant",
+      "lines": [
+        {
+          "en": "Can we practice shopping English?",
+          "ru": "Давай потренируем английский: Магазин.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "shopping",
+      "order": 5
+    },
+    {
+      "id": "regular-shopping-06",
+      "title_ru": "Магазин · урок 6",
+      "title_en": "Shopping · lesson 6",
+      "tags": [
+        "regular",
+        "shopping",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Магазин · 6/12",
+      "your_role": "learner",
+      "partner_role": "shop_assistant",
+      "lines": [
+        {
+          "en": "Can we practice shopping English?",
+          "ru": "Давай потренируем английский: Магазин.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "shopping",
+      "order": 6
+    },
+    {
+      "id": "regular-shopping-07",
+      "title_ru": "Магазин · урок 7",
+      "title_en": "Shopping · lesson 7",
+      "tags": [
+        "regular",
+        "shopping",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Магазин · 7/12",
+      "your_role": "learner",
+      "partner_role": "shop_assistant",
+      "lines": [
+        {
+          "en": "Can we practice shopping English?",
+          "ru": "Давай потренируем английский: Магазин.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "shopping",
+      "order": 7
+    },
+    {
+      "id": "regular-shopping-08",
+      "title_ru": "Магазин · урок 8",
+      "title_en": "Shopping · lesson 8",
+      "tags": [
+        "regular",
+        "shopping",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Магазин · 8/12",
+      "your_role": "learner",
+      "partner_role": "shop_assistant",
+      "lines": [
+        {
+          "en": "Can we practice shopping English?",
+          "ru": "Давай потренируем английский: Магазин.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "shopping",
+      "order": 8
+    },
+    {
+      "id": "regular-shopping-09",
+      "title_ru": "Магазин · урок 9",
+      "title_en": "Shopping · lesson 9",
+      "tags": [
+        "regular",
+        "shopping",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Магазин · 9/12",
+      "your_role": "learner",
+      "partner_role": "shop_assistant",
+      "lines": [
+        {
+          "en": "Can we practice shopping English?",
+          "ru": "Давай потренируем английский: Магазин.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "shopping",
+      "order": 9
+    },
+    {
+      "id": "regular-shopping-10",
+      "title_ru": "Магазин · урок 10",
+      "title_en": "Shopping · lesson 10",
+      "tags": [
+        "regular",
+        "shopping",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Магазин · 10/12",
+      "your_role": "learner",
+      "partner_role": "shop_assistant",
+      "lines": [
+        {
+          "en": "Can we practice shopping English?",
+          "ru": "Давай потренируем английский: Магазин.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "shopping",
+      "order": 10
+    },
+    {
+      "id": "regular-shopping-11",
+      "title_ru": "Магазин · урок 11",
+      "title_en": "Shopping · lesson 11",
+      "tags": [
+        "regular",
+        "shopping",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Магазин · 11/12",
+      "your_role": "learner",
+      "partner_role": "shop_assistant",
+      "lines": [
+        {
+          "en": "Can we practice shopping English?",
+          "ru": "Давай потренируем английский: Магазин.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "shopping",
+      "order": 11
+    },
+    {
+      "id": "regular-shopping-12",
+      "title_ru": "Магазин · урок 12",
+      "title_en": "Shopping · lesson 12",
+      "tags": [
+        "regular",
+        "shopping",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Магазин · 12/12",
+      "your_role": "learner",
+      "partner_role": "shop_assistant",
+      "lines": [
+        {
+          "en": "Can we practice shopping English?",
+          "ru": "Давай потренируем английский: Магазин.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "shop_assistant",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "shopping",
+      "order": 12
+    },
+    {
+      "id": "regular-travel-01",
+      "title_ru": "Поездки · урок 1",
+      "title_en": "Travel · lesson 1",
+      "tags": [
+        "regular",
+        "travel",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Поездки · 1/12",
+      "your_role": "learner",
+      "partner_role": "stranger",
+      "lines": [
+        {
+          "en": "Can we practice travel English?",
+          "ru": "Давай потренируем английский: Поездки.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "travel",
+      "order": 1
+    },
+    {
+      "id": "regular-travel-02",
+      "title_ru": "Поездки · урок 2",
+      "title_en": "Travel · lesson 2",
+      "tags": [
+        "regular",
+        "travel",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Поездки · 2/12",
+      "your_role": "learner",
+      "partner_role": "stranger",
+      "lines": [
+        {
+          "en": "Can we practice travel English?",
+          "ru": "Давай потренируем английский: Поездки.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "travel",
+      "order": 2
+    },
+    {
+      "id": "regular-travel-03",
+      "title_ru": "Поездки · урок 3",
+      "title_en": "Travel · lesson 3",
+      "tags": [
+        "regular",
+        "travel",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Поездки · 3/12",
+      "your_role": "learner",
+      "partner_role": "stranger",
+      "lines": [
+        {
+          "en": "Can we practice travel English?",
+          "ru": "Давай потренируем английский: Поездки.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "travel",
+      "order": 3
+    },
+    {
+      "id": "regular-travel-04",
+      "title_ru": "Поездки · урок 4",
+      "title_en": "Travel · lesson 4",
+      "tags": [
+        "regular",
+        "travel",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Поездки · 4/12",
+      "your_role": "learner",
+      "partner_role": "stranger",
+      "lines": [
+        {
+          "en": "Can we practice travel English?",
+          "ru": "Давай потренируем английский: Поездки.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "travel",
+      "order": 4
+    },
+    {
+      "id": "regular-travel-05",
+      "title_ru": "Поездки · урок 5",
+      "title_en": "Travel · lesson 5",
+      "tags": [
+        "regular",
+        "travel",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Поездки · 5/12",
+      "your_role": "learner",
+      "partner_role": "stranger",
+      "lines": [
+        {
+          "en": "Can we practice travel English?",
+          "ru": "Давай потренируем английский: Поездки.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "travel",
+      "order": 5
+    },
+    {
+      "id": "regular-travel-06",
+      "title_ru": "Поездки · урок 6",
+      "title_en": "Travel · lesson 6",
+      "tags": [
+        "regular",
+        "travel",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Поездки · 6/12",
+      "your_role": "learner",
+      "partner_role": "stranger",
+      "lines": [
+        {
+          "en": "Can we practice travel English?",
+          "ru": "Давай потренируем английский: Поездки.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "travel",
+      "order": 6
+    },
+    {
+      "id": "regular-travel-07",
+      "title_ru": "Поездки · урок 7",
+      "title_en": "Travel · lesson 7",
+      "tags": [
+        "regular",
+        "travel",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Поездки · 7/12",
+      "your_role": "learner",
+      "partner_role": "stranger",
+      "lines": [
+        {
+          "en": "Can we practice travel English?",
+          "ru": "Давай потренируем английский: Поездки.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "travel",
+      "order": 7
+    },
+    {
+      "id": "regular-travel-08",
+      "title_ru": "Поездки · урок 8",
+      "title_en": "Travel · lesson 8",
+      "tags": [
+        "regular",
+        "travel",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Поездки · 8/12",
+      "your_role": "learner",
+      "partner_role": "stranger",
+      "lines": [
+        {
+          "en": "Can we practice travel English?",
+          "ru": "Давай потренируем английский: Поездки.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "travel",
+      "order": 8
+    },
+    {
+      "id": "regular-travel-09",
+      "title_ru": "Поездки · урок 9",
+      "title_en": "Travel · lesson 9",
+      "tags": [
+        "regular",
+        "travel",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Поездки · 9/12",
+      "your_role": "learner",
+      "partner_role": "stranger",
+      "lines": [
+        {
+          "en": "Can we practice travel English?",
+          "ru": "Давай потренируем английский: Поездки.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "travel",
+      "order": 9
+    },
+    {
+      "id": "regular-travel-10",
+      "title_ru": "Поездки · урок 10",
+      "title_en": "Travel · lesson 10",
+      "tags": [
+        "regular",
+        "travel",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Поездки · 10/12",
+      "your_role": "learner",
+      "partner_role": "stranger",
+      "lines": [
+        {
+          "en": "Can we practice travel English?",
+          "ru": "Давай потренируем английский: Поездки.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "travel",
+      "order": 10
+    },
+    {
+      "id": "regular-travel-11",
+      "title_ru": "Поездки · урок 11",
+      "title_en": "Travel · lesson 11",
+      "tags": [
+        "regular",
+        "travel",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Поездки · 11/12",
+      "your_role": "learner",
+      "partner_role": "stranger",
+      "lines": [
+        {
+          "en": "Can we practice travel English?",
+          "ru": "Давай потренируем английский: Поездки.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "travel",
+      "order": 11
+    },
+    {
+      "id": "regular-travel-12",
+      "title_ru": "Поездки · урок 12",
+      "title_en": "Travel · lesson 12",
+      "tags": [
+        "regular",
+        "travel",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Поездки · 12/12",
+      "your_role": "learner",
+      "partner_role": "stranger",
+      "lines": [
+        {
+          "en": "Can we practice travel English?",
+          "ru": "Давай потренируем английский: Поездки.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "stranger",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "travel",
+      "order": 12
+    },
+    {
+      "id": "regular-home-01",
+      "title_ru": "Дом · урок 1",
+      "title_en": "Home life · lesson 1",
+      "tags": [
+        "regular",
+        "home",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Дом · 1/12",
+      "your_role": "learner",
+      "partner_role": "partner",
+      "lines": [
+        {
+          "en": "Can we practice home life English?",
+          "ru": "Давай потренируем английский: Дом.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "home",
+      "order": 1
+    },
+    {
+      "id": "regular-home-02",
+      "title_ru": "Дом · урок 2",
+      "title_en": "Home life · lesson 2",
+      "tags": [
+        "regular",
+        "home",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Дом · 2/12",
+      "your_role": "learner",
+      "partner_role": "partner",
+      "lines": [
+        {
+          "en": "Can we practice home life English?",
+          "ru": "Давай потренируем английский: Дом.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "home",
+      "order": 2
+    },
+    {
+      "id": "regular-home-03",
+      "title_ru": "Дом · урок 3",
+      "title_en": "Home life · lesson 3",
+      "tags": [
+        "regular",
+        "home",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Дом · 3/12",
+      "your_role": "learner",
+      "partner_role": "partner",
+      "lines": [
+        {
+          "en": "Can we practice home life English?",
+          "ru": "Давай потренируем английский: Дом.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "home",
+      "order": 3
+    },
+    {
+      "id": "regular-home-04",
+      "title_ru": "Дом · урок 4",
+      "title_en": "Home life · lesson 4",
+      "tags": [
+        "regular",
+        "home",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Дом · 4/12",
+      "your_role": "learner",
+      "partner_role": "partner",
+      "lines": [
+        {
+          "en": "Can we practice home life English?",
+          "ru": "Давай потренируем английский: Дом.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "home",
+      "order": 4
+    },
+    {
+      "id": "regular-home-05",
+      "title_ru": "Дом · урок 5",
+      "title_en": "Home life · lesson 5",
+      "tags": [
+        "regular",
+        "home",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Дом · 5/12",
+      "your_role": "learner",
+      "partner_role": "partner",
+      "lines": [
+        {
+          "en": "Can we practice home life English?",
+          "ru": "Давай потренируем английский: Дом.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "home",
+      "order": 5
+    },
+    {
+      "id": "regular-home-06",
+      "title_ru": "Дом · урок 6",
+      "title_en": "Home life · lesson 6",
+      "tags": [
+        "regular",
+        "home",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Дом · 6/12",
+      "your_role": "learner",
+      "partner_role": "partner",
+      "lines": [
+        {
+          "en": "Can we practice home life English?",
+          "ru": "Давай потренируем английский: Дом.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "home",
+      "order": 6
+    },
+    {
+      "id": "regular-home-07",
+      "title_ru": "Дом · урок 7",
+      "title_en": "Home life · lesson 7",
+      "tags": [
+        "regular",
+        "home",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Дом · 7/12",
+      "your_role": "learner",
+      "partner_role": "partner",
+      "lines": [
+        {
+          "en": "Can we practice home life English?",
+          "ru": "Давай потренируем английский: Дом.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "home",
+      "order": 7
+    },
+    {
+      "id": "regular-home-08",
+      "title_ru": "Дом · урок 8",
+      "title_en": "Home life · lesson 8",
+      "tags": [
+        "regular",
+        "home",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Дом · 8/12",
+      "your_role": "learner",
+      "partner_role": "partner",
+      "lines": [
+        {
+          "en": "Can we practice home life English?",
+          "ru": "Давай потренируем английский: Дом.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "home",
+      "order": 8
+    },
+    {
+      "id": "regular-home-09",
+      "title_ru": "Дом · урок 9",
+      "title_en": "Home life · lesson 9",
+      "tags": [
+        "regular",
+        "home",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Дом · 9/12",
+      "your_role": "learner",
+      "partner_role": "partner",
+      "lines": [
+        {
+          "en": "Can we practice home life English?",
+          "ru": "Давай потренируем английский: Дом.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "home",
+      "order": 9
+    },
+    {
+      "id": "regular-home-10",
+      "title_ru": "Дом · урок 10",
+      "title_en": "Home life · lesson 10",
+      "tags": [
+        "regular",
+        "home",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Дом · 10/12",
+      "your_role": "learner",
+      "partner_role": "partner",
+      "lines": [
+        {
+          "en": "Can we practice home life English?",
+          "ru": "Давай потренируем английский: Дом.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "home",
+      "order": 10
+    },
+    {
+      "id": "regular-home-11",
+      "title_ru": "Дом · урок 11",
+      "title_en": "Home life · lesson 11",
+      "tags": [
+        "regular",
+        "home",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Дом · 11/12",
+      "your_role": "learner",
+      "partner_role": "partner",
+      "lines": [
+        {
+          "en": "Can we practice home life English?",
+          "ru": "Давай потренируем английский: Дом.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "home",
+      "order": 11
+    },
+    {
+      "id": "regular-home-12",
+      "title_ru": "Дом · урок 12",
+      "title_en": "Home life · lesson 12",
+      "tags": [
+        "regular",
+        "home",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Дом · 12/12",
+      "your_role": "learner",
+      "partner_role": "partner",
+      "lines": [
+        {
+          "en": "Can we practice home life English?",
+          "ru": "Давай потренируем английский: Дом.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "partner",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "home",
+      "order": 12
+    },
+    {
+      "id": "regular-dating-01",
+      "title_ru": "Знакомства · урок 1",
+      "title_en": "Dating · lesson 1",
+      "tags": [
+        "regular",
+        "dating",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Знакомства · 1/12",
+      "your_role": "learner",
+      "partner_role": "date",
+      "lines": [
+        {
+          "en": "Can we practice dating English?",
+          "ru": "Давай потренируем английский: Знакомства.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "dating",
+      "order": 1
+    },
+    {
+      "id": "regular-dating-02",
+      "title_ru": "Знакомства · урок 2",
+      "title_en": "Dating · lesson 2",
+      "tags": [
+        "regular",
+        "dating",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Знакомства · 2/12",
+      "your_role": "learner",
+      "partner_role": "date",
+      "lines": [
+        {
+          "en": "Can we practice dating English?",
+          "ru": "Давай потренируем английский: Знакомства.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "dating",
+      "order": 2
+    },
+    {
+      "id": "regular-dating-03",
+      "title_ru": "Знакомства · урок 3",
+      "title_en": "Dating · lesson 3",
+      "tags": [
+        "regular",
+        "dating",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Знакомства · 3/12",
+      "your_role": "learner",
+      "partner_role": "date",
+      "lines": [
+        {
+          "en": "Can we practice dating English?",
+          "ru": "Давай потренируем английский: Знакомства.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "dating",
+      "order": 3
+    },
+    {
+      "id": "regular-dating-04",
+      "title_ru": "Знакомства · урок 4",
+      "title_en": "Dating · lesson 4",
+      "tags": [
+        "regular",
+        "dating",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Знакомства · 4/12",
+      "your_role": "learner",
+      "partner_role": "date",
+      "lines": [
+        {
+          "en": "Can we practice dating English?",
+          "ru": "Давай потренируем английский: Знакомства.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "dating",
+      "order": 4
+    },
+    {
+      "id": "regular-dating-05",
+      "title_ru": "Знакомства · урок 5",
+      "title_en": "Dating · lesson 5",
+      "tags": [
+        "regular",
+        "dating",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Знакомства · 5/12",
+      "your_role": "learner",
+      "partner_role": "date",
+      "lines": [
+        {
+          "en": "Can we practice dating English?",
+          "ru": "Давай потренируем английский: Знакомства.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "dating",
+      "order": 5
+    },
+    {
+      "id": "regular-dating-06",
+      "title_ru": "Знакомства · урок 6",
+      "title_en": "Dating · lesson 6",
+      "tags": [
+        "regular",
+        "dating",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Знакомства · 6/12",
+      "your_role": "learner",
+      "partner_role": "date",
+      "lines": [
+        {
+          "en": "Can we practice dating English?",
+          "ru": "Давай потренируем английский: Знакомства.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "dating",
+      "order": 6
+    },
+    {
+      "id": "regular-dating-07",
+      "title_ru": "Знакомства · урок 7",
+      "title_en": "Dating · lesson 7",
+      "tags": [
+        "regular",
+        "dating",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Знакомства · 7/12",
+      "your_role": "learner",
+      "partner_role": "date",
+      "lines": [
+        {
+          "en": "Can we practice dating English?",
+          "ru": "Давай потренируем английский: Знакомства.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "dating",
+      "order": 7
+    },
+    {
+      "id": "regular-dating-08",
+      "title_ru": "Знакомства · урок 8",
+      "title_en": "Dating · lesson 8",
+      "tags": [
+        "regular",
+        "dating",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Знакомства · 8/12",
+      "your_role": "learner",
+      "partner_role": "date",
+      "lines": [
+        {
+          "en": "Can we practice dating English?",
+          "ru": "Давай потренируем английский: Знакомства.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "dating",
+      "order": 8
+    },
+    {
+      "id": "regular-dating-09",
+      "title_ru": "Знакомства · урок 9",
+      "title_en": "Dating · lesson 9",
+      "tags": [
+        "regular",
+        "dating",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Знакомства · 9/12",
+      "your_role": "learner",
+      "partner_role": "date",
+      "lines": [
+        {
+          "en": "Can we practice dating English?",
+          "ru": "Давай потренируем английский: Знакомства.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "dating",
+      "order": 9
+    },
+    {
+      "id": "regular-dating-10",
+      "title_ru": "Знакомства · урок 10",
+      "title_en": "Dating · lesson 10",
+      "tags": [
+        "regular",
+        "dating",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Знакомства · 10/12",
+      "your_role": "learner",
+      "partner_role": "date",
+      "lines": [
+        {
+          "en": "Can we practice dating English?",
+          "ru": "Давай потренируем английский: Знакомства.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "dating",
+      "order": 10
+    },
+    {
+      "id": "regular-dating-11",
+      "title_ru": "Знакомства · урок 11",
+      "title_en": "Dating · lesson 11",
+      "tags": [
+        "regular",
+        "dating",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Знакомства · 11/12",
+      "your_role": "learner",
+      "partner_role": "date",
+      "lines": [
+        {
+          "en": "Can we practice dating English?",
+          "ru": "Давай потренируем английский: Знакомства.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "dating",
+      "order": 11
+    },
+    {
+      "id": "regular-dating-12",
+      "title_ru": "Знакомства · урок 12",
+      "title_en": "Dating · lesson 12",
+      "tags": [
+        "regular",
+        "dating",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Знакомства · 12/12",
+      "your_role": "learner",
+      "partner_role": "date",
+      "lines": [
+        {
+          "en": "Can we practice dating English?",
+          "ru": "Давай потренируем английский: Знакомства.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "date",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "dating",
+      "order": 12
+    },
+    {
+      "id": "regular-food-01",
+      "title_ru": "Еда · урок 1",
+      "title_en": "Food · lesson 1",
+      "tags": [
+        "regular",
+        "food",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Еда · 1/12",
+      "your_role": "learner",
+      "partner_role": "friend",
+      "lines": [
+        {
+          "en": "Can we practice food English?",
+          "ru": "Давай потренируем английский: Еда.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "food",
+      "order": 1
+    },
+    {
+      "id": "regular-food-02",
+      "title_ru": "Еда · урок 2",
+      "title_en": "Food · lesson 2",
+      "tags": [
+        "regular",
+        "food",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Еда · 2/12",
+      "your_role": "learner",
+      "partner_role": "friend",
+      "lines": [
+        {
+          "en": "Can we practice food English?",
+          "ru": "Давай потренируем английский: Еда.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "food",
+      "order": 2
+    },
+    {
+      "id": "regular-food-03",
+      "title_ru": "Еда · урок 3",
+      "title_en": "Food · lesson 3",
+      "tags": [
+        "regular",
+        "food",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Еда · 3/12",
+      "your_role": "learner",
+      "partner_role": "friend",
+      "lines": [
+        {
+          "en": "Can we practice food English?",
+          "ru": "Давай потренируем английский: Еда.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "food",
+      "order": 3
+    },
+    {
+      "id": "regular-food-04",
+      "title_ru": "Еда · урок 4",
+      "title_en": "Food · lesson 4",
+      "tags": [
+        "regular",
+        "food",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Еда · 4/12",
+      "your_role": "learner",
+      "partner_role": "friend",
+      "lines": [
+        {
+          "en": "Can we practice food English?",
+          "ru": "Давай потренируем английский: Еда.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "food",
+      "order": 4
+    },
+    {
+      "id": "regular-food-05",
+      "title_ru": "Еда · урок 5",
+      "title_en": "Food · lesson 5",
+      "tags": [
+        "regular",
+        "food",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Еда · 5/12",
+      "your_role": "learner",
+      "partner_role": "friend",
+      "lines": [
+        {
+          "en": "Can we practice food English?",
+          "ru": "Давай потренируем английский: Еда.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "food",
+      "order": 5
+    },
+    {
+      "id": "regular-food-06",
+      "title_ru": "Еда · урок 6",
+      "title_en": "Food · lesson 6",
+      "tags": [
+        "regular",
+        "food",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Еда · 6/12",
+      "your_role": "learner",
+      "partner_role": "friend",
+      "lines": [
+        {
+          "en": "Can we practice food English?",
+          "ru": "Давай потренируем английский: Еда.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "food",
+      "order": 6
+    },
+    {
+      "id": "regular-food-07",
+      "title_ru": "Еда · урок 7",
+      "title_en": "Food · lesson 7",
+      "tags": [
+        "regular",
+        "food",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Еда · 7/12",
+      "your_role": "learner",
+      "partner_role": "friend",
+      "lines": [
+        {
+          "en": "Can we practice food English?",
+          "ru": "Давай потренируем английский: Еда.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "food",
+      "order": 7
+    },
+    {
+      "id": "regular-food-08",
+      "title_ru": "Еда · урок 8",
+      "title_en": "Food · lesson 8",
+      "tags": [
+        "regular",
+        "food",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Еда · 8/12",
+      "your_role": "learner",
+      "partner_role": "friend",
+      "lines": [
+        {
+          "en": "Can we practice food English?",
+          "ru": "Давай потренируем английский: Еда.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "food",
+      "order": 8
+    },
+    {
+      "id": "regular-food-09",
+      "title_ru": "Еда · урок 9",
+      "title_en": "Food · lesson 9",
+      "tags": [
+        "regular",
+        "food",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Еда · 9/12",
+      "your_role": "learner",
+      "partner_role": "friend",
+      "lines": [
+        {
+          "en": "Can we practice food English?",
+          "ru": "Давай потренируем английский: Еда.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "food",
+      "order": 9
+    },
+    {
+      "id": "regular-food-10",
+      "title_ru": "Еда · урок 10",
+      "title_en": "Food · lesson 10",
+      "tags": [
+        "regular",
+        "food",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Еда · 10/12",
+      "your_role": "learner",
+      "partner_role": "friend",
+      "lines": [
+        {
+          "en": "Can we practice food English?",
+          "ru": "Давай потренируем английский: Еда.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "food",
+      "order": 10
+    },
+    {
+      "id": "regular-food-11",
+      "title_ru": "Еда · урок 11",
+      "title_en": "Food · lesson 11",
+      "tags": [
+        "regular",
+        "food",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Еда · 11/12",
+      "your_role": "learner",
+      "partner_role": "friend",
+      "lines": [
+        {
+          "en": "Can we practice food English?",
+          "ru": "Давай потренируем английский: Еда.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "food",
+      "order": 11
+    },
+    {
+      "id": "regular-food-12",
+      "title_ru": "Еда · урок 12",
+      "title_en": "Food · lesson 12",
+      "tags": [
+        "regular",
+        "food",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Еда · 12/12",
+      "your_role": "learner",
+      "partner_role": "friend",
+      "lines": [
+        {
+          "en": "Can we practice food English?",
+          "ru": "Давай потренируем английский: Еда.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "friend",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "food",
+      "order": 12
+    },
+    {
+      "id": "regular-work_office-01",
+      "title_ru": "Офис · урок 1",
+      "title_en": "Work office · lesson 1",
+      "tags": [
+        "regular",
+        "work_office",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Офис · 1/12",
+      "your_role": "learner",
+      "partner_role": "colleague",
+      "lines": [
+        {
+          "en": "Can we practice work office English?",
+          "ru": "Давай потренируем английский: Офис.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "work_office",
+      "order": 1
+    },
+    {
+      "id": "regular-work_office-02",
+      "title_ru": "Офис · урок 2",
+      "title_en": "Work office · lesson 2",
+      "tags": [
+        "regular",
+        "work_office",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Офис · 2/12",
+      "your_role": "learner",
+      "partner_role": "colleague",
+      "lines": [
+        {
+          "en": "Can we practice work office English?",
+          "ru": "Давай потренируем английский: Офис.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "work_office",
+      "order": 2
+    },
+    {
+      "id": "regular-work_office-03",
+      "title_ru": "Офис · урок 3",
+      "title_en": "Work office · lesson 3",
+      "tags": [
+        "regular",
+        "work_office",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Офис · 3/12",
+      "your_role": "learner",
+      "partner_role": "colleague",
+      "lines": [
+        {
+          "en": "Can we practice work office English?",
+          "ru": "Давай потренируем английский: Офис.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "work_office",
+      "order": 3
+    },
+    {
+      "id": "regular-work_office-04",
+      "title_ru": "Офис · урок 4",
+      "title_en": "Work office · lesson 4",
+      "tags": [
+        "regular",
+        "work_office",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Офис · 4/12",
+      "your_role": "learner",
+      "partner_role": "colleague",
+      "lines": [
+        {
+          "en": "Can we practice work office English?",
+          "ru": "Давай потренируем английский: Офис.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "work_office",
+      "order": 4
+    },
+    {
+      "id": "regular-work_office-05",
+      "title_ru": "Офис · урок 5",
+      "title_en": "Work office · lesson 5",
+      "tags": [
+        "regular",
+        "work_office",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Офис · 5/12",
+      "your_role": "learner",
+      "partner_role": "colleague",
+      "lines": [
+        {
+          "en": "Can we practice work office English?",
+          "ru": "Давай потренируем английский: Офис.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "work_office",
+      "order": 5
+    },
+    {
+      "id": "regular-work_office-06",
+      "title_ru": "Офис · урок 6",
+      "title_en": "Work office · lesson 6",
+      "tags": [
+        "regular",
+        "work_office",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Офис · 6/12",
+      "your_role": "learner",
+      "partner_role": "colleague",
+      "lines": [
+        {
+          "en": "Can we practice work office English?",
+          "ru": "Давай потренируем английский: Офис.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "work_office",
+      "order": 6
+    },
+    {
+      "id": "regular-work_office-07",
+      "title_ru": "Офис · урок 7",
+      "title_en": "Work office · lesson 7",
+      "tags": [
+        "regular",
+        "work_office",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Офис · 7/12",
+      "your_role": "learner",
+      "partner_role": "colleague",
+      "lines": [
+        {
+          "en": "Can we practice work office English?",
+          "ru": "Давай потренируем английский: Офис.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "work_office",
+      "order": 7
+    },
+    {
+      "id": "regular-work_office-08",
+      "title_ru": "Офис · урок 8",
+      "title_en": "Work office · lesson 8",
+      "tags": [
+        "regular",
+        "work_office",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Офис · 8/12",
+      "your_role": "learner",
+      "partner_role": "colleague",
+      "lines": [
+        {
+          "en": "Can we practice work office English?",
+          "ru": "Давай потренируем английский: Офис.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "work_office",
+      "order": 8
+    },
+    {
+      "id": "regular-work_office-09",
+      "title_ru": "Офис · урок 9",
+      "title_en": "Work office · lesson 9",
+      "tags": [
+        "regular",
+        "work_office",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Офис · 9/12",
+      "your_role": "learner",
+      "partner_role": "colleague",
+      "lines": [
+        {
+          "en": "Can we practice work office English?",
+          "ru": "Давай потренируем английский: Офис.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "work_office",
+      "order": 9
+    },
+    {
+      "id": "regular-work_office-10",
+      "title_ru": "Офис · урок 10",
+      "title_en": "Work office · lesson 10",
+      "tags": [
+        "regular",
+        "work_office",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Офис · 10/12",
+      "your_role": "learner",
+      "partner_role": "colleague",
+      "lines": [
+        {
+          "en": "Can we practice work office English?",
+          "ru": "Давай потренируем английский: Офис.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "work_office",
+      "order": 10
+    },
+    {
+      "id": "regular-work_office-11",
+      "title_ru": "Офис · урок 11",
+      "title_en": "Work office · lesson 11",
+      "tags": [
+        "regular",
+        "work_office",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Офис · 11/12",
+      "your_role": "learner",
+      "partner_role": "colleague",
+      "lines": [
+        {
+          "en": "Can we practice work office English?",
+          "ru": "Давай потренируем английский: Офис.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "work_office",
+      "order": 11
+    },
+    {
+      "id": "regular-work_office-12",
+      "title_ru": "Офис · урок 12",
+      "title_en": "Work office · lesson 12",
+      "tags": [
+        "regular",
+        "work_office",
+        "dialogue"
+      ],
+      "scene_ru": "Диалог · Офис · 12/12",
+      "your_role": "learner",
+      "partner_role": "colleague",
+      "lines": [
+        {
+          "en": "Can we practice work office English?",
+          "ru": "Давай потренируем английский: Офис.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Sure. Where do we start?",
+          "ru": "Ок. С чего начнём?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "First, check this.",
+          "ru": "Сначала проверь это.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "Got it. What next?",
+          "ru": "Понял. Что дальше?",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        },
+        {
+          "en": "Do it carefully.",
+          "ru": "Сделай аккуратно.",
+          "role": "colleague",
+          "tip_ru": null,
+          "practice": false
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю.",
+          "role": "learner",
+          "tip_ru": null,
+          "practice": true
+        }
+      ],
+      "say_today": [
+        {
+          "en": "Where do we start?",
+          "ru": "С чего начнём?"
+        },
+        {
+          "en": "I will do that now.",
+          "ru": "Сейчас сделаю."
+        }
+      ],
+      "created_by": "pack_section",
+      "topic_raw": "work_office",
+      "order": 12
+    }
+  ]
+}

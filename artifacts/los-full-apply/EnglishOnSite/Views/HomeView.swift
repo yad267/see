@@ -1,214 +1,175 @@
 import SwiftUI
 
+/// Уроки only: Onsite Language | Regular Language → subsections → 10–15 lessons.
+/// Does not own other tabs.
 struct HomeView: View {
     @Environment(AppSettings.self) private var settings
     @Bindable var repository: LessonRepository
     @Binding var path: NavigationPath
     @Binding var showCreateLesson: Bool
 
-    private var mode: AppLearningMode {
-        settings.learningMode
-    }
+    private var mode: AppLearningMode { settings.learningMode }
 
-    private var visibleLessons: [Lesson] {
-        switch mode {
-        case .onSite:
-            return repository.lessons.filter { !$0.tags.contains("general") }
-        case .regular:
-            return repository.lessons.filter {
-                $0.tags.contains("general") || $0.createdBy == "user_gemini_general"
-            }
+    private var userDialogues: [Lesson] {
+        repository.lessons.filter {
+            $0.tags.contains("general") || $0.createdBy == "user_gemini_general"
         }
     }
 
     var body: some View {
         List {
-            // Top choice: Regular Language | On site
             Section {
                 Picker("Режим", selection: Bindable(settings).learningMode) {
-                    ForEach(AppLearningMode.allCases) { m in
-                        Text(m.pickerLabel).tag(m)
-                    }
+                    Text("Onsite Language").tag(AppLearningMode.onSite)
+                    Text("Regular Language").tag(AppLearningMode.regular)
                 }
                 .pickerStyle(.segmented)
-                .accessibilityLabel("Выбор режима: Regular Language или On site")
 
-                Text(mode.blurbRU)
+                Text(mode == .onSite
+                     ? "Только объект / стройка / CCTV — разделы не смешиваются с бытом."
+                     : "Быт: магазин, поездки, дом, dating… + своя тема голосом/текстом.")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             } header: {
-                Text("Выбери режим")
+                Text("Уроки")
             }
 
-            // Mode content appears immediately under the picker
             if mode == .onSite {
-                onSiteModeContent
+                onsiteSections
             } else {
-                regularModeContent
-            }
-
-            if let next = visibleLessons.first(where: { !LessonProgressStore.isCompleted($0.id) }) {
-                Section("Продолжить") {
-                    lessonLink(next)
-                }
-            }
-
-            Section(mode == .onSite ? "Path · On site" : "Мои диалоги · Regular") {
-                if visibleLessons.isEmpty {
-                    Text(mode == .onSite
-                         ? "Пока нет уроков Path / своих site-уроков."
-                         : "Пока нет собранных диалогов — открой Диалоги → уровень → тема.")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                } else {
-                    ForEach(visibleLessons) { lesson in
-                        lessonLink(lesson)
-                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                if lesson.isUserLesson {
-                                    Button(role: .destructive) {
-                                        try? repository.deleteUser(id: lesson.id)
-                                    } label: {
-                                        Label("Удалить", systemImage: "trash")
-                                    }
-                                }
-                            }
-                    }
-                }
-            }
-
-            Section {
-                NavigationLink {
-                    TranslateView()
-                } label: {
-                    Label("Перевод", systemImage: "character.book.closed")
-                }
+                regularSections
             }
         }
         .listStyle(.insetGrouped)
-        .navigationTitle(mode.title)
+        .navigationTitle(mode == .onSite ? "Onsite Language" : "Regular Language")
         .navigationBarTitleDisplayMode(.large)
-        .onAppear { repository.reload() }
+        .onAppear {
+            repository.reload()
+            TutorBankStore.setMode(mode == .onSite ? .site : .general)
+        }
         .onChange(of: settings.learningMode) { _, newMode in
-            if newMode == .regular {
-                TutorBankStore.setMode(.general)
-            } else {
-                TutorBankStore.setMode(.site)
-            }
+            TutorBankStore.setMode(newMode == .onSite ? .site : .general)
         }
     }
 
-    /// On site (Language on Site): CEFR levels A1–C2 right on Уроки.
     @ViewBuilder
-    private var onSiteModeContent: some View {
+    private var onsiteSections: some View {
+        Section("Разделы · Onsite") {
+            ForEach(SectionLessonStore.sections(track: .onSite)) { sec in
+                NavigationLink {
+                    SectionLessonsListView(track: .onSite, section: sec)
+                } label: {
+                    sectionLabel(sec)
+                }
+            }
+        }
+
         Section {
             Button {
                 showCreateLesson = true
             } label: {
-                Label("Новый урок · объект", systemImage: "plus.circle.fill")
-                    .font(.headline)
-            }
-        }
-
-        Section("On site · уровень CEFR") {
-            ForEach(CEFRLevel.allCases) { level in
-                let c = OnSiteCEFRStore.counts(level: level)
-                NavigationLink {
-                    OnSiteLevelDetailView(level: level)
-                } label: {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(level.titleRU)
-                            .font(.headline)
-                        Text(level.blurbRU)
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                        Text("\(c.phrasal) phrasal · \(c.phrase) фраз · \(c.sentence) предл.")
-                            .font(.caption2.weight(.semibold))
-                            .foregroundStyle(.tertiary)
-                    }
-                    .padding(.vertical, 2)
-                }
+                Label("Новый урок · объект (Gemini)", systemImage: "plus.circle.fill")
             }
         }
     }
 
-    /// Regular Language: three sections on Уроки (each opens CEFR A1–C2).
     @ViewBuilder
-    private var regularModeContent: some View {
-        Section("Regular Language · разделы") {
-            ForEach(RegularContentKind.allCases) { kind in
+    private var regularSections: some View {
+        Section("Разделы · Regular") {
+            ForEach(SectionLessonStore.sections(track: .regular)) { sec in
                 NavigationLink {
-                    RegularKindLevelsView(kind: kind)
+                    SectionLessonsListView(track: .regular, section: sec)
                 } label: {
-                    Label {
+                    sectionLabel(sec)
+                }
+            }
+        }
+
+        Section("Своя тема") {
+            NavigationLink {
+                RegularLanguageRequestView(preferredLevel: .a2) { lessons in
+                    repository.reload()
+                    if let first = lessons.first {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+                            path.append(first)
+                        }
+                    }
+                }
+            } label: {
+                Label("Голос или текст → до 10 диалогов", systemImage: "mic.badge.plus")
+            }
+            Text("Пример: «I want dating dialogues».")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+        }
+
+        if !userDialogues.isEmpty {
+            Section("Мои собранные диалоги") {
+                ForEach(userDialogues) { lesson in
+                    NavigationLink(value: lesson) {
                         VStack(alignment: .leading, spacing: 4) {
-                            Text(kind.titleRU).font(.headline)
-                            Text(kind.blurbRU)
+                            Text(lesson.titleRu).font(.headline)
+                            Text(lesson.sceneRu)
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
+                                .lineLimit(2)
                         }
-                    } icon: {
-                        Image(systemName: kind.systemImage)
                     }
-                    .padding(.vertical, 2)
                 }
             }
         }
     }
 
-    private func lessonLink(_ lesson: Lesson) -> some View {
-        NavigationLink(value: lesson) {
-            VStack(alignment: .leading, spacing: 8) {
-                HStack(alignment: .firstTextBaseline) {
-                    Text(lesson.titleRu)
-                        .font(.title3.weight(.semibold))
-                        .foregroundStyle(.primary)
-                        .multilineTextAlignment(.leading)
-                    if LessonProgressStore.isCompleted(lesson.id) {
-                        Text("✓")
-                            .font(.caption.weight(.bold))
-                            .foregroundStyle(.green)
-                    }
-                    if lesson.isSiteInduction {
-                        chip("Site induction")
-                    } else if lesson.tags.contains("containment") {
-                        chip("Containment")
-                    } else if lesson.tags.contains("general") {
-                        chip("General")
-                    }
-                    if lesson.isUserLesson {
-                        Text("Мой")
-                            .font(.caption2.weight(.bold))
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 3)
-                            .background(Color.orange.opacity(0.2))
-                            .foregroundStyle(.orange)
-                            .clipShape(Capsule())
-                    }
-                }
+    private func sectionLabel(_ sec: LessonSectionInfo) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(sec.titleRu).font(.headline)
+            Text(sec.titleEn)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+            Text("\(sec.lessonCount) уроков")
+                .font(.caption2.weight(.semibold))
+                .foregroundStyle(.tertiary)
+        }
+        .padding(.vertical, 2)
+    }
+}
 
-                if let titleEn = lesson.titleEn, !titleEn.isEmpty {
-                    Text(titleEn)
-                        .font(.subheadline.weight(.medium))
-                        .foregroundStyle(.secondary)
-                }
+struct SectionLessonsListView: View {
+    let track: AppLearningMode
+    let section: LessonSectionInfo
 
-                Text(lesson.sceneRu)
+    private var lessons: [Lesson] {
+        SectionLessonStore.lessons(sectionId: section.id, track: track)
+    }
+
+    var body: some View {
+        List {
+            Section {
+                Text(track == .onSite
+                     ? "Onsite · только этот раздел"
+                     : "Regular · только этот раздел")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
-                    .lineLimit(2)
-                    .multilineTextAlignment(.leading)
             }
-            .padding(.vertical, 8)
+            Section("Уроки · \(lessons.count)") {
+                ForEach(lessons) { lesson in
+                    NavigationLink(value: lesson) {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(lesson.titleRu).font(.headline)
+                            if let en = lesson.titleEn {
+                                Text(en).font(.caption).foregroundStyle(.secondary)
+                            }
+                            Text(lesson.sceneRu)
+                                .font(.caption)
+                                .foregroundStyle(.tertiary)
+                                .lineLimit(2)
+                        }
+                        .padding(.vertical, 2)
+                    }
+                }
+            }
         }
-    }
-
-    private func chip(_ text: String) -> some View {
-        Text(text)
-            .font(.caption2.weight(.bold))
-            .padding(.horizontal, 8)
-            .padding(.vertical, 3)
-            .background(Color.accentColor.opacity(0.18))
-            .foregroundStyle(.tint)
-            .clipShape(Capsule())
+        .navigationTitle(section.titleRu)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
