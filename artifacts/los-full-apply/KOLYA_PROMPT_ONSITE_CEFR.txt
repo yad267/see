@@ -5,7 +5,7 @@
 НЕ переименовывать чат/группу Language on Site и ничего в проекте без явной команды.
 
 ## Что сделать
-SHA=REPLACE_SHA
+SHA=1fa2284123331173649abb7c8903eb8a87e94b5f
 curl -fsSL "https://raw.githubusercontent.com/yad267/see/${SHA}/artifacts/los-full-apply.tgz" -o /tmp/los-full-apply.tgz
 rm -rf /tmp/los-full-apply && mkdir -p /tmp/los-full-apply && tar -xzf /tmp/los-full-apply.tgz -C /tmp/los-full-apply
 bash /tmp/los-full-apply/los-full-apply/APPLY_ONSITE_CEFR.sh
