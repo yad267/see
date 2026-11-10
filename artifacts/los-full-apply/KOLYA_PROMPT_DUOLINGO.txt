@@ -19,7 +19,7 @@
   Счётчик должен показывать Изучено X / 300 (или /3000 если поставишь full файл).
 
 ## Команда на Маке (вставить целиком)
-SHA=REPLACE_SHA
+SHA=2fafccaf50de59468ce39378e979c3c5dba00cb4
 curl -fsSL "https://raw.githubusercontent.com/yad267/see/${SHA}/artifacts/los-full-apply.tgz" -o /tmp/los-full-apply.tgz
 rm -rf /tmp/los-full-apply && mkdir -p /tmp/los-full-apply && tar -xzf /tmp/los-full-apply.tgz -C /tmp/los-full-apply
 bash /tmp/los-full-apply/los-full-apply/APPLY_DUOLINGO_PHRASALS.sh
