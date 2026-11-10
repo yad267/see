@@ -28,10 +28,14 @@ for f in \
   Services/OnSiteCEFRStore.swift \
   Services/GeminiSiteCoachService.swift \
   Models/AppLearningMode.swift \
-  Models/AppSettings.swift
+  Models/AppSettings.swift \
+  Models/CEFRLevel.swift
  do
   [[ -f "$HERE/EnglishOnSite/$f" ]] && cp -f "$HERE/EnglishOnSite/$f" "$ROOT/EnglishOnSite/$f" && echo "copied $f"
  done
+test -f "$ROOT/EnglishOnSite/Models/CEFRLevel.swift" || { echo "MISSING CEFRLevel.swift"; exit 1; }
+test -f "$ROOT/EnglishOnSite/Services/OnSiteCEFRStore.swift" || { echo "MISSING OnSiteCEFRStore.swift"; exit 1; }
+test -f "$ROOT/EnglishOnSite/Services/RegularCEFRStore.swift" || { echo "MISSING RegularCEFRStore.swift"; exit 1; }
 
 [[ -f "$HERE/EnglishOnSite.xcodeproj/project.pbxproj" ]] && \
   cp -f "$HERE/EnglishOnSite.xcodeproj/project.pbxproj" "$ROOT/EnglishOnSite.xcodeproj/project.pbxproj"

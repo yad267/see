@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		L0CEFRLEVELBUILD01 /* CEFRLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = L0CEFRLEVELFILE01 /* CEFRLevel.swift */; };
 		L9SECSTOREBUILD01 /* SectionLessonStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = L9SECSTOREFILE01 /* SectionLessonStore.swift */; };
 		L9ONJSONBUILD01 /* lessons_onsite_sections_v1.json in Resources */ = {isa = PBXBuildFile; fileRef = L9ONJSONFILE01 /* lessons_onsite_sections_v1.json */; };
 		L9REGJSONBUILD01 /* lessons_regular_sections_v1.json in Resources */ = {isa = PBXBuildFile; fileRef = L9REGJSONFILE01 /* lessons_regular_sections_v1.json */; };
@@ -152,6 +153,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		L0CEFRLEVELFILE01 /* CEFRLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CEFRLevel.swift; sourceTree = "<group>"; };
+		L6ONSITECEFRFILE01 /* OnSiteCEFRStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnSiteCEFRStore.swift; sourceTree = "<group>"; };
 		L9SECSTOREFILE01 /* SectionLessonStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionLessonStore.swift; sourceTree = "<group>"; };
 		L9ONJSONFILE01 /* lessons_onsite_sections_v1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lessons_onsite_sections_v1.json; sourceTree = "<group>"; };
 		L9REGJSONFILE01 /* lessons_regular_sections_v1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lessons_regular_sections_v1.json; sourceTree = "<group>"; };
@@ -410,6 +413,7 @@ G4SEARCHFILE000004 /* TutorPhrasalSearchView.swift */,
 				7AAD728D7C804353A29AA17B /* AppSettings.swift */,
 				806B2BCEBA4B4D578DDBE38A /* Lesson.swift */,
 				L7APPLMODEFILE01 /* AppLearningMode.swift */,
+				L0CEFRLEVELFILE01 /* CEFRLevel.swift */,
 				FAF0838E2C614A3CB0C7D4D6 /* LibraryItem.swift */,
 				F101A2B3C4D5E6F708090A1B /* RoleplayScript.swift */,
 				982D665158B64C0493FC4C40 /* SitePhrase.swift */,
@@ -680,6 +684,7 @@ C1BANKSTOREFILE001 /* TutorBankStore.swift */,
 				L7REGLANGBUILD01 /* RegularLanguageRequestView.swift in Sources */,
 				L8REGMENUBUILD01 /* RegularLanguageMenuView.swift in Sources */,
 				L7APPLMODEBUILD01 /* AppLearningMode.swift in Sources */,
+				L0CEFRLEVELBUILD01 /* CEFRLevel.swift in Sources */,
 				L6ONSITECEFRBUILD01 /* OnSiteCEFRStore.swift in Sources */,
 				L8REGSTOREBUILD01 /* RegularCEFRStore.swift in Sources */,
 				L9SECSTOREBUILD01 /* SectionLessonStore.swift in Sources */,
