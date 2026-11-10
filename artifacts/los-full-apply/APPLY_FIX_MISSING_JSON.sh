@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+# Fix: pbxproj references regular_cefr_pack_v1.json / onsite packs but prior scripts skipped them.
+set -euo pipefail
+ROOT="${1:-$HOME/Developer/Languages-on-site}"
+UDID="${UDID:-00008130-00166C4C0221001C}"
+HERE="$(cd "$(dirname "$0")" && pwd)"
+
+mkdir -p "$ROOT/EnglishOnSite/Resources" \
+         "$ROOT/EnglishOnSite/Views" \
+         "$ROOT/EnglishOnSite/Services" \
+         "$ROOT/EnglishOnSite/Models"
+
+# All JSON resources from pack (covers regular_cefr_pack_v1.json etc.)
+if [[ -d "$HERE/EnglishOnSite/Resources" ]]; then
+  cp -f "$HERE/EnglishOnSite/Resources/"*.json "$ROOT/EnglishOnSite/Resources/" || true
+fi
+
+# Swift needed by Home / Phrasal / CEFR / sections
+for f in \
+  Views/HomeView.swift \
+  Views/PhrasalHubView.swift \
+  Views/TutorPairsView.swift \
+  Views/RegularLanguageRequestView.swift \
+  Views/RegularLanguageMenuView.swift \
+  Views/OnSiteMenuView.swift \
+  Services/SectionLessonStore.swift \
+  Services/RegularCEFRStore.swift \
+  Services/OnSiteCEFRStore.swift \
+  Services/GeminiSiteCoachService.swift \
+  Models/AppLearningMode.swift \
+  Models/AppSettings.swift
+ do
+  [[ -f "$HERE/EnglishOnSite/$f" ]] && cp -f "$HERE/EnglishOnSite/$f" "$ROOT/EnglishOnSite/$f" && echo "copied $f"
+ done
+
+[[ -f "$HERE/EnglishOnSite.xcodeproj/project.pbxproj" ]] && \
+  cp -f "$HERE/EnglishOnSite.xcodeproj/project.pbxproj" "$ROOT/EnglishOnSite.xcodeproj/project.pbxproj"
+
+echo "--- verify required JSON ---"
+for j in regular_cefr_pack_v1.json onsite_cefr_pack_v1.json \
+         lessons_onsite_sections_v1.json lessons_regular_sections_v1.json; do
+  if [[ -f "$ROOT/EnglishOnSite/Resources/$j" ]]; then
+    echo "OK $j ($(wc -c < "$ROOT/EnglishOnSite/Resources/$j") bytes)"
+  else
+    echo "MISSING $j"
+    exit 1
+  fi
+done
+
+cd "$ROOT"
+rm -rf /tmp/EOSDerived
+set +e
+xcodebuild -project EnglishOnSite.xcodeproj -scheme EnglishOnSite \
+  -destination "id=$UDID" -derivedDataPath /tmp/EOSDerived \
+  clean build 2>&1 | tee /tmp/eos-build.log | grep -E 'error:|BUILD SUCCEEDED|BUILD FAILED'
+XC=${PIPESTATUS[0]}
+set -e
+if ! grep -q 'BUILD SUCCEEDED' /tmp/eos-build.log; then
+  echo "FAIL: build (exit=$XC)"
+  grep -E 'error:' /tmp/eos-build.log | sort -u | head -40
+  exit 1
+fi
+APP=$(find /tmp/EOSDerived/Build/Products -name 'EnglishOnSite.app' -type d | head -1)
+xcrun devicectl device install app --device "$UDID" "$APP"
+echo "OK: BUILD SUCCEEDED + install (missing JSON fixed)"
