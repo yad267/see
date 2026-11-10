@@ -76,6 +76,12 @@ final class AppSettings {
         static let voiceIdEnSupervisor = "voiceIdEnSupervisor"
         static let voiceIdEsLatAm = "voiceIdEsLatAm"
         static let eosSyncWebhookURL = "eosSyncWebhookURL"
+        static let learningMode = "learningMode"
+    }
+
+    /// Language on Site vs Regular Language (persisted).
+    var learningMode: AppLearningMode {
+        didSet { UserDefaults.standard.set(learningMode.rawValue, forKey: Keys.learningMode) }
     }
 
     var englishSpeed: EnglishSpeechSpeed {
@@ -391,6 +397,13 @@ final class AppSettings {
         voiceIdEnSupervisor = UserDefaults.standard.string(forKey: Keys.voiceIdEnSupervisor) ?? ""
         voiceIdEsLatAm = UserDefaults.standard.string(forKey: Keys.voiceIdEsLatAm) ?? ""
         eosSyncWebhookURL = UserDefaults.standard.string(forKey: Keys.eosSyncWebhookURL) ?? ""
+
+        if let raw = UserDefaults.standard.string(forKey: Keys.learningMode),
+           let mode = AppLearningMode(rawValue: raw) {
+            learningMode = mode
+        } else {
+            learningMode = .onSite
+        }
 
         let storedKey = KeychainStore.loadGeminiAPIKey()
         geminiAPIKeyDraft = storedKey
