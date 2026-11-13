@@ -1,0 +1,4 @@
+aiogram>=3.13,<4
+python-dotenv>=1.0,<2
+mutagen>=1.47,<2
+pytest>=8.0,<9
