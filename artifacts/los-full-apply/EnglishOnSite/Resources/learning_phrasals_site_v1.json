@@ -2,16 +2,76 @@
   "version": 1,
   "items": [
     {
+      "en": "back out",
+      "ru": "отказаться / выйти из договорённости",
+      "example": "Do not back out of the isolation plan.",
+      "category": "general"
+    },
+    {
       "en": "break down",
       "ru": "сломаться",
       "example": "The drill broke down.",
       "category": "site"
     },
     {
+      "en": "break up",
+      "ru": "расстаться",
+      "example": "They broke up.",
+      "category": "general"
+    },
+    {
+      "en": "bring back",
+      "ru": "вернуть / напомнить",
+      "example": "Bring back the ladder.",
+      "category": "general"
+    },
+    {
+      "en": "bring up",
+      "ru": "поднять тему / воспитать",
+      "example": "Don't bring that up now.",
+      "category": "general"
+    },
+    {
+      "en": "call back",
+      "ru": "перезвонить",
+      "example": "I'll call you back.",
+      "category": "general"
+    },
+    {
+      "en": "call off",
+      "ru": "отменить",
+      "example": "They called off the party.",
+      "category": "general"
+    },
+    {
+      "en": "call out",
+      "ru": "вызвать аварию",
+      "example": "Can you call out the cable tray?",
+      "category": "general"
+    },
+    {
       "en": "carry on",
       "ru": "продолжать",
       "example": "Carry on with the trays.",
       "category": "site"
+    },
+    {
+      "en": "carry out",
+      "ru": "выполнить",
+      "example": "Carry out the isolation.",
+      "category": "general"
+    },
+    {
+      "en": "carry through",
+      "ru": "довести до конца",
+      "example": "We need to carry through the containment install.",
+      "category": "general"
+    },
+    {
+      "en": "catch up",
+      "ru": "догнать / наверстать",
+      "example": "Let's catch up after lunch.",
+      "category": "general"
     },
     {
       "en": "check in",
@@ -30,6 +90,12 @@
       "ru": "убрать",
       "example": "Clean up the scrap.",
       "category": "site"
+    },
+    {
+      "en": "clear away",
+      "ru": "убрать с прохода",
+      "example": "Can you clear away the cable tray?",
+      "category": "general"
     },
     {
       "en": "clear out",
@@ -92,10 +158,34 @@
       "category": "site"
     },
     {
+      "en": "cut out",
+      "ru": "вырезать / заглохнуть",
+      "example": "The engine cut out.",
+      "category": "general"
+    },
+    {
       "en": "deal with",
       "ru": "иметь дело с",
       "example": "Deal with the supervisor.",
       "category": "site"
+    },
+    {
+      "en": "earth out",
+      "ru": "посадить на землю",
+      "example": "Can you earth out the cable tray?",
+      "category": "general"
+    },
+    {
+      "en": "end up",
+      "ru": "оказаться",
+      "example": "We ended up waiting an hour.",
+      "category": "general"
+    },
+    {
+      "en": "fall behind",
+      "ru": "отстать",
+      "example": "Don't fall behind on labels.",
+      "category": "general"
     },
     {
       "en": "fall down",
@@ -122,10 +212,22 @@
       "category": "site"
     },
     {
+      "en": "fill out",
+      "ru": "заполнить (анкету)",
+      "example": "Fill out the induction form.",
+      "category": "general"
+    },
+    {
       "en": "find out",
       "ru": "узнать",
       "example": "Find out who is in charge.",
       "category": "site"
+    },
+    {
+      "en": "follow up",
+      "ru": "уточнить / проверить позже",
+      "example": "I will follow up with the supervisor.",
+      "category": "general"
     },
     {
       "en": "get along",
@@ -206,16 +308,40 @@
       "category": "site"
     },
     {
+      "en": "give away",
+      "ru": "раздавать / выдать секрет",
+      "example": "They give away free samples.",
+      "category": "general"
+    },
+    {
       "en": "give back",
       "ru": "вернуть",
       "example": "Give back the keys.",
       "category": "site"
     },
     {
+      "en": "give in",
+      "ru": "уступить",
+      "example": "He finally gave in.",
+      "category": "general"
+    },
+    {
+      "en": "give up",
+      "ru": "сдаться",
+      "example": "Don't give up.",
+      "category": "general"
+    },
+    {
       "en": "go ahead",
       "ru": "давай; продолжай",
       "example": "Go ahead.",
       "category": "site"
+    },
+    {
+      "en": "go away",
+      "ru": "уйти",
+      "example": "Please go away.",
+      "category": "general"
     },
     {
       "en": "go back",
@@ -228,6 +354,24 @@
       "ru": "продолжать",
       "example": "Go on.",
       "category": "site"
+    },
+    {
+      "en": "go out",
+      "ru": "выйти / потухнуть",
+      "example": "Shall we go out?",
+      "category": "general"
+    },
+    {
+      "en": "go over",
+      "ru": "просмотреть",
+      "example": "Can we go over the checklist?",
+      "category": "general"
+    },
+    {
+      "en": "go through",
+      "ru": "пройти через / разобрать",
+      "example": "We'll go through the plan.",
+      "category": "general"
     },
     {
       "en": "hand in",
@@ -248,16 +392,40 @@
       "category": "site"
     },
     {
+      "en": "hang out",
+      "ru": "тусоваться",
+      "example": "Want to hang out?",
+      "category": "general"
+    },
+    {
+      "en": "hang up",
+      "ru": "повесить трубку / повесить",
+      "example": "Don't hang up yet.",
+      "category": "general"
+    },
+    {
       "en": "hold on",
       "ru": "подержать; подожди",
       "example": "Hold on — don't let go.",
       "category": "site"
     },
     {
+      "en": "hold up",
+      "ru": "задержать",
+      "example": "Sorry I'm late — traffic held me up.",
+      "category": "general"
+    },
+    {
       "en": "hurry up",
       "ru": "поторопись",
       "example": "Hurry up.",
       "category": "site"
+    },
+    {
+      "en": "iron out",
+      "ru": "устранить шероховатости",
+      "example": "Let us iron out the cable routes first.",
+      "category": "general"
     },
     {
       "en": "keep off",
@@ -272,16 +440,46 @@
       "category": "site"
     },
     {
+      "en": "keep up",
+      "ru": "не отставать",
+      "example": "Keep up with the team.",
+      "category": "general"
+    },
+    {
+      "en": "knock off",
+      "ru": "закончить смену (разг.)",
+      "example": "What time do you knock off?",
+      "category": "general"
+    },
+    {
       "en": "lay down",
       "ru": "разложить",
       "example": "Lay down the workplace.",
       "category": "site"
     },
     {
+      "en": "lay out",
+      "ru": "разложить",
+      "example": "Can you lay out the cable tray?",
+      "category": "general"
+    },
+    {
       "en": "lock out",
       "ru": "блокировать (LOTO)",
       "example": "Lock out before you work.",
       "category": "site"
+    },
+    {
+      "en": "log in",
+      "ru": "войти в систему",
+      "example": "Can you log in the cable tray?",
+      "category": "general"
+    },
+    {
+      "en": "log out",
+      "ru": "выйти из системы",
+      "example": "Can you log out the cable tray?",
+      "category": "general"
     },
     {
       "en": "look after",
@@ -326,10 +524,22 @@
       "category": "general"
     },
     {
+      "en": "make out",
+      "ru": "разобрать / целоваться",
+      "example": "I can't make out the text.",
+      "category": "general"
+    },
+    {
       "en": "make sure",
       "ru": "убедиться",
       "example": "Make sure it's tight.",
       "category": "site"
+    },
+    {
+      "en": "make up",
+      "ru": "помириться / выдумать",
+      "example": "They made up.",
+      "category": "general"
     },
     {
       "en": "mark out",
@@ -344,10 +554,34 @@
       "category": "site"
     },
     {
+      "en": "pack away",
+      "ru": "убрать инструменты",
+      "example": "Can you pack away the cable tray?",
+      "category": "general"
+    },
+    {
       "en": "pack up",
       "ru": "собрать вещи",
       "example": "Pack up for today.",
       "category": "site"
+    },
+    {
+      "en": "pay back",
+      "ru": "вернуть долг",
+      "example": "I'll pay you back.",
+      "category": "general"
+    },
+    {
+      "en": "phase out",
+      "ru": "постепенно убрать",
+      "example": "We will phase out the old trunking.",
+      "category": "general"
+    },
+    {
+      "en": "pick out",
+      "ru": "выбрать",
+      "example": "Pick out a dress.",
+      "category": "general"
     },
     {
       "en": "pick up",
@@ -362,10 +596,34 @@
       "category": "site"
     },
     {
+      "en": "plug out",
+      "ru": "вынуть из розетки",
+      "example": "Can you plug out the cable tray?",
+      "category": "general"
+    },
+    {
       "en": "point out",
       "ru": "указать",
       "example": "Point out the mark.",
       "category": "site"
+    },
+    {
+      "en": "power down",
+      "ru": "снять питание",
+      "example": "Can you power down the cable tray?",
+      "category": "general"
+    },
+    {
+      "en": "power up",
+      "ru": "подать питание",
+      "example": "Can you power up the cable tray?",
+      "category": "general"
+    },
+    {
+      "en": "prove dead",
+      "ru": "доказать отсутствие напряжения",
+      "example": "Can you prove dead the cable tray?",
+      "category": "general"
     },
     {
       "en": "pull out",
@@ -422,9 +680,21 @@
       "category": "site"
     },
     {
+      "en": "put up",
+      "ru": "смонтировать / повесить",
+      "example": "Can you put up the cable tray?",
+      "category": "general"
+    },
+    {
       "en": "put up with",
       "ru": "терпеть",
       "example": "I can't put up with noise.",
+      "category": "general"
+    },
+    {
+      "en": "run into",
+      "ru": "случайно встретить",
+      "example": "I ran into an old friend.",
       "category": "general"
     },
     {
@@ -434,10 +704,22 @@
       "category": "site"
     },
     {
+      "en": "run out of",
+      "ru": "закончиться",
+      "example": "We ran out of M10 bolts.",
+      "category": "general"
+    },
+    {
       "en": "screw in",
       "ru": "вкрутить",
       "example": "Screw in the bolt.",
       "category": "site"
+    },
+    {
+      "en": "set off",
+      "ru": "отправиться",
+      "example": "We set off at dawn.",
+      "category": "general"
     },
     {
       "en": "set up",
@@ -458,10 +740,28 @@
       "category": "site"
     },
     {
+      "en": "shut off",
+      "ru": "перекрыть / выключить",
+      "example": "Shut off the water.",
+      "category": "general"
+    },
+    {
       "en": "sign in",
       "ru": "расписаться на вход",
       "example": "Sign in at the cabin.",
       "category": "site"
+    },
+    {
+      "en": "sign off",
+      "ru": "подписать / закрыть задачу",
+      "example": "Sign off the permit before you leave.",
+      "category": "general"
+    },
+    {
+      "en": "sign off on",
+      "ru": "утвердить",
+      "example": "The engineer will sign off on the as-built.",
+      "category": "general"
     },
     {
       "en": "sign out",
@@ -672,6 +972,12 @@
       "ru": "развести проводку",
       "example": "Wire up the tray.",
       "category": "site"
+    },
+    {
+      "en": "work out",
+      "ru": "тренироваться / получиться",
+      "example": "I work out twice a week.",
+      "category": "general"
     },
     {
       "en": "write down",

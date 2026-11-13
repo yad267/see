@@ -23,6 +23,8 @@ for f in \
   Views/RegularLanguageRequestView.swift \
   Views/RegularLanguageMenuView.swift \
   Views/OnSiteMenuView.swift \
+  Views/LibraryView.swift \
+  Views/ReviewSessionView.swift \
   Services/SectionLessonStore.swift \
   Services/RegularCEFRStore.swift \
   Services/OnSiteCEFRStore.swift \
@@ -33,6 +35,16 @@ for f in \
  do
   [[ -f "$HERE/EnglishOnSite/$f" ]] && cp -f "$HERE/EnglishOnSite/$f" "$ROOT/EnglishOnSite/$f" && echo "copied $f"
  done
+
+# Ensure ReviewSession «Нет»/«Да» always speak EN even if an older local copy wins.
+if [[ -f "$ROOT/EnglishOnSite/Views/ReviewSessionView.swift" ]]; then
+  if ! grep -q 'speakEN(item.en)' "$ROOT/EnglishOnSite/Views/ReviewSessionView.swift" 2>/dev/null \
+     && ! grep -q 'speakEN(items\[index\]' "$ROOT/EnglishOnSite/Views/ReviewSessionView.swift" 2>/dev/null; then
+    echo "WARN: ReviewSessionView missing speakEN on grade — pack copy should have fixed it"
+  else
+    echo "OK ReviewSessionView TTS wired"
+  fi
+fi
 test -f "$ROOT/EnglishOnSite/Models/CEFRLevel.swift" || { echo "MISSING CEFRLevel.swift"; exit 1; }
 test -f "$ROOT/EnglishOnSite/Services/OnSiteCEFRStore.swift" || { echo "MISSING OnSiteCEFRStore.swift"; exit 1; }
 test -f "$ROOT/EnglishOnSite/Services/RegularCEFRStore.swift" || { echo "MISSING RegularCEFRStore.swift"; exit 1; }
