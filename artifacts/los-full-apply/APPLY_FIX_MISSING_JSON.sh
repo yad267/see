@@ -42,7 +42,8 @@ test -f "$ROOT/EnglishOnSite/Services/RegularCEFRStore.swift" || { echo "MISSING
 
 echo "--- verify required JSON ---"
 for j in regular_cefr_pack_v1.json onsite_cefr_pack_v1.json \
-         lessons_onsite_sections_v1.json lessons_regular_sections_v1.json; do
+         lessons_onsite_sections_v1.json lessons_regular_sections_v1.json \
+         phrasals_bank_v1.json; do
   if [[ -f "$ROOT/EnglishOnSite/Resources/$j" ]]; then
     echo "OK $j ($(wc -c < "$ROOT/EnglishOnSite/Resources/$j") bytes)"
   else
@@ -50,6 +51,23 @@ for j in regular_cefr_pack_v1.json onsite_cefr_pack_v1.json \
     exit 1
   fi
 done
+
+echo "--- verify unique section dialogues ---"
+python3 - <<'PY' "$ROOT"
+import json, hashlib, sys
+from pathlib import Path
+root = Path(sys.argv[1]) / "EnglishOnSite" / "Resources"
+for name, track in [("lessons_onsite_sections_v1.json","onsite"),("lessons_regular_sections_v1.json","regular")]:
+    pack = json.loads((root/name).read_text())
+    by = {L["id"]: L for L in pack["lessons"]}
+    for sec in pack["sections"]:
+        prefix = f"{track}-{sec['id']}-"
+        lids = [i for i in sec["lesson_ids"] if i.startswith(prefix) and i[len(prefix):].isdigit()]
+        hashes = [hashlib.md5(json.dumps(by[i]["lines"], sort_keys=True).encode()).hexdigest() for i in lids]
+        if len(set(hashes)) != len(hashes):
+            raise SystemExit(f"NON-UNIQUE dialogues in {track}/{sec['id']}")
+        print(f"OK {track}/{sec['id']} {len(hashes)} unique")
+PY
 
 cd "$ROOT"
 rm -rf /tmp/EOSDerived

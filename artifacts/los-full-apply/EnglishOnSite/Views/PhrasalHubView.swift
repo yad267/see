@@ -110,6 +110,7 @@ struct PhrasalHubView: View {
     private func reloadSeed() {
         TutorBankStore.ensureLoaded()
         let all = TutorBankStore.phrasals
+        // Mixed: small Duolingo round. Family (get/come/…): show high‑freq set for that root (cap 8).
         guard let root = roundKind.rootFilter else {
             seedPhrasals = Array(all.shuffled().prefix(5))
             return
@@ -119,10 +120,10 @@ struct PhrasalHubView: View {
                 || $0.en.lowercased().split(separator: " ").first.map(String.init) == root
         }
         if filtered.count >= 3 {
-            seedPhrasals = Array(filtered.shuffled().prefix(5))
+            seedPhrasals = Array(filtered.shuffled().prefix(8))
             return
         }
         let loose = all.filter { $0.en.lowercased().contains(root) }
-        seedPhrasals = Array((loose.isEmpty ? all : loose).shuffled().prefix(5))
+        seedPhrasals = Array((loose.isEmpty ? all : loose).shuffled().prefix(8))
     }
 }
