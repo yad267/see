@@ -78,6 +78,7 @@ struct RegularLevelDetailView: View {
     @Environment(AppSettings.self) private var settings
     @State private var speaker: SpeechSpeaker?
     @State private var path = NavigationPath()
+    @State private var expandedEN: String?
 
     private var rows: [RegularCEFRItem] {
         RegularCEFRStore.items(kind: kind, level: level)
@@ -124,27 +125,78 @@ struct RegularLevelDetailView: View {
     }
 
     private func row(_ item: RegularCEFRItem) -> some View {
-        VStack(alignment: .leading, spacing: 6) {
-            Text(item.en)
-                .font(.headline.weight(.bold))
-            if !item.ru.isEmpty {
-                Text(item.ru)
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
+        let expanded = expandedEN == item.en
+        let usage = kind == .phrasal ? PhrasalUsageExamplesStore.examples(for: item.en) : []
+        return VStack(alignment: .leading, spacing: 6) {
+            Button {
+                if kind == .phrasal {
+                    expandedEN = expanded ? nil : item.en
+                }
+            } label: {
+                HStack(alignment: .firstTextBaseline) {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(item.en)
+                            .font(.headline.weight(.bold))
+                        if !item.ru.isEmpty {
+                            Text(item.ru)
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    Spacer(minLength: 8)
+                    if kind == .phrasal, !usage.isEmpty {
+                        Image(systemName: expanded ? "chevron.up" : "chevron.down")
+                            .font(.caption.weight(.bold))
+                            .foregroundStyle(.tertiary)
+                    }
+                }
             }
-            if !item.exampleEn.isEmpty {
+            .buttonStyle(.plain)
+
+            if !expanded, !item.exampleEn.isEmpty {
                 Text(item.exampleEn)
                     .font(.caption)
                     .foregroundStyle(.tertiary)
+                    .fixedSize(horizontal: false, vertical: true)
             }
-            if !item.exampleRu.isEmpty {
-                Text(item.exampleRu)
-                    .font(.caption2)
-                    .foregroundStyle(.tertiary)
+            if expanded {
+                if !usage.isEmpty {
+                    Text("Примеры · обычный и быт / объект")
+                        .font(.caption2.weight(.bold))
+                        .foregroundStyle(.secondary)
+                    ForEach(Array(usage.enumerated()), id: \.offset) { _, ex in
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(ex.contextTitleRU)
+                                .font(.caption2.weight(.semibold))
+                                .foregroundStyle(.tertiary)
+                            Text(ex.en)
+                                .font(.caption.weight(.semibold))
+                                .fixedSize(horizontal: false, vertical: true)
+                            if !ex.ru.isEmpty {
+                                Text(ex.ru)
+                                    .font(.caption2)
+                                    .foregroundStyle(.secondary)
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }
+                        }
+                        .padding(.top, 2)
+                    }
+                } else if !item.exampleEn.isEmpty {
+                    Text(item.exampleEn)
+                        .font(.caption)
+                        .foregroundStyle(.tertiary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
             }
+
             Button {
                 speaker?.updateSettings(settings)
-                let speak = item.exampleEn.isEmpty ? item.en : item.exampleEn
+                let speak: String
+                if expanded, let first = usage.first {
+                    speak = first.en
+                } else {
+                    speak = item.exampleEn.isEmpty ? item.en : item.exampleEn
+                }
                 speaker?.speakEN(speak)
             } label: {
                 Label("Слушать EN", systemImage: "speaker.wave.2.fill")

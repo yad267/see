@@ -714,6 +714,11 @@
       "example_en": "Switch on the drill."
     },
     {
+      "en": "tag in",
+      "ru": "отметиться / войти в наряд",
+      "example_en": "Tag in at the cabin before you go on site."
+    },
+    {
       "en": "tag out",
       "ru": "бирка (LOTO)",
       "example_en": "Tag out the panel."

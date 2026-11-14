@@ -97,7 +97,10 @@ struct PhrasalHubView: View {
 
                 TutorPairsView(mode: .phrasal, seedPhrasals: seedPhrasals)
                     .id(seedPhrasals.map(\.en).joined(separator: "|"))
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
+            // Keep all hub content above the tab bar; TutorPairsView scrolls internally.
+            .safeAreaPadding(.bottom, 4)
             .navigationTitle("Фразовые")
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {

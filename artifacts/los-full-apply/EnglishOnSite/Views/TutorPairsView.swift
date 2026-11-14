@@ -98,22 +98,28 @@ struct TutorPairsView: View {
     }
 
     var body: some View {
-        VStack(spacing: 0) {
-            header
-            if roundSize == 0 {
-                emptyBank
-            } else if allCleared {
-                roundDone
-            } else {
-                HStack(alignment: .top, spacing: 12) {
-                    tileColumn(tiles: visibleLeft, side: .left)
-                    tileColumn(tiles: visibleRight, side: .right)
+        // Scroll so long gloss / practice text never sits under the tab bar.
+        ScrollView {
+            VStack(spacing: 0) {
+                header
+                if roundSize == 0 {
+                    emptyBank
+                } else if allCleared {
+                    roundDone
+                } else {
+                    HStack(alignment: .top, spacing: 12) {
+                        tileColumn(tiles: visibleLeft, side: .left)
+                        tileColumn(tiles: visibleRight, side: .right)
+                    }
+                    .padding(16)
+                    .offset(x: missShake ? -8 : 0)
                 }
-                .padding(16)
-                .offset(x: missShake ? -8 : 0)
-                Spacer(minLength: 0)
             }
+            .padding(.bottom, 28)
+            .frame(maxWidth: .infinity)
         }
+        .scrollIndicators(.visible)
+        .scrollDismissesKeyboard(.interactively)
         .navigationTitle("Пары")
         .navigationBarTitleDisplayMode(.inline)
         .navigationDestination(item: $loopSeed) { seed in
@@ -264,6 +270,7 @@ struct TutorPairsView: View {
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
+                usageExamplesBlock(for: en)
             case .pair(let enLine, let ruLine):
                 Text(enLine)
                     .font(.subheadline.weight(.bold))
@@ -272,6 +279,8 @@ struct TutorPairsView: View {
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
+                // Prefer lemma from last matched / practice; else first token-ish of EN line.
+                usageExamplesBlock(for: practiceEN.isEmpty ? enLine : practiceEN)
             }
             if !glossNote.isEmpty {
                 Text(glossNote).font(.caption2).foregroundStyle(.orange)
@@ -285,20 +294,60 @@ struct TutorPairsView: View {
         )
     }
 
+    /// In-place 2–3 usage lines (everyday + on-site) — same screen, no navigation.
+    @ViewBuilder
+    private func usageExamplesBlock(for enRaw: String) -> some View {
+        let lemma = usageLemma(from: enRaw)
+        let examples = PhrasalUsageExamplesStore.examples(for: lemma)
+        if !examples.isEmpty {
+            Text("Примеры")
+                .font(.caption2.weight(.bold))
+                .foregroundStyle(.secondary)
+                .padding(.top, 6)
+            ForEach(Array(examples.enumerated()), id: \.offset) { _, ex in
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(ex.contextTitleRU)
+                        .font(.caption2.weight(.semibold))
+                        .foregroundStyle(.tertiary)
+                    Text(ex.en)
+                        .font(.caption.weight(.semibold))
+                        .fixedSize(horizontal: false, vertical: true)
+                    if !ex.ru.isEmpty {
+                        Text(ex.ru)
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                }
+                .padding(.top, 2)
+            }
+        }
+    }
+
+    private func usageLemma(from text: String) -> String {
+        let t = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        if mode == .phrasal,
+           let hit = TutorBankStore.phrasals.first(where: {
+               t.localizedCaseInsensitiveContains($0.en) || $0.en.caseInsensitiveCompare(t) == .orderedSame
+           }) {
+            return hit.en
+        }
+        if !practiceEN.isEmpty { return practiceEN }
+        return t
+    }
+
     private var emptyBank: some View {
         VStack(spacing: 14) {
-            Spacer(minLength: 24)
             Text("Банк пуст").font(.title2.weight(.bold))
             Button("Обновить") { dealRound() }
                 .buttonStyle(.borderedProminent)
-            Spacer()
         }
         .padding(24)
+        .frame(maxWidth: .infinity)
     }
 
     private var roundDone: some View {
         VStack(spacing: 14) {
-            Spacer(minLength: 12)
             Text("Раунд готов").font(.title2.weight(.bold))
             Text("\(matchedRound.count) пар · сказать все вслух")
                 .font(.subheadline)
@@ -306,9 +355,11 @@ struct TutorPairsView: View {
             if let last = lastMatched {
                 Text(isMatchGlossMode ? last.drillEN : "\(last.leftEN) ↔ \(last.rightEN)")
                     .font(.headline.weight(.bold))
+                    .fixedSize(horizontal: false, vertical: true)
                 Text(isMatchGlossMode ? last.drillRU : "\(last.leftRU) ↔ \(last.rightRU)")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             Button {
                 let phrases = matchedRound.map { meta -> (en: String, ru: String) in
@@ -333,9 +384,9 @@ struct TutorPairsView: View {
             .disabled(matchedRound.isEmpty)
             Button("Ещё раунд") { dealRound() }
                 .buttonStyle(.bordered)
-            Spacer()
         }
         .padding(24)
+        .frame(maxWidth: .infinity)
     }
 
     private func tileColumn(tiles: [SideTile], side: Side) -> some View {

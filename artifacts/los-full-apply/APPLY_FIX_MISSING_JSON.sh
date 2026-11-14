@@ -28,6 +28,7 @@ for f in \
   Services/SectionLessonStore.swift \
   Services/RegularCEFRStore.swift \
   Services/OnSiteCEFRStore.swift \
+  Services/PhrasalUsageExamplesStore.swift \
   Services/GeminiSiteCoachService.swift \
   Models/AppLearningMode.swift \
   Models/AppSettings.swift \
@@ -35,6 +36,8 @@ for f in \
  do
   [[ -f "$HERE/EnglishOnSite/$f" ]] && cp -f "$HERE/EnglishOnSite/$f" "$ROOT/EnglishOnSite/$f" && echo "copied $f"
  done
+test -f "$ROOT/EnglishOnSite/Services/PhrasalUsageExamplesStore.swift" || { echo "MISSING PhrasalUsageExamplesStore.swift"; exit 1; }
+test -f "$ROOT/EnglishOnSite/Resources/phrasal_usage_examples_v1.json" || { echo "MISSING phrasal_usage_examples_v1.json"; exit 1; }
 
 # Ensure ReviewSession «Нет»/«Да» always speak EN even if an older local copy wins.
 if [[ -f "$ROOT/EnglishOnSite/Views/ReviewSessionView.swift" ]]; then
@@ -55,7 +58,7 @@ test -f "$ROOT/EnglishOnSite/Services/RegularCEFRStore.swift" || { echo "MISSING
 echo "--- verify required JSON ---"
 for j in regular_cefr_pack_v1.json onsite_cefr_pack_v1.json \
          lessons_onsite_sections_v1.json lessons_regular_sections_v1.json \
-         phrasals_bank_v1.json; do
+         phrasals_bank_v1.json phrasal_usage_examples_v1.json; do
   if [[ -f "$ROOT/EnglishOnSite/Resources/$j" ]]; then
     echo "OK $j ($(wc -c < "$ROOT/EnglishOnSite/Resources/$j") bytes)"
   else

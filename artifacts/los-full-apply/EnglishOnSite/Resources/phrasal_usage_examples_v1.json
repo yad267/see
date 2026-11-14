@@ -1,0 +1,3306 @@
+{
+  "version": 1,
+  "count": 165,
+  "items": {
+    "back out": {
+      "ru": "отказаться / выйти из договорённости",
+      "examples": [
+        {
+          "en": "Can you back out?",
+          "ru": "Можешь «back out»? (отказаться / выйти из договорённости)",
+          "context": "everyday"
+        },
+        {
+          "en": "Back out before you start the next task.",
+          "ru": "«Back out» перед следующей задачей. (отказаться / выйти из договорённости)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to back out on this level today.",
+          "ru": "Сегодня нужно «back out» на этом уровне. (отказаться / выйти из договорённости)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "break down": {
+      "ru": "сломаться / разреветься",
+      "examples": [
+        {
+          "en": "Can you break down?",
+          "ru": "Можешь «break down»? (сломаться / разреветься)",
+          "context": "everyday"
+        },
+        {
+          "en": "Break down before you start the next task.",
+          "ru": "«Break down» перед следующей задачей. (сломаться / разреветься)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to break down on this level today.",
+          "ru": "Сегодня нужно «break down» на этом уровне. (сломаться / разреветься)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "break up": {
+      "ru": "расстаться",
+      "examples": [
+        {
+          "en": "Can you break up?",
+          "ru": "Можешь «break up»? (расстаться)",
+          "context": "everyday"
+        },
+        {
+          "en": "Break up before you start the next task.",
+          "ru": "«Break up» перед следующей задачей. (расстаться)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to break up on this level today.",
+          "ru": "Сегодня нужно «break up» на этом уровне. (расстаться)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "bring back": {
+      "ru": "вернуть / напомнить",
+      "examples": [
+        {
+          "en": "Can you bring back?",
+          "ru": "Можешь «bring back»? (вернуть / напомнить)",
+          "context": "everyday"
+        },
+        {
+          "en": "Bring back before you start the next task.",
+          "ru": "«Bring back» перед следующей задачей. (вернуть / напомнить)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to bring back on this level today.",
+          "ru": "Сегодня нужно «bring back» на этом уровне. (вернуть / напомнить)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "bring up": {
+      "ru": "поднять тему / воспитать",
+      "examples": [
+        {
+          "en": "Can you bring up?",
+          "ru": "Можешь «bring up»? (поднять тему / воспитать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Bring up before you start the next task.",
+          "ru": "«Bring up» перед следующей задачей. (поднять тему / воспитать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to bring up on this level today.",
+          "ru": "Сегодня нужно «bring up» на этом уровне. (поднять тему / воспитать)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "call back": {
+      "ru": "перезвонить",
+      "examples": [
+        {
+          "en": "Can you call back?",
+          "ru": "Можешь «call back»? (перезвонить)",
+          "context": "everyday"
+        },
+        {
+          "en": "Call back before you start the next task.",
+          "ru": "«Call back» перед следующей задачей. (перезвонить)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to call back on this level today.",
+          "ru": "Сегодня нужно «call back» на этом уровне. (перезвонить)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "call off": {
+      "ru": "отменить",
+      "examples": [
+        {
+          "en": "Can you call off?",
+          "ru": "Можешь «call off»? (отменить)",
+          "context": "everyday"
+        },
+        {
+          "en": "Call off before you start the next task.",
+          "ru": "«Call off» перед следующей задачей. (отменить)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to call off on this level today.",
+          "ru": "Сегодня нужно «call off» на этом уровне. (отменить)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "call out": {
+      "ru": "вызвать аварию",
+      "examples": [
+        {
+          "en": "Can you call out?",
+          "ru": "Можешь «call out»? (вызвать аварию)",
+          "context": "everyday"
+        },
+        {
+          "en": "Call out before you start the next task.",
+          "ru": "«Call out» перед следующей задачей. (вызвать аварию)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to call out on this level today.",
+          "ru": "Сегодня нужно «call out» на этом уровне. (вызвать аварию)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "carry on": {
+      "ru": "продолжать",
+      "examples": [
+        {
+          "en": "Can you carry on?",
+          "ru": "Можешь «carry on»? (продолжать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Carry on before you start the next task.",
+          "ru": "«Carry on» перед следующей задачей. (продолжать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to carry on on this level today.",
+          "ru": "Сегодня нужно «carry on» на этом уровне. (продолжать)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "carry out": {
+      "ru": "выполнить",
+      "examples": [
+        {
+          "en": "Can you carry out?",
+          "ru": "Можешь «carry out»? (выполнить)",
+          "context": "everyday"
+        },
+        {
+          "en": "Carry out before you start the next task.",
+          "ru": "«Carry out» перед следующей задачей. (выполнить)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to carry out on this level today.",
+          "ru": "Сегодня нужно «carry out» на этом уровне. (выполнить)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "carry through": {
+      "ru": "довести до конца",
+      "examples": [
+        {
+          "en": "Can you carry through?",
+          "ru": "Можешь «carry through»? (довести до конца)",
+          "context": "everyday"
+        },
+        {
+          "en": "Carry through before you start the next task.",
+          "ru": "«Carry through» перед следующей задачей. (довести до конца)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to carry through on this level today.",
+          "ru": "Сегодня нужно «carry through» на этом уровне. (довести до конца)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "catch up": {
+      "ru": "догнать / наверстать",
+      "examples": [
+        {
+          "en": "Can you catch up?",
+          "ru": "Можешь «catch up»? (догнать / наверстать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Catch up before you start the next task.",
+          "ru": "«Catch up» перед следующей задачей. (догнать / наверстать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to catch up on this level today.",
+          "ru": "Сегодня нужно «catch up» на этом уровне. (догнать / наверстать)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "check in": {
+      "ru": "зарегистрироваться",
+      "examples": [
+        {
+          "en": "Can you check in?",
+          "ru": "Можешь «check in»? (зарегистрироваться)",
+          "context": "everyday"
+        },
+        {
+          "en": "Check in before you start the next task.",
+          "ru": "«Check in» перед следующей задачей. (зарегистрироваться)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to check in on this level today.",
+          "ru": "Сегодня нужно «check in» на этом уровне. (зарегистрироваться)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "check out": {
+      "ru": "выселиться / глянуть",
+      "examples": [
+        {
+          "en": "Can you check out?",
+          "ru": "Можешь «check out»? (выселиться / глянуть)",
+          "context": "everyday"
+        },
+        {
+          "en": "Check out before you start the next task.",
+          "ru": "«Check out» перед следующей задачей. (выселиться / глянуть)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to check out on this level today.",
+          "ru": "Сегодня нужно «check out» на этом уровне. (выселиться / глянуть)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "clean up": {
+      "ru": "убрать",
+      "examples": [
+        {
+          "en": "Can you clean up?",
+          "ru": "Можешь «clean up»? (убрать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Clean up before you start the next task.",
+          "ru": "«Clean up» перед следующей задачей. (убрать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to clean up on this level today.",
+          "ru": "Сегодня нужно «clean up» на этом уровне. (убрать)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "clear away": {
+      "ru": "убрать с прохода",
+      "examples": [
+        {
+          "en": "Can you clear away?",
+          "ru": "Можешь «clear away»? (убрать с прохода)",
+          "context": "everyday"
+        },
+        {
+          "en": "Clear away before you start the next task.",
+          "ru": "«Clear away» перед следующей задачей. (убрать с прохода)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to clear away on this level today.",
+          "ru": "Сегодня нужно «clear away» на этом уровне. (убрать с прохода)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "clear out": {
+      "ru": "очистить",
+      "examples": [
+        {
+          "en": "Can you clear out?",
+          "ru": "Можешь «clear out»? (очистить)",
+          "context": "everyday"
+        },
+        {
+          "en": "Clear out before you start the next task.",
+          "ru": "«Clear out» перед следующей задачей. (очистить)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to clear out on this level today.",
+          "ru": "Сегодня нужно «clear out» на этом уровне. (очистить)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "climb down": {
+      "ru": "слезть",
+      "examples": [
+        {
+          "en": "Can you climb down?",
+          "ru": "Можешь «climb down»? (слезть)",
+          "context": "everyday"
+        },
+        {
+          "en": "Climb down before you start the next task.",
+          "ru": "«Climb down» перед следующей задачей. (слезть)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to climb down on this level today.",
+          "ru": "Сегодня нужно «climb down» на этом уровне. (слезть)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "climb up": {
+      "ru": "залезть",
+      "examples": [
+        {
+          "en": "Can you climb up?",
+          "ru": "Можешь «climb up»? (залезть)",
+          "context": "everyday"
+        },
+        {
+          "en": "Climb up before you start the next task.",
+          "ru": "«Climb up» перед следующей задачей. (залезть)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to climb up on this level today.",
+          "ru": "Сегодня нужно «climb up» на этом уровне. (залезть)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "come back": {
+      "ru": "вернуться",
+      "examples": [
+        {
+          "en": "Can you come back?",
+          "ru": "Можешь «come back»? (вернуться)",
+          "context": "everyday"
+        },
+        {
+          "en": "Come back before you start the next task.",
+          "ru": "«Come back» перед следующей задачей. (вернуться)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to come back on this level today.",
+          "ru": "Сегодня нужно «come back» на этом уровне. (вернуться)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "come in": {
+      "ru": "войти",
+      "examples": [
+        {
+          "en": "Can you come in?",
+          "ru": "Можешь «come in»? (войти)",
+          "context": "everyday"
+        },
+        {
+          "en": "Come in before you start the next task.",
+          "ru": "«Come in» перед следующей задачей. (войти)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to come in on this level today.",
+          "ru": "Сегодня нужно «come in» на этом уровне. (войти)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "come over": {
+      "ru": "зайти в гости",
+      "examples": [
+        {
+          "en": "Can you come over?",
+          "ru": "Можешь «come over»? (зайти в гости)",
+          "context": "everyday"
+        },
+        {
+          "en": "Come over before you start the next task.",
+          "ru": "«Come over» перед следующей задачей. (зайти в гости)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to come over on this level today.",
+          "ru": "Сегодня нужно «come over» на этом уровне. (зайти в гости)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "come up with": {
+      "ru": "придумать",
+      "examples": [
+        {
+          "en": "She came up with a better idea.",
+          "ru": "Она придумала идею лучше.",
+          "context": "everyday"
+        },
+        {
+          "en": "Come up with a temporary fix until the part arrives.",
+          "ru": "Придумай временный фикс, пока деталь не приедет.",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to come up with a safer access route.",
+          "ru": "Нужно придумать более безопасный путь доступа.",
+          "context": "onsite"
+        }
+      ]
+    },
+    "come with": {
+      "ru": "идти с",
+      "examples": [
+        {
+          "en": "Can you come with?",
+          "ru": "Можешь «come with»? (идти с)",
+          "context": "everyday"
+        },
+        {
+          "en": "Come with before you start the next task.",
+          "ru": "«Come with» перед следующей задачей. (идти с)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to come with on this level today.",
+          "ru": "Сегодня нужно «come with» на этом уровне. (идти с)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "cool down": {
+      "ru": "остыть",
+      "examples": [
+        {
+          "en": "Can you cool down?",
+          "ru": "Можешь «cool down»? (остыть)",
+          "context": "everyday"
+        },
+        {
+          "en": "Cool down before you start the next task.",
+          "ru": "«Cool down» перед следующей задачей. (остыть)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to cool down on this level today.",
+          "ru": "Сегодня нужно «cool down» на этом уровне. (остыть)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "cut off": {
+      "ru": "отрезать; отключить",
+      "examples": [
+        {
+          "en": "Can you cut off?",
+          "ru": "Можешь «cut off»? (отрезать; отключить)",
+          "context": "everyday"
+        },
+        {
+          "en": "Cut off before you start the next task.",
+          "ru": "«Cut off» перед следующей задачей. (отрезать; отключить)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to cut off on this level today.",
+          "ru": "Сегодня нужно «cut off» на этом уровне. (отрезать; отключить)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "cut out": {
+      "ru": "вырезать / заглохнуть",
+      "examples": [
+        {
+          "en": "Can you cut out?",
+          "ru": "Можешь «cut out»? (вырезать / заглохнуть)",
+          "context": "everyday"
+        },
+        {
+          "en": "Cut out before you start the next task.",
+          "ru": "«Cut out» перед следующей задачей. (вырезать / заглохнуть)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to cut out on this level today.",
+          "ru": "Сегодня нужно «cut out» на этом уровне. (вырезать / заглохнуть)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "deal with": {
+      "ru": "иметь дело с",
+      "examples": [
+        {
+          "en": "Can you deal with?",
+          "ru": "Можешь «deal with»? (иметь дело с)",
+          "context": "everyday"
+        },
+        {
+          "en": "Deal with before you start the next task.",
+          "ru": "«Deal with» перед следующей задачей. (иметь дело с)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to deal with on this level today.",
+          "ru": "Сегодня нужно «deal with» на этом уровне. (иметь дело с)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "earth out": {
+      "ru": "посадить на землю",
+      "examples": [
+        {
+          "en": "Can you earth out?",
+          "ru": "Можешь «earth out»? (посадить на землю)",
+          "context": "everyday"
+        },
+        {
+          "en": "Earth out before you start the next task.",
+          "ru": "«Earth out» перед следующей задачей. (посадить на землю)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to earth out on this level today.",
+          "ru": "Сегодня нужно «earth out» на этом уровне. (посадить на землю)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "end up": {
+      "ru": "оказаться",
+      "examples": [
+        {
+          "en": "Can you end up?",
+          "ru": "Можешь «end up»? (оказаться)",
+          "context": "everyday"
+        },
+        {
+          "en": "End up before you start the next task.",
+          "ru": "«End up» перед следующей задачей. (оказаться)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to end up on this level today.",
+          "ru": "Сегодня нужно «end up» на этом уровне. (оказаться)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "fall behind": {
+      "ru": "отстать",
+      "examples": [
+        {
+          "en": "Can you fall behind?",
+          "ru": "Можешь «fall behind»? (отстать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Fall behind before you start the next task.",
+          "ru": "«Fall behind» перед следующей задачей. (отстать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to fall behind on this level today.",
+          "ru": "Сегодня нужно «fall behind» на этом уровне. (отстать)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "fall down": {
+      "ru": "упасть",
+      "examples": [
+        {
+          "en": "Can you fall down?",
+          "ru": "Можешь «fall down»? (упасть)",
+          "context": "everyday"
+        },
+        {
+          "en": "Fall down before you start the next task.",
+          "ru": "«Fall down» перед следующей задачей. (упасть)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to fall down on this level today.",
+          "ru": "Сегодня нужно «fall down» на этом уровне. (упасть)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "fall off": {
+      "ru": "упасть (с чего-то)",
+      "examples": [
+        {
+          "en": "Can you fall off?",
+          "ru": "Можешь «fall off»? (упасть (с чего-то))",
+          "context": "everyday"
+        },
+        {
+          "en": "Fall off before you start the next task.",
+          "ru": "«Fall off» перед следующей задачей. (упасть (с чего-то))",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to fall off on this level today.",
+          "ru": "Сегодня нужно «fall off» на этом уровне. (упасть (с чего-то))",
+          "context": "onsite"
+        }
+      ]
+    },
+    "figure out": {
+      "ru": "понять; разобраться",
+      "examples": [
+        {
+          "en": "Can you figure out?",
+          "ru": "Можешь «figure out»? (понять; разобраться)",
+          "context": "everyday"
+        },
+        {
+          "en": "Figure out before you start the next task.",
+          "ru": "«Figure out» перед следующей задачей. (понять; разобраться)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to figure out on this level today.",
+          "ru": "Сегодня нужно «figure out» на этом уровне. (понять; разобраться)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "fill in": {
+      "ru": "заполнить",
+      "examples": [
+        {
+          "en": "Can you fill in?",
+          "ru": "Можешь «fill in»? (заполнить)",
+          "context": "everyday"
+        },
+        {
+          "en": "Fill in before you start the next task.",
+          "ru": "«Fill in» перед следующей задачей. (заполнить)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to fill in on this level today.",
+          "ru": "Сегодня нужно «fill in» на этом уровне. (заполнить)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "fill out": {
+      "ru": "заполнить (анкету)",
+      "examples": [
+        {
+          "en": "Can you fill out?",
+          "ru": "Можешь «fill out»? (заполнить (анкету))",
+          "context": "everyday"
+        },
+        {
+          "en": "Fill out before you start the next task.",
+          "ru": "«Fill out» перед следующей задачей. (заполнить (анкету))",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to fill out on this level today.",
+          "ru": "Сегодня нужно «fill out» на этом уровне. (заполнить (анкету))",
+          "context": "onsite"
+        }
+      ]
+    },
+    "find out": {
+      "ru": "узнать",
+      "examples": [
+        {
+          "en": "Can you find out?",
+          "ru": "Можешь «find out»? (узнать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Find out before you start the next task.",
+          "ru": "«Find out» перед следующей задачей. (узнать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to find out on this level today.",
+          "ru": "Сегодня нужно «find out» на этом уровне. (узнать)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "follow up": {
+      "ru": "уточнить / проверить позже",
+      "examples": [
+        {
+          "en": "Can you follow up?",
+          "ru": "Можешь «follow up»? (уточнить / проверить позже)",
+          "context": "everyday"
+        },
+        {
+          "en": "Follow up before you start the next task.",
+          "ru": "«Follow up» перед следующей задачей. (уточнить / проверить позже)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to follow up on this level today.",
+          "ru": "Сегодня нужно «follow up» на этом уровне. (уточнить / проверить позже)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "get along": {
+      "ru": "ладить",
+      "examples": [
+        {
+          "en": "Can you get along?",
+          "ru": "Можешь «get along»? (ладить)",
+          "context": "everyday"
+        },
+        {
+          "en": "Get along before you start the next task.",
+          "ru": "«Get along» перед следующей задачей. (ладить)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to get along on this level today.",
+          "ru": "Сегодня нужно «get along» на этом уровне. (ладить)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "get back": {
+      "ru": "вернуться",
+      "examples": [
+        {
+          "en": "I'll get back to you tonight.",
+          "ru": "Вернусь к тебе вечером.",
+          "context": "everyday"
+        },
+        {
+          "en": "Get back from the edge — it's not boarded yet.",
+          "ru": "Отойди от края — ещё не закрыто.",
+          "context": "onsite"
+        },
+        {
+          "en": "Get back to the board when the isolation is proven.",
+          "ru": "Вернись к щиту, когда изоляция подтверждена.",
+          "context": "onsite"
+        }
+      ]
+    },
+    "get by": {
+      "ru": "справляться",
+      "examples": [
+        {
+          "en": "Can you get by?",
+          "ru": "Можешь «get by»? (справляться)",
+          "context": "everyday"
+        },
+        {
+          "en": "Get by before you start the next task.",
+          "ru": "«Get by» перед следующей задачей. (справляться)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to get by on this level today.",
+          "ru": "Сегодня нужно «get by» на этом уровне. (справляться)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "get in": {
+      "ru": "войти / прибыть",
+      "examples": [
+        {
+          "en": "Can you get in?",
+          "ru": "Можешь «get in»? (войти / прибыть)",
+          "context": "everyday"
+        },
+        {
+          "en": "Get in before you start the next task.",
+          "ru": "«Get in» перед следующей задачей. (войти / прибыть)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to get in on this level today.",
+          "ru": "Сегодня нужно «get in» на этом уровне. (войти / прибыть)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "get off": {
+      "ru": "сходить / начинать",
+      "examples": [
+        {
+          "en": "Can you get off?",
+          "ru": "Можешь «get off»? (сходить / начинать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Get off before you start the next task.",
+          "ru": "«Get off» перед следующей задачей. (сходить / начинать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to get off on this level today.",
+          "ru": "Сегодня нужно «get off» на этом уровне. (сходить / начинать)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "get on": {
+      "ru": "ладить / садиться",
+      "examples": [
+        {
+          "en": "Can you get on?",
+          "ru": "Можешь «get on»? (ладить / садиться)",
+          "context": "everyday"
+        },
+        {
+          "en": "Get on before you start the next task.",
+          "ru": "«Get on» перед следующей задачей. (ладить / садиться)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to get on on this level today.",
+          "ru": "Сегодня нужно «get on» на этом уровне. (ладить / садиться)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "get out": {
+      "ru": "выйти",
+      "examples": [
+        {
+          "en": "Can you get out?",
+          "ru": "Можешь «get out»? (выйти)",
+          "context": "everyday"
+        },
+        {
+          "en": "Get out before you start the next task.",
+          "ru": "«Get out» перед следующей задачей. (выйти)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to get out on this level today.",
+          "ru": "Сегодня нужно «get out» на этом уровне. (выйти)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "get over": {
+      "ru": "пережить / оправиться",
+      "examples": [
+        {
+          "en": "Can you get over?",
+          "ru": "Можешь «get over»? (пережить / оправиться)",
+          "context": "everyday"
+        },
+        {
+          "en": "Get over before you start the next task.",
+          "ru": "«Get over» перед следующей задачей. (пережить / оправиться)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to get over on this level today.",
+          "ru": "Сегодня нужно «get over» на этом уровне. (пережить / оправиться)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "get rid of": {
+      "ru": "избавиться",
+      "examples": [
+        {
+          "en": "Can you get rid of?",
+          "ru": "Можешь «get rid of»? (избавиться)",
+          "context": "everyday"
+        },
+        {
+          "en": "Get rid of before you start the next task.",
+          "ru": "«Get rid of» перед следующей задачей. (избавиться)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to get rid of on this level today.",
+          "ru": "Сегодня нужно «get rid of» на этом уровне. (избавиться)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "get through": {
+      "ru": "дозвониться / пройти",
+      "examples": [
+        {
+          "en": "Can you get through?",
+          "ru": "Можешь «get through»? (дозвониться / пройти)",
+          "context": "everyday"
+        },
+        {
+          "en": "Get through before you start the next task.",
+          "ru": "«Get through» перед следующей задачей. (дозвониться / пройти)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to get through on this level today.",
+          "ru": "Сегодня нужно «get through» на этом уровне. (дозвониться / пройти)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "get together": {
+      "ru": "встретиться",
+      "examples": [
+        {
+          "en": "Can you get together?",
+          "ru": "Можешь «get together»? (встретиться)",
+          "context": "everyday"
+        },
+        {
+          "en": "Get together before you start the next task.",
+          "ru": "«Get together» перед следующей задачей. (встретиться)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to get together on this level today.",
+          "ru": "Сегодня нужно «get together» на этом уровне. (встретиться)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "get up": {
+      "ru": "вставать",
+      "examples": [
+        {
+          "en": "Can you get up?",
+          "ru": "Можешь «get up»? (вставать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Get up before you start the next task.",
+          "ru": "«Get up» перед следующей задачей. (вставать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to get up on this level today.",
+          "ru": "Сегодня нужно «get up» на этом уровне. (вставать)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "give a hand": {
+      "ru": "помочь",
+      "examples": [
+        {
+          "en": "Can you give a hand?",
+          "ru": "Можешь «give a hand»? (помочь)",
+          "context": "everyday"
+        },
+        {
+          "en": "Give a hand before you start the next task.",
+          "ru": "«Give a hand» перед следующей задачей. (помочь)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to give a hand on this level today.",
+          "ru": "Сегодня нужно «give a hand» на этом уровне. (помочь)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "give away": {
+      "ru": "раздавать / выдать секрет",
+      "examples": [
+        {
+          "en": "Can you give away?",
+          "ru": "Можешь «give away»? (раздавать / выдать секрет)",
+          "context": "everyday"
+        },
+        {
+          "en": "Give away before you start the next task.",
+          "ru": "«Give away» перед следующей задачей. (раздавать / выдать секрет)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to give away on this level today.",
+          "ru": "Сегодня нужно «give away» на этом уровне. (раздавать / выдать секрет)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "give back": {
+      "ru": "вернуть",
+      "examples": [
+        {
+          "en": "Can you give back?",
+          "ru": "Можешь «give back»? (вернуть)",
+          "context": "everyday"
+        },
+        {
+          "en": "Give back before you start the next task.",
+          "ru": "«Give back» перед следующей задачей. (вернуть)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to give back on this level today.",
+          "ru": "Сегодня нужно «give back» на этом уровне. (вернуть)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "give in": {
+      "ru": "уступить",
+      "examples": [
+        {
+          "en": "Can you give in?",
+          "ru": "Можешь «give in»? (уступить)",
+          "context": "everyday"
+        },
+        {
+          "en": "Give in before you start the next task.",
+          "ru": "«Give in» перед следующей задачей. (уступить)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to give in on this level today.",
+          "ru": "Сегодня нужно «give in» на этом уровне. (уступить)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "give up": {
+      "ru": "сдаться",
+      "examples": [
+        {
+          "en": "Can you give up?",
+          "ru": "Можешь «give up»? (сдаться)",
+          "context": "everyday"
+        },
+        {
+          "en": "Give up before you start the next task.",
+          "ru": "«Give up» перед следующей задачей. (сдаться)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to give up on this level today.",
+          "ru": "Сегодня нужно «give up» на этом уровне. (сдаться)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "go ahead": {
+      "ru": "давай; продолжай",
+      "examples": [
+        {
+          "en": "Can you go ahead?",
+          "ru": "Можешь «go ahead»? (давай; продолжай)",
+          "context": "everyday"
+        },
+        {
+          "en": "Go ahead before you start the next task.",
+          "ru": "«Go ahead» перед следующей задачей. (давай; продолжай)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to go ahead on this level today.",
+          "ru": "Сегодня нужно «go ahead» на этом уровне. (давай; продолжай)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "go away": {
+      "ru": "уйти",
+      "examples": [
+        {
+          "en": "Can you go away?",
+          "ru": "Можешь «go away»? (уйти)",
+          "context": "everyday"
+        },
+        {
+          "en": "Go away before you start the next task.",
+          "ru": "«Go away» перед следующей задачей. (уйти)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to go away on this level today.",
+          "ru": "Сегодня нужно «go away» на этом уровне. (уйти)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "go back": {
+      "ru": "вернуться",
+      "examples": [
+        {
+          "en": "Can you go back?",
+          "ru": "Можешь «go back»? (вернуться)",
+          "context": "everyday"
+        },
+        {
+          "en": "Go back before you start the next task.",
+          "ru": "«Go back» перед следующей задачей. (вернуться)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to go back on this level today.",
+          "ru": "Сегодня нужно «go back» на этом уровне. (вернуться)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "go on": {
+      "ru": "продолжать",
+      "examples": [
+        {
+          "en": "Can you go on?",
+          "ru": "Можешь «go on»? (продолжать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Go on before you start the next task.",
+          "ru": "«Go on» перед следующей задачей. (продолжать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to go on on this level today.",
+          "ru": "Сегодня нужно «go on» на этом уровне. (продолжать)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "go out": {
+      "ru": "выйти / потухнуть",
+      "examples": [
+        {
+          "en": "Can you go out?",
+          "ru": "Можешь «go out»? (выйти / потухнуть)",
+          "context": "everyday"
+        },
+        {
+          "en": "Go out before you start the next task.",
+          "ru": "«Go out» перед следующей задачей. (выйти / потухнуть)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to go out on this level today.",
+          "ru": "Сегодня нужно «go out» на этом уровне. (выйти / потухнуть)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "go over": {
+      "ru": "просмотреть",
+      "examples": [
+        {
+          "en": "Can you go over?",
+          "ru": "Можешь «go over»? (просмотреть)",
+          "context": "everyday"
+        },
+        {
+          "en": "Go over before you start the next task.",
+          "ru": "«Go over» перед следующей задачей. (просмотреть)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to go over on this level today.",
+          "ru": "Сегодня нужно «go over» на этом уровне. (просмотреть)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "go through": {
+      "ru": "пройти через / разобрать",
+      "examples": [
+        {
+          "en": "Can you go through?",
+          "ru": "Можешь «go through»? (пройти через / разобрать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Go through before you start the next task.",
+          "ru": "«Go through» перед следующей задачей. (пройти через / разобрать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to go through on this level today.",
+          "ru": "Сегодня нужно «go through» на этом уровне. (пройти через / разобрать)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "hand in": {
+      "ru": "сдать",
+      "examples": [
+        {
+          "en": "Can you hand in?",
+          "ru": "Можешь «hand in»? (сдать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Hand in before you start the next task.",
+          "ru": "«Hand in» перед следующей задачей. (сдать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to hand in on this level today.",
+          "ru": "Сегодня нужно «hand in» на этом уровне. (сдать)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "hand over": {
+      "ru": "передать",
+      "examples": [
+        {
+          "en": "Can you hand over?",
+          "ru": "Можешь «hand over»? (передать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Hand over before you start the next task.",
+          "ru": "«Hand over» перед следующей задачей. (передать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to hand over on this level today.",
+          "ru": "Сегодня нужно «hand over» на этом уровне. (передать)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "hang on": {
+      "ru": "подожди; подержи",
+      "examples": [
+        {
+          "en": "Can you hang on?",
+          "ru": "Можешь «hang on»? (подожди; подержи)",
+          "context": "everyday"
+        },
+        {
+          "en": "Hang on before you start the next task.",
+          "ru": "«Hang on» перед следующей задачей. (подожди; подержи)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to hang on on this level today.",
+          "ru": "Сегодня нужно «hang on» на этом уровне. (подожди; подержи)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "hang out": {
+      "ru": "тусоваться",
+      "examples": [
+        {
+          "en": "Can you hang out?",
+          "ru": "Можешь «hang out»? (тусоваться)",
+          "context": "everyday"
+        },
+        {
+          "en": "Hang out before you start the next task.",
+          "ru": "«Hang out» перед следующей задачей. (тусоваться)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to hang out on this level today.",
+          "ru": "Сегодня нужно «hang out» на этом уровне. (тусоваться)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "hang up": {
+      "ru": "повесить трубку / повесить",
+      "examples": [
+        {
+          "en": "Can you hang up?",
+          "ru": "Можешь «hang up»? (повесить трубку / повесить)",
+          "context": "everyday"
+        },
+        {
+          "en": "Hang up before you start the next task.",
+          "ru": "«Hang up» перед следующей задачей. (повесить трубку / повесить)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to hang up on this level today.",
+          "ru": "Сегодня нужно «hang up» на этом уровне. (повесить трубку / повесить)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "hold on": {
+      "ru": "подождать",
+      "examples": [
+        {
+          "en": "Can you hold on?",
+          "ru": "Можешь «hold on»? (подождать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Hold on before you start the next task.",
+          "ru": "«Hold on» перед следующей задачей. (подождать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to hold on on this level today.",
+          "ru": "Сегодня нужно «hold on» на этом уровне. (подождать)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "hold up": {
+      "ru": "задержать",
+      "examples": [
+        {
+          "en": "Can you hold up?",
+          "ru": "Можешь «hold up»? (задержать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Hold up before you start the next task.",
+          "ru": "«Hold up» перед следующей задачей. (задержать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to hold up on this level today.",
+          "ru": "Сегодня нужно «hold up» на этом уровне. (задержать)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "hurry up": {
+      "ru": "поторопись",
+      "examples": [
+        {
+          "en": "Can you hurry up?",
+          "ru": "Можешь «hurry up»? (поторопись)",
+          "context": "everyday"
+        },
+        {
+          "en": "Hurry up before you start the next task.",
+          "ru": "«Hurry up» перед следующей задачей. (поторопись)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to hurry up on this level today.",
+          "ru": "Сегодня нужно «hurry up» на этом уровне. (поторопись)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "iron out": {
+      "ru": "устранить шероховатости",
+      "examples": [
+        {
+          "en": "Can you iron out?",
+          "ru": "Можешь «iron out»? (устранить шероховатости)",
+          "context": "everyday"
+        },
+        {
+          "en": "Iron out before you start the next task.",
+          "ru": "«Iron out» перед следующей задачей. (устранить шероховатости)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to iron out on this level today.",
+          "ru": "Сегодня нужно «iron out» на этом уровне. (устранить шероховатости)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "keep off": {
+      "ru": "не наступать",
+      "examples": [
+        {
+          "en": "Can you keep off?",
+          "ru": "Можешь «keep off»? (не наступать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Keep off before you start the next task.",
+          "ru": "«Keep off» перед следующей задачей. (не наступать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to keep off on this level today.",
+          "ru": "Сегодня нужно «keep off» на этом уровне. (не наступать)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "keep on": {
+      "ru": "продолжать",
+      "examples": [
+        {
+          "en": "Can you keep on?",
+          "ru": "Можешь «keep on»? (продолжать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Keep on before you start the next task.",
+          "ru": "«Keep on» перед следующей задачей. (продолжать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to keep on on this level today.",
+          "ru": "Сегодня нужно «keep on» на этом уровне. (продолжать)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "keep up": {
+      "ru": "не отставать",
+      "examples": [
+        {
+          "en": "Can you keep up?",
+          "ru": "Можешь «keep up»? (не отставать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Keep up before you start the next task.",
+          "ru": "«Keep up» перед следующей задачей. (не отставать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to keep up on this level today.",
+          "ru": "Сегодня нужно «keep up» на этом уровне. (не отставать)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "knock off": {
+      "ru": "закончить смену (разг.)",
+      "examples": [
+        {
+          "en": "Can you knock off?",
+          "ru": "Можешь «knock off»? (закончить смену (разг.))",
+          "context": "everyday"
+        },
+        {
+          "en": "Knock off before you start the next task.",
+          "ru": "«Knock off» перед следующей задачей. (закончить смену (разг.))",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to knock off on this level today.",
+          "ru": "Сегодня нужно «knock off» на этом уровне. (закончить смену (разг.))",
+          "context": "onsite"
+        }
+      ]
+    },
+    "lay down": {
+      "ru": "разложить",
+      "examples": [
+        {
+          "en": "Can you lay down?",
+          "ru": "Можешь «lay down»? (разложить)",
+          "context": "everyday"
+        },
+        {
+          "en": "Lay down before you start the next task.",
+          "ru": "«Lay down» перед следующей задачей. (разложить)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to lay down on this level today.",
+          "ru": "Сегодня нужно «lay down» на этом уровне. (разложить)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "lay out": {
+      "ru": "разложить",
+      "examples": [
+        {
+          "en": "Can you lay out?",
+          "ru": "Можешь «lay out»? (разложить)",
+          "context": "everyday"
+        },
+        {
+          "en": "Lay out before you start the next task.",
+          "ru": "«Lay out» перед следующей задачей. (разложить)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to lay out on this level today.",
+          "ru": "Сегодня нужно «lay out» на этом уровне. (разложить)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "lock out": {
+      "ru": "блокировать (LOTO)",
+      "examples": [
+        {
+          "en": "Can you lock out?",
+          "ru": "Можешь «lock out»? (блокировать (LOTO))",
+          "context": "everyday"
+        },
+        {
+          "en": "Lock out before you start the next task.",
+          "ru": "«Lock out» перед следующей задачей. (блокировать (LOTO))",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to lock out on this level today.",
+          "ru": "Сегодня нужно «lock out» на этом уровне. (блокировать (LOTO))",
+          "context": "onsite"
+        }
+      ]
+    },
+    "log in": {
+      "ru": "войти в систему",
+      "examples": [
+        {
+          "en": "Can you log in?",
+          "ru": "Можешь «log in»? (войти в систему)",
+          "context": "everyday"
+        },
+        {
+          "en": "Log in before you start the next task.",
+          "ru": "«Log in» перед следующей задачей. (войти в систему)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to log in on this level today.",
+          "ru": "Сегодня нужно «log in» на этом уровне. (войти в систему)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "log out": {
+      "ru": "выйти из системы",
+      "examples": [
+        {
+          "en": "Can you log out?",
+          "ru": "Можешь «log out»? (выйти из системы)",
+          "context": "everyday"
+        },
+        {
+          "en": "Log out before you start the next task.",
+          "ru": "«Log out» перед следующей задачей. (выйти из системы)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to log out on this level today.",
+          "ru": "Сегодня нужно «log out» на этом уровне. (выйти из системы)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "look after": {
+      "ru": "присматривать",
+      "examples": [
+        {
+          "en": "Can you look after?",
+          "ru": "Можешь «look after»? (присматривать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Look after before you start the next task.",
+          "ru": "«Look after» перед следующей задачей. (присматривать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to look after on this level today.",
+          "ru": "Сегодня нужно «look after» на этом уровне. (присматривать)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "look at": {
+      "ru": "смотреть на",
+      "examples": [
+        {
+          "en": "Can you look at?",
+          "ru": "Можешь «look at»? (смотреть на)",
+          "context": "everyday"
+        },
+        {
+          "en": "Look at before you start the next task.",
+          "ru": "«Look at» перед следующей задачей. (смотреть на)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to look at on this level today.",
+          "ru": "Сегодня нужно «look at» на этом уровне. (смотреть на)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "look for": {
+      "ru": "искать",
+      "examples": [
+        {
+          "en": "I'm looking for my keys.",
+          "ru": "Ищу ключи.",
+          "context": "everyday"
+        },
+        {
+          "en": "Look for the spare MCB in the stores.",
+          "ru": "Найди запасной автомат на складе.",
+          "context": "onsite"
+        },
+        {
+          "en": "Look for the mark on the slab before you drill.",
+          "ru": "Найди метку на плите перед сверлением.",
+          "context": "onsite"
+        }
+      ]
+    },
+    "look forward to": {
+      "ru": "ждать с нетерпением",
+      "examples": [
+        {
+          "en": "Can you look forward to?",
+          "ru": "Можешь «look forward to»? (ждать с нетерпением)",
+          "context": "everyday"
+        },
+        {
+          "en": "Look forward to before you start the next task.",
+          "ru": "«Look forward to» перед следующей задачей. (ждать с нетерпением)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to look forward to on this level today.",
+          "ru": "Сегодня нужно «look forward to» на этом уровне. (ждать с нетерпением)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "look into": {
+      "ru": "разобраться",
+      "examples": [
+        {
+          "en": "Can you look into?",
+          "ru": "Можешь «look into»? (разобраться)",
+          "context": "everyday"
+        },
+        {
+          "en": "Look into before you start the next task.",
+          "ru": "«Look into» перед следующей задачей. (разобраться)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to look into on this level today.",
+          "ru": "Сегодня нужно «look into» на этом уровне. (разобраться)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "look out": {
+      "ru": "осторожно",
+      "examples": [
+        {
+          "en": "Look out — bike coming!",
+          "ru": "Осторожно — велосипед!",
+          "context": "everyday"
+        },
+        {
+          "en": "Look out below — material coming down.",
+          "ru": "Берегись снизу — материал спускаем.",
+          "context": "onsite"
+        },
+        {
+          "en": "Look out for open edges on level two.",
+          "ru": "Смотри открытые края на втором уровне.",
+          "context": "onsite"
+        }
+      ]
+    },
+    "look up": {
+      "ru": "искать (в словаре)",
+      "examples": [
+        {
+          "en": "Can you look up?",
+          "ru": "Можешь «look up»? (искать (в словаре))",
+          "context": "everyday"
+        },
+        {
+          "en": "Look up before you start the next task.",
+          "ru": "«Look up» перед следующей задачей. (искать (в словаре))",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to look up on this level today.",
+          "ru": "Сегодня нужно «look up» на этом уровне. (искать (в словаре))",
+          "context": "onsite"
+        }
+      ]
+    },
+    "make out": {
+      "ru": "разобрать / целоваться",
+      "examples": [
+        {
+          "en": "Can you make out?",
+          "ru": "Можешь «make out»? (разобрать / целоваться)",
+          "context": "everyday"
+        },
+        {
+          "en": "Make out before you start the next task.",
+          "ru": "«Make out» перед следующей задачей. (разобрать / целоваться)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to make out on this level today.",
+          "ru": "Сегодня нужно «make out» на этом уровне. (разобрать / целоваться)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "make sure": {
+      "ru": "убедиться",
+      "examples": [
+        {
+          "en": "Can you make sure?",
+          "ru": "Можешь «make sure»? (убедиться)",
+          "context": "everyday"
+        },
+        {
+          "en": "Make sure before you start the next task.",
+          "ru": "«Make sure» перед следующей задачей. (убедиться)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to make sure on this level today.",
+          "ru": "Сегодня нужно «make sure» на этом уровне. (убедиться)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "make up": {
+      "ru": "помириться / выдумать",
+      "examples": [
+        {
+          "en": "Can you make up?",
+          "ru": "Можешь «make up»? (помириться / выдумать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Make up before you start the next task.",
+          "ru": "«Make up» перед следующей задачей. (помириться / выдумать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to make up on this level today.",
+          "ru": "Сегодня нужно «make up» на этом уровне. (помириться / выдумать)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "mark out": {
+      "ru": "разметить",
+      "examples": [
+        {
+          "en": "Can you mark out?",
+          "ru": "Можешь «mark out»? (разметить)",
+          "context": "everyday"
+        },
+        {
+          "en": "Mark out before you start the next task.",
+          "ru": "«Mark out» перед следующей задачей. (разметить)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to mark out on this level today.",
+          "ru": "Сегодня нужно «mark out» на этом уровне. (разметить)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "measure up": {
+      "ru": "отмерить",
+      "examples": [
+        {
+          "en": "Can you measure up?",
+          "ru": "Можешь «measure up»? (отмерить)",
+          "context": "everyday"
+        },
+        {
+          "en": "Measure up before you start the next task.",
+          "ru": "«Measure up» перед следующей задачей. (отмерить)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to measure up on this level today.",
+          "ru": "Сегодня нужно «measure up» на этом уровне. (отмерить)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "pack away": {
+      "ru": "убрать инструменты",
+      "examples": [
+        {
+          "en": "Can you pack away?",
+          "ru": "Можешь «pack away»? (убрать инструменты)",
+          "context": "everyday"
+        },
+        {
+          "en": "Pack away before you start the next task.",
+          "ru": "«Pack away» перед следующей задачей. (убрать инструменты)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to pack away on this level today.",
+          "ru": "Сегодня нужно «pack away» на этом уровне. (убрать инструменты)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "pack up": {
+      "ru": "собрать вещи",
+      "examples": [
+        {
+          "en": "Can you pack up?",
+          "ru": "Можешь «pack up»? (собрать вещи)",
+          "context": "everyday"
+        },
+        {
+          "en": "Pack up before you start the next task.",
+          "ru": "«Pack up» перед следующей задачей. (собрать вещи)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to pack up on this level today.",
+          "ru": "Сегодня нужно «pack up» на этом уровне. (собрать вещи)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "pay back": {
+      "ru": "вернуть долг",
+      "examples": [
+        {
+          "en": "Can you pay back?",
+          "ru": "Можешь «pay back»? (вернуть долг)",
+          "context": "everyday"
+        },
+        {
+          "en": "Pay back before you start the next task.",
+          "ru": "«Pay back» перед следующей задачей. (вернуть долг)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to pay back on this level today.",
+          "ru": "Сегодня нужно «pay back» на этом уровне. (вернуть долг)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "phase out": {
+      "ru": "постепенно убрать",
+      "examples": [
+        {
+          "en": "Can you phase out?",
+          "ru": "Можешь «phase out»? (постепенно убрать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Phase out before you start the next task.",
+          "ru": "«Phase out» перед следующей задачей. (постепенно убрать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to phase out on this level today.",
+          "ru": "Сегодня нужно «phase out» на этом уровне. (постепенно убрать)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "pick out": {
+      "ru": "выбрать",
+      "examples": [
+        {
+          "en": "Can you pick out?",
+          "ru": "Можешь «pick out»? (выбрать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Pick out before you start the next task.",
+          "ru": "«Pick out» перед следующей задачей. (выбрать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to pick out on this level today.",
+          "ru": "Сегодня нужно «pick out» на этом уровне. (выбрать)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "pick up": {
+      "ru": "поднять / забрать",
+      "examples": [
+        {
+          "en": "Can you pick up?",
+          "ru": "Можешь «pick up»? (поднять / забрать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Pick up before you start the next task.",
+          "ru": "«Pick up» перед следующей задачей. (поднять / забрать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to pick up on this level today.",
+          "ru": "Сегодня нужно «pick up» на этом уровне. (поднять / забрать)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "plug in": {
+      "ru": "включить в розетку",
+      "examples": [
+        {
+          "en": "Can you plug in?",
+          "ru": "Можешь «plug in»? (включить в розетку)",
+          "context": "everyday"
+        },
+        {
+          "en": "Plug in before you start the next task.",
+          "ru": "«Plug in» перед следующей задачей. (включить в розетку)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to plug in on this level today.",
+          "ru": "Сегодня нужно «plug in» на этом уровне. (включить в розетку)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "plug out": {
+      "ru": "вынуть из розетки",
+      "examples": [
+        {
+          "en": "Can you plug out?",
+          "ru": "Можешь «plug out»? (вынуть из розетки)",
+          "context": "everyday"
+        },
+        {
+          "en": "Plug out before you start the next task.",
+          "ru": "«Plug out» перед следующей задачей. (вынуть из розетки)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to plug out on this level today.",
+          "ru": "Сегодня нужно «plug out» на этом уровне. (вынуть из розетки)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "point out": {
+      "ru": "указать",
+      "examples": [
+        {
+          "en": "Can you point out?",
+          "ru": "Можешь «point out»? (указать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Point out before you start the next task.",
+          "ru": "«Point out» перед следующей задачей. (указать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to point out on this level today.",
+          "ru": "Сегодня нужно «point out» на этом уровне. (указать)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "power down": {
+      "ru": "снять питание",
+      "examples": [
+        {
+          "en": "Can you power down?",
+          "ru": "Можешь «power down»? (снять питание)",
+          "context": "everyday"
+        },
+        {
+          "en": "Power down before you start the next task.",
+          "ru": "«Power down» перед следующей задачей. (снять питание)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to power down on this level today.",
+          "ru": "Сегодня нужно «power down» на этом уровне. (снять питание)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "power up": {
+      "ru": "подать питание",
+      "examples": [
+        {
+          "en": "Can you power up?",
+          "ru": "Можешь «power up»? (подать питание)",
+          "context": "everyday"
+        },
+        {
+          "en": "Power up before you start the next task.",
+          "ru": "«Power up» перед следующей задачей. (подать питание)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to power up on this level today.",
+          "ru": "Сегодня нужно «power up» на этом уровне. (подать питание)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "prove dead": {
+      "ru": "доказать отсутствие напряжения",
+      "examples": [
+        {
+          "en": "Can you prove dead?",
+          "ru": "Можешь «prove dead»? (доказать отсутствие напряжения)",
+          "context": "everyday"
+        },
+        {
+          "en": "Prove dead before you start the next task.",
+          "ru": "«Prove dead» перед следующей задачей. (доказать отсутствие напряжения)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to prove dead on this level today.",
+          "ru": "Сегодня нужно «prove dead» на этом уровне. (доказать отсутствие напряжения)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "pull out": {
+      "ru": "вытянуть",
+      "examples": [
+        {
+          "en": "Can you pull out?",
+          "ru": "Можешь «pull out»? (вытянуть)",
+          "context": "everyday"
+        },
+        {
+          "en": "Pull out before you start the next task.",
+          "ru": "«Pull out» перед следующей задачей. (вытянуть)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to pull out on this level today.",
+          "ru": "Сегодня нужно «pull out» на этом уровне. (вытянуть)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "push in": {
+      "ru": "вдавить",
+      "examples": [
+        {
+          "en": "Can you push in?",
+          "ru": "Можешь «push in»? (вдавить)",
+          "context": "everyday"
+        },
+        {
+          "en": "Push in before you start the next task.",
+          "ru": "«Push in» перед следующей задачей. (вдавить)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to push in on this level today.",
+          "ru": "Сегодня нужно «push in» на этом уровне. (вдавить)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "put away": {
+      "ru": "убрать",
+      "examples": [
+        {
+          "en": "Can you put away?",
+          "ru": "Можешь «put away»? (убрать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Put away before you start the next task.",
+          "ru": "«Put away» перед следующей задачей. (убрать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to put away on this level today.",
+          "ru": "Сегодня нужно «put away» на этом уровне. (убрать)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "put back": {
+      "ru": "положить обратно",
+      "examples": [
+        {
+          "en": "Can you put back?",
+          "ru": "Можешь «put back»? (положить обратно)",
+          "context": "everyday"
+        },
+        {
+          "en": "Put back before you start the next task.",
+          "ru": "«Put back» перед следующей задачей. (положить обратно)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to put back on this level today.",
+          "ru": "Сегодня нужно «put back» на этом уровне. (положить обратно)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "put down": {
+      "ru": "положить / унизить",
+      "examples": [
+        {
+          "en": "Can you put down?",
+          "ru": "Можешь «put down»? (положить / унизить)",
+          "context": "everyday"
+        },
+        {
+          "en": "Put down before you start the next task.",
+          "ru": "«Put down» перед следующей задачей. (положить / унизить)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to put down on this level today.",
+          "ru": "Сегодня нужно «put down» на этом уровне. (положить / унизить)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "put off": {
+      "ru": "отложить",
+      "examples": [
+        {
+          "en": "Can you put off?",
+          "ru": "Можешь «put off»? (отложить)",
+          "context": "everyday"
+        },
+        {
+          "en": "Put off before you start the next task.",
+          "ru": "«Put off» перед следующей задачей. (отложить)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to put off on this level today.",
+          "ru": "Сегодня нужно «put off» на этом уровне. (отложить)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "put on": {
+      "ru": "надеть",
+      "examples": [
+        {
+          "en": "Can you put on?",
+          "ru": "Можешь «put on»? (надеть)",
+          "context": "everyday"
+        },
+        {
+          "en": "Put on before you start the next task.",
+          "ru": "«Put on» перед следующей задачей. (надеть)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to put on on this level today.",
+          "ru": "Сегодня нужно «put on» на этом уровне. (надеть)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "put out": {
+      "ru": "потушить / выставить",
+      "examples": [
+        {
+          "en": "Can you put out?",
+          "ru": "Можешь «put out»? (потушить / выставить)",
+          "context": "everyday"
+        },
+        {
+          "en": "Put out before you start the next task.",
+          "ru": "«Put out» перед следующей задачей. (потушить / выставить)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to put out on this level today.",
+          "ru": "Сегодня нужно «put out» на этом уровне. (потушить / выставить)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "put together": {
+      "ru": "собрать",
+      "examples": [
+        {
+          "en": "Can you put together?",
+          "ru": "Можешь «put together»? (собрать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Put together before you start the next task.",
+          "ru": "«Put together» перед следующей задачей. (собрать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to put together on this level today.",
+          "ru": "Сегодня нужно «put together» на этом уровне. (собрать)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "put up": {
+      "ru": "смонтировать / повесить",
+      "examples": [
+        {
+          "en": "Can you put up the shelves?",
+          "ru": "Можешь повесить полки?",
+          "context": "everyday"
+        },
+        {
+          "en": "Put up the cable tray along this line.",
+          "ru": "Смонтируй лоток по этой линии.",
+          "context": "onsite"
+        },
+        {
+          "en": "Put up barriers around the open edge.",
+          "ru": "Поставь ограждения вокруг открытого края.",
+          "context": "onsite"
+        }
+      ]
+    },
+    "put up with": {
+      "ru": "терпеть",
+      "examples": [
+        {
+          "en": "Can you put up with?",
+          "ru": "Можешь «put up with»? (терпеть)",
+          "context": "everyday"
+        },
+        {
+          "en": "Put up with before you start the next task.",
+          "ru": "«Put up with» перед следующей задачей. (терпеть)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to put up with on this level today.",
+          "ru": "Сегодня нужно «put up with» на этом уровне. (терпеть)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "run into": {
+      "ru": "случайно встретить",
+      "examples": [
+        {
+          "en": "Can you run into?",
+          "ru": "Можешь «run into»? (случайно встретить)",
+          "context": "everyday"
+        },
+        {
+          "en": "Run into before you start the next task.",
+          "ru": "«Run into» перед следующей задачей. (случайно встретить)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to run into on this level today.",
+          "ru": "Сегодня нужно «run into» на этом уровне. (случайно встретить)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "run out": {
+      "ru": "закончиться",
+      "examples": [
+        {
+          "en": "Can you run out?",
+          "ru": "Можешь «run out»? (закончиться)",
+          "context": "everyday"
+        },
+        {
+          "en": "Run out before you start the next task.",
+          "ru": "«Run out» перед следующей задачей. (закончиться)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to run out on this level today.",
+          "ru": "Сегодня нужно «run out» на этом уровне. (закончиться)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "run out of": {
+      "ru": "закончиться",
+      "examples": [
+        {
+          "en": "Can you run out of?",
+          "ru": "Можешь «run out of»? (закончиться)",
+          "context": "everyday"
+        },
+        {
+          "en": "Run out of before you start the next task.",
+          "ru": "«Run out of» перед следующей задачей. (закончиться)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to run out of on this level today.",
+          "ru": "Сегодня нужно «run out of» на этом уровне. (закончиться)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "screw in": {
+      "ru": "вкрутить",
+      "examples": [
+        {
+          "en": "Can you screw in?",
+          "ru": "Можешь «screw in»? (вкрутить)",
+          "context": "everyday"
+        },
+        {
+          "en": "Screw in before you start the next task.",
+          "ru": "«Screw in» перед следующей задачей. (вкрутить)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to screw in on this level today.",
+          "ru": "Сегодня нужно «screw in» на этом уровне. (вкрутить)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "set off": {
+      "ru": "отправиться",
+      "examples": [
+        {
+          "en": "Can you set off?",
+          "ru": "Можешь «set off»? (отправиться)",
+          "context": "everyday"
+        },
+        {
+          "en": "Set off before you start the next task.",
+          "ru": "«Set off» перед следующей задачей. (отправиться)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to set off on this level today.",
+          "ru": "Сегодня нужно «set off» на этом уровне. (отправиться)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "set up": {
+      "ru": "настроить / основать",
+      "examples": [
+        {
+          "en": "Can you set up?",
+          "ru": "Можешь «set up»? (настроить / основать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Set up before you start the next task.",
+          "ru": "«Set up» перед следующей задачей. (настроить / основать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to set up on this level today.",
+          "ru": "Сегодня нужно «set up» на этом уровне. (настроить / основать)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "show up": {
+      "ru": "появиться",
+      "examples": [
+        {
+          "en": "Can you show up?",
+          "ru": "Можешь «show up»? (появиться)",
+          "context": "everyday"
+        },
+        {
+          "en": "Show up before you start the next task.",
+          "ru": "«Show up» перед следующей задачей. (появиться)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to show up on this level today.",
+          "ru": "Сегодня нужно «show up» на этом уровне. (появиться)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "shut down": {
+      "ru": "выключить; остановить",
+      "examples": [
+        {
+          "en": "Can you shut down?",
+          "ru": "Можешь «shut down»? (выключить; остановить)",
+          "context": "everyday"
+        },
+        {
+          "en": "Shut down before you start the next task.",
+          "ru": "«Shut down» перед следующей задачей. (выключить; остановить)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to shut down on this level today.",
+          "ru": "Сегодня нужно «shut down» на этом уровне. (выключить; остановить)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "shut off": {
+      "ru": "перекрыть / выключить",
+      "examples": [
+        {
+          "en": "Can you shut off?",
+          "ru": "Можешь «shut off»? (перекрыть / выключить)",
+          "context": "everyday"
+        },
+        {
+          "en": "Shut off before you start the next task.",
+          "ru": "«Shut off» перед следующей задачей. (перекрыть / выключить)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to shut off on this level today.",
+          "ru": "Сегодня нужно «shut off» на этом уровне. (перекрыть / выключить)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "sign in": {
+      "ru": "расписаться на вход",
+      "examples": [
+        {
+          "en": "Can you sign in?",
+          "ru": "Можешь «sign in»? (расписаться на вход)",
+          "context": "everyday"
+        },
+        {
+          "en": "Sign in before you start the next task.",
+          "ru": "«Sign in» перед следующей задачей. (расписаться на вход)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to sign in on this level today.",
+          "ru": "Сегодня нужно «sign in» на этом уровне. (расписаться на вход)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "sign off": {
+      "ru": "подписать / закрыть задачу",
+      "examples": [
+        {
+          "en": "Can you sign off?",
+          "ru": "Можешь «sign off»? (подписать / закрыть задачу)",
+          "context": "everyday"
+        },
+        {
+          "en": "Sign off before you start the next task.",
+          "ru": "«Sign off» перед следующей задачей. (подписать / закрыть задачу)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to sign off on this level today.",
+          "ru": "Сегодня нужно «sign off» на этом уровне. (подписать / закрыть задачу)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "sign off on": {
+      "ru": "утвердить",
+      "examples": [
+        {
+          "en": "Can you sign off on?",
+          "ru": "Можешь «sign off on»? (утвердить)",
+          "context": "everyday"
+        },
+        {
+          "en": "Sign off on before you start the next task.",
+          "ru": "«Sign off on» перед следующей задачей. (утвердить)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to sign off on on this level today.",
+          "ru": "Сегодня нужно «sign off on» на этом уровне. (утвердить)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "sign out": {
+      "ru": "расписаться на выход",
+      "examples": [
+        {
+          "en": "Can you sign out?",
+          "ru": "Можешь «sign out»? (расписаться на выход)",
+          "context": "everyday"
+        },
+        {
+          "en": "Sign out before you start the next task.",
+          "ru": "«Sign out» перед следующей задачей. (расписаться на выход)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to sign out on this level today.",
+          "ru": "Сегодня нужно «sign out» на этом уровне. (расписаться на выход)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "sit down": {
+      "ru": "сесть",
+      "examples": [
+        {
+          "en": "Can you sit down?",
+          "ru": "Можешь «sit down»? (сесть)",
+          "context": "everyday"
+        },
+        {
+          "en": "Sit down before you start the next task.",
+          "ru": "«Sit down» перед следующей задачей. (сесть)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to sit down on this level today.",
+          "ru": "Сегодня нужно «sit down» на этом уровне. (сесть)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "slow down": {
+      "ru": "замедлить",
+      "examples": [
+        {
+          "en": "Can you slow down?",
+          "ru": "Можешь «slow down»? (замедлить)",
+          "context": "everyday"
+        },
+        {
+          "en": "Slow down before you start the next task.",
+          "ru": "«Slow down» перед следующей задачей. (замедлить)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to slow down on this level today.",
+          "ru": "Сегодня нужно «slow down» на этом уровне. (замедлить)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "sort out": {
+      "ru": "разобраться / уладить",
+      "examples": [
+        {
+          "en": "Can you sort out?",
+          "ru": "Можешь «sort out»? (разобраться / уладить)",
+          "context": "everyday"
+        },
+        {
+          "en": "Sort out before you start the next task.",
+          "ru": "«Sort out» перед следующей задачей. (разобраться / уладить)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to sort out on this level today.",
+          "ru": "Сегодня нужно «sort out» на этом уровне. (разобраться / уладить)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "stand by": {
+      "ru": "быть наготове",
+      "examples": [
+        {
+          "en": "Can you stand by?",
+          "ru": "Можешь «stand by»? (быть наготове)",
+          "context": "everyday"
+        },
+        {
+          "en": "Stand by before you start the next task.",
+          "ru": "«Stand by» перед следующей задачей. (быть наготове)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to stand by on this level today.",
+          "ru": "Сегодня нужно «stand by» на этом уровне. (быть наготове)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "stand clear": {
+      "ru": "отойти",
+      "examples": [
+        {
+          "en": "Can you stand clear?",
+          "ru": "Можешь «stand clear»? (отойти)",
+          "context": "everyday"
+        },
+        {
+          "en": "Stand clear before you start the next task.",
+          "ru": "«Stand clear» перед следующей задачей. (отойти)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to stand clear on this level today.",
+          "ru": "Сегодня нужно «stand clear» на этом уровне. (отойти)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "stand up": {
+      "ru": "встать",
+      "examples": [
+        {
+          "en": "Can you stand up?",
+          "ru": "Можешь «stand up»? (встать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Stand up before you start the next task.",
+          "ru": "«Stand up» перед следующей задачей. (встать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to stand up on this level today.",
+          "ru": "Сегодня нужно «stand up» на этом уровне. (встать)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "stay away": {
+      "ru": "держаться подальше",
+      "examples": [
+        {
+          "en": "Can you stay away?",
+          "ru": "Можешь «stay away»? (держаться подальше)",
+          "context": "everyday"
+        },
+        {
+          "en": "Stay away before you start the next task.",
+          "ru": "«Stay away» перед следующей задачей. (держаться подальше)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to stay away on this level today.",
+          "ru": "Сегодня нужно «stay away» на этом уровне. (держаться подальше)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "switch off": {
+      "ru": "выключить",
+      "examples": [
+        {
+          "en": "Can you switch off?",
+          "ru": "Можешь «switch off»? (выключить)",
+          "context": "everyday"
+        },
+        {
+          "en": "Switch off before you start the next task.",
+          "ru": "«Switch off» перед следующей задачей. (выключить)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to switch off on this level today.",
+          "ru": "Сегодня нужно «switch off» на этом уровне. (выключить)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "switch on": {
+      "ru": "включить",
+      "examples": [
+        {
+          "en": "Can you switch on?",
+          "ru": "Можешь «switch on»? (включить)",
+          "context": "everyday"
+        },
+        {
+          "en": "Switch on before you start the next task.",
+          "ru": "«Switch on» перед следующей задачей. (включить)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to switch on on this level today.",
+          "ru": "Сегодня нужно «switch on» на этом уровне. (включить)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "tag in": {
+      "ru": "отметиться / войти в наряд",
+      "examples": [
+        {
+          "en": "Tag in when you join the chat.",
+          "ru": "Отметься, когда зайдёшь в чат.",
+          "context": "everyday"
+        },
+        {
+          "en": "Tag in at the cabin before you go on site.",
+          "ru": "Отметься в бытовке перед выходом на объект.",
+          "context": "onsite"
+        },
+        {
+          "en": "Tag in on the permit so we know who's working live.",
+          "ru": "Отметься в наряде — кто работает под напряжением.",
+          "context": "onsite"
+        }
+      ]
+    },
+    "tag out": {
+      "ru": "бирка (LOTO)",
+      "examples": [
+        {
+          "en": "Tag out of the game when you're done.",
+          "ru": "Выйди из игры, когда закончишь.",
+          "context": "everyday"
+        },
+        {
+          "en": "Tag out the isolator before you open the board.",
+          "ru": "Повесь бирку на разъединитель до открытия щита.",
+          "context": "onsite"
+        },
+        {
+          "en": "Everyone must tag out before we energise.",
+          "ru": "Все должны снять бирки, прежде чем подадим напряжение.",
+          "context": "onsite"
+        }
+      ]
+    },
+    "take after": {
+      "ru": "быть похожим",
+      "examples": [
+        {
+          "en": "Can you take after?",
+          "ru": "Можешь «take after»? (быть похожим)",
+          "context": "everyday"
+        },
+        {
+          "en": "Take after before you start the next task.",
+          "ru": "«Take after» перед следующей задачей. (быть похожим)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to take after on this level today.",
+          "ru": "Сегодня нужно «take after» на этом уровне. (быть похожим)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "take apart": {
+      "ru": "разобрать",
+      "examples": [
+        {
+          "en": "Can you take apart?",
+          "ru": "Можешь «take apart»? (разобрать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Take apart before you start the next task.",
+          "ru": "«Take apart» перед следующей задачей. (разобрать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to take apart on this level today.",
+          "ru": "Сегодня нужно «take apart» на этом уровне. (разобрать)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "take away": {
+      "ru": "убрать / забрать с собой",
+      "examples": [
+        {
+          "en": "Can you take away?",
+          "ru": "Можешь «take away»? (убрать / забрать с собой)",
+          "context": "everyday"
+        },
+        {
+          "en": "Take away before you start the next task.",
+          "ru": "«Take away» перед следующей задачей. (убрать / забрать с собой)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to take away on this level today.",
+          "ru": "Сегодня нужно «take away» на этом уровне. (убрать / забрать с собой)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "take back": {
+      "ru": "забрать / взять слова назад",
+      "examples": [
+        {
+          "en": "Can you take back?",
+          "ru": "Можешь «take back»? (забрать / взять слова назад)",
+          "context": "everyday"
+        },
+        {
+          "en": "Take back before you start the next task.",
+          "ru": "«Take back» перед следующей задачей. (забрать / взять слова назад)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to take back on this level today.",
+          "ru": "Сегодня нужно «take back» на этом уровне. (забрать / взять слова назад)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "take care of": {
+      "ru": "заботиться",
+      "examples": [
+        {
+          "en": "Can you take care of?",
+          "ru": "Можешь «take care of»? (заботиться)",
+          "context": "everyday"
+        },
+        {
+          "en": "Take care of before you start the next task.",
+          "ru": "«Take care of» перед следующей задачей. (заботиться)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to take care of on this level today.",
+          "ru": "Сегодня нужно «take care of» на этом уровне. (заботиться)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "take down": {
+      "ru": "записать / снять",
+      "examples": [
+        {
+          "en": "Can you take down this number for me?",
+          "ru": "Можешь записать этот номер?",
+          "context": "everyday"
+        },
+        {
+          "en": "Take down the temporary lights after the pour.",
+          "ru": "Сними временный свет после заливки.",
+          "context": "onsite"
+        },
+        {
+          "en": "Take down the measurements and send them to the office.",
+          "ru": "Запиши размеры и отправь в офис.",
+          "context": "onsite"
+        }
+      ]
+    },
+    "take in": {
+      "ru": "понять / принять",
+      "examples": [
+        {
+          "en": "There's a lot to take in at once.",
+          "ru": "Слишком много информации сразу.",
+          "context": "everyday"
+        },
+        {
+          "en": "Take in the delivery at the compound gate.",
+          "ru": "Прими поставку у ворот компаунда.",
+          "context": "onsite"
+        },
+        {
+          "en": "It's hard to take in all the drawings in one briefing.",
+          "ru": "Трудно усвоить все чертежи за один брифинг.",
+          "context": "onsite"
+        }
+      ]
+    },
+    "take off": {
+      "ru": "снять / взлететь",
+      "examples": [
+        {
+          "en": "Take off your coat — it's warm inside.",
+          "ru": "Сними куртку — внутри тепло.",
+          "context": "everyday"
+        },
+        {
+          "en": "Take off the cover before you terminate.",
+          "ru": "Сними крышку перед оконцовкой.",
+          "context": "onsite"
+        },
+        {
+          "en": "The power will take off at two for the switchover.",
+          "ru": "Питание снимут в два под переключение.",
+          "context": "onsite"
+        }
+      ]
+    },
+    "take on": {
+      "ru": "взять на себя / нанять",
+      "examples": [
+        {
+          "en": "Can you take on?",
+          "ru": "Можешь «take on»? (взять на себя / нанять)",
+          "context": "everyday"
+        },
+        {
+          "en": "Take on before you start the next task.",
+          "ru": "«Take on» перед следующей задачей. (взять на себя / нанять)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to take on on this level today.",
+          "ru": "Сегодня нужно «take on» на этом уровне. (взять на себя / нанять)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "take out": {
+      "ru": "вынести / пригласить",
+      "examples": [
+        {
+          "en": "Let's take out the rubbish.",
+          "ru": "Давай вынесем мусор.",
+          "context": "everyday"
+        },
+        {
+          "en": "Take out the old breaker carefully.",
+          "ru": "Аккуратно вынь старый автомат.",
+          "context": "onsite"
+        },
+        {
+          "en": "Take out the damaged section of trunking.",
+          "ru": "Вынь повреждённый участок короба.",
+          "context": "onsite"
+        }
+      ]
+    },
+    "take over": {
+      "ru": "перенять / захватить",
+      "examples": [
+        {
+          "en": "Can you take over for a minute?",
+          "ru": "Можешь подменить на минуту?",
+          "context": "everyday"
+        },
+        {
+          "en": "Take over the radio while I climb.",
+          "ru": "Возьми рацию, пока я поднимаюсь.",
+          "context": "onsite"
+        },
+        {
+          "en": "Night shift will take over at seven.",
+          "ru": "Ночная смена примет в семь.",
+          "context": "onsite"
+        }
+      ]
+    },
+    "take part": {
+      "ru": "участвовать",
+      "examples": [
+        {
+          "en": "Can you take part?",
+          "ru": "Можешь «take part»? (участвовать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Take part before you start the next task.",
+          "ru": "«Take part» перед следующей задачей. (участвовать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to take part on this level today.",
+          "ru": "Сегодня нужно «take part» на этом уровне. (участвовать)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "take place": {
+      "ru": "происходить",
+      "examples": [
+        {
+          "en": "Can you take place?",
+          "ru": "Можешь «take place»? (происходить)",
+          "context": "everyday"
+        },
+        {
+          "en": "Take place before you start the next task.",
+          "ru": "«Take place» перед следующей задачей. (происходить)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to take place on this level today.",
+          "ru": "Сегодня нужно «take place» на этом уровне. (происходить)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "take up": {
+      "ru": "начать (хобби) / занять место",
+      "examples": [
+        {
+          "en": "I took up running last year.",
+          "ru": "Я начал бегать в прошлом году.",
+          "context": "everyday"
+        },
+        {
+          "en": "That tray takes up too much space in the riser.",
+          "ru": "Тот лоток занимает слишком много места в стояке.",
+          "context": "onsite"
+        },
+        {
+          "en": "Don't take up the whole walkway with materials.",
+          "ru": "Не занимай весь проход материалами.",
+          "context": "onsite"
+        }
+      ]
+    },
+    "tidy up": {
+      "ru": "убрать",
+      "examples": [
+        {
+          "en": "Can you tidy up?",
+          "ru": "Можешь «tidy up»? (убрать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Tidy up before you start the next task.",
+          "ru": "«Tidy up» перед следующей задачей. (убрать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to tidy up on this level today.",
+          "ru": "Сегодня нужно «tidy up» на этом уровне. (убрать)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "tighten up": {
+      "ru": "затянуть",
+      "examples": [
+        {
+          "en": "Can you tighten up?",
+          "ru": "Можешь «tighten up»? (затянуть)",
+          "context": "everyday"
+        },
+        {
+          "en": "Tighten up before you start the next task.",
+          "ru": "«Tighten up» перед следующей задачей. (затянуть)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to tighten up on this level today.",
+          "ru": "Сегодня нужно «tighten up» на этом уровне. (затянуть)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "turn down": {
+      "ru": "отклонить / тише",
+      "examples": [
+        {
+          "en": "Can you turn down?",
+          "ru": "Можешь «turn down»? (отклонить / тише)",
+          "context": "everyday"
+        },
+        {
+          "en": "Turn down before you start the next task.",
+          "ru": "«Turn down» перед следующей задачей. (отклонить / тише)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to turn down on this level today.",
+          "ru": "Сегодня нужно «turn down» на этом уровне. (отклонить / тише)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "turn off": {
+      "ru": "выключить",
+      "examples": [
+        {
+          "en": "Can you turn off?",
+          "ru": "Можешь «turn off»? (выключить)",
+          "context": "everyday"
+        },
+        {
+          "en": "Turn off before you start the next task.",
+          "ru": "«Turn off» перед следующей задачей. (выключить)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to turn off on this level today.",
+          "ru": "Сегодня нужно «turn off» на этом уровне. (выключить)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "turn on": {
+      "ru": "включить",
+      "examples": [
+        {
+          "en": "Can you turn on?",
+          "ru": "Можешь «turn on»? (включить)",
+          "context": "everyday"
+        },
+        {
+          "en": "Turn on before you start the next task.",
+          "ru": "«Turn on» перед следующей задачей. (включить)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to turn on on this level today.",
+          "ru": "Сегодня нужно «turn on» на этом уровне. (включить)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "turn up": {
+      "ru": "появиться / громче",
+      "examples": [
+        {
+          "en": "He turned up late to dinner.",
+          "ru": "Он появился поздно к ужину.",
+          "context": "everyday"
+        },
+        {
+          "en": "Turn up the radio — I can't hear channel one.",
+          "ru": "Сделай рацию громче — не слышу канал один.",
+          "context": "onsite"
+        },
+        {
+          "en": "The missing drum turned up in bay three.",
+          "ru": "Пропавший барабан нашёлся в отсеке три.",
+          "context": "onsite"
+        }
+      ]
+    },
+    "unplug": {
+      "ru": "вынуть из розетки",
+      "examples": [
+        {
+          "en": "Can you unplug?",
+          "ru": "Можешь «unplug»? (вынуть из розетки)",
+          "context": "everyday"
+        },
+        {
+          "en": "Unplug before you start the next task.",
+          "ru": "«Unplug» перед следующей задачей. (вынуть из розетки)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to unplug on this level today.",
+          "ru": "Сегодня нужно «unplug» на этом уровне. (вынуть из розетки)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "wake up": {
+      "ru": "просыпаться",
+      "examples": [
+        {
+          "en": "Can you wake up?",
+          "ru": "Можешь «wake up»? (просыпаться)",
+          "context": "everyday"
+        },
+        {
+          "en": "Wake up before you start the next task.",
+          "ru": "«Wake up» перед следующей задачей. (просыпаться)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to wake up on this level today.",
+          "ru": "Сегодня нужно «wake up» на этом уровне. (просыпаться)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "watch out": {
+      "ru": "осторожно",
+      "examples": [
+        {
+          "en": "Can you watch out?",
+          "ru": "Можешь «watch out»? (осторожно)",
+          "context": "everyday"
+        },
+        {
+          "en": "Watch out before you start the next task.",
+          "ru": "«Watch out» перед следующей задачей. (осторожно)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to watch out on this level today.",
+          "ru": "Сегодня нужно «watch out» на этом уровне. (осторожно)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "wire up": {
+      "ru": "развести проводку",
+      "examples": [
+        {
+          "en": "Can you wire up?",
+          "ru": "Можешь «wire up»? (развести проводку)",
+          "context": "everyday"
+        },
+        {
+          "en": "Wire up before you start the next task.",
+          "ru": "«Wire up» перед следующей задачей. (развести проводку)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to wire up on this level today.",
+          "ru": "Сегодня нужно «wire up» на этом уровне. (развести проводку)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "work out": {
+      "ru": "тренироваться / получиться",
+      "examples": [
+        {
+          "en": "Can you work out?",
+          "ru": "Можешь «work out»? (тренироваться / получиться)",
+          "context": "everyday"
+        },
+        {
+          "en": "Work out before you start the next task.",
+          "ru": "«Work out» перед следующей задачей. (тренироваться / получиться)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to work out on this level today.",
+          "ru": "Сегодня нужно «work out» на этом уровне. (тренироваться / получиться)",
+          "context": "onsite"
+        }
+      ]
+    },
+    "write down": {
+      "ru": "записать",
+      "examples": [
+        {
+          "en": "Can you write down?",
+          "ru": "Можешь «write down»? (записать)",
+          "context": "everyday"
+        },
+        {
+          "en": "Write down before you start the next task.",
+          "ru": "«Write down» перед следующей задачей. (записать)",
+          "context": "onsite"
+        },
+        {
+          "en": "We need to write down on this level today.",
+          "ru": "Сегодня нужно «write down» на этом уровне. (записать)",
+          "context": "onsite"
+        }
+      ]
+    }
+  }
+}

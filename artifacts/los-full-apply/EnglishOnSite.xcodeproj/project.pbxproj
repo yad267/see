@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		L0CEFRLEVELBUILD01 /* CEFRLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = L0CEFRLEVELFILE01 /* CEFRLevel.swift */; };
+		L0USAGEEXBUILD01 /* PhrasalUsageExamplesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = L0USAGEEXFILE01 /* PhrasalUsageExamplesStore.swift */; };
+		L0USAGEJSONBUILD01 /* phrasal_usage_examples_v1.json in Resources */ = {isa = PBXBuildFile; fileRef = L0USAGEJSONFILE01 /* phrasal_usage_examples_v1.json */; };
 		L9SECSTOREBUILD01 /* SectionLessonStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = L9SECSTOREFILE01 /* SectionLessonStore.swift */; };
 		L9ONJSONBUILD01 /* lessons_onsite_sections_v1.json in Resources */ = {isa = PBXBuildFile; fileRef = L9ONJSONFILE01 /* lessons_onsite_sections_v1.json */; };
 		L9REGJSONBUILD01 /* lessons_regular_sections_v1.json in Resources */ = {isa = PBXBuildFile; fileRef = L9REGJSONFILE01 /* lessons_regular_sections_v1.json */; };
@@ -154,6 +156,8 @@
 
 /* Begin PBXFileReference section */
 		L0CEFRLEVELFILE01 /* CEFRLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CEFRLevel.swift; sourceTree = "<group>"; };
+		L0USAGEEXFILE01 /* PhrasalUsageExamplesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhrasalUsageExamplesStore.swift; sourceTree = "<group>"; };
+		L0USAGEJSONFILE01 /* phrasal_usage_examples_v1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = phrasal_usage_examples_v1.json; sourceTree = "<group>"; };
 		L6ONSITECEFRFILE01 /* OnSiteCEFRStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnSiteCEFRStore.swift; sourceTree = "<group>"; };
 		L9SECSTOREFILE01 /* SectionLessonStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionLessonStore.swift; sourceTree = "<group>"; };
 		L9ONJSONFILE01 /* lessons_onsite_sections_v1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lessons_onsite_sections_v1.json; sourceTree = "<group>"; };
@@ -316,6 +320,7 @@
 				PT1TOOLSJSONFILE001 /* phrasal_tools.json */,
 				B3OPPJSONFILE000003 /* opposites_bank_v1.json */,
 				B2PHRASJSONFILE0002 /* phrasals_bank_v1.json */,
+				L0USAGEJSONFILE01 /* phrasal_usage_examples_v1.json */,
 				B1VERBJSONFILE00001 /* verbs_bank_v1.json */,
 				G1PHRASGENFILE0001 /* phrasals_general_v1.json */,
 				G2OPPGENFILE000002 /* opposites_general_v1.json */,
@@ -467,6 +472,7 @@ C1BANKSTOREFILE001 /* TutorBankStore.swift */,
 				L2BANKSWIFTFILE0002 /* LearningBankStore.swift */,
 				L6ONSITECEFRFILE01 /* OnSiteCEFRStore.swift */,
 				L8REGSTOREFILE01 /* RegularCEFRStore.swift */,
+				L0USAGEEXFILE01 /* PhrasalUsageExamplesStore.swift */,
 				L9SECSTOREFILE01 /* SectionLessonStore.swift */,
 				PT2TOOLSSTOREFILE02 /* PhrasalToolsStore.swift */,
 				PT3TRAINERSTOREFILE03 /* PhrasalTrainerStore.swift */,
@@ -625,6 +631,7 @@ C1BANKSTOREFILE001 /* TutorBankStore.swift */,
 				F301A2B3C4D5E6F708090B02 /* lessons_pack.json in Resources */,
 				B3OPPJSONBUILD00003 /* opposites_bank_v1.json in Resources */,
 				B2PHRASJSONBUILD0002 /* phrasals_bank_v1.json in Resources */,
+				L0USAGEJSONBUILD01 /* phrasal_usage_examples_v1.json in Resources */,
 				B1VERBJSONBUILD0001 /* verbs_bank_v1.json in Resources */,
 				G1PHRASGENBUILD0001 /* phrasals_general_v1.json in Resources */,
 				G2OPPGENBUILD000002 /* opposites_general_v1.json in Resources */,
@@ -685,6 +692,7 @@ C1BANKSTOREFILE001 /* TutorBankStore.swift */,
 				L8REGMENUBUILD01 /* RegularLanguageMenuView.swift in Sources */,
 				L7APPLMODEBUILD01 /* AppLearningMode.swift in Sources */,
 				L0CEFRLEVELBUILD01 /* CEFRLevel.swift in Sources */,
+				L0USAGEEXBUILD01 /* PhrasalUsageExamplesStore.swift in Sources */,
 				L6ONSITECEFRBUILD01 /* OnSiteCEFRStore.swift in Sources */,
 				L8REGSTOREBUILD01 /* RegularCEFRStore.swift in Sources */,
 				L9SECSTOREBUILD01 /* SectionLessonStore.swift in Sources */,
