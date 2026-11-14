@@ -1,0 +1,1974 @@
+{
+  "version": 1,
+  "title": "On site · CEFR",
+  "items": [
+    {
+      "kind": "phrasal",
+      "cefr": "A1",
+      "en": "put on",
+      "ru": "надеть",
+      "example_en": "Put on your hard hat.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A1",
+      "en": "take off",
+      "ru": "снять",
+      "example_en": "Take off your gloves.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A1",
+      "en": "turn on",
+      "ru": "включить",
+      "example_en": "Turn on the light.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A1",
+      "en": "turn off",
+      "ru": "выключить",
+      "example_en": "Turn off the power.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "switch on",
+      "ru": "включить",
+      "example_en": "Switch on the drill.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "switch off",
+      "ru": "выключить",
+      "example_en": "Switch off the machine.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "shut down",
+      "ru": "выключить; остановить",
+      "example_en": "Shut down the power.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "plug in",
+      "ru": "включить в розетку",
+      "example_en": "Plug in the charger.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "unplug",
+      "ru": "вынуть из розетки",
+      "example_en": "Unplug it first.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A1",
+      "en": "pick up",
+      "ru": "поднять; забрать",
+      "example_en": "Pick up that clamp.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A1",
+      "en": "put down",
+      "ru": "положить; опустить",
+      "example_en": "Put the tray down.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "put away",
+      "ru": "убрать на место",
+      "example_en": "Put the tools away.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "take out",
+      "ru": "вынуть; вынести",
+      "example_en": "Take out the old bolts.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "hand over",
+      "ru": "передать",
+      "example_en": "Hand over the drill.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "hand in",
+      "ru": "сдать",
+      "example_en": "Hand in your Safe Pass.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "hold on",
+      "ru": "подержать; подожди",
+      "example_en": "Hold on — don't let go.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "hang on",
+      "ru": "подожди; подержи",
+      "example_en": "Hang on a second.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "look for",
+      "ru": "искать",
+      "example_en": "Look for the Unistrut.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "look out",
+      "ru": "осторожно",
+      "example_en": "Look out!",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "watch out",
+      "ru": "осторожно",
+      "example_en": "Watch out for the cable.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A1",
+      "en": "look at",
+      "ru": "смотреть на",
+      "example_en": "Look at the mark.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "stand by",
+      "ru": "быть наготове",
+      "example_en": "Stand by.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "stand clear",
+      "ru": "отойти",
+      "example_en": "Stand clear.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A1",
+      "en": "stand up",
+      "ru": "встать",
+      "example_en": "Stand up for the briefing.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A1",
+      "en": "sit down",
+      "ru": "сесть",
+      "example_en": "Sit down in the cabin.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A1",
+      "en": "come in",
+      "ru": "войти",
+      "example_en": "Come in.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A1",
+      "en": "get in",
+      "ru": "войти; сесть",
+      "example_en": "Get in the van.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A1",
+      "en": "get out",
+      "ru": "выйти",
+      "example_en": "Get out of the way.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "come back",
+      "ru": "вернуться",
+      "example_en": "Come back after break.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "get back",
+      "ru": "вернуться",
+      "example_en": "Get back to the workplace.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "go back",
+      "ru": "вернуться назад",
+      "example_en": "Go back to the bay.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "go ahead",
+      "ru": "давай; продолжай",
+      "example_en": "Go ahead.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "go on",
+      "ru": "продолжать",
+      "example_en": "Go on.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "carry on",
+      "ru": "продолжать",
+      "example_en": "Carry on with the trays.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "keep on",
+      "ru": "продолжать",
+      "example_en": "Keep on holding it.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "B1",
+      "en": "set up",
+      "ru": "установить; настроить",
+      "example_en": "Set up the workplace.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "lay down",
+      "ru": "разложить",
+      "example_en": "Lay down the workplace.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "tidy up",
+      "ru": "убрать",
+      "example_en": "Tidy up before you leave.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "clean up",
+      "ru": "убрать",
+      "example_en": "Clean up the scrap.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "pack up",
+      "ru": "собрать вещи",
+      "example_en": "Pack up for today.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "clear out",
+      "ru": "очистить",
+      "example_en": "Clear out the area.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "check in",
+      "ru": "отметиться",
+      "example_en": "Check in at the gate.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "check out",
+      "ru": "проверить",
+      "example_en": "Check out the drawing.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "sign in",
+      "ru": "расписаться на вход",
+      "example_en": "Sign in at the cabin.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "sign out",
+      "ru": "расписаться на выход",
+      "example_en": "Sign out when you leave.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "find out",
+      "ru": "узнать",
+      "example_en": "Find out who is in charge.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "point out",
+      "ru": "указать",
+      "example_en": "Point out the mark.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "write down",
+      "ru": "записать",
+      "example_en": "Write down the measurement.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "fill in",
+      "ru": "заполнить",
+      "example_en": "Fill in the form.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "make sure",
+      "ru": "убедиться",
+      "example_en": "Make sure it's tight.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "B1",
+      "en": "give a hand",
+      "ru": "помочь",
+      "example_en": "Do you want me to give you a hand?",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "wire up",
+      "ru": "развести проводку",
+      "example_en": "Wire up the tray.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "screw in",
+      "ru": "вкрутить",
+      "example_en": "Screw in the bolt.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "tighten up",
+      "ru": "затянуть",
+      "example_en": "Tighten up that clamp.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "measure up",
+      "ru": "отмерить",
+      "example_en": "Measure up the length.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "mark out",
+      "ru": "разметить",
+      "example_en": "Mark out the holes.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "cut off",
+      "ru": "отрезать; отключить",
+      "example_en": "Cut off the power.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "pull out",
+      "ru": "вытянуть",
+      "example_en": "Pull out the old screw.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "push in",
+      "ru": "вдавить",
+      "example_en": "Push it in.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "B1",
+      "en": "put together",
+      "ru": "собрать",
+      "example_en": "Put the frame together.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "B1",
+      "en": "take apart",
+      "ru": "разобрать",
+      "example_en": "Take it apart carefully.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "lock out",
+      "ru": "блокировать (LOTO)",
+      "example_en": "Lock out before you work.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "tag out",
+      "ru": "бирка (LOTO)",
+      "example_en": "Tag out the panel.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "climb up",
+      "ru": "залезть",
+      "example_en": "Climb up the ladder.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "climb down",
+      "ru": "слезть",
+      "example_en": "Climb down slowly.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "slow down",
+      "ru": "замедлить",
+      "example_en": "Slow down.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "hurry up",
+      "ru": "поторопись",
+      "example_en": "Hurry up.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "B1",
+      "en": "break down",
+      "ru": "сломаться",
+      "example_en": "The drill broke down.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "run out",
+      "ru": "закончиться",
+      "example_en": "We've run out of clamps.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "show up",
+      "ru": "появиться",
+      "example_en": "Show up on time.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "fall off",
+      "ru": "упасть (с чего-то)",
+      "example_en": "Don't let it fall off.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "fall down",
+      "ru": "упасть",
+      "example_en": "Watch you don't fall down.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "keep off",
+      "ru": "не наступать",
+      "example_en": "Keep off the wet floor.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "stay away",
+      "ru": "держаться подальше",
+      "example_en": "Stay away from the edge.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "cool down",
+      "ru": "остыть",
+      "example_en": "Let it cool down.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A1",
+      "en": "get up",
+      "ru": "встать (утром)",
+      "example_en": "Get up early for induction.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "wake up",
+      "ru": "проснуться",
+      "example_en": "Wake up — induction at eight.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "give back",
+      "ru": "вернуть",
+      "example_en": "Give back the keys.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "put back",
+      "ru": "положить обратно",
+      "example_en": "Put it back.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "take back",
+      "ru": "забрать обратно",
+      "example_en": "Take it back to the van.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "come with",
+      "ru": "идти с",
+      "example_en": "Come with me.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "deal with",
+      "ru": "иметь дело с",
+      "example_en": "Deal with the supervisor.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "sort out",
+      "ru": "уладить; разобраться",
+      "example_en": "Sort out the problem.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "look after",
+      "ru": "присматривать за",
+      "example_en": "Look after the tools.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "figure out",
+      "ru": "понять; разобраться",
+      "example_en": "Figure out the drawing.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "B1",
+      "en": "take on",
+      "ru": "взять на себя / нанять",
+      "example_en": "She took on a new job.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "B1",
+      "en": "take over",
+      "ru": "перенять / захватить",
+      "example_en": "Can you take over for a minute?",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "B2",
+      "en": "take after",
+      "ru": "быть похожим",
+      "example_en": "He takes after his dad.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "B1",
+      "en": "take up",
+      "ru": "начать (хобби) / занять место",
+      "example_en": "I took up running.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "B2",
+      "en": "take in",
+      "ru": "понять / принять",
+      "example_en": "It's hard to take in.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "B1",
+      "en": "take down",
+      "ru": "записать / снять",
+      "example_en": "Take down this number.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "take away",
+      "ru": "убрать / забрать с собой",
+      "example_en": "Take away the plates.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "B2",
+      "en": "take care of",
+      "ru": "заботиться",
+      "example_en": "I'll take care of dinner.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "B2",
+      "en": "take part",
+      "ru": "участвовать",
+      "example_en": "Do you want to take part?",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "B2",
+      "en": "take place",
+      "ru": "происходить",
+      "example_en": "The meeting takes place at 5.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A1",
+      "en": "get on",
+      "ru": "ладить / садиться",
+      "example_en": "We get on well.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A1",
+      "en": "get off",
+      "ru": "сходить / начинать",
+      "example_en": "Get off at the next stop.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "get over",
+      "ru": "пережить / оправиться",
+      "example_en": "She got over the flu.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "B1",
+      "en": "get along",
+      "ru": "ладить",
+      "example_en": "Do you get along?",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "B1",
+      "en": "get by",
+      "ru": "справляться",
+      "example_en": "We get by on little money.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "B1",
+      "en": "get through",
+      "ru": "дозвониться / пройти",
+      "example_en": "I can't get through.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "B1",
+      "en": "get rid of",
+      "ru": "избавиться",
+      "example_en": "Get rid of old clothes.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "B2",
+      "en": "get together",
+      "ru": "встретиться",
+      "example_en": "Let's get together Friday.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "B1",
+      "en": "come over",
+      "ru": "зайти в гости",
+      "example_en": "Come over tonight.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A2",
+      "en": "turn up",
+      "ru": "появиться / громче",
+      "example_en": "He turned up late.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "A1",
+      "en": "turn down",
+      "ru": "отклонить / тише",
+      "example_en": "Turn down the music.",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "C1",
+      "en": "sign off",
+      "ru": "подписать / закрыть задачу",
+      "example_en": "Sign off the permit before you leave.",
+      "example_ru": "Подпиши допуск перед уходом."
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "C1",
+      "en": "follow up",
+      "ru": "уточнить / проверить позже",
+      "example_en": "I will follow up with the supervisor.",
+      "example_ru": "Я уточню у бригадира."
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "C1",
+      "en": "phase out",
+      "ru": "постепенно убрать",
+      "example_en": "We will phase out the old trunking.",
+      "example_ru": "Мы постепенно уберём старый короб."
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "C1",
+      "en": "back out",
+      "ru": "отказаться / выйти из договорённости",
+      "example_en": "Do not back out of the isolation plan.",
+      "example_ru": "Не отказывайся от плана изоляции."
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "B2",
+      "en": "come up with",
+      "ru": "придумать",
+      "example_en": "Can you come up with a safer method?",
+      "example_ru": "Можешь придумать более безопасный способ?"
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "B2",
+      "en": "put up with",
+      "ru": "терпеть",
+      "example_en": "We cannot put up with loose covers.",
+      "example_ru": "Мы не можем терпеть незакрытые крышки."
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "B1",
+      "en": "run out of",
+      "ru": "закончиться",
+      "example_en": "We ran out of M10 bolts.",
+      "example_ru": "У нас закончились болты M10."
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "B2",
+      "en": "look forward to",
+      "ru": "ждать с нетерпением",
+      "example_en": "I look forward to the toolbox talk.",
+      "example_ru": "Жду toolbox talk."
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "C1",
+      "en": "knock off",
+      "ru": "закончить смену (разг.)",
+      "example_en": "What time do you knock off?",
+      "example_ru": "Во сколько заканчиваете смену?"
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "C2",
+      "en": "sign off on",
+      "ru": "утвердить",
+      "example_en": "The engineer will sign off on the as-built.",
+      "example_ru": "Инженер утвердит as-built."
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "C2",
+      "en": "carry through",
+      "ru": "довести до конца",
+      "example_en": "We need to carry through the containment install.",
+      "example_ru": "Нужно довести монтаж containment до конца."
+    },
+    {
+      "kind": "phrasal",
+      "cefr": "C2",
+      "en": "iron out",
+      "ru": "устранить шероховатости",
+      "example_en": "Let us iron out the cable routes first.",
+      "example_ru": "Сначала уберём шероховатости по трассам."
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "Safe Pass",
+      "ru": "Safe Pass (карта безопасности)",
+      "example_en": "",
+      "example_ru": "обязательная карта на стройке в Ireland"
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "site induction",
+      "ru": "вводный инструктаж на объекте",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "sign in",
+      "ru": "отметиться / записаться на входе",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "gate",
+      "ru": "ворота / КПП",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "Here's my Safe Pass.",
+      "ru": "Вот мой Safe Pass.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "Where do I sign in?",
+      "ru": "Где мне отметиться?",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "site rules",
+      "ru": "правила объекта",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "assembly point",
+      "ru": "место сбора (muster point)",
+      "example_en": "",
+      "example_ru": "куда идти по тревоге"
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "first aider",
+      "ru": "человек с первой помощью",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "report a hazard",
+      "ru": "сообщить об опасности",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "Where is the assembly point?",
+      "ru": "Где место сбора?",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "I need to report a hazard.",
+      "ru": "Мне нужно сообщить об опасности.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "PPE",
+      "ru": "средства индивидуальной защиты (СИЗ)",
+      "example_en": "",
+      "example_ru": "personal protective equipment"
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "hard hat",
+      "ru": "каска",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "high-visibility vest (hi-vis)",
+      "ru": "светоотражающий жилет",
+      "example_en": "",
+      "example_ru": "hi-vis = high-vis vest"
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "safety boots",
+      "ru": "защитные ботинки",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "I need full PPE before I go on site.",
+      "ru": "Мне нужен полный СИЗ, прежде чем идти на объект.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "Am I allowed on site now?",
+      "ru": "Мне уже можно на объект?",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "Wear your PPE.",
+      "ru": "Надень СИЗ.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "Mind yourself.",
+      "ru": "Осторожно / береги себя.",
+      "example_en": "",
+      "example_ru": "часто на объекте в Ireland"
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A2",
+      "en": "That's grand.",
+      "ru": "Отлично / порядок.",
+      "example_en": "",
+      "example_ru": "grand = ок (Ireland)"
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A2",
+      "en": "Give me five minutes.",
+      "ru": "Дай пять минут.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A2",
+      "en": "Call me when you're ready.",
+      "ru": "Позови, когда будешь готов.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "I understand.",
+      "ru": "Я понимаю.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "I don't understand.",
+      "ru": "Я не понимаю.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "Can you repeat that, please?",
+      "ru": "Можешь повторить, пожалуйста?",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "Speak slowly, please.",
+      "ru": "Говори медленнее, пожалуйста.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "What does that mean?",
+      "ru": "Что это значит?",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "B1",
+      "en": "How do you say this in English?",
+      "ru": "Как это сказать по-английски?",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "One moment, please.",
+      "ru": "Секунду, пожалуйста.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "I'm ready.",
+      "ru": "Я готов.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "I'm finished. / I'm done.",
+      "ru": "Я закончил.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "Not yet.",
+      "ru": "Ещё нет.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "Almost done.",
+      "ru": "Почти готово.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "Same again.",
+      "ru": "То же самое ещё раз.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "More, please. / That's enough.",
+      "ru": "Ещё / Хватит.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "Before / after / next.",
+      "ru": "До / после / следующий.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "B1",
+      "en": "Left / right / up / down.",
+      "ru": "Влево / вправо / вверх / вниз.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "B1",
+      "en": "Inside / outside / under / over.",
+      "ru": "Внутри / снаружи / под / над.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "B1",
+      "en": "Heavy / light / long / short.",
+      "ru": "Тяжёлый / лёгкий / длинный / короткий.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "B1",
+      "en": "Bring it here. / Take it there.",
+      "ru": "Принеси сюда / Отнеси туда.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "Show me.",
+      "ru": "Покажи мне.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "I got it. / Understood.",
+      "ru": "Понял.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "Where is the Unistrut?",
+      "ru": "Где юнистрат?",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "We need a longer tray.",
+      "ru": "Нужен более длинный лоток.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "Put the basket underneath.",
+      "ru": "Поставь корзину снизу.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "Hand me a clamp.",
+      "ru": "Дай зажим.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "B1",
+      "en": "I need a nut and a washer.",
+      "ru": "Нужны гайка и шайба.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "Is this the right size bolt?",
+      "ru": "Это болт нужного размера?",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "Don't overtighten it.",
+      "ru": "Не перетягивай.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "It's loose. Tighten it.",
+      "ru": "Слабо. Затяни.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "Mark it here.",
+      "ru": "Отметь здесь.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "Measure twice, cut once.",
+      "ru": "Отмерь дважды, режь один раз.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "Keep it level.",
+      "ru": "Держи по уровню.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "Support this end.",
+      "ru": "Поддержи этот конец.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "Mind the cable.",
+      "ru": "Осторожно, кабель.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "Is the power off?",
+      "ru": "Питание выключено?",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "Lock out / tag out.",
+      "ru": "Блокировка / бирка (LOTO).",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "Where is the fire exit?",
+      "ru": "Где пожарный выход?",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "First aid kit.",
+      "ru": "Аптечка.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "Report it to the supervisor.",
+      "ru": "Сообщи бригадиру.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "I need a longer ladder.",
+      "ru": "Нужна более длинная лестница.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "Don't stand under the load.",
+      "ru": "Не стой под грузом.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "Clear the area.",
+      "ru": "Освободи зону.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "Wear your gloves.",
+      "ru": "Надень перчатки.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "Put your hard hat on.",
+      "ru": "Надень каску.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "Hi-vis must be on.",
+      "ru": "Жилет должен быть надет.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "Induction is at eight.",
+      "ru": "Инструктаж в восемь.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "Have you got your Safe Pass?",
+      "ru": "Есть Safe Pass?",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "Lay the tools out tidily.",
+      "ru": "Разложи инструмент аккуратно.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "Sweep up / tidy the scrap.",
+      "ru": "Подмети / убери обрезки.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "This piece is too short.",
+      "ru": "Эта деталь слишком короткая.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "We need another length.",
+      "ru": "Нужен ещё один кусок/длина.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "Stand by.",
+      "ru": "Жди наготове.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "Hold it steady.",
+      "ru": "Держи ровно/устойчиво.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "Lift together. / On three.",
+      "ru": "Поднимаем вместе / На счёт три.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "Lower it slowly.",
+      "ru": "Опускай медленно.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "Don't let go.",
+      "ru": "Не отпускай.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "Let go now.",
+      "ru": "Теперь отпускай.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "Move back.",
+      "ru": "Отойди назад.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "Stay clear.",
+      "ru": "Не подходи / держись в стороне.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "That's square. / That's plumb.",
+      "ru": "По угольнику / По отвесу.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "Check the drawing.",
+      "ru": "Сверься с чертежом.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "As per the drawing.",
+      "ru": "Как на чертеже.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "Leave it for now.",
+      "ru": "Пока оставь.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "We'll finish it after break.",
+      "ru": "Доделаем после перерыва.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "Who's got the 13 mil spanner?",
+      "ru": "У кого ключ на 13?",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "Grab the spirit level.",
+      "ru": "Возьми уровень.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "Cable-tie that.",
+      "ru": "Стяни хомутом/стяжкой.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "Earth that tray.",
+      "ru": "Заземли этот лоток.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "Pack up.",
+      "ru": "Собирайся / упаковывай.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "Last job for today.",
+      "ru": "Последняя задача на сегодня.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A2",
+      "en": "Good work. / Nice one.",
+      "ru": "Хорошая работа.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "I am ready.",
+      "ru": "Я готов.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "Where is the gate?",
+      "ru": "Где ворота?",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "I need a hard hat.",
+      "ru": "Мне нужна каска.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "Stop.",
+      "ru": "Стоп.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "A1",
+      "en": "Look out.",
+      "ru": "Осторожно.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "C2",
+      "en": "Could you walk me through the isolation sequence before we energise?",
+      "ru": "Можешь по шагам пройти изоляцию до подачи напряжения?",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "C2",
+      "en": "We should flag any non-conformance before the client walkdown.",
+      "ru": "Нужно отметить несоответствия до обхода с заказчиком.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrase",
+      "cefr": "B1",
+      "en": "toolbox talk",
+      "ru": "инструктаж перед сменой",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrase",
+      "cefr": "B1",
+      "en": "permit to work",
+      "ru": "допуск к работе",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrase",
+      "cefr": "B1",
+      "en": "lockout tagout",
+      "ru": "блокировка и бирка (LOTO)",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "B1",
+      "en": "Please wait for the toolbox talk.",
+      "ru": "Подожди toolbox talk.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "B1",
+      "en": "I need a permit to work.",
+      "ru": "Мне нужен допуск к работе.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrase",
+      "cefr": "B2",
+      "en": "as-built drawing",
+      "ru": "исполнительный чертёж",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrase",
+      "cefr": "B2",
+      "en": "method statement",
+      "ru": "описание метода работ",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "B2",
+      "en": "Check the method statement before you start.",
+      "ru": "Проверь method statement перед началом.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "B2",
+      "en": "Update the as-built after the change.",
+      "ru": "Обнови as-built после изменения.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrase",
+      "cefr": "C1",
+      "en": "non-conformance report",
+      "ru": "акт о несоответствии",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrase",
+      "cefr": "C1",
+      "en": "client walkdown",
+      "ru": "обход с заказчиком",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "C1",
+      "en": "Raise a non-conformance if the tray is short.",
+      "ru": "Оформи несоответствие, если лоток короткий.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "C1",
+      "en": "Confirm isolation before the client walkdown.",
+      "ru": "Подтверди изоляцию перед обходом с заказчиком.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrase",
+      "cefr": "C2",
+      "en": "commissioning sequence",
+      "ru": "последовательность пусконаладки",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrase",
+      "cefr": "C2",
+      "en": "interface responsibility",
+      "ru": "зона ответственности на стыке",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "sentence",
+      "cefr": "C2",
+      "en": "Clarify interface responsibility before commissioning.",
+      "ru": "Уточни зоны ответственности до пусконаладки.",
+      "example_en": "",
+      "example_ru": ""
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "Go get it.",
+      "ru": "Пойди возьми.",
+      "example_en": "Go get the drill.",
+      "example_ru": "Пойди возьми дрель."
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "Go and get it.",
+      "ru": "Пойди и возьми.",
+      "example_en": "Go and get the level.",
+      "example_ru": "Пойди и возьми уровень."
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "Take it and bring it.",
+      "ru": "Возьми и принеси.",
+      "example_en": "Take the tray and bring it here.",
+      "example_ru": "Возьми лоток и принеси сюда."
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "Bring it here.",
+      "ru": "Принеси сюда.",
+      "example_en": "Bring it here, please.",
+      "example_ru": "Принеси сюда, пожалуйста."
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "Go cut it.",
+      "ru": "Пойди отрежь.",
+      "example_en": "Go cut the trunking.",
+      "example_ru": "Пойди отрежь короб."
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A2",
+      "en": "Go and cut that.",
+      "ru": "Пойди и отрежь то.",
+      "example_en": "Go and cut that piece.",
+      "example_ru": "Пойди и отрежь тот кусок."
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "Give me something.",
+      "ru": "Дай мне что-то.",
+      "example_en": "Give me something to mark with.",
+      "example_ru": "Дай мне чем разметить."
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "Give me that.",
+      "ru": "Дай то. / Дай мне то.",
+      "example_en": "Give me that clamp.",
+      "example_ru": "Дай мне тот clamp."
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A1",
+      "en": "Give me that one.",
+      "ru": "Дай мне вон то.",
+      "example_en": "Give me that one over there.",
+      "example_ru": "Дай мне вон то, вон там."
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A2",
+      "en": "Give me that over there.",
+      "ru": "Дай мне вон то (там).",
+      "example_en": "Give me that over there on the pallet.",
+      "example_ru": "Дай мне вон то на палете."
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A2",
+      "en": "Pass me that.",
+      "ru": "Передай мне то.",
+      "example_en": "Pass me that spanner.",
+      "example_ru": "Передай мне тот ключ."
+    },
+    {
+      "kind": "phrase",
+      "cefr": "A2",
+      "en": "Hand me that.",
+      "ru": "Дай / протяни мне то.",
+      "example_en": "Hand me that nut.",
+      "example_ru": "Дай мне ту гайку."
+    }
+  ]
+}

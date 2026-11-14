@@ -1,0 +1,175 @@
+import SwiftUI
+
+/// Уроки only: Onsite Language | Regular Language → subsections → 10–15 lessons.
+/// Does not own other tabs.
+struct HomeView: View {
+    @Environment(AppSettings.self) private var settings
+    @Bindable var repository: LessonRepository
+    @Binding var path: NavigationPath
+    @Binding var showCreateLesson: Bool
+
+    private var mode: AppLearningMode { settings.learningMode }
+
+    private var userDialogues: [Lesson] {
+        repository.lessons.filter {
+            $0.tags.contains("general") || $0.createdBy == "user_gemini_general"
+        }
+    }
+
+    var body: some View {
+        List {
+            Section {
+                Picker("Режим", selection: Bindable(settings).learningMode) {
+                    Text("Onsite Language").tag(AppLearningMode.onSite)
+                    Text("Regular Language").tag(AppLearningMode.regular)
+                }
+                .pickerStyle(.segmented)
+
+                Text(mode == .onSite
+                     ? "Только объект / стройка / CCTV — разделы не смешиваются с бытом."
+                     : "Быт: магазин, поездки, дом, dating… + своя тема голосом/текстом.")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            } header: {
+                Text("Уроки")
+            }
+
+            if mode == .onSite {
+                onsiteSections
+            } else {
+                regularSections
+            }
+        }
+        .listStyle(.insetGrouped)
+        .navigationTitle(mode == .onSite ? "Onsite Language" : "Regular Language")
+        .navigationBarTitleDisplayMode(.large)
+        .onAppear {
+            repository.reload()
+            TutorBankStore.setMode(mode == .onSite ? .site : .general)
+        }
+        .onChange(of: settings.learningMode) { _, newMode in
+            TutorBankStore.setMode(newMode == .onSite ? .site : .general)
+        }
+    }
+
+    @ViewBuilder
+    private var onsiteSections: some View {
+        Section("Разделы · Onsite") {
+            ForEach(SectionLessonStore.sections(track: .onSite)) { sec in
+                NavigationLink {
+                    SectionLessonsListView(track: .onSite, section: sec)
+                } label: {
+                    sectionLabel(sec)
+                }
+            }
+        }
+
+        Section {
+            Button {
+                showCreateLesson = true
+            } label: {
+                Label("Новый урок · объект (Gemini)", systemImage: "plus.circle.fill")
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var regularSections: some View {
+        Section("Разделы · Regular") {
+            ForEach(SectionLessonStore.sections(track: .regular)) { sec in
+                NavigationLink {
+                    SectionLessonsListView(track: .regular, section: sec)
+                } label: {
+                    sectionLabel(sec)
+                }
+            }
+        }
+
+        Section("Своя тема") {
+            NavigationLink {
+                RegularLanguageRequestView(preferredLevel: .a2) { lessons in
+                    repository.reload()
+                    if let first = lessons.first {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+                            path.append(first)
+                        }
+                    }
+                }
+            } label: {
+                Label("Голос или текст → до 10 диалогов", systemImage: "mic.badge.plus")
+            }
+            Text("Пример: «I want dating dialogues».")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+        }
+
+        if !userDialogues.isEmpty {
+            Section("Мои собранные диалоги") {
+                ForEach(userDialogues) { lesson in
+                    NavigationLink(value: lesson) {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(lesson.titleRu).font(.headline)
+                            Text(lesson.sceneRu)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                                .lineLimit(2)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private func sectionLabel(_ sec: LessonSectionInfo) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(sec.titleRu).font(.headline)
+            Text(sec.titleEn)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+            Text("\(sec.lessonCount) уроков")
+                .font(.caption2.weight(.semibold))
+                .foregroundStyle(.tertiary)
+        }
+        .padding(.vertical, 2)
+    }
+}
+
+struct SectionLessonsListView: View {
+    let track: AppLearningMode
+    let section: LessonSectionInfo
+
+    private var lessons: [Lesson] {
+        SectionLessonStore.lessons(sectionId: section.id, track: track)
+    }
+
+    var body: some View {
+        List {
+            Section {
+                Text(track == .onSite
+                     ? "Onsite · только этот раздел"
+                     : "Regular · только этот раздел")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
+            Section("Уроки · \(lessons.count)") {
+                ForEach(lessons) { lesson in
+                    NavigationLink(value: lesson) {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(lesson.titleRu).font(.headline)
+                            if let en = lesson.titleEn {
+                                Text(en).font(.caption).foregroundStyle(.secondary)
+                            }
+                            Text(lesson.sceneRu)
+                                .font(.caption)
+                                .foregroundStyle(.tertiary)
+                                .lineLimit(2)
+                        }
+                        .padding(.vertical, 2)
+                    }
+                }
+            }
+        }
+        .navigationTitle(section.titleRu)
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}

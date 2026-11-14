@@ -1,0 +1,17 @@
+Срочно: кнопка «On site» на главной + меню CEFR A1…C2.
+
+Проект: ~/Developer/Languages-on-site · bundle com.sputnik.englishonsite · iPhone UDID 00008130-00166C4C0221001C
+НЕ трогать: bundle ID, PRODUCT_NAME, scheme, remotes, API keys.
+НЕ переименовывать чат/группу Language on Site и ничего в проекте без явной команды.
+
+## Что сделать
+SHA=1fa2284123331173649abb7c8903eb8a87e94b5f
+curl -fsSL "https://raw.githubusercontent.com/yad267/see/${SHA}/artifacts/los-full-apply.tgz" -o /tmp/los-full-apply.tgz
+rm -rf /tmp/los-full-apply && mkdir -p /tmp/los-full-apply && tar -xzf /tmp/los-full-apply.tgz -C /tmp/los-full-apply
+bash /tmp/los-full-apply/los-full-apply/APPLY_ONSITE_CEFR.sh
+
+## Ожидаемый UI
+Уроки (Home) → кнопка «On site» → уровни A1, A2, B1, B2, C1, C2 (каждый свой раздел).
+Внутри уровня: сегменты Фразовые / Фразы / Короткие предложения — только этот уровень, без выше.
+
+В конце: короткий отчёт (сделано / файлы / ошибки) одним копируемым блоком с кнопкой Copy — чтобы я вставил его в хаб-чат Language on Site.

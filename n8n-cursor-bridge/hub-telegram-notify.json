@@ -1,0 +1,165 @@
+{
+  "name": "Hub Telegram Notify (LOS)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "hub-telegram-notify",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "wh-in",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        220,
+        300
+      ],
+      "webhookId": "hub-telegram-notify"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.first().json.body || $input.first().json;\nconst allowed = String($env['TELEGRAM_ALLOWED_CHAT_ID'] || '217250285');\nconst chatId = String(body.chat_id || body.chatId || body.reply_chat_id || allowed);\nconst text = String(body.text || body.message || body.summary || '').slice(0, 3500);\nif (!text) {\n  return [{ json: { ok: false, error: 'empty_text', chatId } }];\n}\nreturn [{ json: { ok: true, chatId, text } }];\n"
+      },
+      "id": "parse",
+      "name": "Parse",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{$json.ok}}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "if-ok",
+      "name": "IF ok",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        660,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{$json.chatId}}",
+        "text": "={{$json.text}}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "tg-send",
+      "name": "TG Send",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        880,
+        220
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "REPLACE_TG_CRED_ID",
+          "name": "Languages-on-site"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { ok: true, chatId: $json.chatId || $('Parse').item.json.chatId } }}",
+        "options": {}
+      },
+      "id": "resp-ok",
+      "name": "Respond OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1100,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { ok: false, error: $json.error || 'failed' } }}",
+        "options": {}
+      },
+      "id": "resp-fail",
+      "name": "Respond Fail",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        880,
+        400
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Parse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse": {
+      "main": [
+        [
+          {
+            "node": "IF ok",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF ok": {
+      "main": [
+        [
+          {
+            "node": "TG Send",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond Fail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TG Send": {
+      "main": [
+        [
+          {
+            "node": "Respond OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "active": false
+}
