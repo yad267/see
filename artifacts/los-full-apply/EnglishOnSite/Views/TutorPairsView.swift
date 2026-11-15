@@ -4,7 +4,6 @@ import UIKit
 
 enum TutorPairsMode: String, Hashable {
     case phrasal
-    case words
     case opposites
 }
 
@@ -98,7 +97,6 @@ struct TutorPairsView: View {
     }
 
     var body: some View {
-        // Scroll so long gloss / practice text never sits under the tab bar.
         ScrollView {
             VStack(spacing: 0) {
                 header
@@ -115,11 +113,11 @@ struct TutorPairsView: View {
                     .offset(x: missShake ? -8 : 0)
                 }
             }
-            .padding(.bottom, 28)
             .frame(maxWidth: .infinity)
+            .padding(.bottom, 28)
         }
         .scrollIndicators(.visible)
-        .scrollDismissesKeyboard(.interactively)
+        .safeAreaPadding(.bottom, 12)
         .navigationTitle("Пары")
         .navigationBarTitleDisplayMode(.inline)
         .navigationDestination(item: $loopSeed) { seed in
@@ -157,7 +155,9 @@ struct TutorPairsView: View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Нажмите на пары")
                 .font(.title3.weight(.bold))
-            Text(headerCaption)
+            Text(mode == .phrasal
+                 ? "Phrasal · голос только EN"
+                 : "Наоборот · один play на тап")
                 .font(.caption.weight(.semibold))
                 .foregroundStyle(.secondary)
             Text("\(progressDone) / \(roundSize)")
@@ -172,21 +172,6 @@ struct TutorPairsView: View {
         }
         .padding(.horizontal, 16)
         .padding(.top, 12)
-    }
-
-    private var headerCaption: String {
-        switch mode {
-        case .phrasal:
-            return "Фразовые · слева EN · справа RU · тап = пара"
-        case .words:
-            return "Слова · слева EN · справа RU · тап = пара"
-        case .opposites:
-            return "Наоборот · один play на тап"
-        }
-    }
-
-    private var isMatchGlossMode: Bool {
-        mode == .phrasal || mode == .words
     }
 
     /// B13: mic after EN phrasal tap — Gemini check + Save → Мои фразы.
@@ -257,8 +242,8 @@ struct TutorPairsView: View {
         VStack(alignment: .leading, spacing: 4) {
             switch gloss {
             case .hint:
-                Text(isMatchGlossMode
-                     ? "Слева EN, справа перевод. Тапни пару — услышишь EN."
+                Text(mode == .phrasal
+                     ? "Тап EN — услышишь. RU молчит, пока не пара."
                      : "Тапни слово — услышишь EN и увидишь перевод")
                     .font(.caption)
                     .foregroundStyle(.tertiary)
@@ -270,7 +255,6 @@ struct TutorPairsView: View {
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
-                usageExamplesBlock(for: en)
             case .pair(let enLine, let ruLine):
                 Text(enLine)
                     .font(.subheadline.weight(.bold))
@@ -279,8 +263,6 @@ struct TutorPairsView: View {
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
-                // Prefer lemma from last matched / practice; else first token-ish of EN line.
-                usageExamplesBlock(for: practiceEN.isEmpty ? enLine : practiceEN)
             }
             if !glossNote.isEmpty {
                 Text(glossNote).font(.caption2).foregroundStyle(.orange)
@@ -294,72 +276,30 @@ struct TutorPairsView: View {
         )
     }
 
-    /// In-place 2–3 usage lines (everyday + on-site) — same screen, no navigation.
-    @ViewBuilder
-    private func usageExamplesBlock(for enRaw: String) -> some View {
-        let lemma = usageLemma(from: enRaw)
-        let examples = PhrasalUsageExamplesStore.examples(for: lemma)
-        if !examples.isEmpty {
-            Text("Примеры")
-                .font(.caption2.weight(.bold))
-                .foregroundStyle(.secondary)
-                .padding(.top, 6)
-            ForEach(Array(examples.enumerated()), id: \.offset) { _, ex in
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(ex.contextTitleRU)
-                        .font(.caption2.weight(.semibold))
-                        .foregroundStyle(.tertiary)
-                    Text(ex.en)
-                        .font(.caption.weight(.semibold))
-                        .fixedSize(horizontal: false, vertical: true)
-                    if !ex.ru.isEmpty {
-                        Text(ex.ru)
-                            .font(.caption2)
-                            .foregroundStyle(.secondary)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                }
-                .padding(.top, 2)
-            }
-        }
-    }
-
-    private func usageLemma(from text: String) -> String {
-        let t = text.trimmingCharacters(in: .whitespacesAndNewlines)
-        if mode == .phrasal,
-           let hit = TutorBankStore.phrasals.first(where: {
-               t.localizedCaseInsensitiveContains($0.en) || $0.en.caseInsensitiveCompare(t) == .orderedSame
-           }) {
-            return hit.en
-        }
-        if !practiceEN.isEmpty { return practiceEN }
-        return t
-    }
-
     private var emptyBank: some View {
         VStack(spacing: 14) {
+            Spacer(minLength: 24)
             Text("Банк пуст").font(.title2.weight(.bold))
             Button("Обновить") { dealRound() }
                 .buttonStyle(.borderedProminent)
+            Spacer()
         }
         .padding(24)
-        .frame(maxWidth: .infinity)
     }
 
     private var roundDone: some View {
         VStack(spacing: 14) {
+            Spacer(minLength: 12)
             Text("Раунд готов").font(.title2.weight(.bold))
             Text("\(matchedRound.count) пар · сказать все вслух")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
             if let last = lastMatched {
-                Text(isMatchGlossMode ? last.drillEN : "\(last.leftEN) ↔ \(last.rightEN)")
+                Text(mode == .phrasal ? last.drillEN : "\(last.leftEN) ↔ \(last.rightEN)")
                     .font(.headline.weight(.bold))
-                    .fixedSize(horizontal: false, vertical: true)
-                Text(isMatchGlossMode ? last.drillRU : "\(last.leftRU) ↔ \(last.rightRU)")
+                Text(mode == .phrasal ? last.drillRU : "\(last.leftRU) ↔ \(last.rightRU)")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
-                    .fixedSize(horizontal: false, vertical: true)
             }
             Button {
                 let phrases = matchedRound.map { meta -> (en: String, ru: String) in
@@ -384,9 +324,9 @@ struct TutorPairsView: View {
             .disabled(matchedRound.isEmpty)
             Button("Ещё раунд") { dealRound() }
                 .buttonStyle(.bordered)
+            Spacer()
         }
         .padding(24)
-        .frame(maxWidth: .infinity)
     }
 
     private func tileColumn(tiles: [SideTile], side: Side) -> some View {
@@ -432,7 +372,7 @@ struct TutorPairsView: View {
         if let l, let r, l != r {
             setGlossWord(tile)
             // B2: wrong RU → silence. EN / opposites still play the tapped EN word once.
-            if !(isMatchGlossMode && !tile.isENColumn) {
+            if !(mode == .phrasal && !tile.isENColumn) {
                 playTile(tile)
             }
             withAnimation(.default) { missShake = true }
@@ -447,7 +387,7 @@ struct TutorPairsView: View {
 
         // Single select
         setGlossWord(tile)
-        if isMatchGlossMode && !tile.isENColumn {
+        if mode == .phrasal && !tile.isENColumn {
             // RU column: select + gloss only — never TTS Cyrillic / never EN until match.
             return
         }
@@ -760,7 +700,7 @@ struct TutorPairsView: View {
             if let seedPhrasals, !seedPhrasals.isEmpty {
                 pool = Array(seedPhrasals.shuffled().prefix(5))
             } else {
-                pool = Self.preferFocusPhrasals(from: TutorBankStore.corePhrasals, count: 5)
+                pool = Array(TutorBankStore.corePhrasals.shuffled().prefix(5))
             }
             for p in pool {
                 let pid = p.en
@@ -774,38 +714,13 @@ struct TutorPairsView: View {
                     leftRU: p.ru, rightRU: p.ru,
                     drillEN: drillEN, drillRU: drillRU
                 ))
-                // Duolingo: left = EN phrasal, right = RU answer options
                 left.append(SideTile(
-                    id: "\(pid)#L", pairId: pid, display: p.en,
-                    speakEN: p.en, ru: p.ru, isENColumn: true
-                ))
-                right.append(SideTile(
-                    id: "\(pid)#R", pairId: pid, display: p.ru,
+                    id: "\(pid)#L", pairId: pid, display: p.ru,
                     speakEN: p.en, ru: p.ru, isENColumn: false
                 ))
-            }
-        case .words:
-            let withRU = LearningBankStore.words().filter {
-                !$0.ru.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-            }
-            let pool = Array(withRU.shuffled().prefix(5))
-            for w in pool {
-                let pid = w.en
-                let ru = w.ru.isEmpty ? (TutorBankStore.glossRU(forEN: w.en) ?? "—") : w.ru
-                metas.append(PairMeta(
-                    pairId: pid,
-                    leftEN: w.en, rightEN: w.en,
-                    leftRU: ru, rightRU: ru,
-                    drillEN: w.example.isEmpty ? w.en : w.example,
-                    drillRU: ru
-                ))
-                left.append(SideTile(
-                    id: "\(pid)#L", pairId: pid, display: w.en,
-                    speakEN: w.en, ru: ru, isENColumn: true
-                ))
                 right.append(SideTile(
-                    id: "\(pid)#R", pairId: pid, display: ru,
-                    speakEN: w.en, ru: ru, isENColumn: false
+                    id: "\(pid)#R", pairId: pid, display: p.en,
+                    speakEN: p.en, ru: p.ru, isENColumn: true
                 ))
             }
         case .opposites:
@@ -849,24 +764,6 @@ struct TutorPairsView: View {
         lastPlayedEN = ""
 
         prefetchTableAudio()
-    }
-
-    /// Prefer get / got / take / turn / over roots so those show up in Duolingo rounds.
-    private static func preferFocusPhrasals(from all: [PhrasalEntry], count: Int) -> [PhrasalEntry] {
-        let focusRoots: Set<String> = ["get", "got", "take", "turn", "ten", "over"]
-        func isFocus(_ p: PhrasalEntry) -> Bool {
-            let tokens = (p.en.lowercased() + " " + p.root.lowercased()).split(separator: " ").map(String.init)
-            return tokens.contains(where: { focusRoots.contains($0) })
-                || focusRoots.contains(where: { p.en.lowercased().contains($0) })
-        }
-        let focus = all.filter(isFocus).shuffled()
-        if focus.count >= count { return Array(focus.prefix(count)) }
-        var picked = focus
-        let rest = all.filter { !isFocus($0) }.shuffled()
-        for p in rest where picked.count < count {
-            picked.append(p)
-        }
-        return picked
     }
 }
 
