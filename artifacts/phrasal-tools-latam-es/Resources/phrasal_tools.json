@@ -1,0 +1,788 @@
+{
+  "schema": 1,
+  "content_version": 1,
+  "title": "Phrasal tools — site instrumentals",
+  "title_ru": "Фразовые с инструментами",
+  "sections": [
+    {
+      "id": "section_01",
+      "order": 1,
+      "title_en": "Hands & pass",
+      "title_ru": "Передай / дай инструмент",
+      "items": [
+        {
+          "id": "pt_01_01",
+          "phrasal": "hand over",
+          "en": "Hand over the drill to me.",
+          "ru": "Передай мне дрель.",
+          "tool": ""
+        },
+        {
+          "id": "pt_01_02",
+          "phrasal": "hand over",
+          "en": "Hand over the screwdriver, please.",
+          "ru": "Передай отвёртку, пожалуйста.",
+          "tool": ""
+        },
+        {
+          "id": "pt_01_03",
+          "phrasal": "pass over",
+          "en": "Pass over the hammer from there.",
+          "ru": "Передай молоток оттуда.",
+          "tool": ""
+        },
+        {
+          "id": "pt_01_04",
+          "phrasal": "pass along",
+          "en": "Pass the spirit level along to him.",
+          "ru": "Передай ему уровень.",
+          "tool": ""
+        },
+        {
+          "id": "pt_01_05",
+          "phrasal": "give out",
+          "en": "Give out the gloves to the team.",
+          "ru": "Раздай перчатки команде.",
+          "tool": ""
+        },
+        {
+          "id": "pt_01_06",
+          "phrasal": "give back",
+          "en": "Give the tape measure back to me.",
+          "ru": "Верни мне рулетку.",
+          "tool": ""
+        },
+        {
+          "id": "pt_01_07",
+          "phrasal": "hold out",
+          "en": "Hold out the wrench so I can take it.",
+          "ru": "Протяни ключ, чтобы я взял.",
+          "tool": ""
+        },
+        {
+          "id": "pt_01_08",
+          "phrasal": "hold on",
+          "en": "Hold on to the ladder for me.",
+          "ru": "Подержи лестницу за меня.",
+          "tool": ""
+        },
+        {
+          "id": "pt_01_09",
+          "phrasal": "hang on",
+          "en": "Hang on to this clamp a second.",
+          "ru": "Подержи этот зажим секунду.",
+          "tool": ""
+        },
+        {
+          "id": "pt_01_10",
+          "phrasal": "take from",
+          "en": "Take the pliers from the toolbox.",
+          "ru": "Возьми плоскогубцы из ящика.",
+          "tool": ""
+        }
+      ]
+    },
+    {
+      "id": "section_02",
+      "order": 2,
+      "title_en": "Put & place",
+      "title_ru": "Положи / поставь на место",
+      "items": [
+        {
+          "id": "pt_02_01",
+          "phrasal": "put down",
+          "en": "Put the hammer down on the bench.",
+          "ru": "Положи молоток на верстак.",
+          "tool": ""
+        },
+        {
+          "id": "pt_02_02",
+          "phrasal": "put back",
+          "en": "Put the drill back in the case.",
+          "ru": "Положи дрель обратно в кейс.",
+          "tool": ""
+        },
+        {
+          "id": "pt_02_03",
+          "phrasal": "put away",
+          "en": "Put the screws away in the box.",
+          "ru": "Убери шурупы в коробку.",
+          "tool": ""
+        },
+        {
+          "id": "pt_02_04",
+          "phrasal": "put on",
+          "en": "Put on your hard hat before you start.",
+          "ru": "Надень каску перед началом.",
+          "tool": ""
+        },
+        {
+          "id": "pt_02_05",
+          "phrasal": "set down",
+          "en": "Set the grinder down carefully.",
+          "ru": "Осторожно поставь болгарку.",
+          "tool": ""
+        },
+        {
+          "id": "pt_02_06",
+          "phrasal": "lay down",
+          "en": "Lay the cable tray down by the wall.",
+          "ru": "Положи лоток у стены.",
+          "tool": ""
+        },
+        {
+          "id": "pt_02_07",
+          "phrasal": "lay out",
+          "en": "Lay out the tools on the tarp.",
+          "ru": "Разложи инструменты на брезенте.",
+          "tool": ""
+        },
+        {
+          "id": "pt_02_08",
+          "phrasal": "set up",
+          "en": "Set up the workbench near the tray.",
+          "ru": "Поставь верстак у лотка.",
+          "tool": ""
+        },
+        {
+          "id": "pt_02_09",
+          "phrasal": "stick on",
+          "en": "Stick the label on the tool bag.",
+          "ru": "Наклей ярлык на сумку с инструментом.",
+          "tool": ""
+        },
+        {
+          "id": "pt_02_10",
+          "phrasal": "pack away",
+          "en": "Pack the bits away after the cut.",
+          "ru": "Убери свёрла после реза.",
+          "tool": ""
+        }
+      ]
+    },
+    {
+      "id": "section_03",
+      "order": 3,
+      "title_en": "Pick & take",
+      "title_ru": "Возьми / подними / вынь",
+      "items": [
+        {
+          "id": "pt_03_01",
+          "phrasal": "pick up",
+          "en": "Pick up the screwdriver from the floor.",
+          "ru": "Подними отвёртку с пола.",
+          "tool": ""
+        },
+        {
+          "id": "pt_03_02",
+          "phrasal": "pick out",
+          "en": "Pick out a 10mm socket from the set.",
+          "ru": "Выбери головку 10 мм из набора.",
+          "tool": ""
+        },
+        {
+          "id": "pt_03_03",
+          "phrasal": "take out",
+          "en": "Take out the drill bit from the chuck.",
+          "ru": "Вынь сверло из патрона.",
+          "tool": ""
+        },
+        {
+          "id": "pt_03_04",
+          "phrasal": "take off",
+          "en": "Take off the blade guard carefully.",
+          "ru": "Аккуратно сними защиту диска.",
+          "tool": ""
+        },
+        {
+          "id": "pt_03_05",
+          "phrasal": "take away",
+          "en": "Take the scrap metal away from the bay.",
+          "ru": "Унеси металлолом из зоны.",
+          "tool": ""
+        },
+        {
+          "id": "pt_03_06",
+          "phrasal": "pull out",
+          "en": "Pull out the nail with the claw hammer.",
+          "ru": "Вытащи гвоздь гвоздодёром.",
+          "tool": ""
+        },
+        {
+          "id": "pt_03_07",
+          "phrasal": "pull off",
+          "en": "Pull the tape off the conduit.",
+          "ru": "Сорви ленту с трубы.",
+          "tool": ""
+        },
+        {
+          "id": "pt_03_08",
+          "phrasal": "get out",
+          "en": "Get the spanner out of the van.",
+          "ru": "Достань ключ из фургона.",
+          "tool": ""
+        },
+        {
+          "id": "pt_03_09",
+          "phrasal": "fish out",
+          "en": "Fish the washer out of the bucket.",
+          "ru": "Вылови шайбу из ведра.",
+          "tool": ""
+        },
+        {
+          "id": "pt_03_10",
+          "phrasal": "lift up",
+          "en": "Lift up the cable tray with me.",
+          "ru": "Подними лоток вместе со мной.",
+          "tool": ""
+        }
+      ]
+    },
+    {
+      "id": "section_04",
+      "order": 4,
+      "title_en": "Power & tools",
+      "title_ru": "Включить / выключить инструмент",
+      "items": [
+        {
+          "id": "pt_04_01",
+          "phrasal": "turn on",
+          "en": "Turn on the drill before you cut.",
+          "ru": "Включи дрель перед резом.",
+          "tool": ""
+        },
+        {
+          "id": "pt_04_02",
+          "phrasal": "turn off",
+          "en": "Turn off the grinder when you stop.",
+          "ru": "Выключи болгарку, когда остановишься.",
+          "tool": ""
+        },
+        {
+          "id": "pt_04_03",
+          "phrasal": "switch on",
+          "en": "Switch on the work light over the bench.",
+          "ru": "Включи рабочий свет над верстаком.",
+          "tool": ""
+        },
+        {
+          "id": "pt_04_04",
+          "phrasal": "switch off",
+          "en": "Switch off the circular saw first.",
+          "ru": "Сначала выключи циркулярку.",
+          "tool": ""
+        },
+        {
+          "id": "pt_04_05",
+          "phrasal": "plug in",
+          "en": "Plug in the charger for the impact driver.",
+          "ru": "Включи зарядку для шуруповёрта.",
+          "tool": ""
+        },
+        {
+          "id": "pt_04_06",
+          "phrasal": "unplug",
+          "en": "Unplug the extension lead before you move it.",
+          "ru": "Вынь удлинитель из розетки перед переносом.",
+          "tool": ""
+        },
+        {
+          "id": "pt_04_07",
+          "phrasal": "power up",
+          "en": "Power up the generator for the tools.",
+          "ru": "Запусти генератор для инструментов.",
+          "tool": ""
+        },
+        {
+          "id": "pt_04_08",
+          "phrasal": "power down",
+          "en": "Power down the saw and wait.",
+          "ru": "Выключи пилу и подожди.",
+          "tool": ""
+        },
+        {
+          "id": "pt_04_09",
+          "phrasal": "shut down",
+          "en": "Shut down the machine before cleaning.",
+          "ru": "Останови станок перед чисткой.",
+          "tool": ""
+        },
+        {
+          "id": "pt_04_10",
+          "phrasal": "warm up",
+          "en": "Warm up the laser level for a minute.",
+          "ru": "Прогрей лазерный уровень минуту.",
+          "tool": ""
+        }
+      ]
+    },
+    {
+      "id": "section_05",
+      "order": 5,
+      "title_en": "Fix & fasten",
+      "title_ru": "Закрепи / закрути / собери",
+      "items": [
+        {
+          "id": "pt_05_01",
+          "phrasal": "screw in",
+          "en": "Screw in the clamp on the tray.",
+          "ru": "Закрути хомут на лотке.",
+          "tool": ""
+        },
+        {
+          "id": "pt_05_02",
+          "phrasal": "tighten up",
+          "en": "Tighten up the bolt with the ratchet.",
+          "ru": "Подтяни болт трещоткой.",
+          "tool": ""
+        },
+        {
+          "id": "pt_05_03",
+          "phrasal": "loosen up",
+          "en": "Loosen up the nut with the spanner.",
+          "ru": "Ослабь гайку ключом.",
+          "tool": ""
+        },
+        {
+          "id": "pt_05_04",
+          "phrasal": "put together",
+          "en": "Put the stand together with the bolts.",
+          "ru": "Собери стойку болтами.",
+          "tool": ""
+        },
+        {
+          "id": "pt_05_05",
+          "phrasal": "take apart",
+          "en": "Take the chuck apart to clean it.",
+          "ru": "Разбери патрон для чистки.",
+          "tool": ""
+        },
+        {
+          "id": "pt_05_06",
+          "phrasal": "wire up",
+          "en": "Wire up the junction box with me.",
+          "ru": "Разведём коробку вместе.",
+          "tool": ""
+        },
+        {
+          "id": "pt_05_07",
+          "phrasal": "fix out",
+          "en": "Lock out the panel before you touch it.",
+          "ru": "Заблокируй щит, прежде чем трогать.",
+          "tool": ""
+        },
+        {
+          "id": "pt_05_08",
+          "phrasal": "tag out",
+          "en": "Tag out the isolator on this circuit.",
+          "ru": "Повесь бирку на разъединитель.",
+          "tool": ""
+        },
+        {
+          "id": "pt_05_09",
+          "phrasal": "clamp down",
+          "en": "Clamp down the workpiece on the bench.",
+          "ru": "Зажми деталь на верстаке.",
+          "tool": ""
+        },
+        {
+          "id": "pt_05_10",
+          "phrasal": "fasten on",
+          "en": "Fasten the bracket on with two screws.",
+          "ru": "Закрепи кронштейн двумя шурупами.",
+          "tool": ""
+        }
+      ]
+    },
+    {
+      "id": "section_06",
+      "order": 6,
+      "title_en": "Clean & tidy",
+      "title_ru": "Убери / почисти зону",
+      "items": [
+        {
+          "id": "pt_06_01",
+          "phrasal": "tidy up",
+          "en": "Tidy up the tools before break.",
+          "ru": "Убери инструменты перед перерывом.",
+          "tool": ""
+        },
+        {
+          "id": "pt_06_02",
+          "phrasal": "clean up",
+          "en": "Clean up the metal filings from the cut.",
+          "ru": "Убери металлическую стружку после реза.",
+          "tool": ""
+        },
+        {
+          "id": "pt_06_03",
+          "phrasal": "clear away",
+          "en": "Clear away the offcuts from the floor.",
+          "ru": "Убери обрезки с пола.",
+          "tool": ""
+        },
+        {
+          "id": "pt_06_04",
+          "phrasal": "clear out",
+          "en": "Clear out the toolbox so we can find bits.",
+          "ru": "Очисти ящик, чтобы найти свёрла.",
+          "tool": ""
+        },
+        {
+          "id": "pt_06_05",
+          "phrasal": "sweep up",
+          "en": "Sweep up the dust around the saw.",
+          "ru": "Подмети пыль вокруг пилы.",
+          "tool": ""
+        },
+        {
+          "id": "pt_06_06",
+          "phrasal": "wipe down",
+          "en": "Wipe down the workbench after drilling.",
+          "ru": "Протри верстак после сверления.",
+          "tool": ""
+        },
+        {
+          "id": "pt_06_07",
+          "phrasal": "pack up",
+          "en": "Pack up the tools for the end of day.",
+          "ru": "Собери инструменты к концу смены.",
+          "tool": ""
+        },
+        {
+          "id": "pt_06_08",
+          "phrasal": "put aside",
+          "en": "Put the spare blades aside in the rack.",
+          "ru": "Отложи запасные диски на стеллаж.",
+          "tool": ""
+        },
+        {
+          "id": "pt_06_09",
+          "phrasal": "throw away",
+          "en": "Throw away the broken bit safely.",
+          "ru": "Выбрось сломанное сверло безопасно.",
+          "tool": ""
+        },
+        {
+          "id": "pt_06_10",
+          "phrasal": "sort out",
+          "en": "Sort out the screws by size on the tray.",
+          "ru": "Разложи шурупы по размеру на лотке.",
+          "tool": ""
+        }
+      ]
+    },
+    {
+      "id": "section_07",
+      "order": 7,
+      "title_en": "Help & ask",
+      "title_ru": "Попроси помочь с инструментом",
+      "items": [
+        {
+          "id": "pt_07_01",
+          "phrasal": "help out",
+          "en": "Can you help me out with this ladder?",
+          "ru": "Можешь помочь мне с этой лестницей?",
+          "tool": ""
+        },
+        {
+          "id": "pt_07_02",
+          "phrasal": "give a hand",
+          "en": "Give me a hand with the cable tray.",
+          "ru": "Помоги мне с лотком.",
+          "tool": ""
+        },
+        {
+          "id": "pt_07_03",
+          "phrasal": "come over",
+          "en": "Come over and hold this spirit level.",
+          "ru": "Подойди и подержи уровень.",
+          "tool": ""
+        },
+        {
+          "id": "pt_07_04",
+          "phrasal": "come with",
+          "en": "Come with me and bring the drill.",
+          "ru": "Пойдём со мной и возьми дрель.",
+          "tool": ""
+        },
+        {
+          "id": "pt_07_05",
+          "phrasal": "hang on",
+          "en": "Hang on — I need the 13mm spanner.",
+          "ru": "Подожди — мне нужен ключ на 13.",
+          "tool": ""
+        },
+        {
+          "id": "pt_07_06",
+          "phrasal": "hold on",
+          "en": "Hold on while I pass you the cutter.",
+          "ru": "Подожди, пока я передам резак.",
+          "tool": ""
+        },
+        {
+          "id": "pt_07_07",
+          "phrasal": "look after",
+          "en": "Look after my tools while I sign in.",
+          "ru": "Присмотри за моими инструментами, пока я отмечусь.",
+          "tool": ""
+        },
+        {
+          "id": "pt_07_08",
+          "phrasal": "watch out",
+          "en": "Watch out for the cable by your feet.",
+          "ru": "Осторожно, кабель у ног.",
+          "tool": ""
+        },
+        {
+          "id": "pt_07_09",
+          "phrasal": "look out",
+          "en": "Look out — the grinder disc is spinning.",
+          "ru": "Осторожно — диск болгарки крутится.",
+          "tool": ""
+        },
+        {
+          "id": "pt_07_10",
+          "phrasal": "stand by",
+          "en": "Stand by with the fire extinguisher.",
+          "ru": "Будь наготове с огнетушителем.",
+          "tool": ""
+        }
+      ]
+    },
+    {
+      "id": "section_08",
+      "order": 8,
+      "title_en": "Move & bring",
+      "title_ru": "Принеси / отнеси / подъезжай",
+      "items": [
+        {
+          "id": "pt_08_01",
+          "phrasal": "bring over",
+          "en": "Bring over the extension lead, please.",
+          "ru": "Принеси удлинитель, пожалуйста.",
+          "tool": ""
+        },
+        {
+          "id": "pt_08_02",
+          "phrasal": "bring back",
+          "en": "Bring the keys back to the cabin.",
+          "ru": "Верни ключи в вагончик.",
+          "tool": ""
+        },
+        {
+          "id": "pt_08_03",
+          "phrasal": "take back",
+          "en": "Take the empty gas bottle back to the cage.",
+          "ru": "Отнеси пустой баллон в клетку.",
+          "tool": ""
+        },
+        {
+          "id": "pt_08_04",
+          "phrasal": "drop off",
+          "en": "Drop off the spare drill at the cabin.",
+          "ru": "Оставь запасную дрель в вагончике.",
+          "tool": ""
+        },
+        {
+          "id": "pt_08_05",
+          "phrasal": "pick up",
+          "en": "Pick up a new blade from the stores.",
+          "ru": "Забери новый диск со склада.",
+          "tool": ""
+        },
+        {
+          "id": "pt_08_06",
+          "phrasal": "run out",
+          "en": "We ran out of 8mm bolts — grab some.",
+          "ru": "Кончились болты 8 мм — возьми ещё.",
+          "tool": ""
+        },
+        {
+          "id": "pt_08_07",
+          "phrasal": "load up",
+          "en": "Load up the van with the cable drums.",
+          "ru": "Загрузи фургон барабанами кабеля.",
+          "tool": ""
+        },
+        {
+          "id": "pt_08_08",
+          "phrasal": "unload",
+          "en": "Unload the conduit next to the bay.",
+          "ru": "Разгрузи трубы рядом с зоной.",
+          "tool": ""
+        },
+        {
+          "id": "pt_08_09",
+          "phrasal": "carry on",
+          "en": "Carry on with the tray while I get clamps.",
+          "ru": "Продолжай лоток, пока я возьму хомуты.",
+          "tool": ""
+        },
+        {
+          "id": "pt_08_10",
+          "phrasal": "go back",
+          "en": "Go back and fetch the laser level.",
+          "ru": "Вернись и принеси лазерный уровень.",
+          "tool": ""
+        }
+      ]
+    },
+    {
+      "id": "section_09",
+      "order": 9,
+      "title_en": "Check & mark",
+      "title_ru": "Проверь / отметь инструментом",
+      "items": [
+        {
+          "id": "pt_09_01",
+          "phrasal": "check out",
+          "en": "Check out the drawing with the tape measure.",
+          "ru": "Сверь чертёж рулеткой.",
+          "tool": ""
+        },
+        {
+          "id": "pt_09_02",
+          "phrasal": "look at",
+          "en": "Look at the mark on the steel beam.",
+          "ru": "Посмотри на метку на балке.",
+          "tool": ""
+        },
+        {
+          "id": "pt_09_03",
+          "phrasal": "look for",
+          "en": "Look for the 17mm socket in the set.",
+          "ru": "Найди головку 17 мм в наборе.",
+          "tool": ""
+        },
+        {
+          "id": "pt_09_04",
+          "phrasal": "mark out",
+          "en": "Mark out the holes with the pencil.",
+          "ru": "Разметь отверстия карандашом.",
+          "tool": ""
+        },
+        {
+          "id": "pt_09_05",
+          "phrasal": "measure up",
+          "en": "Measure up the span with the laser.",
+          "ru": "Замерь пролёт лазером.",
+          "tool": ""
+        },
+        {
+          "id": "pt_09_06",
+          "phrasal": "point out",
+          "en": "Point out the live cable on the plan.",
+          "ru": "Укажи на плане живой кабель.",
+          "tool": ""
+        },
+        {
+          "id": "pt_09_07",
+          "phrasal": "write down",
+          "en": "Write down the torque on the tag.",
+          "ru": "Запиши момент на бирке.",
+          "tool": ""
+        },
+        {
+          "id": "pt_09_08",
+          "phrasal": "fill in",
+          "en": "Fill in the permit before you cut.",
+          "ru": "Заполни допуск перед резом.",
+          "tool": ""
+        },
+        {
+          "id": "pt_09_09",
+          "phrasal": "fill out",
+          "en": "Fill out the tool checklist on the board.",
+          "ru": "Заполни чеклист инструментов на доске.",
+          "tool": ""
+        },
+        {
+          "id": "pt_09_10",
+          "phrasal": "make sure",
+          "en": "Make sure the isolator is locked out.",
+          "ru": "Убедись, что разъединитель заблокирован.",
+          "tool": ""
+        }
+      ]
+    },
+    {
+      "id": "section_10",
+      "order": 10,
+      "title_en": "Safe site moves",
+      "title_ru": "Безопасные действия с инструментом",
+      "items": [
+        {
+          "id": "pt_10_01",
+          "phrasal": "climb up",
+          "en": "Climb up the ladder with the tool belt on.",
+          "ru": "Поднимись по лестнице с поясом для инструмента.",
+          "tool": ""
+        },
+        {
+          "id": "pt_10_02",
+          "phrasal": "climb down",
+          "en": "Climb down slowly and pass me the drill.",
+          "ru": "Спускайся медленно и передай мне дрель.",
+          "tool": ""
+        },
+        {
+          "id": "pt_10_03",
+          "phrasal": "stand clear",
+          "en": "Stand clear while I start the saw.",
+          "ru": "Отойди, пока я запускаю пилу.",
+          "tool": ""
+        },
+        {
+          "id": "pt_10_04",
+          "phrasal": "keep off",
+          "en": "Keep off the wet concrete with those boots.",
+          "ru": "Не ходи по мокрому бетону в этих ботинках.",
+          "tool": ""
+        },
+        {
+          "id": "pt_10_05",
+          "phrasal": "stay away",
+          "en": "Stay away from the spinning blade.",
+          "ru": "Держись подальше от крутящегося диска.",
+          "tool": ""
+        },
+        {
+          "id": "pt_10_06",
+          "phrasal": "slow down",
+          "en": "Slow down — the grindstone is catching.",
+          "ru": "Замедлись — камень цепляет.",
+          "tool": ""
+        },
+        {
+          "id": "pt_10_07",
+          "phrasal": "hurry up",
+          "en": "Hurry up and hand me the ear defenders.",
+          "ru": "Живее, передай наушники.",
+          "tool": ""
+        },
+        {
+          "id": "pt_10_08",
+          "phrasal": "cool down",
+          "en": "Let the bit cool down before you change it.",
+          "ru": "Дай сверлу остыть перед заменой.",
+          "tool": ""
+        },
+        {
+          "id": "pt_10_09",
+          "phrasal": "break down",
+          "en": "The impact driver broke down mid-fix.",
+          "ru": "Шуруповёрт сломался посреди крепежа.",
+          "tool": ""
+        },
+        {
+          "id": "pt_10_10",
+          "phrasal": "show up",
+          "en": "Show up at the bay with your Safe Pass.",
+          "ru": "Приходи на зону со своим Safe Pass.",
+          "tool": ""
+        }
+      ]
+    }
+  ]
+}
