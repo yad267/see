@@ -1,0 +1,2081 @@
+From 2b700aef9567a1a16dc1ed522795d793aa5398ce Mon Sep 17 00:00:00 2001
+From: Cursor Agent <cursoragent@cursor.com>
+Date: Mon, 9 Nov 2026 22:15:38 +0000
+Subject: [PATCH] Add phrasal tools trainer and LatAm Spanish ElevenLabs voice.
+
+Wire ES TTS like EN (same key/model/cache), factory LatAm voice (not Castilian), sectioned phrasal_tools pack with speak-check and Gemini add-own into a separate trainer store.
+---
+ EnglishOnSite.xcodeproj/project.pbxproj       |  34 +-
+ EnglishOnSite/Models/AppSettings.swift        |  23 +
+ EnglishOnSite/Resources/phrasal_tools.json    | 788 ++++++++++++++++++
+ EnglishOnSite/Services/ElevenLabsConfig.swift |  17 +-
+ EnglishOnSite/Services/ElevenLabsTTS.swift    |  81 +-
+ .../Services/PhrasalToolsStore.swift          |  62 ++
+ .../Services/PhrasalTrainerStore.swift        | 118 +++
+ EnglishOnSite/Services/SpeechSpeaker.swift    |  33 +
+ EnglishOnSite/Views/PhrasalHubView.swift      |  41 +-
+ .../Views/PhrasalSpeakPracticeRow.swift       | 152 ++++
+ EnglishOnSite/Views/PhrasalToolsView.swift    | 115 +++
+ EnglishOnSite/Views/PhrasalTrainerView.swift  | 226 +++++
+ EnglishOnSite/Views/SettingsView.swift        |  10 +-
+ 13 files changed, 1663 insertions(+), 37 deletions(-)
+ create mode 100644 EnglishOnSite/Resources/phrasal_tools.json
+ create mode 100644 EnglishOnSite/Services/PhrasalToolsStore.swift
+ create mode 100644 EnglishOnSite/Services/PhrasalTrainerStore.swift
+ create mode 100644 EnglishOnSite/Views/PhrasalSpeakPracticeRow.swift
+ create mode 100644 EnglishOnSite/Views/PhrasalToolsView.swift
+ create mode 100644 EnglishOnSite/Views/PhrasalTrainerView.swift
+
+diff --git a/EnglishOnSite.xcodeproj/project.pbxproj b/EnglishOnSite.xcodeproj/project.pbxproj
+index b2005ae..e124d59 100644
+--- a/EnglishOnSite.xcodeproj/project.pbxproj
++++ b/EnglishOnSite.xcodeproj/project.pbxproj
+@@ -7,6 +7,13 @@
+ 	objects = {
+ 
+ /* Begin PBXBuildFile section */
++
++		PT1TOOLSJSONBUILD001 /* phrasal_tools.json in Resources */ = {isa = PBXBuildFile; fileRef = PT1TOOLSJSONFILE001 /* phrasal_tools.json */; };
++		PT2TOOLSSTOREBUILD02 /* PhrasalToolsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = PT2TOOLSSTOREFILE02 /* PhrasalToolsStore.swift */; };
++		PT3TRAINERSTOREBLD03 /* PhrasalTrainerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = PT3TRAINERSTOREFILE03 /* PhrasalTrainerStore.swift */; };
++		PT4TOOLSVIEWBUILD004 /* PhrasalToolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = PT4TOOLSVIEWFILE004 /* PhrasalToolsView.swift */; };
++		PT5TRAINERVIEWBLD005 /* PhrasalTrainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = PT5TRAINERVIEWFILE005 /* PhrasalTrainerView.swift */; };
++		PT6SPEAKROWBUILD0006 /* PhrasalSpeakPracticeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = PT6SPEAKROWFILE0006 /* PhrasalSpeakPracticeRow.swift */; };
+ 		B14PHRASALHUBBUILD001 /* PhrasalHubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14PHRASALHUBFILE001 /* PhrasalHubView.swift */; };
+ 		B17ADDPHRASEBUILD001 /* AddMyPhraseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17ADDPHRASEFILE001 /* AddMyPhraseView.swift */; };
+ 		B17LANGDETECTBUILD01 /* LanguageDetect.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17LANGDETECTFILE01 /* LanguageDetect.swift */; };
+@@ -133,6 +140,13 @@
+ /* End PBXCopyFilesBuildPhase section */
+ 
+ /* Begin PBXFileReference section */
++
++		PT1TOOLSJSONFILE001 /* phrasal_tools.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = phrasal_tools.json; sourceTree = "<group>"; };
++		PT2TOOLSSTOREFILE02 /* PhrasalToolsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhrasalToolsStore.swift; sourceTree = "<group>"; };
++		PT3TRAINERSTOREFILE03 /* PhrasalTrainerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhrasalTrainerStore.swift; sourceTree = "<group>"; };
++		PT4TOOLSVIEWFILE004 /* PhrasalToolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhrasalToolsView.swift; sourceTree = "<group>"; };
++		PT5TRAINERVIEWFILE005 /* PhrasalTrainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhrasalTrainerView.swift; sourceTree = "<group>"; };
++		PT6SPEAKROWFILE0006 /* PhrasalSpeakPracticeRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhrasalSpeakPracticeRow.swift; sourceTree = "<group>"; };
+ 		D1LESSONSCONFIGFILE1 /* LessonsConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsConfig.swift; sourceTree = "<group>"; };
+ 		C8PRINTFILE0000008 /* TutorPrintSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorPrintSheetView.swift; sourceTree = "<group>"; };
+ 		C7VBANKFILE0000007 /* TutorVerbBankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorVerbBankView.swift; sourceTree = "<group>"; };
+@@ -271,6 +285,7 @@
+ 				L5PHRASJSONFILE0005 /* learning_phrasals_site_v1.json */,
+ 				L4WORDSJSONFILE0004 /* learning_words_v1.json */,
+ 				F301A2B3C4D5E6F708090B01 /* lessons_pack.json */,
++				PT1TOOLSJSONFILE001 /* phrasal_tools.json */,
+ 				B3OPPJSONFILE000003 /* opposites_bank_v1.json */,
+ 				B2PHRASJSONFILE0002 /* phrasals_bank_v1.json */,
+ 				B1VERBJSONFILE00001 /* verbs_bank_v1.json */,
+@@ -332,6 +347,9 @@
+ 				C5WRITEFILE0000005 /* TutorWriteDrillView.swift */,
+ 				C4SPEAKFILE0000004 /* TutorSpeakDrillView.swift */,
+ 								B14PHRASALHUBFILE001 /* PhrasalHubView.swift */,
++				PT4TOOLSVIEWFILE004 /* PhrasalToolsView.swift */,
++				PT5TRAINERVIEWFILE005 /* PhrasalTrainerView.swift */,
++				PT6SPEAKROWFILE0006 /* PhrasalSpeakPracticeRow.swift */,
+ 				B17ADDPHRASEFILE001 /* AddMyPhraseView.swift */,
+ G4SEARCHFILE000004 /* TutorPhrasalSearchView.swift */,
+ 				C3EXHUBFILE0000003 /* TutorExercisesHubView.swift */,
+@@ -413,6 +431,8 @@ C1BANKSTOREFILE001 /* TutorBankStore.swift */,
+ 				5D21590B68D2410C976EEBA1 /* LessonPlayer.swift */,
+ 				B66042CDB5E44E3B9EA8029A /* LibraryStore.swift */,
+ 				L2BANKSWIFTFILE0002 /* LearningBankStore.swift */,
++				PT2TOOLSSTOREFILE02 /* PhrasalToolsStore.swift */,
++				PT3TRAINERSTOREFILE03 /* PhrasalTrainerStore.swift */,
+ 				L1AUDIOSWIFTFILE0001 /* LibraryAudioStore.swift */,
+ 				FEAC115E41E945E098E09B0B /* PhoneLessonRelay.swift */,
+ 				537ED273B494412BAD23CBFC /* PhoneWatchBridge.swift */,
+@@ -578,6 +598,7 @@ C1BANKSTOREFILE001 /* TutorBankStore.swift */,
+ 				8F9F8F64D7634D5FBECCAE39 /* SitePhraseBank.json in Resources */,
+ 				L6SENTJSONBUILD0006 /* learning_sentences_v1.json in Resources */,
+ 				L5PHRASJSONBUILD0005 /* learning_phrasals_site_v1.json in Resources */,
++				PT1TOOLSJSONBUILD001 /* phrasal_tools.json in Resources */,
+ 				L4WORDSJSONBUILD0004 /* learning_words_v1.json in Resources */,
+ 			);
+ 			runOnlyForDeploymentPostprocessing = 0;
+@@ -646,6 +667,11 @@ C1BANKSTOREFILE001 /* TutorBankStore.swift */,
+ 				C4SPEAKBUILD0000004 /* TutorSpeakDrillView.swift in Sources */,
+ 				G4SEARCHBUILD000004 /* TutorPhrasalSearchView.swift in Sources */,
+ 				B14PHRASALHUBBUILD001 /* PhrasalHubView.swift in Sources */,
++				PT4TOOLSVIEWBUILD004 /* PhrasalToolsView.swift in Sources */,
++				PT5TRAINERVIEWBLD005 /* PhrasalTrainerView.swift in Sources */,
++				PT6SPEAKROWBUILD0006 /* PhrasalSpeakPracticeRow.swift in Sources */,
++				PT2TOOLSSTOREBUILD02 /* PhrasalToolsStore.swift in Sources */,
++				PT3TRAINERSTOREBLD03 /* PhrasalTrainerStore.swift in Sources */,
+ 				B17ADDPHRASEBUILD001 /* AddMyPhraseView.swift in Sources */,
+ 				B17LANGDETECTBUILD01 /* LanguageDetect.swift in Sources */,
+ 				B17CANONBUILD000001 /* MyPhraseCanonService.swift in Sources */,
+@@ -710,7 +736,7 @@ C1BANKSTOREFILE001 /* TutorBankStore.swift */,
+ 				DEVELOPMENT_TEAM = T62YGZ9Y59;
+ 				GENERATE_INFOPLIST_FILE = NO;
+ 				INFOPLIST_FILE = EnglishOnSiteWatch/Info.plist;
+-				INFOPLIST_KEY_CFBundleDisplayName = "Languages on site";
++				INFOPLIST_KEY_CFBundleDisplayName = "Language on Site";
+ 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.sputnik.englishonsite;
+ 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
+ 				LD_RUNPATH_SEARCH_PATHS = (
+@@ -761,7 +787,7 @@ C1BANKSTOREFILE001 /* TutorBankStore.swift */,
+ 				ENABLE_PREVIEWS = YES;
+ 				GENERATE_INFOPLIST_FILE = NO;
+ 				INFOPLIST_FILE = EnglishOnSite/Info.plist;
+-				INFOPLIST_KEY_CFBundleDisplayName = "Languages on site";
++				INFOPLIST_KEY_CFBundleDisplayName = "Language on Site";
+ 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+ 				LD_RUNPATH_SEARCH_PATHS = (
+ 					"$(inherited)",
+@@ -789,7 +815,7 @@ C1BANKSTOREFILE001 /* TutorBankStore.swift */,
+ 				ENABLE_PREVIEWS = YES;
+ 				GENERATE_INFOPLIST_FILE = NO;
+ 				INFOPLIST_FILE = EnglishOnSite/Info.plist;
+-				INFOPLIST_KEY_CFBundleDisplayName = "Languages on site";
++				INFOPLIST_KEY_CFBundleDisplayName = "Language on Site";
+ 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+ 				LD_RUNPATH_SEARCH_PATHS = (
+ 					"$(inherited)",
+@@ -816,7 +842,7 @@ C1BANKSTOREFILE001 /* TutorBankStore.swift */,
+ 				DEVELOPMENT_TEAM = T62YGZ9Y59;
+ 				GENERATE_INFOPLIST_FILE = NO;
+ 				INFOPLIST_FILE = EnglishOnSiteWatch/Info.plist;
+-				INFOPLIST_KEY_CFBundleDisplayName = "Languages on site";
++				INFOPLIST_KEY_CFBundleDisplayName = "Language on Site";
+ 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.sputnik.englishonsite;
+ 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
+ 				LD_RUNPATH_SEARCH_PATHS = (
+diff --git a/EnglishOnSite/Models/AppSettings.swift b/EnglishOnSite/Models/AppSettings.swift
+index ae74be5..0203bf6 100644
+--- a/EnglishOnSite/Models/AppSettings.swift
++++ b/EnglishOnSite/Models/AppSettings.swift
+@@ -74,6 +74,7 @@ final class AppSettings {
+         static let elFactoryEpoch = "elFactoryEpoch"
+         static let lessonsPackURL = "lessonsPackURL"
+         static let voiceIdEnSupervisor = "voiceIdEnSupervisor"
++        static let voiceIdEsLatAm = "voiceIdEsLatAm"
+         static let eosSyncWebhookURL = "eosSyncWebhookURL"
+     }
+ 
+@@ -167,6 +168,15 @@ final class AppSettings {
+                 style: elStyleRU,
+                 useSpeakerBoost: true
+             )
++        case .es:
++            // Same EL pipeline as EN (model + voice_settings); LatAm accent = voice id.
++            return ElevenLabsVoiceParams(
++                model: elModel,
++                stability: elStabilityEN,
++                similarityBoost: elSimilarityEN,
++                style: elStyleEN,
++                useSpeakerBoost: true
++            )
+         }
+     }
+ 
+@@ -180,6 +190,11 @@ final class AppSettings {
+         didSet { UserDefaults.standard.set(voiceIdEnSupervisor, forKey: Keys.voiceIdEnSupervisor) }
+     }
+ 
++    /// Latin American Spanish ElevenLabs voice id. Empty → factory LatAm ES (not Castilian).
++    var voiceIdEsLatAm: String {
++        didSet { UserDefaults.standard.set(voiceIdEsLatAm, forKey: Keys.voiceIdEsLatAm) }
++    }
++
+     /// Optional n8n/Drive sync webhook. Empty = sync off (not an error).
+     var eosSyncWebhookURL: String {
+         didSet { UserDefaults.standard.set(eosSyncWebhookURL, forKey: Keys.eosSyncWebhookURL) }
+@@ -192,6 +207,13 @@ final class AppSettings {
+         return ElevenLabsConfig.voiceIdEnSupervisorPlaceholder
+     }
+ 
++    /// Resolved LatAm ES voice id (Settings override or factory Ricardo / LatAm).
++    var resolvedVoiceIdEsLatAm: String {
++        let trimmed = voiceIdEsLatAm.trimmingCharacters(in: .whitespacesAndNewlines)
++        if !trimmed.isEmpty { return trimmed }
++        return ElevenLabsConfig.voiceIdEsLatAm
++    }
++
+     func resetELVoiceDefaults() {
+         let prev = elModel
+         elModel = ElevenLabsConfig.defaultModel
+@@ -363,6 +385,7 @@ final class AppSettings {
+ 
+         lessonsPackURL = UserDefaults.standard.string(forKey: Keys.lessonsPackURL) ?? ""
+         voiceIdEnSupervisor = UserDefaults.standard.string(forKey: Keys.voiceIdEnSupervisor) ?? ""
++        voiceIdEsLatAm = UserDefaults.standard.string(forKey: Keys.voiceIdEsLatAm) ?? ""
+         eosSyncWebhookURL = UserDefaults.standard.string(forKey: Keys.eosSyncWebhookURL) ?? ""
+ 
+         let storedKey = KeychainStore.loadGeminiAPIKey()
+diff --git a/EnglishOnSite/Resources/phrasal_tools.json b/EnglishOnSite/Resources/phrasal_tools.json
+new file mode 100644
+index 0000000..c8047b7
+--- /dev/null
++++ b/EnglishOnSite/Resources/phrasal_tools.json
+@@ -0,0 +1,788 @@
++{
++  "schema": 1,
++  "content_version": 1,
++  "title": "Phrasal tools — site instrumentals",
++  "title_ru": "Фразовые с инструментами",
++  "sections": [
++    {
++      "id": "section_01",
++      "order": 1,
++      "title_en": "Hands & pass",
++      "title_ru": "Передай / дай инструмент",
++      "items": [
++        {
++          "id": "pt_01_01",
++          "phrasal": "hand over",
++          "en": "Hand over the drill to me.",
++          "ru": "Передай мне дрель.",
++          "tool": ""
++        },
++        {
++          "id": "pt_01_02",
++          "phrasal": "hand over",
++          "en": "Hand over the screwdriver, please.",
++          "ru": "Передай отвёртку, пожалуйста.",
++          "tool": ""
++        },
++        {
++          "id": "pt_01_03",
++          "phrasal": "pass over",
++          "en": "Pass over the hammer from there.",
++          "ru": "Передай молоток оттуда.",
++          "tool": ""
++        },
++        {
++          "id": "pt_01_04",
++          "phrasal": "pass along",
++          "en": "Pass the spirit level along to him.",
++          "ru": "Передай ему уровень.",
++          "tool": ""
++        },
++        {
++          "id": "pt_01_05",
++          "phrasal": "give out",
++          "en": "Give out the gloves to the team.",
++          "ru": "Раздай перчатки команде.",
++          "tool": ""
++        },
++        {
++          "id": "pt_01_06",
++          "phrasal": "give back",
++          "en": "Give the tape measure back to me.",
++          "ru": "Верни мне рулетку.",
++          "tool": ""
++        },
++        {
++          "id": "pt_01_07",
++          "phrasal": "hold out",
++          "en": "Hold out the wrench so I can take it.",
++          "ru": "Протяни ключ, чтобы я взял.",
++          "tool": ""
++        },
++        {
++          "id": "pt_01_08",
++          "phrasal": "hold on",
++          "en": "Hold on to the ladder for me.",
++          "ru": "Подержи лестницу за меня.",
++          "tool": ""
++        },
++        {
++          "id": "pt_01_09",
++          "phrasal": "hang on",
++          "en": "Hang on to this clamp a second.",
++          "ru": "Подержи этот зажим секунду.",
++          "tool": ""
++        },
++        {
++          "id": "pt_01_10",
++          "phrasal": "take from",
++          "en": "Take the pliers from the toolbox.",
++          "ru": "Возьми плоскогубцы из ящика.",
++          "tool": ""
++        }
++      ]
++    },
++    {
++      "id": "section_02",
++      "order": 2,
++      "title_en": "Put & place",
++      "title_ru": "Положи / поставь на место",
++      "items": [
++        {
++          "id": "pt_02_01",
++          "phrasal": "put down",
++          "en": "Put the hammer down on the bench.",
++          "ru": "Положи молоток на верстак.",
++          "tool": ""
++        },
++        {
++          "id": "pt_02_02",
++          "phrasal": "put back",
++          "en": "Put the drill back in the case.",
++          "ru": "Положи дрель обратно в кейс.",
++          "tool": ""
++        },
++        {
++          "id": "pt_02_03",
++          "phrasal": "put away",
++          "en": "Put the screws away in the box.",
++          "ru": "Убери шурупы в коробку.",
++          "tool": ""
++        },
++        {
++          "id": "pt_02_04",
++          "phrasal": "put on",
++          "en": "Put on your hard hat before you start.",
++          "ru": "Надень каску перед началом.",
++          "tool": ""
++        },
++        {
++          "id": "pt_02_05",
++          "phrasal": "set down",
++          "en": "Set the grinder down carefully.",
++          "ru": "Осторожно поставь болгарку.",
++          "tool": ""
++        },
++        {
++          "id": "pt_02_06",
++          "phrasal": "lay down",
++          "en": "Lay the cable tray down by the wall.",
++          "ru": "Положи лоток у стены.",
++          "tool": ""
++        },
++        {
++          "id": "pt_02_07",
++          "phrasal": "lay out",
++          "en": "Lay out the tools on the tarp.",
++          "ru": "Разложи инструменты на брезенте.",
++          "tool": ""
++        },
++        {
++          "id": "pt_02_08",
++          "phrasal": "set up",
++          "en": "Set up the workbench near the tray.",
++          "ru": "Поставь верстак у лотка.",
++          "tool": ""
++        },
++        {
++          "id": "pt_02_09",
++          "phrasal": "stick on",
++          "en": "Stick the label on the tool bag.",
++          "ru": "Наклей ярлык на сумку с инструментом.",
++          "tool": ""
++        },
++        {
++          "id": "pt_02_10",
++          "phrasal": "pack away",
++          "en": "Pack the bits away after the cut.",
++          "ru": "Убери свёрла после реза.",
++          "tool": ""
++        }
++      ]
++    },
++    {
++      "id": "section_03",
++      "order": 3,
++      "title_en": "Pick & take",
++      "title_ru": "Возьми / подними / вынь",
++      "items": [
++        {
++          "id": "pt_03_01",
++          "phrasal": "pick up",
++          "en": "Pick up the screwdriver from the floor.",
++          "ru": "Подними отвёртку с пола.",
++          "tool": ""
++        },
++        {
++          "id": "pt_03_02",
++          "phrasal": "pick out",
++          "en": "Pick out a 10mm socket from the set.",
++          "ru": "Выбери головку 10 мм из набора.",
++          "tool": ""
++        },
++        {
++          "id": "pt_03_03",
++          "phrasal": "take out",
++          "en": "Take out the drill bit from the chuck.",
++          "ru": "Вынь сверло из патрона.",
++          "tool": ""
++        },
++        {
++          "id": "pt_03_04",
++          "phrasal": "take off",
++          "en": "Take off the blade guard carefully.",
++          "ru": "Аккуратно сними защиту диска.",
++          "tool": ""
++        },
++        {
++          "id": "pt_03_05",
++          "phrasal": "take away",
++          "en": "Take the scrap metal away from the bay.",
++          "ru": "Унеси металлолом из зоны.",
++          "tool": ""
++        },
++        {
++          "id": "pt_03_06",
++          "phrasal": "pull out",
++          "en": "Pull out the nail with the claw hammer.",
++          "ru": "Вытащи гвоздь гвоздодёром.",
++          "tool": ""
++        },
++        {
++          "id": "pt_03_07",
++          "phrasal": "pull off",
++          "en": "Pull the tape off the conduit.",
++          "ru": "Сорви ленту с трубы.",
++          "tool": ""
++        },
++        {
++          "id": "pt_03_08",
++          "phrasal": "get out",
++          "en": "Get the spanner out of the van.",
++          "ru": "Достань ключ из фургона.",
++          "tool": ""
++        },
++        {
++          "id": "pt_03_09",
++          "phrasal": "fish out",
++          "en": "Fish the washer out of the bucket.",
++          "ru": "Вылови шайбу из ведра.",
++          "tool": ""
++        },
++        {
++          "id": "pt_03_10",
++          "phrasal": "lift up",
++          "en": "Lift up the cable tray with me.",
++          "ru": "Подними лоток вместе со мной.",
++          "tool": ""
++        }
++      ]
++    },
++    {
++      "id": "section_04",
++      "order": 4,
++      "title_en": "Power & tools",
++      "title_ru": "Включить / выключить инструмент",
++      "items": [
++        {
++          "id": "pt_04_01",
++          "phrasal": "turn on",
++          "en": "Turn on the drill before you cut.",
++          "ru": "Включи дрель перед резом.",
++          "tool": ""
++        },
++        {
++          "id": "pt_04_02",
++          "phrasal": "turn off",
++          "en": "Turn off the grinder when you stop.",
++          "ru": "Выключи болгарку, когда остановишься.",
++          "tool": ""
++        },
++        {
++          "id": "pt_04_03",
++          "phrasal": "switch on",
++          "en": "Switch on the work light over the bench.",
++          "ru": "Включи рабочий свет над верстаком.",
++          "tool": ""
++        },
++        {
++          "id": "pt_04_04",
++          "phrasal": "switch off",
++          "en": "Switch off the circular saw first.",
++          "ru": "Сначала выключи циркулярку.",
++          "tool": ""
++        },
++        {
++          "id": "pt_04_05",
++          "phrasal": "plug in",
++          "en": "Plug in the charger for the impact driver.",
++          "ru": "Включи зарядку для шуруповёрта.",
++          "tool": ""
++        },
++        {
++          "id": "pt_04_06",
++          "phrasal": "unplug",
++          "en": "Unplug the extension lead before you move it.",
++          "ru": "Вынь удлинитель из розетки перед переносом.",
++          "tool": ""
++        },
++        {
++          "id": "pt_04_07",
++          "phrasal": "power up",
++          "en": "Power up the generator for the tools.",
++          "ru": "Запусти генератор для инструментов.",
++          "tool": ""
++        },
++        {
++          "id": "pt_04_08",
++          "phrasal": "power down",
++          "en": "Power down the saw and wait.",
++          "ru": "Выключи пилу и подожди.",
++          "tool": ""
++        },
++        {
++          "id": "pt_04_09",
++          "phrasal": "shut down",
++          "en": "Shut down the machine before cleaning.",
++          "ru": "Останови станок перед чисткой.",
++          "tool": ""
++        },
++        {
++          "id": "pt_04_10",
++          "phrasal": "warm up",
++          "en": "Warm up the laser level for a minute.",
++          "ru": "Прогрей лазерный уровень минуту.",
++          "tool": ""
++        }
++      ]
++    },
++    {
++      "id": "section_05",
++      "order": 5,
++      "title_en": "Fix & fasten",
++      "title_ru": "Закрепи / закрути / собери",
++      "items": [
++        {
++          "id": "pt_05_01",
++          "phrasal": "screw in",
++          "en": "Screw in the clamp on the tray.",
++          "ru": "Закрути хомут на лотке.",
++          "tool": ""
++        },
++        {
++          "id": "pt_05_02",
++          "phrasal": "tighten up",
++          "en": "Tighten up the bolt with the ratchet.",
++          "ru": "Подтяни болт трещоткой.",
++          "tool": ""
++        },
++        {
++          "id": "pt_05_03",
++          "phrasal": "loosen up",
++          "en": "Loosen up the nut with the spanner.",
++          "ru": "Ослабь гайку ключом.",
++          "tool": ""
++        },
++        {
++          "id": "pt_05_04",
++          "phrasal": "put together",
++          "en": "Put the stand together with the bolts.",
++          "ru": "Собери стойку болтами.",
++          "tool": ""
++        },
++        {
++          "id": "pt_05_05",
++          "phrasal": "take apart",
++          "en": "Take the chuck apart to clean it.",
++          "ru": "Разбери патрон для чистки.",
++          "tool": ""
++        },
++        {
++          "id": "pt_05_06",
++          "phrasal": "wire up",
++          "en": "Wire up the junction box with me.",
++          "ru": "Разведём коробку вместе.",
++          "tool": ""
++        },
++        {
++          "id": "pt_05_07",
++          "phrasal": "fix out",
++          "en": "Lock out the panel before you touch it.",
++          "ru": "Заблокируй щит, прежде чем трогать.",
++          "tool": ""
++        },
++        {
++          "id": "pt_05_08",
++          "phrasal": "tag out",
++          "en": "Tag out the isolator on this circuit.",
++          "ru": "Повесь бирку на разъединитель.",
++          "tool": ""
++        },
++        {
++          "id": "pt_05_09",
++          "phrasal": "clamp down",
++          "en": "Clamp down the workpiece on the bench.",
++          "ru": "Зажми деталь на верстаке.",
++          "tool": ""
++        },
++        {
++          "id": "pt_05_10",
++          "phrasal": "fasten on",
++          "en": "Fasten the bracket on with two screws.",
++          "ru": "Закрепи кронштейн двумя шурупами.",
++          "tool": ""
++        }
++      ]
++    },
++    {
++      "id": "section_06",
++      "order": 6,
++      "title_en": "Clean & tidy",
++      "title_ru": "Убери / почисти зону",
++      "items": [
++        {
++          "id": "pt_06_01",
++          "phrasal": "tidy up",
++          "en": "Tidy up the tools before break.",
++          "ru": "Убери инструменты перед перерывом.",
++          "tool": ""
++        },
++        {
++          "id": "pt_06_02",
++          "phrasal": "clean up",
++          "en": "Clean up the metal filings from the cut.",
++          "ru": "Убери металлическую стружку после реза.",
++          "tool": ""
++        },
++        {
++          "id": "pt_06_03",
++          "phrasal": "clear away",
++          "en": "Clear away the offcuts from the floor.",
++          "ru": "Убери обрезки с пола.",
++          "tool": ""
++        },
++        {
++          "id": "pt_06_04",
++          "phrasal": "clear out",
++          "en": "Clear out the toolbox so we can find bits.",
++          "ru": "Очисти ящик, чтобы найти свёрла.",
++          "tool": ""
++        },
++        {
++          "id": "pt_06_05",
++          "phrasal": "sweep up",
++          "en": "Sweep up the dust around the saw.",
++          "ru": "Подмети пыль вокруг пилы.",
++          "tool": ""
++        },
++        {
++          "id": "pt_06_06",
++          "phrasal": "wipe down",
++          "en": "Wipe down the workbench after drilling.",
++          "ru": "Протри верстак после сверления.",
++          "tool": ""
++        },
++        {
++          "id": "pt_06_07",
++          "phrasal": "pack up",
++          "en": "Pack up the tools for the end of day.",
++          "ru": "Собери инструменты к концу смены.",
++          "tool": ""
++        },
++        {
++          "id": "pt_06_08",
++          "phrasal": "put aside",
++          "en": "Put the spare blades aside in the rack.",
++          "ru": "Отложи запасные диски на стеллаж.",
++          "tool": ""
++        },
++        {
++          "id": "pt_06_09",
++          "phrasal": "throw away",
++          "en": "Throw away the broken bit safely.",
++          "ru": "Выбрось сломанное сверло безопасно.",
++          "tool": ""
++        },
++        {
++          "id": "pt_06_10",
++          "phrasal": "sort out",
++          "en": "Sort out the screws by size on the tray.",
++          "ru": "Разложи шурупы по размеру на лотке.",
++          "tool": ""
++        }
++      ]
++    },
++    {
++      "id": "section_07",
++      "order": 7,
++      "title_en": "Help & ask",
++      "title_ru": "Попроси помочь с инструментом",
++      "items": [
++        {
++          "id": "pt_07_01",
++          "phrasal": "help out",
++          "en": "Can you help me out with this ladder?",
++          "ru": "Можешь помочь мне с этой лестницей?",
++          "tool": ""
++        },
++        {
++          "id": "pt_07_02",
++          "phrasal": "give a hand",
++          "en": "Give me a hand with the cable tray.",
++          "ru": "Помоги мне с лотком.",
++          "tool": ""
++        },
++        {
++          "id": "pt_07_03",
++          "phrasal": "come over",
++          "en": "Come over and hold this spirit level.",
++          "ru": "Подойди и подержи уровень.",
++          "tool": ""
++        },
++        {
++          "id": "pt_07_04",
++          "phrasal": "come with",
++          "en": "Come with me and bring the drill.",
++          "ru": "Пойдём со мной и возьми дрель.",
++          "tool": ""
++        },
++        {
++          "id": "pt_07_05",
++          "phrasal": "hang on",
++          "en": "Hang on — I need the 13mm spanner.",
++          "ru": "Подожди — мне нужен ключ на 13.",
++          "tool": ""
++        },
++        {
++          "id": "pt_07_06",
++          "phrasal": "hold on",
++          "en": "Hold on while I pass you the cutter.",
++          "ru": "Подожди, пока я передам резак.",
++          "tool": ""
++        },
++        {
++          "id": "pt_07_07",
++          "phrasal": "look after",
++          "en": "Look after my tools while I sign in.",
++          "ru": "Присмотри за моими инструментами, пока я отмечусь.",
++          "tool": ""
++        },
++        {
++          "id": "pt_07_08",
++          "phrasal": "watch out",
++          "en": "Watch out for the cable by your feet.",
++          "ru": "Осторожно, кабель у ног.",
++          "tool": ""
++        },
++        {
++          "id": "pt_07_09",
++          "phrasal": "look out",
++          "en": "Look out — the grinder disc is spinning.",
++          "ru": "Осторожно — диск болгарки крутится.",
++          "tool": ""
++        },
++        {
++          "id": "pt_07_10",
++          "phrasal": "stand by",
++          "en": "Stand by with the fire extinguisher.",
++          "ru": "Будь наготове с огнетушителем.",
++          "tool": ""
++        }
++      ]
++    },
++    {
++      "id": "section_08",
++      "order": 8,
++      "title_en": "Move & bring",
++      "title_ru": "Принеси / отнеси / подъезжай",
++      "items": [
++        {
++          "id": "pt_08_01",
++          "phrasal": "bring over",
++          "en": "Bring over the extension lead, please.",
++          "ru": "Принеси удлинитель, пожалуйста.",
++          "tool": ""
++        },
++        {
++          "id": "pt_08_02",
++          "phrasal": "bring back",
++          "en": "Bring the keys back to the cabin.",
++          "ru": "Верни ключи в вагончик.",
++          "tool": ""
++        },
++        {
++          "id": "pt_08_03",
++          "phrasal": "take back",
++          "en": "Take the empty gas bottle back to the cage.",
++          "ru": "Отнеси пустой баллон в клетку.",
++          "tool": ""
++        },
++        {
++          "id": "pt_08_04",
++          "phrasal": "drop off",
++          "en": "Drop off the spare drill at the cabin.",
++          "ru": "Оставь запасную дрель в вагончике.",
++          "tool": ""
++        },
++        {
++          "id": "pt_08_05",
++          "phrasal": "pick up",
++          "en": "Pick up a new blade from the stores.",
++          "ru": "Забери новый диск со склада.",
++          "tool": ""
++        },
++        {
++          "id": "pt_08_06",
++          "phrasal": "run out",
++          "en": "We ran out of 8mm bolts — grab some.",
++          "ru": "Кончились болты 8 мм — возьми ещё.",
++          "tool": ""
++        },
++        {
++          "id": "pt_08_07",
++          "phrasal": "load up",
++          "en": "Load up the van with the cable drums.",
++          "ru": "Загрузи фургон барабанами кабеля.",
++          "tool": ""
++        },
++        {
++          "id": "pt_08_08",
++          "phrasal": "unload",
++          "en": "Unload the conduit next to the bay.",
++          "ru": "Разгрузи трубы рядом с зоной.",
++          "tool": ""
++        },
++        {
++          "id": "pt_08_09",
++          "phrasal": "carry on",
++          "en": "Carry on with the tray while I get clamps.",
++          "ru": "Продолжай лоток, пока я возьму хомуты.",
++          "tool": ""
++        },
++        {
++          "id": "pt_08_10",
++          "phrasal": "go back",
++          "en": "Go back and fetch the laser level.",
++          "ru": "Вернись и принеси лазерный уровень.",
++          "tool": ""
++        }
++      ]
++    },
++    {
++      "id": "section_09",
++      "order": 9,
++      "title_en": "Check & mark",
++      "title_ru": "Проверь / отметь инструментом",
++      "items": [
++        {
++          "id": "pt_09_01",
++          "phrasal": "check out",
++          "en": "Check out the drawing with the tape measure.",
++          "ru": "Сверь чертёж рулеткой.",
++          "tool": ""
++        },
++        {
++          "id": "pt_09_02",
++          "phrasal": "look at",
++          "en": "Look at the mark on the steel beam.",
++          "ru": "Посмотри на метку на балке.",
++          "tool": ""
++        },
++        {
++          "id": "pt_09_03",
++          "phrasal": "look for",
++          "en": "Look for the 17mm socket in the set.",
++          "ru": "Найди головку 17 мм в наборе.",
++          "tool": ""
++        },
++        {
++          "id": "pt_09_04",
++          "phrasal": "mark out",
++          "en": "Mark out the holes with the pencil.",
++          "ru": "Разметь отверстия карандашом.",
++          "tool": ""
++        },
++        {
++          "id": "pt_09_05",
++          "phrasal": "measure up",
++          "en": "Measure up the span with the laser.",
++          "ru": "Замерь пролёт лазером.",
++          "tool": ""
++        },
++        {
++          "id": "pt_09_06",
++          "phrasal": "point out",
++          "en": "Point out the live cable on the plan.",
++          "ru": "Укажи на плане живой кабель.",
++          "tool": ""
++        },
++        {
++          "id": "pt_09_07",
++          "phrasal": "write down",
++          "en": "Write down the torque on the tag.",
++          "ru": "Запиши момент на бирке.",
++          "tool": ""
++        },
++        {
++          "id": "pt_09_08",
++          "phrasal": "fill in",
++          "en": "Fill in the permit before you cut.",
++          "ru": "Заполни допуск перед резом.",
++          "tool": ""
++        },
++        {
++          "id": "pt_09_09",
++          "phrasal": "fill out",
++          "en": "Fill out the tool checklist on the board.",
++          "ru": "Заполни чеклист инструментов на доске.",
++          "tool": ""
++        },
++        {
++          "id": "pt_09_10",
++          "phrasal": "make sure",
++          "en": "Make sure the isolator is locked out.",
++          "ru": "Убедись, что разъединитель заблокирован.",
++          "tool": ""
++        }
++      ]
++    },
++    {
++      "id": "section_10",
++      "order": 10,
++      "title_en": "Safe site moves",
++      "title_ru": "Безопасные действия с инструментом",
++      "items": [
++        {
++          "id": "pt_10_01",
++          "phrasal": "climb up",
++          "en": "Climb up the ladder with the tool belt on.",
++          "ru": "Поднимись по лестнице с поясом для инструмента.",
++          "tool": ""
++        },
++        {
++          "id": "pt_10_02",
++          "phrasal": "climb down",
++          "en": "Climb down slowly and pass me the drill.",
++          "ru": "Спускайся медленно и передай мне дрель.",
++          "tool": ""
++        },
++        {
++          "id": "pt_10_03",
++          "phrasal": "stand clear",
++          "en": "Stand clear while I start the saw.",
++          "ru": "Отойди, пока я запускаю пилу.",
++          "tool": ""
++        },
++        {
++          "id": "pt_10_04",
++          "phrasal": "keep off",
++          "en": "Keep off the wet concrete with those boots.",
++          "ru": "Не ходи по мокрому бетону в этих ботинках.",
++          "tool": ""
++        },
++        {
++          "id": "pt_10_05",
++          "phrasal": "stay away",
++          "en": "Stay away from the spinning blade.",
++          "ru": "Держись подальше от крутящегося диска.",
++          "tool": ""
++        },
++        {
++          "id": "pt_10_06",
++          "phrasal": "slow down",
++          "en": "Slow down — the grindstone is catching.",
++          "ru": "Замедлись — камень цепляет.",
++          "tool": ""
++        },
++        {
++          "id": "pt_10_07",
++          "phrasal": "hurry up",
++          "en": "Hurry up and hand me the ear defenders.",
++          "ru": "Живее, передай наушники.",
++          "tool": ""
++        },
++        {
++          "id": "pt_10_08",
++          "phrasal": "cool down",
++          "en": "Let the bit cool down before you change it.",
++          "ru": "Дай сверлу остыть перед заменой.",
++          "tool": ""
++        },
++        {
++          "id": "pt_10_09",
++          "phrasal": "break down",
++          "en": "The impact driver broke down mid-fix.",
++          "ru": "Шуруповёрт сломался посреди крепежа.",
++          "tool": ""
++        },
++        {
++          "id": "pt_10_10",
++          "phrasal": "show up",
++          "en": "Show up at the bay with your Safe Pass.",
++          "ru": "Приходи на зону со своим Safe Pass.",
++          "tool": ""
++        }
++      ]
++    }
++  ]
++}
+diff --git a/EnglishOnSite/Services/ElevenLabsConfig.swift b/EnglishOnSite/Services/ElevenLabsConfig.swift
+index 19947e7..65fd640 100644
+--- a/EnglishOnSite/Services/ElevenLabsConfig.swift
++++ b/EnglishOnSite/Services/ElevenLabsConfig.swift
+@@ -44,10 +44,13 @@ struct ElevenLabsVoiceParams: Equatable {
+     }
+ }
+ 
+-/// Single place for voice IDs + factory defaults (RU clone + EN on eleven_v4).
++/// Single place for voice IDs + factory defaults (RU clone + EN + LatAm ES on eleven_v4).
+ enum ElevenLabsConfig {
+     static let voiceEN = "WrjxnKxK0m1uiaH0uteU"
+     static let voiceRU = "b2LgEdbhF1USG5rOxP3Q"
++    /// Latin American Spanish (not Castilian / es-ES). Wired like `voiceEN`.
++    /// Ricardo — Spanish · Latin American (ElevenLabs default library).
++    static let voiceES = "Q4cwyRtDSxeo5Pq77ptz"
+ 
+     /// Lesson dialogue: монтажник / worker (EN). Same as current site EN.
+     static let voiceIdEnWorker = voiceEN
+@@ -57,6 +60,9 @@ enum ElevenLabsConfig {
+     /// Until then equals worker so TTS still works; override in Settings → «ID голоса бригадира».
+     static let voiceIdEnSupervisorPlaceholder = voiceEN
+ 
++    /// Spanish TTS factory voice (LatAm). Override in Settings → «ID голоса ES (LatAm)».
++    static let voiceIdEsLatAm = voiceES
++
+     /// Roleplay: two distinct site voices.
+     static let voiceRoleA = voiceEN
+     static let voiceRoleB = voiceRU
+@@ -67,13 +73,13 @@ enum ElevenLabsConfig {
+     static let cacheMaxFiles = 500
+     static let cacheMaxBytes = 200 * 1024 * 1024
+ 
+-    /// Factory default model (both EN + RU).
++    /// Factory default model (EN + RU + ES LatAm).
+     static let defaultModel: ElevenLabsModelID = .v4
+ 
+     /// Bump to force one-time UserDefaults → factory v4 + cache clear.
+     static let factoryEpoch = 2
+ 
+-    /// Factory voice_settings (same for EN + RU unless user overrides in Settings).
++    /// Factory voice_settings (same for EN / RU / ES unless user overrides in Settings).
+     static let factoryStability = 0.70
+     static let factorySimilarity = 0.85
+     static let factoryStyle = 0.10
+@@ -94,6 +100,9 @@ enum ElevenLabsConfig {
+         useSpeakerBoost: true
+     )
+ 
++    /// Same pipeline as EN (model + voice_settings); accent comes from LatAm voice id.
++    static let defaultES = defaultEN
++
+     /// EN playback rate from Settings (local AVAudioPlayer rate).
+     static func enSpeed(for english: EnglishSpeechSpeed) -> Double {
+         switch english {
+@@ -104,4 +113,6 @@ enum ElevenLabsConfig {
+     }
+ 
+     static func ruSpeed() -> Double { 1.0 }
++
++    static func esSpeed() -> Double { 1.0 }
+ }
+diff --git a/EnglishOnSite/Services/ElevenLabsTTS.swift b/EnglishOnSite/Services/ElevenLabsTTS.swift
+index bb6b7bc..7ead330 100644
+--- a/EnglishOnSite/Services/ElevenLabsTTS.swift
++++ b/EnglishOnSite/Services/ElevenLabsTTS.swift
+@@ -2,16 +2,33 @@ import AVFoundation
+ import Foundation
+ 
+ enum SiteVoiceLang {
+-    case en, ru
++    case en, ru, es
+ 
+     var voiceId: String {
+         switch self {
+         case .en: return ElevenLabsConfig.voiceEN
+         case .ru: return ElevenLabsConfig.voiceRU
++        case .es: return ElevenLabsConfig.voiceIdEsLatAm
+         }
+     }
+ 
+-    var shortLabel: String { self == .en ? "EN" : "RU" }
++    var shortLabel: String {
++        switch self {
++        case .en: return "EN"
++        case .ru: return "RU"
++        case .es: return "ES"
++        }
++    }
++
++    /// ISO 639-1 for models that accept `language_code` (not multilingual_v2).
++    /// Accent for Spanish comes from the LatAm voice id, not Castilian.
++    var languageCode: String {
++        switch self {
++        case .en: return "en"
++        case .ru: return "ru"
++        case .es: return "es"
++        }
++    }
+ }
+ 
+ enum ElevenLabsAudioSource: String {
+@@ -97,9 +114,14 @@ final class ElevenLabsTTS: NSObject {
+             return true
+         }
+         let voiceParams = settings.elVoiceParams(for: lang)
++        let voice: String
++        switch lang {
++        case .en, .ru: voice = lang.voiceId
++        case .es: voice = settings.resolvedVoiceIdEsLatAm
++        }
+         return ElevenLabsAudioCache.hasFile(
+             text: trimmed,
+-            voice: lang.voiceId,
++            voice: voice,
+             params: voiceParams
+         )
+     }
+@@ -114,7 +136,11 @@ final class ElevenLabsTTS: NSObject {
+         guard !trimmed.isEmpty else { return }
+         let apiKey = AppSecrets.sanitizeSecret(KeychainStore.loadElevenLabsAPIKey())
+         guard settings.useElevenLabs, !apiKey.isEmpty else { return }
+-        let voiceId = lang.voiceId
++        let voiceId: String
++        switch lang {
++        case .en, .ru: voiceId = lang.voiceId
++        case .es: voiceId = settings.resolvedVoiceIdEsLatAm
++        }
+         let voiceParams = settings.elVoiceParams(for: lang)
+         let cacheURL = ElevenLabsAudioCache.fileURL(
+             text: trimmed,
+@@ -128,6 +154,7 @@ final class ElevenLabsTTS: NSObject {
+         _ = await fetchFromNetwork(
+             text: trimmed,
+             voiceId: voiceId,
++            languageCode: lang.languageCode,
+             apiKey: apiKey,
+             cacheURL: cacheURL,
+             params: voiceParams,
+@@ -144,9 +171,17 @@ final class ElevenLabsTTS: NSObject {
+         sync: EosTTSSyncContext? = nil,
+         onPlaybackStarted: (() -> Void)? = nil
+     ) async {
++        let voiceId: String
++        switch lang {
++        case .en, .ru:
++            voiceId = lang.voiceId
++        case .es:
++            // Same override pattern as EN supervisor — Settings can replace LatAm ES id.
++            voiceId = settings.resolvedVoiceIdEsLatAm
++        }
+         await speak(
+             text: text,
+-            voiceId: lang.voiceId,
++            voiceId: voiceId,
+             lang: lang,
+             settings: settings,
+             sync: sync,
+@@ -190,11 +225,7 @@ final class ElevenLabsTTS: NSObject {
+             lastSource = .cache
+             ElevenLabsAudioCache.touch(cacheURL)
+             print("[el] cache hit")
+-            let playbackRate = Float(
+-                lang == .en
+-                    ? ElevenLabsConfig.enSpeed(for: settings.englishSpeed)
+-                    : ElevenLabsConfig.ruSpeed()
+-            )
++            let playbackRate = Float(Self.playbackRate(lang: lang, settings: settings))
+             do {
+                 try await playFile(url: cacheURL, rate: playbackRate, onStarted: onPlaybackStarted)
+                 print("[el] ok source=cache")
+@@ -222,11 +253,7 @@ final class ElevenLabsTTS: NSObject {
+             return
+         }
+ 
+-        let playbackRate = Float(
+-            lang == .en
+-                ? ElevenLabsConfig.enSpeed(for: settings.englishSpeed)
+-                : ElevenLabsConfig.ruSpeed()
+-        )
++        let playbackRate = Float(Self.playbackRate(lang: lang, settings: settings))
+         await speakNetworkOrFallback(
+             text: trimmed,
+             voiceId: voiceId,
+@@ -242,6 +269,14 @@ final class ElevenLabsTTS: NSObject {
+         )
+     }
+ 
++    private static func playbackRate(lang: SiteVoiceLang, settings: AppSettings) -> Double {
++        switch lang {
++        case .en: return ElevenLabsConfig.enSpeed(for: settings.englishSpeed)
++        case .ru: return ElevenLabsConfig.ruSpeed()
++        case .es: return ElevenLabsConfig.esSpeed()
++        }
++    }
++
+     private func speakNetworkOrFallback(
+         text: String,
+         voiceId: String,
+@@ -258,6 +293,7 @@ final class ElevenLabsTTS: NSObject {
+         switch await fetchFromNetwork(
+             text: text,
+             voiceId: voiceId,
++            languageCode: lang.languageCode,
+             apiKey: apiKey,
+             cacheURL: cacheURL,
+             params: voiceParams,
+@@ -296,6 +332,7 @@ final class ElevenLabsTTS: NSObject {
+     private func fetchFromNetwork(
+         text: String,
+         voiceId: String,
++        languageCode: String?,
+         apiKey: String,
+         cacheURL: URL,
+         params: ElevenLabsVoiceParams,
+@@ -313,11 +350,16 @@ final class ElevenLabsTTS: NSObject {
+         request.setValue("audio/mpeg", forHTTPHeaderField: "Accept")
+ 
+         // Do NOT send `speed` in voice_settings — many accounts return 400 for unknown fields.
+-        let body: [String: Any] = [
++        // `language_code` helps turbo/v4 normalization; multilingual_v2 does not support it.
++        // Spanish LatAm accent comes from the voice id (never Castilian es-ES voice).
++        var body: [String: Any] = [
+             "text": text,
+             "model_id": params.model.rawValue,
+             "voice_settings": params.voiceSettingsJSON,
+         ]
++        if params.model != .multilingualV2, let code = languageCode, !code.isEmpty {
++            body["language_code"] = code
++        }
+ 
+         do {
+             request.httpBody = try JSONSerialization.data(withJSONObject: body)
+@@ -400,6 +442,13 @@ final class ElevenLabsTTS: NSObject {
+         case .ru:
+             u.voice = AVSpeechSynthesisVoice(language: "ru-RU")
+             u.rate = settings.russianRate
++        case .es:
++            // LatAm / Mexican — not Castilian (es-ES).
++            u.voice = AVSpeechSynthesisVoice(language: "es-MX")
++                ?? AVSpeechSynthesisVoice(language: "es-US")
++                ?? AVSpeechSynthesisVoice(language: "es-419")
++                ?? AVSpeechSynthesisVoice(language: "es-ES")
++            u.rate = settings.russianRate
+         }
+         // Pairs needs instant start — no pre-delay on EN taps/match.
+         u.preUtteranceDelay = 0
+diff --git a/EnglishOnSite/Services/PhrasalToolsStore.swift b/EnglishOnSite/Services/PhrasalToolsStore.swift
+new file mode 100644
+index 0000000..8c96f57
+--- /dev/null
++++ b/EnglishOnSite/Services/PhrasalToolsStore.swift
+@@ -0,0 +1,62 @@
++import Foundation
++
++struct PhrasalToolsPack: Codable {
++    var schema: Int
++    var contentVersion: Int
++    var title: String?
++    var titleRu: String?
++    var sections: [PhrasalToolsSection]
++
++    enum CodingKeys: String, CodingKey {
++        case schema
++        case contentVersion = "content_version"
++        case title
++        case titleRu = "title_ru"
++        case sections
++    }
++}
++
++struct PhrasalToolsSection: Codable, Identifiable, Hashable {
++    let id: String
++    let order: Int?
++    let titleEn: String
++    let titleRu: String
++    let items: [PhrasalToolItem]
++
++    enum CodingKeys: String, CodingKey {
++        case id, order, items
++        case titleEn = "title_en"
++        case titleRu = "title_ru"
++    }
++}
++
++struct PhrasalToolItem: Codable, Identifiable, Hashable {
++    let id: String
++    let phrasal: String
++    let en: String
++    let ru: String
++    let tool: String?
++
++    var speakText: String { en }
++}
++
++/// Bundle loader for `phrasal_tools.json` (not lessons_pack).
++enum PhrasalToolsStore {
++    private static var cached: PhrasalToolsPack?
++
++    static func pack() -> PhrasalToolsPack {
++        if let cached { return cached }
++        guard let url = Bundle.main.url(forResource: "phrasal_tools", withExtension: "json"),
++              let data = try? Data(contentsOf: url),
++              let decoded = try? JSONDecoder().decode(PhrasalToolsPack.self, from: data)
++        else {
++            return PhrasalToolsPack(schema: 1, contentVersion: 0, title: nil, titleRu: nil, sections: [])
++        }
++        cached = decoded
++        return decoded
++    }
++
++    static func sections() -> [PhrasalToolsSection] {
++        pack().sections.sorted { ($0.order ?? 0) < ($1.order ?? 0) }
++    }
++}
+diff --git a/EnglishOnSite/Services/PhrasalTrainerStore.swift b/EnglishOnSite/Services/PhrasalTrainerStore.swift
+new file mode 100644
+index 0000000..10c1864
+--- /dev/null
++++ b/EnglishOnSite/Services/PhrasalTrainerStore.swift
+@@ -0,0 +1,118 @@
++import Foundation
++
++/// One phrase saved into the speak trainer (separate from lessons_pack / LearningBank).
++struct PhrasalTrainerPhrase: Codable, Identifiable, Hashable {
++    let id: String
++    var en: String
++    var ru: String
++    var phrasal: String
++    var source: String
++    var createdAt: Date
++
++    init(
++        id: String = UUID().uuidString,
++        en: String,
++        ru: String,
++        phrasal: String = "",
++        source: String,
++        createdAt: Date = Date()
++    ) {
++        self.id = id
++        self.en = en
++        self.ru = ru
++        self.phrasal = phrasal
++        self.source = source
++        self.createdAt = createdAt
++    }
++
++    static func fromToolItem(_ item: PhrasalToolItem) -> PhrasalTrainerPhrase {
++        PhrasalTrainerPhrase(
++            id: "tool:\(item.id)",
++            en: item.en,
++            ru: item.ru,
++            phrasal: item.phrasal,
++            source: "phrasal_tools"
++        )
++    }
++}
++
++/// Documents/phrasal_trainer.json — user deck for TTS→STT practice.
++@MainActor
++enum PhrasalTrainerStore {
++    private static let fileName = "phrasal_trainer.json"
++
++    private struct Pack: Codable {
++        var version: Int
++        var items: [PhrasalTrainerPhrase]
++    }
++
++    private static var fileURL: URL {
++        let docs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
++            ?? FileManager.default.temporaryDirectory
++        return docs.appendingPathComponent(fileName)
++    }
++
++    static func load() -> [PhrasalTrainerPhrase] {
++        guard let data = try? Data(contentsOf: fileURL),
++              let pack = try? JSONDecoder().decode(Pack.self, from: data)
++        else { return [] }
++        return pack.items.sorted { $0.createdAt > $1.createdAt }
++    }
++
++    @discardableResult
++    static func save(_ items: [PhrasalTrainerPhrase]) -> Bool {
++        let pack = Pack(version: 1, items: items)
++        guard let data = try? JSONEncoder().encode(pack) else { return false }
++        do {
++            try data.write(to: fileURL, options: [.atomic])
++            return true
++        } catch {
++            print("[phrasal-trainer] write failed: \(error)")
++            return false
++        }
++    }
++
++    /// Insert or refresh by id / normalized EN. Returns true if newly added.
++    @discardableResult
++    static func add(_ phrase: PhrasalTrainerPhrase) -> Bool {
++        var items = load()
++        let key = normalize(phrase.en)
++        if let idx = items.firstIndex(where: { $0.id == phrase.id || normalize($0.en) == key }) {
++            items[idx] = PhrasalTrainerPhrase(
++                id: items[idx].id,
++                en: phrase.en,
++                ru: phrase.ru,
++                phrasal: phrase.phrasal.isEmpty ? items[idx].phrasal : phrase.phrasal,
++                source: phrase.source,
++                createdAt: items[idx].createdAt
++            )
++            save(items)
++            return false
++        }
++        items.insert(phrase, at: 0)
++        save(items)
++        return true
++    }
++
++    static func contains(en: String) -> Bool {
++        let key = normalize(en)
++        return load().contains { normalize($0.en) == key }
++    }
++
++    static func remove(id: String) {
++        var items = load()
++        items.removeAll { $0.id == id }
++        save(items)
++    }
++
++    static func clear() {
++        save([])
++    }
++
++    private static func normalize(_ text: String) -> String {
++        text
++            .trimmingCharacters(in: .whitespacesAndNewlines)
++            .lowercased()
++            .replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
++    }
++}
+diff --git a/EnglishOnSite/Services/SpeechSpeaker.swift b/EnglishOnSite/Services/SpeechSpeaker.swift
+index 82dabb3..4951a2d 100644
+--- a/EnglishOnSite/Services/SpeechSpeaker.swift
++++ b/EnglishOnSite/Services/SpeechSpeaker.swift
+@@ -57,6 +57,39 @@ final class SpeechSpeaker {
+         speakSequence([(text, false)], then: finished)
+     }
+ 
++    /// Latin American Spanish via ElevenLabs (same key/model/cache path as EN).
++    func speakES(_ text: String, then finished: (() -> Void)? = nil) {
++        stop()
++        statusNote = ""
++        onFinished = finished
++        active = true
++        runTask = Task { @MainActor in
++            await ElevenLabsTTS.shared.speak(
++                text: text,
++                lang: .es,
++                settings: self.settings,
++                onPlaybackStarted: nil
++            )
++            self.statusNote = ElevenLabsTTS.shared.lastStatusRU
++            let done = self.onFinished
++            self.onFinished = nil
++            self.active = false
++            done?()
++        }
++    }
++
++    func speak(
++        text: String,
++        lang: SiteVoiceLang,
++        then finished: (() -> Void)? = nil
++    ) {
++        switch lang {
++        case .en: speakEN(text, then: finished)
++        case .ru: speakRU(text, then: finished)
++        case .es: speakES(text, then: finished)
++        }
++    }
++
+     private func drainQueue() async {
+         var first = true
+         while active, !queue.isEmpty {
+diff --git a/EnglishOnSite/Views/PhrasalHubView.swift b/EnglishOnSite/Views/PhrasalHubView.swift
+index 62e9082..e13fe3c 100644
+--- a/EnglishOnSite/Views/PhrasalHubView.swift
++++ b/EnglishOnSite/Views/PhrasalHubView.swift
+@@ -1,25 +1,42 @@
+ import SwiftUI
+ 
+-/// B14: root tab «Фразовые» — site|general + search / pairs / speak in one tap.
++/// B14: root tab «Фразовые» — tools pack / trainer + site|general search.
+ struct PhrasalHubView: View {
+     @State private var contentMode: TutorContentMode = .site
+ 
+     var body: some View {
+         NavigationStack {
+-            VStack(spacing: 0) {
+-                Picker("Режим", selection: $contentMode) {
+-                    ForEach(TutorContentMode.allCases) { mode in
+-                        Text(mode.titleRU).tag(mode)
++            List {
++                Section("Инструменты · тренажёр") {
++                    NavigationLink {
++                        PhrasalToolsView()
++                    } label: {
++                        Label("Фразы с инструментами", systemImage: "wrench.and.screwdriver")
++                    }
++                    NavigationLink {
++                        PhrasalTrainerView()
++                    } label: {
++                        Label("Тренажёр", systemImage: "mic.badge.plus")
+                     }
+-                }
+-                .pickerStyle(.segmented)
+-                .padding(.horizontal, 16)
+-                .padding(.top, 12)
+-                .onChange(of: contentMode) { _, mode in
+-                    TutorBankStore.setMode(mode)
+                 }
+ 
+-                TutorPhrasalSearchView()
++                Section("Поиск · банк") {
++                    Picker("Режим", selection: $contentMode) {
++                        ForEach(TutorContentMode.allCases) { mode in
++                            Text(mode.titleRU).tag(mode)
++                        }
++                    }
++                    .pickerStyle(.segmented)
++                    .onChange(of: contentMode) { _, mode in
++                        TutorBankStore.setMode(mode)
++                    }
++
++                    NavigationLink {
++                        TutorPhrasalSearchView()
++                    } label: {
++                        Label("Искать фразовый", systemImage: "magnifyingglass")
++                    }
++                }
+             }
+             .navigationTitle("Фразовые")
+             .navigationBarTitleDisplayMode(.inline)
+diff --git a/EnglishOnSite/Views/PhrasalSpeakPracticeRow.swift b/EnglishOnSite/Views/PhrasalSpeakPracticeRow.swift
+new file mode 100644
+index 0000000..6cd7a1d
+--- /dev/null
++++ b/EnglishOnSite/Views/PhrasalSpeakPracticeRow.swift
+@@ -0,0 +1,152 @@
++import SwiftUI
++
++/// Shared «Проговорить» control: TTS → user repeats → STT → word-overlap check.
++struct PhrasalSpeakPracticeControls: View {
++    @Environment(AppSettings.self) private var settings
++
++    let en: String
++    let ru: String
++
++    @State private var speaker: SpeechSpeaker?
++    @State private var capture = TimedSpeechCapture()
++    @State private var phase: Phase = .idle
++    @State private var heard = ""
++    @State private var matchNote = ""
++    @State private var workTask: Task<Void, Never>?
++
++    private enum Phase { case idle, speaking, listening, passed, failed }
++
++    var body: some View {
++        VStack(alignment: .leading, spacing: 8) {
++            HStack(spacing: 8) {
++                Button {
++                    startPractice()
++                } label: {
++                    Text(phase == .listening || phase == .speaking ? "…" : "Проговорить")
++                        .font(.subheadline.weight(.semibold))
++                        .frame(minWidth: 110, minHeight: 36)
++                }
++                .buttonStyle(.borderedProminent)
++                .disabled(phase == .speaking || phase == .listening || en.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
++
++                if phase == .listening {
++                    Button("Стоп") { capture.finish() }
++                        .buttonStyle(.bordered)
++                    Button("Отмена", role: .cancel) { cancel() }
++                        .buttonStyle(.bordered)
++                }
++            }
++
++            if phase == .speaking {
++                Text("Слушай эталон…")
++                    .font(.caption.weight(.semibold))
++                    .foregroundStyle(.secondary)
++            } else if phase == .listening {
++                Text(capture.partialText.isEmpty ? "Повтори вслух…" : capture.partialText)
++                    .font(.caption.weight(.semibold))
++                    .foregroundStyle(.primary)
++            } else if phase == .passed {
++                Text(matchNote.isEmpty ? "Верно" : "Верно · \(matchNote)")
++                    .font(.caption.weight(.bold))
++                    .foregroundStyle(.green)
++            } else if phase == .failed {
++                Text(matchNote.isEmpty ? "Неверно" : "Неверно · \(matchNote)")
++                    .font(.caption.weight(.bold))
++                    .foregroundStyle(.orange)
++                if !heard.isEmpty {
++                    Text("Слышал: \(heard)")
++                        .font(.caption2)
++                        .foregroundStyle(.secondary)
++                }
++            }
++        }
++        .onAppear {
++            if speaker == nil { speaker = SpeechSpeaker(settings: settings) }
++        }
++        .onDisappear {
++            cancel()
++            speaker?.stop()
++        }
++    }
++
++    private func startPractice() {
++        workTask?.cancel()
++        capture.cancel()
++        speaker?.stop()
++        heard = ""
++        matchNote = ""
++        phase = .speaking
++        if speaker == nil { speaker = SpeechSpeaker(settings: settings) }
++        speaker?.updateSettings(settings)
++
++        workTask = Task { @MainActor in
++            await speakENAwait(en)
++            guard !Task.isCancelled else { return }
++            phase = .listening
++            try? await Task.sleep(nanoseconds: 250_000_000)
++            try? AudioSessionManager.configureForRecording()
++            var hints = PhraseSimilarity.sttVariants(for: en)
++            hints.append(contentsOf: en.split(separator: " ").map(String.init))
++            let target = en
++            let text = await capture.captureUntilStopped(
++                localeId: settings.rememberLocale.rawValue,
++                maxSeconds: 45,
++                contextualStrings: hints,
++                autoFinishWhen: { PhraseSimilarity.passes(recognized: $0, expected: target) }
++            )
++            guard !Task.isCancelled else { return }
++            evaluate(text, expected: target)
++        }
++    }
++
++    private func evaluate(_ raw: String, expected: String) {
++        heard = PhraseSimilarity.displayAgainstTarget(raw, expected: expected)
++        let hit = wordHits(recognized: heard.isEmpty ? raw : heard, expected: expected)
++        let total = max(wordTokens(expected).count, 1)
++        let pct = PhraseSimilarity.percent(recognized: heard.isEmpty ? raw : heard, expected: expected)
++        matchNote = "\(hit)/\(total) слов · \(pct)%"
++        if PhraseSimilarity.passes(recognized: raw, expected: expected) || Double(hit) / Double(total) >= 0.75 {
++            phase = .passed
++        } else {
++            phase = .failed
++        }
++    }
++
++    private func speakENAwait(_ text: String) async {
++        await withCheckedContinuation { (cont: CheckedContinuation<Void, Never>) in
++            var resumed = false
++            let finish = {
++                guard !resumed else { return }
++                resumed = true
++                cont.resume()
++            }
++            speaker?.speakEN(text) { finish() }
++            Task { @MainActor in
++                try? await Task.sleep(nanoseconds: 8_000_000_000)
++                finish()
++            }
++        }
++    }
++
++    private func cancel() {
++        workTask?.cancel()
++        workTask = nil
++        capture.cancel()
++        speaker?.stop()
++        phase = .idle
++        matchNote = ""
++        heard = ""
++    }
++
++    private func wordTokens(_ text: String) -> [String] {
++        text
++            .lowercased()
++            .components(separatedBy: CharacterSet.alphanumerics.inverted)
++            .filter { !$0.isEmpty }
++    }
++
++    private func wordHits(recognized: String, expected: String) -> Int {
++        let got = Set(wordTokens(recognized))
++        return wordTokens(expected).filter { got.contains($0) }.count
++    }
++}
+diff --git a/EnglishOnSite/Views/PhrasalToolsView.swift b/EnglishOnSite/Views/PhrasalToolsView.swift
+new file mode 100644
+index 0000000..2736e10
+--- /dev/null
++++ b/EnglishOnSite/Views/PhrasalToolsView.swift
+@@ -0,0 +1,115 @@
++import SwiftUI
++
++/// Sections of tool-context phrasals: select → list → Проговорить / В тренажёр.
++struct PhrasalToolsView: View {
++    @State private var selectedSectionIds: Set<String> = []
++    @State private var toast = ""
++    @State private var goTrainer = false
++
++    private var sections: [PhrasalToolsSection] { PhrasalToolsStore.sections() }
++
++    private var selectedItems: [PhrasalToolItem] {
++        sections
++            .filter { selectedSectionIds.contains($0.id) }
++            .flatMap(\.items)
++    }
++
++    var body: some View {
++        List {
++            Section {
++                Text("Выбери секции (по 10 фраз). В списке — проговорить или сохранить в тренажёр.")
++                    .font(.footnote)
++                    .foregroundStyle(.secondary)
++                NavigationLink("Открыть тренажёр") {
++                    PhrasalTrainerView()
++                }
++            }
++
++            Section("Секции") {
++                if sections.isEmpty {
++                    Text("Нет phrasal_tools.json в Resources.")
++                        .foregroundStyle(.secondary)
++                } else {
++                    ForEach(sections) { section in
++                        Button {
++                            toggle(section.id)
++                        } label: {
++                            HStack(alignment: .top, spacing: 10) {
++                                Image(systemName: selectedSectionIds.contains(section.id) ? "checkmark.square.fill" : "square")
++                                    .foregroundStyle(selectedSectionIds.contains(section.id) ? Color.accentColor : .secondary)
++                                VStack(alignment: .leading, spacing: 2) {
++                                    Text(section.titleRu)
++                                        .font(.body.weight(.semibold))
++                                        .foregroundStyle(.primary)
++                                    Text("\(section.titleEn) · \(section.items.count)")
++                                        .font(.caption)
++                                        .foregroundStyle(.secondary)
++                                }
++                                Spacer(minLength: 0)
++                            }
++                        }
++                        .buttonStyle(.plain)
++                    }
++                    if !sections.isEmpty {
++                        HStack {
++                            Button("Все") {
++                                selectedSectionIds = Set(sections.map(\.id))
++                            }
++                            Button("Сброс") { selectedSectionIds = [] }
++                        }
++                        .font(.subheadline.weight(.semibold))
++                    }
++                }
++            }
++
++            if !selectedItems.isEmpty {
++                Section("Выбрано · \(selectedItems.count)") {
++                    ForEach(selectedItems) { item in
++                        VStack(alignment: .leading, spacing: 8) {
++                            Text(item.en)
++                                .font(.body.weight(.semibold))
++                            Text(item.ru)
++                                .font(.subheadline)
++                                .foregroundStyle(.secondary)
++                            if !item.phrasal.isEmpty {
++                                Text(item.phrasal)
++                                    .font(.caption.weight(.bold))
++                                    .foregroundStyle(.tertiary)
++                            }
++                            PhrasalSpeakPracticeControls(en: item.en, ru: item.ru)
++                            Button {
++                                let added = PhrasalTrainerStore.add(.fromToolItem(item))
++                                toast = added ? "В тренажёре" : "Уже в тренажёре"
++                            } label: {
++                                Text(PhrasalTrainerStore.contains(en: item.en) ? "В тренажёре ✓" : "В тренажёр")
++                                    .font(.subheadline.weight(.semibold))
++                                    .frame(minWidth: 110, minHeight: 36)
++                            }
++                            .buttonStyle(.bordered)
++                        }
++                        .padding(.vertical, 4)
++                    }
++                }
++            }
++
++            if !toast.isEmpty {
++                Section {
++                    Text(toast).font(.caption).foregroundStyle(.secondary)
++                }
++            }
++        }
++        .navigationTitle("Инструменты")
++        .navigationBarTitleDisplayMode(.inline)
++        .navigationDestination(isPresented: $goTrainer) {
++            PhrasalTrainerView()
++        }
++    }
++
++    private func toggle(_ id: String) {
++        if selectedSectionIds.contains(id) {
++            selectedSectionIds.remove(id)
++        } else {
++            selectedSectionIds.insert(id)
++        }
++    }
++}
+diff --git a/EnglishOnSite/Views/PhrasalTrainerView.swift b/EnglishOnSite/Views/PhrasalTrainerView.swift
+new file mode 100644
+index 0000000..c304b5b
+--- /dev/null
++++ b/EnglishOnSite/Views/PhrasalTrainerView.swift
+@@ -0,0 +1,226 @@
++import SwiftUI
++
++/// Saved phrasal/custom phrases deck: practice TTS→STT, add own RU via Gemini.
++struct PhrasalTrainerView: View {
++    @Environment(AppSettings.self) private var settings
++
++    @State private var items: [PhrasalTrainerPhrase] = []
++    @State private var showAddOwn = false
++    @State private var ownRU = ""
++    @State private var addNote = ""
++    @State private var isTranslating = false
++    @State private var practiceAll = false
++    @State private var practiceIndex = 0
++    @State private var toast = ""
++
++    var body: some View {
++        List {
++            Section {
++                Button {
++                    ownRU = ""
++                    addNote = ""
++                    showAddOwn = true
++                } label: {
++                    Label("Добавить свою", systemImage: "plus.bubble")
++                        .font(.headline)
++                        .frame(maxWidth: .infinity, minHeight: 44)
++                }
++                .disabled(isTranslating)
++
++                if !items.isEmpty {
++                    Button {
++                        practiceAll = true
++                        practiceIndex = 0
++                    } label: {
++                        Label("Гонять все (\(items.count))", systemImage: "mic.fill")
++                            .font(.subheadline.weight(.semibold))
++                    }
++                }
++
++                if !toast.isEmpty {
++                    Text(toast).font(.caption).foregroundStyle(.secondary)
++                }
++            }
++
++            if items.isEmpty {
++                Section {
++                    Text("Пусто. Добавь фразы из «Инструменты» или свою на русском.")
++                        .foregroundStyle(.secondary)
++                }
++            } else {
++                Section("Тренажёр · \(items.count)") {
++                    ForEach(items) { item in
++                        VStack(alignment: .leading, spacing: 8) {
++                            Text(item.en)
++                                .font(.body.weight(.semibold))
++                            if !item.ru.isEmpty {
++                                Text(item.ru)
++                                    .font(.subheadline)
++                                    .foregroundStyle(.secondary)
++                            }
++                            if !item.phrasal.isEmpty {
++                                Text(item.phrasal)
++                                    .font(.caption.weight(.bold))
++                                    .foregroundStyle(.tertiary)
++                            }
++                            PhrasalSpeakPracticeControls(en: item.en, ru: item.ru)
++                            Button(role: .destructive) {
++                                PhrasalTrainerStore.remove(id: item.id)
++                                reload()
++                            } label: {
++                                Text("Убрать")
++                                    .font(.caption.weight(.semibold))
++                            }
++                        }
++                        .padding(.vertical, 4)
++                    }
++                }
++            }
++        }
++        .navigationTitle("Тренажёр")
++        .navigationBarTitleDisplayMode(.inline)
++        .onAppear { reload() }
++        .sheet(isPresented: $showAddOwn) { addOwnSheet }
++        .navigationDestination(isPresented: $practiceAll) {
++            if items.indices.contains(practiceIndex) {
++                PhrasalTrainerDrillView(
++                    phrases: items,
++                    startIndex: practiceIndex
++                )
++            } else {
++                Text("Нет фраз")
++            }
++        }
++    }
++
++    private var addOwnSheet: some View {
++        NavigationStack {
++            Form {
++                Section("Фраза на русском") {
++                    TextField("Например: передай мне дрель", text: $ownRU, axis: .vertical)
++                        .lineLimit(2...5)
++                }
++                if !addNote.isEmpty {
++                    Section {
++                        Text(addNote)
++                            .font(.footnote)
++                            .foregroundStyle(addNote.contains("добавлена") ? .green : .orange)
++                    }
++                }
++                Section {
++                    Button {
++                        Task { await translateAndAdd() }
++                    } label: {
++                        if isTranslating {
++                            ProgressView()
++                                .frame(maxWidth: .infinity, minHeight: 44)
++                        } else {
++                            Text("Перевести и в тренажёр")
++                                .font(.headline)
++                                .frame(maxWidth: .infinity, minHeight: 44)
++                        }
++                    }
++                    .disabled(isTranslating || ownRU.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
++                } footer: {
++                    Text("Перевод через Gemini (ключ из Настроек / Keychain). EN попадёт в тренажёр для проговаривания.")
++                }
++            }
++            .navigationTitle("Своя фраза")
++            .navigationBarTitleDisplayMode(.inline)
++            .toolbar {
++                ToolbarItem(placement: .cancellationAction) {
++                    Button("Закрыть") { showAddOwn = false }
++                }
++            }
++        }
++        .presentationDetents([.medium, .large])
++    }
++
++    private func reload() {
++        items = PhrasalTrainerStore.load()
++    }
++
++    private func translateAndAdd() async {
++        let ru = ownRU.trimmingCharacters(in: .whitespacesAndNewlines)
++        guard !ru.isEmpty else { return }
++        guard settings.geminiEnabledAndReady else {
++            addNote = settings.useGemini
++                ? "Нет ключа Gemini в Настройках"
++                : "Включи Gemini в Настройках"
++            return
++        }
++        isTranslating = true
++        addNote = "Перевожу…"
++        defer { isTranslating = false }
++        do {
++            let result = try await GeminiSiteCoachService.shared.translateThrowing(
++                text: ru,
++                sourceHint: .ru
++            )
++            let en = result.translatedText.trimmingCharacters(in: .whitespacesAndNewlines)
++            guard !en.isEmpty, en != "(перевод позже)" else {
++                addNote = "Пустой перевод — попробуй другую фразу"
++                return
++            }
++            let phrase = PhrasalTrainerPhrase(
++                en: en,
++                ru: result.sourceText.isEmpty ? ru : result.sourceText,
++                phrasal: "",
++                source: "user_gemini"
++            )
++            let added = PhrasalTrainerStore.add(phrase)
++            reload()
++            addNote = added ? "EN добавлена в тренажёр: \(en)" : "Уже была в тренажёре: \(en)"
++            toast = addNote
++            ownRU = ""
++        } catch let e as GeminiRequestError {
++            addNote = e.shortRU
++        } catch {
++            addNote = "Нет сети / таймаут Gemini"
++        }
++    }
++}
++
++/// Sequential drill for trainer deck (reuse speak controls per card).
++struct PhrasalTrainerDrillView: View {
++    let phrases: [PhrasalTrainerPhrase]
++    let startIndex: Int
++
++    @State private var index: Int = 0
++
++    var body: some View {
++        VStack(alignment: .leading, spacing: 16) {
++            Text("\(min(index + 1, phrases.count)) / \(phrases.count)")
++                .font(.headline)
++            if phrases.indices.contains(index) {
++                let p = phrases[index]
++                Text(p.en)
++                    .font(.title2.weight(.bold))
++                if !p.ru.isEmpty {
++                    Text(p.ru)
++                        .font(.title3)
++                        .foregroundStyle(.secondary)
++                }
++                PhrasalSpeakPracticeControls(en: p.en, ru: p.ru)
++                HStack {
++                    Button("Назад") { index = max(0, index - 1) }
++                        .disabled(index == 0)
++                    Spacer()
++                    Button(index + 1 >= phrases.count ? "Готово" : "Дальше") {
++                        if index + 1 >= phrases.count {
++                            // stay on last
++                        } else {
++                            index += 1
++                        }
++                    }
++                    .buttonStyle(.borderedProminent)
++                }
++            }
++            Spacer()
++        }
++        .padding(16)
++        .navigationTitle("Гонять")
++        .navigationBarTitleDisplayMode(.inline)
++        .onAppear { index = min(max(0, startIndex), max(phrases.count - 1, 0)) }
++    }
++}
+diff --git a/EnglishOnSite/Views/SettingsView.swift b/EnglishOnSite/Views/SettingsView.swift
+index d03ee25..5440fae 100644
+--- a/EnglishOnSite/Views/SettingsView.swift
++++ b/EnglishOnSite/Views/SettingsView.swift
+@@ -155,13 +155,19 @@ struct SettingsView: View {
+                 TextField("ID голоса бригадира (EN)", text: $settings.voiceIdEnSupervisor)
+                     .textInputAutocapitalization(.never)
+                     .autocorrectionDisabled()
++                TextField("ID голоса ES (LatAm)", text: $settings.voiceIdEsLatAm)
++                    .textInputAutocapitalization(.never)
++                    .autocorrectionDisabled()
+                 Text(
+                     """
+                     Worker EN: \(ElevenLabsConfig.voiceIdEnWorker)
+                     Supervisor EN (сейчас): \(settings.resolvedVoiceIdEnSupervisor)
++                    ES LatAm (сейчас): \(settings.resolvedVoiceIdEsLatAm)
++                    Factory ES LatAm: \(ElevenLabsConfig.voiceIdEsLatAm)
+                     RU clone (не для диалога урока): \(ElevenLabsConfig.voiceRU)
+-                    Пока 2-го ID нет — бригадир = worker. Вставь ElevenLabs voice_id сюда.
+-                    Без ключа / ошибка сети → системный голос (AVSpeech). Ключ только в Keychain.
++                    ES — латиноамериканский голос (не кастильский), тот же ключ/модель/кэш что EN.
++                    Пока 2-го EN ID нет — бригадир = worker.
++                    Без ключа / ошибка сети → системный голос (AVSpeech es-MX). Ключ только в Keychain.
+                     Кэш mp3 учитывает voiceId + model + stability/similarity/style.
+                     """
+                 )
+-- 
+2.43.0
+

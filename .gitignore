@@ -1,0 +1,7 @@
+.telegram-config
+.env
+.env.*
+!.env.example
+!.telegram-config.example
+*.local.swift
+.DS_Store
