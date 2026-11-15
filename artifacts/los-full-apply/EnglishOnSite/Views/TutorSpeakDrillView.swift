@@ -20,8 +20,6 @@ struct TutorSpeakDrillView: View {
     @State private var didAutoStart = false
     /// DEBUG inject: skip mic after PASS so Simulator smoke does not trip Speech alert.
     @State private var smokeNoMic = false
-    @State private var speakCorrection: SpeakCorrection?
-    @State private var correctionBusy = false
 
     private enum Phase { case ready, listening, passed, failed }
 
@@ -68,20 +66,6 @@ struct TutorSpeakDrillView: View {
 
                 if !note.isEmpty {
                     Text(note).font(.caption).foregroundStyle(.orange)
-                }
-
-                if let speakCorrection {
-                    SpeakCorrectionCard(
-                        correction: speakCorrection,
-                        isBusy: correctionBusy,
-                        onListen: {
-                            speaker?.updateSettings(settings)
-                            speaker?.speakEN(speakCorrection.betterEN) {
-                                note = speaker?.statusNote ?? ""
-                            }
-                        },
-                        onDismiss: { self.speakCorrection = nil }
-                    )
                 }
 
                 controls(for: p)
@@ -248,7 +232,7 @@ struct TutorSpeakDrillView: View {
             try? AudioSessionManager.configureForRecording()
             var hints = PhraseSimilarity.sttVariants(for: p.en)
             hints.append(contentsOf: p.en.split(separator: " ").map(String.init))
-            hints.append(contentsOf: ["hard hat", "Safe Pass", "hi-vis"])
+            hints.append(contentsOf: PhraseSimilarity.siteContextualHints)
             let target = p.en
             let text = await capture.captureUntilStopped(
                 localeId: settings.rememberLocale.rawValue,
@@ -290,29 +274,11 @@ struct TutorSpeakDrillView: View {
         } else {
             phase = .failed
             note = "Ещё раз ту же фразу"
-            refreshSpeakCorrection(youSaid: heard, expected: expected)
             listenTask = Task {
                 try? await Task.sleep(nanoseconds: 700_000_000)
                 guard !Task.isCancelled, !smokeNoMic else { return }
                 startListen()
             }
-        }
-    }
-
-    private func refreshSpeakCorrection(youSaid: String, expected: String) {
-        let ru = current?.ru ?? ""
-        let instant = SpeakCorrection.local(youSaid: youSaid, betterEN: expected, betterRU: ru)
-        speakCorrection = instant
-        correctionBusy = true
-        Task {
-            let enriched = await GeminiSiteCoachService.shared.enrichSpeakCorrection(
-                youSaid: youSaid,
-                betterEN: expected,
-                betterRU: ru,
-                contentMode: TutorBankStore.contentMode
-            )
-            speakCorrection = enriched
-            correctionBusy = false
         }
     }
 
@@ -332,7 +298,6 @@ struct TutorSpeakDrillView: View {
         score = 0
         heard = ""
         note = ""
-        speakCorrection = nil
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             if smokeNoMic { return }
             startListen()

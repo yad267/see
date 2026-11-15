@@ -31,9 +31,6 @@ struct TutorTalkView: View {
     @State private var didTapEdit = false
     /// Auto-start mic once per pinned target (no «Говорю»).
     @State private var autoListenTarget: String = ""
-    /// Fluently-style card: ты сказал → лучше на объекте.
-    @State private var speakCorrection: SpeakCorrection?
-    @State private var correctionBusy = false
     @FocusState private var draftFocused: Bool
 
     private struct CoachTurn: Identifiable {
@@ -95,17 +92,6 @@ struct TutorTalkView: View {
 
             if !pinnedSayNowEN.isEmpty {
                 pinnedTargetCard
-            }
-
-            if let speakCorrection {
-                SpeakCorrectionCard(
-                    correction: speakCorrection,
-                    isBusy: correctionBusy,
-                    onListen: { speakEN(speakCorrection.betterEN) },
-                    onDismiss: { self.speakCorrection = nil }
-                )
-                .padding(.horizontal, 16)
-                .padding(.bottom, 8)
             }
 
             if isListening || awaitingReview {
@@ -594,7 +580,6 @@ struct TutorTalkView: View {
 
         if trimmed.isEmpty {
             sttHint = "Не расслышал. Ещё раз"
-            speakCorrection = nil
             appendMutedNoteOnce()
             return
         }
@@ -602,11 +587,6 @@ struct TutorTalkView: View {
             if PhraseSimilarity.passesTalk(recognized: trimmed, expected: pinnedSayNowEN) {
                 let pct = Int((liveSimilarity * 100).rounded())
                 sttHint = "Засчитать? (\(pct)%)"
-                speakCorrection = SpeakCorrection.local(
-                    youSaid: trimmed,
-                    betterEN: pinnedSayNowEN,
-                    betterRU: pinnedSayNowRU
-                )
                 return
             }
             if PhraseSimilarity.looksLikeSTTFail(recognized: trimmed, expected: pinnedSayNowEN)
@@ -615,40 +595,11 @@ struct TutorTalkView: View {
                     ? "Микрофон сбился — скажи ещё раз"
                     : "Не расслышал. Ещё раз"
                 appendMutedNoteOnce()
-                // Mid-conversation fix card (Fluently-style) — not shame, just better line.
-                refreshSpeakCorrection(youSaid: trimmed)
                 return
             }
         }
         sttHint = "Не расслышал. Ещё раз"
         appendMutedNoteOnce()
-        if !pinnedSayNowEN.isEmpty {
-            refreshSpeakCorrection(youSaid: trimmed)
-        }
-    }
-
-    private func refreshSpeakCorrection(youSaid: String) {
-        guard !pinnedSayNowEN.isEmpty else {
-            speakCorrection = nil
-            return
-        }
-        let instant = SpeakCorrection.local(
-            youSaid: youSaid,
-            betterEN: pinnedSayNowEN,
-            betterRU: pinnedSayNowRU
-        )
-        speakCorrection = instant
-        correctionBusy = true
-        Task {
-            let enriched = await GeminiSiteCoachService.shared.enrichSpeakCorrection(
-                youSaid: youSaid,
-                betterEN: pinnedSayNowEN,
-                betterRU: pinnedSayNowRU,
-                contentMode: contentMode
-            )
-            speakCorrection = enriched
-            correctionBusy = false
-        }
     }
 
     private func appendMutedNoteOnce() {
@@ -670,7 +621,6 @@ struct TutorTalkView: View {
         didTapEdit = false
         awaitingReview = false
         errorMessage = nil
-        // Keep correction card so learner still sees «лучше так» while retrying.
         await startListening()
     }
 
@@ -686,7 +636,6 @@ struct TutorTalkView: View {
         draft = ""
         sttHint = ""
         waitingForPass = false
-        speakCorrection = nil
         turns.append(CoachTurn(
             isUser: false,
             text: "Засчитано",
@@ -714,7 +663,6 @@ struct TutorTalkView: View {
         draft = ""
         sttHint = ""
         waitingForPass = false
-        speakCorrection = nil
         turns.append(CoachTurn(
             isUser: false,
             text: "Засчитано",
@@ -849,8 +797,10 @@ struct TutorTalkView: View {
                 }
             }
         }
+        hints.append(contentsOf: PhraseSimilarity.sttVariants(for: pinnedSayNowEN))
+        hints.append(contentsOf: PhraseSimilarity.siteContextualHints)
         hints += [
-            "Safe Pass", "hard hat", "hi-vis", "hi vis", "card", "here", "have", "my",
+            "card", "here", "have", "my",
             "I have", "my Safe Pass", "Pass card", "card here",
         ]
         return hints
@@ -861,98 +811,6 @@ struct TutorTalkView: View {
         voiceNote = "…"
         speaker?.speakEN(en) {
             voiceNote = speaker?.statusNote ?? ElevenLabsTTS.shared.lastStatusRU
-        }
-    }
-}
-
-/// Mid-conversation correction card (Fluently-style). Shared by Поговорить / Говорить.
-struct SpeakCorrectionCard: View {
-    let correction: SpeakCorrection
-    var isBusy: Bool = false
-    var onListen: (() -> Void)?
-    var onDismiss: (() -> Void)?
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                Text(headerTitle)
-                    .font(.caption.weight(.bold))
-                    .foregroundStyle(.secondary)
-                    .textCase(.uppercase)
-                Spacer()
-                if isBusy {
-                    ProgressView()
-                        .controlSize(.mini)
-                }
-                if let onDismiss {
-                    Button("Скрыть", action: onDismiss)
-                        .font(.caption.weight(.semibold))
-                }
-            }
-
-            if !correction.youSaid.isEmpty, correction.kind != .perfect {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("Ты сказал")
-                        .font(.caption2.weight(.semibold))
-                        .foregroundStyle(.tertiary)
-                    Text(correction.youSaid)
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                        .strikethrough(correction.kind == .rewrite, color: .secondary)
-                }
-            }
-
-            VStack(alignment: .leading, spacing: 2) {
-                Text("Лучше на объекте")
-                    .font(.caption2.weight(.semibold))
-                    .foregroundStyle(.tertiary)
-                Text(correction.betterEN)
-                    .font(.title3.weight(.bold))
-                    .fixedSize(horizontal: false, vertical: true)
-                if !correction.betterRU.isEmpty {
-                    Text(correction.betterRU)
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                }
-            }
-
-            if !correction.tipRu.isEmpty {
-                Text(correction.tipRu)
-                    .font(.caption)
-                    .foregroundStyle(.tint)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-
-            if !correction.synonyms.isEmpty {
-                Text("Также: " + correction.synonyms.joined(separator: " · "))
-                    .font(.caption2)
-                    .foregroundStyle(.secondary)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-
-            if let onListen {
-                Button(action: onListen) {
-                    Label("Слушать EN", systemImage: "play.fill")
-                        .font(.subheadline.weight(.semibold))
-                }
-                .buttonStyle(.bordered)
-            }
-        }
-        .padding(12)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(
-            RoundedRectangle(cornerRadius: 14, style: .continuous)
-                .fill(Color.accentColor.opacity(correction.kind == .perfect ? 0.08 : 0.14))
-        )
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel("Правка: \(correction.betterEN)")
-    }
-
-    private var headerTitle: String {
-        switch correction.kind {
-        case .perfect: return "Верно"
-        case .soft: return "Почти — так чётче"
-        case .rewrite: return "Лучше так"
         }
     }
 }
