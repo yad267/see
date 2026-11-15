@@ -153,7 +153,12 @@ struct SectionLessonsListView: View {
             }
             Section("Уроки · \(lessons.count)") {
                 ForEach(lessons) { lesson in
-                    NavigationLink(value: lesson) {
+                    // Destination link (not value:/path): section was pushed with
+                    // NavigationLink { … }, so value-based Lesson pushes bounce back
+                    // to this menu instead of opening PlayerView.
+                    NavigationLink {
+                        PlayerView(lesson: lesson)
+                    } label: {
                         VStack(alignment: .leading, spacing: 4) {
                             Text(lesson.titleRu).font(.headline)
                             if let en = lesson.titleEn {
@@ -163,6 +168,12 @@ struct SectionLessonsListView: View {
                                 .font(.caption)
                                 .foregroundStyle(.tertiary)
                                 .lineLimit(2)
+                            if let first = lesson.lines.first?.en, !first.isEmpty {
+                                Text(first)
+                                    .font(.caption2)
+                                    .foregroundStyle(.quaternary)
+                                    .lineLimit(1)
+                            }
                         }
                         .padding(.vertical, 2)
                     }
