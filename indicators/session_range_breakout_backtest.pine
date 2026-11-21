@@ -1,0 +1,192 @@
+//@version=5
+indicator("Session Range Breakout Backtest", overlay=true, max_lines_count=500, max_labels_count=500, max_boxes_count=100)
+
+// === НАСТРОЙКИ ===
+sessionTime     = input.session("0000-0800", "Session Time")
+sessionTz       = input.string("UTC", "Timezone", options=["UTC", "Exchange", "Europe/Dublin", "Europe/London", "America/New_York"])
+extendLines     = input.bool(true, "Extend lines until break / next session")
+keepSessions    = input.int(40, "Keep last N session ranges", minval=1, maxval=200)
+showBreakMarks  = input.bool(true, "Show breakout markers")
+showResultMarks = input.bool(true, "Show win/loss after lookforward")
+lookforwardBars = input.int(20, "Bars after break to score", minval=1, maxval=500)
+breakOnClose    = input.bool(true, "Break = close beyond level (off = wick)")
+minRangePips    = input.float(0.0, "Min range filter (price units, 0=off)", minval=0)
+showTable       = input.bool(true, "Show stats table")
+tablePos        = input.string("top_right", "Table position", options=["top_right", "top_left", "bottom_right", "bottom_left"])
+
+tz = sessionTz == "Exchange" ? syminfo.timezone : sessionTz
+
+// === СЕССИЯ ===
+inSession = not na(time(timeframe.period, sessionTime, tz))
+sessionStart = inSession and not inSession[1]
+sessionEnd   = not inSession and inSession[1]
+
+var float sessionHigh = na
+var float sessionLow  = na
+
+if sessionStart
+    sessionHigh := high
+    sessionLow  := low
+else if inSession
+    sessionHigh := math.max(sessionHigh, high)
+    sessionLow  := math.min(sessionLow, low)
+
+rangeSize = sessionHigh - sessionLow
+rangeOk   = minRangePips <= 0 or rangeSize >= minRangePips
+
+// === ХРАНЕНИЕ АКТИВНЫХ ДИАПАЗОНОВ ===
+var array<line>  highLines   = array.new_line()
+var array<line>  lowLines    = array.new_line()
+var array<float> highLevels  = array.new_float()
+var array<float> lowLevels   = array.new_float()
+var array<bool>  highBrokenA = array.new_bool()
+var array<bool>  lowBrokenA  = array.new_bool()
+var array<int>   highBreakBar = array.new_int()
+var array<int>   lowBreakBar  = array.new_int()
+var array<bool>  highScored  = array.new_bool()
+var array<bool>  lowScored   = array.new_bool()
+var array<int>   endBars     = array.new_int()
+
+f_trim() =>
+    while array.size(highLines) > keepSessions
+        line.delete(array.shift(highLines))
+        line.delete(array.shift(lowLines))
+        array.shift(highLevels)
+        array.shift(lowLevels)
+        array.shift(highBrokenA)
+        array.shift(lowBrokenA)
+        array.shift(highBreakBar)
+        array.shift(lowBreakBar)
+        array.shift(highScored)
+        array.shift(lowScored)
+        array.shift(endBars)
+
+if sessionEnd and not na(sessionHigh) and not na(sessionLow) and rangeOk
+    hLine = line.new(bar_index - 1, sessionHigh, bar_index, sessionHigh, xloc.bar_index, extend=extendLines ? extend.right : extend.none, color=color.new(color.green, 0), width=2)
+    lLine = line.new(bar_index - 1, sessionLow, bar_index, sessionLow, xloc.bar_index, extend=extendLines ? extend.right : extend.none, color=color.new(color.red, 0), width=2)
+    array.push(highLines, hLine)
+    array.push(lowLines, lLine)
+    array.push(highLevels, sessionHigh)
+    array.push(lowLevels, sessionLow)
+    array.push(highBrokenA, false)
+    array.push(lowBrokenA, false)
+    array.push(highBreakBar, na)
+    array.push(lowBreakBar, na)
+    array.push(highScored, false)
+    array.push(lowScored, false)
+    array.push(endBars, bar_index)
+    f_trim()
+
+// === СТАТИСТИКА ===
+var int upBreaks = 0
+var int dnBreaks = 0
+var int upWins = 0
+var int upLoss = 0
+var int dnWins = 0
+var int dnLoss = 0
+
+// === ПРОБОИ + LOOKFORWARD ===
+n = array.size(highLevels)
+if n > 0 and not inSession
+    for i = 0 to n - 1
+        hLvl = array.get(highLevels, i)
+        lLvl = array.get(lowLevels, i)
+        hBroken = array.get(highBrokenA, i)
+        lBroken = array.get(lowBrokenA, i)
+        hBBar = array.get(highBreakBar, i)
+        lBBar = array.get(lowBreakBar, i)
+        hScored = array.get(highScored, i)
+        lScored = array.get(lowScored, i)
+
+        upBreakNow = breakOnClose ? close > hLvl : high > hLvl
+        dnBreakNow = breakOnClose ? close < lLvl : low < lLvl
+
+        // Первый пробой вверх
+        if not hBroken and upBreakNow
+            array.set(highBrokenA, i, true)
+            array.set(highBreakBar, i, bar_index)
+            upBreaks += 1
+            if extendLines
+                line.set_x2(array.get(highLines, i), bar_index)
+                line.set_extend(array.get(highLines, i), extend.none)
+            if showBreakMarks
+                label.new(bar_index, hLvl, "↑ BREAK", style=label.style_label_down, color=color.new(color.green, 20), textcolor=color.white, size=size.small)
+
+        // Первый пробой вниз
+        if not lBroken and dnBreakNow
+            array.set(lowBrokenA, i, true)
+            array.set(lowBreakBar, i, bar_index)
+            dnBreaks += 1
+            if extendLines
+                line.set_x2(array.get(lowLines, i), bar_index)
+                line.set_extend(array.get(lowLines, i), extend.none)
+            if showBreakMarks
+                label.new(bar_index, lLvl, "↓ BREAK", style=label.style_label_up, color=color.new(color.red, 20), textcolor=color.white, size=size.small)
+
+        // Перечитать после возможного обновления
+        hBroken := array.get(highBrokenA, i)
+        lBroken := array.get(lowBrokenA, i)
+        hBBar := array.get(highBreakBar, i)
+        lBBar := array.get(lowBreakBar, i)
+
+        // Оценка через N баров после пробоя вверх
+        if hBroken and not hScored and not na(hBBar) and bar_index == hBBar + lookforwardBars
+            win = close > hLvl
+            array.set(highScored, i, true)
+            if win
+                upWins += 1
+            else
+                upLoss += 1
+            if showResultMarks
+                label.new(bar_index, high, win ? "↑ WIN" : "↑ LOSS", style=label.style_label_down, color=win ? color.new(color.teal, 10) : color.new(color.orange, 10), textcolor=color.white, size=size.small)
+
+        // Оценка через N баров после пробоя вниз
+        if lBroken and not lScored and not na(lBBar) and bar_index == lBBar + lookforwardBars
+            win = close < lLvl
+            array.set(lowScored, i, true)
+            if win
+                dnWins += 1
+            else
+                dnLoss += 1
+            if showResultMarks
+                label.new(bar_index, low, win ? "↓ WIN" : "↓ LOSS", style=label.style_label_up, color=win ? color.new(color.teal, 10) : color.new(color.orange, 10), textcolor=color.white, size=size.small)
+
+// Обрезать линии на старте новой сессии, если не было пробоя
+if sessionStart and extendLines
+    n2 = array.size(highLines)
+    if n2 > 0
+        for i = 0 to n2 - 1
+            if not array.get(highBrokenA, i)
+                line.set_x2(array.get(highLines, i), bar_index)
+                line.set_extend(array.get(highLines, i), extend.none)
+            if not array.get(lowBrokenA, i)
+                line.set_x2(array.get(lowLines, i), bar_index)
+                line.set_extend(array.get(lowLines, i), extend.none)
+
+// === ТАБЛИЦА ===
+var table stats = table.new(tablePos == "top_left" ? position.top_left : tablePos == "bottom_left" ? position.bottom_left : tablePos == "bottom_right" ? position.bottom_right : position.top_right, 2, 8, bgcolor=color.new(color.black, 70), border_width=1)
+
+f_pct(w, l) =>
+    t = w + l
+    t == 0 ? "n/a" : str.tostring(100.0 * w / t, "#.#") + "%"
+
+if showTable and barstate.islast
+    table.cell(stats, 0, 0, "Session Break BT", text_color=color.white, text_size=size.small)
+    table.cell(stats, 1, 0, sessionTime + " " + tz, text_color=color.gray, text_size=size.small)
+    table.cell(stats, 0, 1, "↑ breaks", text_color=color.green, text_size=size.small)
+    table.cell(stats, 1, 1, str.tostring(upBreaks), text_color=color.white, text_size=size.small)
+    table.cell(stats, 0, 2, "↓ breaks", text_color=color.red, text_size=size.small)
+    table.cell(stats, 1, 2, str.tostring(dnBreaks), text_color=color.white, text_size=size.small)
+    table.cell(stats, 0, 3, "↑ winrate", text_color=color.teal, text_size=size.small)
+    table.cell(stats, 1, 3, f_pct(upWins, upLoss) + " (" + str.tostring(upWins) + "/" + str.tostring(upWins + upLoss) + ")", text_color=color.white, text_size=size.small)
+    table.cell(stats, 0, 4, "↓ winrate", text_color=color.teal, text_size=size.small)
+    table.cell(stats, 1, 4, f_pct(dnWins, dnLoss) + " (" + str.tostring(dnWins) + "/" + str.tostring(dnWins + dnLoss) + ")", text_color=color.white, text_size=size.small)
+    table.cell(stats, 0, 5, "Lookforward", text_color=color.gray, text_size=size.small)
+    table.cell(stats, 1, 5, str.tostring(lookforwardBars) + " bars", text_color=color.white, text_size=size.small)
+    table.cell(stats, 0, 6, "Break rule", text_color=color.gray, text_size=size.small)
+    table.cell(stats, 1, 6, breakOnClose ? "close" : "wick", text_color=color.white, text_size=size.small)
+    table.cell(stats, 0, 7, "Tip", text_color=color.gray, text_size=size.tiny)
+    table.cell(stats, 1, 7, "WIN = close still beyond level", text_color=color.gray, text_size=size.tiny)
+
+// Подсветка активной сессии
+bgcolor(inSession ? color.new(color.blue, 92) : na, title="In session")

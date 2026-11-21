@@ -1,0 +1,160 @@
+//@version=5
+strategy("Gold MTF 3X Bot", overlay=true, max_labels_count=300, max_lines_count=100,
+     initial_capital=10000, currency=currency.USD, default_qty_type=strategy.fixed, default_qty_value=1,
+     commission_type=strategy.commission.cash_per_order, commission_value=0, pyramiding=0,
+     process_orders_on_close=true, calc_on_every_tick=false)
+
+// =============================================================================
+// XAUUSD bot: 4H bias → 1H zone → 5M confirm. Ставь на график 5 минут.
+// =============================================================================
+
+grpT = "Timeframes"
+tfBias  = input.timeframe("240", "Bias TF (4H)", group=grpT)
+tfLevel = input.timeframe("60", "Levels TF (1H)", group=grpT)
+tfPull  = input.timeframe("15", "Pullback TF (15M)", group=grpT)
+
+grpS = "Signals"
+pivotLen  = input.int(3, "Pivot left/right", minval=2, maxval=10, group=grpS)
+edgeATR   = input.float(0.6, "Near level (×ATR)", minval=0.2, maxval=2.0, step=0.1, group=grpS)
+useBos    = input.bool(true, "BOS", group=grpS)
+useChoch  = input.bool(true, "CHOCH", group=grpS)
+useEngulf = input.bool(true, "ENGULF", group=grpS)
+useDTap   = input.bool(true, "DOUBLE TAP", group=grpS)
+onePerZone = input.bool(true, "Max 1 trade per level zone", group=grpS)
+showMarks = input.bool(true, "Show SETUP labels", group=grpS)
+
+grpR = "Risk"
+slATR    = input.float(1.2, "SL = ATR ×", minval=0.5, maxval=5, step=0.1, group=grpR)
+tpRR     = input.float(1.5, "TP = risk × R", minval=0.8, maxval=4, step=0.1, group=grpR)
+timeStop = input.int(48, "Time stop bars on 5m (0=off)", minval=0, maxval=500, group=grpR)
+
+atr = ta.atr(14)
+
+ema20_4 = request.security(syminfo.tickerid, tfBias, ta.ema(close, 20), barmerge.gaps_off, barmerge.lookahead_off)
+ema50_4 = request.security(syminfo.tickerid, tfBias, ta.ema(close, 50), barmerge.gaps_off, barmerge.lookahead_off)
+bullBias = ema20_4 > ema50_4 and close > ema50_4
+bearBias = ema20_4 < ema50_4 and close < ema50_4
+bgcolor(bullBias ? color.new(color.green, 94) : bearBias ? color.new(color.red, 94) : na)
+
+ph1 = request.security(syminfo.tickerid, tfLevel, ta.pivothigh(high, pivotLen, pivotLen), barmerge.gaps_off, barmerge.lookahead_off)
+pl1 = request.security(syminfo.tickerid, tfLevel, ta.pivotlow(low, pivotLen, pivotLen), barmerge.gaps_off, barmerge.lookahead_off)
+var float resLevel = na
+var float supLevel = na
+var float tradedSup = na
+var float tradedRes = na
+if not na(ph1)
+    resLevel := ph1
+if not na(pl1)
+    supLevel := pl1
+
+pullClose = request.security(syminfo.tickerid, tfPull, close, barmerge.gaps_off, barmerge.lookahead_off)
+pullAtr   = request.security(syminfo.tickerid, tfPull, ta.atr(14), barmerge.gaps_off, barmerge.lookahead_off)
+nearRes = not na(resLevel) and (math.abs(close - resLevel) <= atr * edgeATR or math.abs(pullClose - resLevel) <= pullAtr * edgeATR)
+nearSup = not na(supLevel) and (math.abs(close - supLevel) <= atr * edgeATR or math.abs(pullClose - supLevel) <= pullAtr * edgeATR)
+
+pH = ta.pivothigh(high, pivotLen, pivotLen)
+pL = ta.pivotlow(low, pivotLen, pivotLen)
+var float lastSwingHigh = na
+var float lastSwingLow = na
+var int trendStruct = 0
+if not na(pH)
+    lastSwingHigh := pH
+if not na(pL)
+    lastSwingLow := pL
+
+bosUp = useBos and not na(lastSwingHigh) and close > lastSwingHigh and close[1] <= lastSwingHigh
+bosDn = useBos and not na(lastSwingLow) and close < lastSwingLow and close[1] >= lastSwingLow
+chochUp = useChoch and trendStruct <= 0 and bosUp
+chochDn = useChoch and trendStruct >= 0 and bosDn
+if bosUp
+    trendStruct := 1
+if bosDn
+    trendStruct := -1
+
+bullEng = useEngulf and close > open and close[1] < open[1] and close >= open[1] and open <= close[1]
+bearEng = useEngulf and close < open and close[1] > open[1] and close <= open[1] and open >= close[1]
+
+var int lastTapSup = na
+var int lastTapRes = na
+dTapUp = false
+dTapDn = false
+tapSupNow = useDTap and not na(supLevel) and low <= supLevel + atr * 0.15 and close > open
+tapResNow = useDTap and not na(resLevel) and high >= resLevel - atr * 0.15 and close < open
+if tapSupNow
+    if not na(lastTapSup) and bar_index - lastTapSup <= 8 and bar_index - lastTapSup >= 2
+        dTapUp := true
+    lastTapSup := bar_index
+if tapResNow
+    if not na(lastTapRes) and bar_index - lastTapRes <= 8 and bar_index - lastTapRes >= 2
+        dTapDn := true
+    lastTapRes := bar_index
+
+confirmUp = bosUp or chochUp or bullEng or dTapUp
+confirmDn = bosDn or chochDn or bearEng or dTapDn
+
+f_tag() =>
+    t = ""
+    if bosUp or bosDn
+        t += "BOS"
+    if chochUp or chochDn
+        t += (t == "" ? "" : "+") + "CHOCH"
+    if bullEng or bearEng
+        t += (t == "" ? "" : "+") + "ENG"
+    if dTapUp or dTapDn
+        t += (t == "" ? "" : "+") + "DTAP"
+    t
+
+zoneFreeLong  = not onePerZone or na(tradedSup) or na(supLevel) or tradedSup != supLevel
+zoneFreeShort = not onePerZone or na(tradedRes) or na(resLevel) or tradedRes != resLevel
+flat = strategy.position_size == 0
+
+var int entryBar = na
+
+setupUp = flat and bullBias and nearSup and confirmUp and zoneFreeLong
+setupDn = flat and bearBias and nearRes and confirmDn and zoneFreeShort
+
+if barstate.isconfirmed and setupUp
+    sl = close - atr * slATR
+    risk = close - sl
+    tp = close + risk * tpRR
+    if risk > 0
+        strategy.entry("Long", strategy.long, comment=f_tag())
+        strategy.exit("L-Exit", from_entry="Long", stop=sl, limit=tp)
+        tradedSup := supLevel
+        entryBar := bar_index
+        if showMarks
+            label.new(bar_index, low, "↑ BOT " + f_tag(), style=label.style_label_up, color=color.new(color.yellow, 5), textcolor=color.black, size=size.small)
+
+if barstate.isconfirmed and setupDn
+    sl = close + atr * slATR
+    risk = sl - close
+    tp = close - risk * tpRR
+    if risk > 0
+        strategy.entry("Short", strategy.short, comment=f_tag())
+        strategy.exit("S-Exit", from_entry="Short", stop=sl, limit=tp)
+        tradedRes := resLevel
+        entryBar := bar_index
+        if showMarks
+            label.new(bar_index, high, "↓ BOT " + f_tag(), style=label.style_label_down, color=color.new(color.yellow, 5), textcolor=color.black, size=size.small)
+
+if timeStop > 0 and strategy.position_size != 0 and not na(entryBar) and bar_index >= entryBar + timeStop
+    strategy.close_all(comment="time stop")
+    entryBar := na
+
+if strategy.position_size == 0
+    entryBar := na
+
+var table t = table.new(position.top_right, 2, 5, bgcolor=color.new(color.black, 70), border_width=1)
+if barstate.islast
+    biasTxt = bullBias ? "BUY only" : bearBias ? "SELL only" : "FLAT"
+    table.cell(t, 0, 0, "Gold MTF 3X Bot", text_color=color.white, text_size=size.small)
+    table.cell(t, 1, 0, biasTxt, text_color=bullBias ? color.lime : bearBias ? color.red : color.gray, text_size=size.small)
+    table.cell(t, 0, 1, "Trades", text_color=color.gray, text_size=size.small)
+    table.cell(t, 1, 1, str.tostring(strategy.closedtrades), text_color=color.white, text_size=size.small)
+    table.cell(t, 0, 2, "Net P/L", text_color=color.gray, text_size=size.small)
+    table.cell(t, 1, 2, str.tostring(strategy.netprofit, "#.##"), text_color=strategy.netprofit >= 0 ? color.lime : color.red, text_size=size.small)
+    wr = strategy.closedtrades == 0 ? 0.0 : 100.0 * strategy.wintrades / strategy.closedtrades
+    table.cell(t, 0, 3, "Winrate", text_color=color.gray, text_size=size.small)
+    table.cell(t, 1, 3, str.tostring(wr, "#.#") + "%", text_color=color.white, text_size=size.small)
+    table.cell(t, 0, 4, "Risk", text_color=color.gray, text_size=size.small)
+    table.cell(t, 1, 4, "SL ATR×" + str.tostring(slATR) + " / TP " + str.tostring(tpRR) + "R", text_color=color.white, text_size=size.small)

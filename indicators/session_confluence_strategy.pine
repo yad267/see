@@ -1,0 +1,328 @@
+//@version=5
+indicator("Session Confluence Strategy", overlay=true, max_lines_count=500, max_labels_count=500, max_boxes_count=200)
+
+// =============================================================================
+// Одна стратегия = пробой сессии + подтверждение свечой/паттерном
+// Сигнал SETUP только при confluence >= minScore (по умолчанию 2)
+// =============================================================================
+
+grpS = "Session"
+sessionTime = input.session("0000-0800", "Session Time", group=grpS)
+sessionTz   = input.string("UTC", "Timezone", options=["UTC", "Exchange", "Europe/Dublin", "Europe/London", "America/New_York"], group=grpS)
+minRange    = input.float(0.0, "Min range (0=off)", minval=0, group=grpS)
+
+grpC = "Confluence"
+minScore     = input.int(2, "Min score for SETUP", minval=2, maxval=4, group=grpC)
+confirmBars  = input.int(3, "Candle confirm within N bars of structure", minval=0, maxval=10, group=grpC)
+fakeBars     = input.int(8, "FAKE window (bars)", minval=1, maxval=40, group=grpC)
+retestBars   = input.int(30, "RETEST window (bars)", minval=3, maxval=80, group=grpC)
+edgeATR      = input.float(0.4, "Near edge (×ATR)", minval=0.1, maxval=2.0, step=0.05, group=grpC)
+pinWickMul   = input.float(2.0, "PIN wick ≥ body ×", minval=1.2, maxval=5, step=0.1, group=grpC)
+showWeak     = input.bool(false, "Show weak single-layer marks", group=grpC)
+showSetup    = input.bool(true, "Show SETUP (confluence)", group=grpC)
+
+grpB = "Scoring"
+lookforward = input.int(20, "Lookforward bars", minval=1, maxval=200, group=grpB)
+showScore   = input.bool(true, "Show WIN/LOSS on SETUP", group=grpB)
+showTable   = input.bool(true, "Stats table", group=grpB)
+
+tz  = sessionTz == "Exchange" ? syminfo.timezone : sessionTz
+atr = ta.atr(14)
+
+// --- candles ---
+body    = math.abs(close - open)
+upperW  = high - math.max(open, close)
+lowerW  = math.min(open, close) - low
+bullPin = body > 0 and lowerW >= body * pinWickMul and upperW <= body * 0.8
+bearPin = body > 0 and upperW >= body * pinWickMul and lowerW <= body * 0.8
+bullEng = close > open and close[1] < open[1] and close >= open[1] and open <= close[1]
+bearEng = close < open and close[1] > open[1] and close <= open[1] and open >= close[1]
+// "флаг"/сжатие: 3 маленьких тела после импульса
+avgBody3 = (body + body[1] + body[2]) / 3
+bullFlag = close > open and avgBody3 < atr * 0.25 and close[3] > open[3] and high > high[1] and high > high[2]
+bearFlag = close < open and avgBody3 < atr * 0.25 and close[3] < open[3] and low < low[1] and low < low[2]
+strongUp = close > open and body >= atr * 0.5 and close >= high - body * 0.15
+strongDn = close < open and body >= atr * 0.5 and close <= low + body * 0.15
+
+inSession    = not na(time(timeframe.period, sessionTime, tz))
+sessionStart = inSession and not inSession[1]
+sessionEnd   = not inSession and inSession[1]
+bgcolor(inSession ? color.new(color.blue, 93) : na)
+
+var float curHigh = na
+var float curLow  = na
+if sessionStart
+    curHigh := high
+    curLow  := low
+else if inSession
+    curHigh := math.max(curHigh, high)
+    curLow  := math.min(curLow, low)
+
+var float lvlHigh = na
+var float lvlLow  = na
+var bool  upBroken = false
+var bool  dnBroken = false
+var int   upBreakBar = na
+var int   dnBreakBar = na
+var bool  upFaked = false
+var bool  dnFaked = false
+var bool  upRetest = false
+var bool  dnRetest = false
+var bool  upSetupDone = false
+var bool  dnSetupDone = false
+var line  hLine = na
+var line  lLine = na
+
+// последние structure-события (для стыковки со свечой)
+var int   lastStructBar = na
+var int   lastStructDir = 0      // +1 long / -1 short
+var string lastStructType = ""
+var int   lastCandleBar = na
+var int   lastCandleDir = 0
+var string lastCandleType = ""
+
+var array<int>    sigBar  = array.new_int()
+var array<float>  sigPx   = array.new_float()
+var array<int>    sigDir  = array.new_int()
+var array<string> sigKind = array.new_string() // RAW / SETUP
+var array<bool>   sigDone = array.new_bool()
+
+var int nRaw=0
+var int wRaw=0
+var int lRaw=0
+var int nSetup=0
+var int wSetup=0
+var int lSetup=0
+var int nBreakSetup=0
+var int nFakeSetup=0
+var int nRetestSetup=0
+
+f_label(y, txt, col, up) =>
+    label.new(bar_index, y, txt, style=up ? label.style_label_up : label.style_label_down, color=col, textcolor=color.white, size=size.small)
+
+f_push(dir, kind, px) =>
+    array.push(sigBar, bar_index)
+    array.push(sigPx, px)
+    array.push(sigDir, dir)
+    array.push(sigKind, kind)
+    array.push(sigDone, false)
+
+f_candleScore(dir) =>
+    sc = 0
+    typ = ""
+    if dir > 0
+        if bullPin
+            sc += 1
+            typ := "PIN"
+        if bullEng
+            sc += 1
+            typ := typ == "" ? "ENGULF" : typ + "+ENG"
+        if bullFlag
+            sc += 1
+            typ := typ == "" ? "FLAG" : typ + "+FLAG"
+        if strongUp
+            sc += 1
+            typ := typ == "" ? "IMPULSE" : typ + "+IMP"
+    else
+        if bearPin
+            sc += 1
+            typ := "PIN"
+        if bearEng
+            sc += 1
+            typ := typ == "" ? "ENGULF" : typ + "+ENG"
+        if bearFlag
+            sc += 1
+            typ := typ == "" ? "FLAG" : typ + "+FLAG"
+        if strongDn
+            sc += 1
+            typ := typ == "" ? "IMPULSE" : typ + "+IMP"
+    [sc, typ]
+
+f_trySetup(structDir, structType, structPts) =>
+    [cSc, cTyp] = f_candleScore(structDir)
+    // свеча сейчас ИЛИ в окне confirmBars после структуры
+    candleOk = cSc > 0
+    // если структура была недавно — тоже ок, даже если свеча чуть позже (вызываем на каждом баре)
+    total = structPts + cSc
+    ok = total >= minScore and candleOk
+    [ok, total, cTyp]
+
+if sessionEnd and not na(curHigh) and not na(curLow)
+    rng = curHigh - curLow
+    if minRange <= 0 or rng >= minRange
+        if not na(hLine)
+            line.set_extend(hLine, extend.none)
+            line.set_x2(hLine, bar_index)
+        if not na(lLine)
+            line.set_extend(lLine, extend.none)
+            line.set_x2(lLine, bar_index)
+        lvlHigh := curHigh
+        lvlLow := curLow
+        upBroken := false
+        dnBroken := false
+        upBreakBar := na
+        dnBreakBar := na
+        upFaked := false
+        dnFaked := false
+        upRetest := false
+        dnRetest := false
+        upSetupDone := false
+        dnSetupDone := false
+        lastStructBar := na
+        lastStructDir := 0
+        lastStructType := ""
+        hLine := line.new(bar_index - 1, lvlHigh, bar_index, lvlHigh, color=color.green, width=2, extend=extend.right)
+        lLine := line.new(bar_index - 1, lvlLow, bar_index, lvlLow, color=color.red, width=2, extend=extend.right)
+
+post = not inSession and not na(lvlHigh) and not na(lvlLow)
+nearHigh = post and math.abs(close - lvlHigh) <= atr * edgeATR
+nearLow  = post and math.abs(close - lvlLow) <= atr * edgeATR
+
+if post
+    // ===== STRUCTURE =====
+    if not upBroken and close > lvlHigh
+        upBroken := true
+        upBreakBar := bar_index
+        lastStructBar := bar_index
+        lastStructDir := 1
+        lastStructType := "BREAK"
+        nRaw += 1
+        f_push(1, "RAW", close)
+        if showWeak
+            f_label(lvlHigh, "↑ BREAK", color.new(color.green, 40), false)
+        if not na(hLine)
+            line.set_x2(hLine, bar_index)
+            line.set_extend(hLine, extend.none)
+
+    if not dnBroken and close < lvlLow
+        dnBroken := true
+        dnBreakBar := bar_index
+        lastStructBar := bar_index
+        lastStructDir := -1
+        lastStructType := "BREAK"
+        nRaw += 1
+        f_push(-1, "RAW", close)
+        if showWeak
+            f_label(lvlLow, "↓ BREAK", color.new(color.red, 40), true)
+        if not na(lLine)
+            line.set_x2(lLine, bar_index)
+            line.set_extend(lLine, extend.none)
+
+    if upBroken and not upFaked and not na(upBreakBar) and bar_index > upBreakBar and bar_index <= upBreakBar + fakeBars and close < lvlHigh
+        upFaked := true
+        lastStructBar := bar_index
+        lastStructDir := -1
+        lastStructType := "FAKE"
+        nRaw += 1
+        f_push(-1, "RAW", close)
+        if showWeak
+            f_label(high, "↓ FAKE", color.new(color.orange, 35), false)
+
+    if dnBroken and not dnFaked and not na(dnBreakBar) and bar_index > dnBreakBar and bar_index <= dnBreakBar + fakeBars and close > lvlLow
+        dnFaked := true
+        lastStructBar := bar_index
+        lastStructDir := 1
+        lastStructType := "FAKE"
+        nRaw += 1
+        f_push(1, "RAW", close)
+        if showWeak
+            f_label(low, "↑ FAKE", color.new(color.aqua, 35), true)
+
+    if upBroken and not upFaked and not upRetest and not na(upBreakBar) and bar_index > upBreakBar and bar_index <= upBreakBar + retestBars
+        if low <= lvlHigh and close > lvlHigh and (bullPin or bullEng or close > open)
+            upRetest := true
+            lastStructBar := bar_index
+            lastStructDir := 1
+            lastStructType := "RETEST"
+            nRaw += 1
+            f_push(1, "RAW", close)
+            if showWeak
+                f_label(low, "↑ RETEST", color.new(color.teal, 35), true)
+
+    if dnBroken and not dnFaked and not dnRetest and not na(dnBreakBar) and bar_index > dnBreakBar and bar_index <= dnBreakBar + retestBars
+        if high >= lvlLow and close < lvlLow and (bearPin or bearEng or close < open)
+            dnRetest := true
+            lastStructBar := bar_index
+            lastStructDir := -1
+            lastStructType := "RETEST"
+            nRaw += 1
+            f_push(-1, "RAW", close)
+            if showWeak
+                f_label(high, "↓ RETEST", color.new(color.fuchsia, 35), false)
+
+    // ===== CONFLUENCE SETUP =====
+    // Структура на этом баре или в окне confirmBars + свечное подтверждение сейчас
+    structFresh = not na(lastStructBar) and bar_index >= lastStructBar and bar_index <= lastStructBar + confirmBars
+    if showSetup and structFresh and lastStructDir != 0
+        already = lastStructDir > 0 ? upSetupDone : dnSetupDone
+        // для FAKE можно несколько раз? нет — 1 setup на сторону
+        if not already
+            structPts = lastStructType == "FAKE" or lastStructType == "RETEST" ? 2 : 1
+            [cSc, cTyp] = f_candleScore(lastStructDir)
+            // если структура сама RETEST/FAKE уже несёт свечу — cSc может быть 0 на следующем баре; разрешим confirm на том же баре структуры через повторный расчёт
+            total = structPts + cSc
+            // альтернатива: BREAK + свеча рядом с уровнем
+            nearOk = lastStructDir > 0 ? (nearLow or close > lvlHigh) : (nearHigh or close < lvlLow)
+            if cSc > 0 and total >= minScore and nearOk
+                if lastStructDir > 0
+                    upSetupDone := true
+                else
+                    dnSetupDone := true
+                nSetup += 1
+                if lastStructType == "BREAK"
+                    nBreakSetup += 1
+                else if lastStructType == "FAKE"
+                    nFakeSetup += 1
+                else
+                    nRetestSetup += 1
+                f_push(lastStructDir, "SETUP", close)
+                txt = (lastStructDir > 0 ? "↑ SETUP " : "↓ SETUP ") + lastStructType + (cTyp == "" ? "" : " + " + cTyp)
+                f_label(lastStructDir > 0 ? low : high, txt, color.new(color.yellow, 5), lastStructDir > 0)
+                bgcolor(color.new(lastStructDir > 0 ? color.green : color.red, 88), title="Setup bar")
+
+// Score
+if showScore and array.size(sigBar) > 0
+    for i = 0 to array.size(sigBar) - 1
+        if not array.get(sigDone, i) and bar_index == array.get(sigBar, i) + lookforward
+            dir = array.get(sigDir, i)
+            px = array.get(sigPx, i)
+            kind = array.get(sigKind, i)
+            win = dir > 0 ? close > px : close < px
+            array.set(sigDone, i, true)
+            if kind == "RAW"
+                if win
+                    wRaw += 1
+                else
+                    lRaw += 1
+            else
+                if win
+                    wSetup += 1
+                else
+                    lSetup += 1
+                if showSetup
+                    label.new(bar_index, dir > 0 ? high : low, win ? "SETUP WIN" : "SETUP LOSS", style=dir > 0 ? label.style_label_down : label.style_label_up, color=win ? color.new(color.teal, 15) : color.new(color.orange, 15), textcolor=color.white, size=size.tiny)
+
+f_pct(w, l) =>
+    t = w + l
+    t == 0 ? "n/a" : str.tostring(100.0 * w / t, "#.#") + "%"
+
+var table t = table.new(position.top_right, 2, 9, bgcolor=color.new(color.black, 70), border_width=1)
+if showTable and barstate.islast
+    table.cell(t, 0, 0, "Confluence", text_color=color.white, text_size=size.small)
+    table.cell(t, 1, 0, "min score " + str.tostring(minScore), text_color=color.gray, text_size=size.small)
+    table.cell(t, 0, 1, "RAW breaks", text_color=color.gray, text_size=size.small)
+    table.cell(t, 1, 1, str.tostring(nRaw) + " | WR " + f_pct(wRaw, lRaw), text_color=color.white, text_size=size.small)
+    table.cell(t, 0, 2, "SETUP only", text_color=color.yellow, text_size=size.small)
+    table.cell(t, 1, 2, str.tostring(nSetup) + " | WR " + f_pct(wSetup, lSetup), text_color=color.white, text_size=size.small)
+    table.cell(t, 0, 3, "SETUP BREAK", text_color=color.green, text_size=size.small)
+    table.cell(t, 1, 3, str.tostring(nBreakSetup), text_color=color.white, text_size=size.small)
+    table.cell(t, 0, 4, "SETUP FAKE", text_color=color.orange, text_size=size.small)
+    table.cell(t, 1, 4, str.tostring(nFakeSetup), text_color=color.white, text_size=size.small)
+    table.cell(t, 0, 5, "SETUP RETEST", text_color=color.teal, text_size=size.small)
+    table.cell(t, 1, 5, str.tostring(nRetestSetup), text_color=color.white, text_size=size.small)
+    table.cell(t, 0, 6, "Rule", text_color=color.gray, text_size=size.small)
+    table.cell(t, 1, 6, "structure + candle", text_color=color.white, text_size=size.small)
+    table.cell(t, 0, 7, "Candles", text_color=color.gray, text_size=size.small)
+    table.cell(t, 1, 7, "PIN ENGULF FLAG IMPULSE", text_color=color.white, text_size=size.tiny)
+    table.cell(t, 0, 8, "Goal", text_color=color.gray, text_size=size.tiny)
+    table.cell(t, 1, 8, "SETUP WR > RAW WR = filter works", text_color=color.gray, text_size=size.tiny)
